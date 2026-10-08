@@ -62,6 +62,8 @@
     const T = await loadEngine();
     const image = await downscale(file);
     const worker = await T.createWorker('por', 1, {
+      // Dicionário de português servido junto com o app (tessdata/).
+      langPath: new URL('tessdata/', document.baseURI).href,
       logger: (m) => {
         if (!m) return;
         const labels = {

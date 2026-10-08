@@ -1,5 +1,5 @@
 /* Service worker: rede primeiro, cache como reserva (funciona offline). */
-const CACHE = 'cfe-v1';
+const CACHE = 'cfe-v2';
 const SHELL = [
   './',
   'index.html',

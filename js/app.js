@@ -126,6 +126,47 @@
     toastTimer = setTimeout(() => (el.className = 'toast'), 3200);
   }
 
+
+  /* ================================================================== */
+  /* Confirmação (diálogo próprio: o confirm() nativo não funciona em    */
+  /* páginas incorporadas, como no claude.ai)                            */
+  /* ================================================================== */
+
+  function askConfirm(message, opts) {
+    const o = opts || {};
+    return new Promise((resolve) => {
+      const el = document.createElement('div');
+      el.className = 'dialog-overlay';
+      el.innerHTML =
+        '<div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="dlg-msg">' +
+        '<p id="dlg-msg" class="dialog-msg">' + esc(message) + '</p>' +
+        '<div class="dialog-actions">' +
+        '<button class="btn btn-ghost" id="dlg-cancel">Cancelar</button>' +
+        '<button class="btn ' + (o.danger ? 'btn-danger' : 'btn-primary') + '" id="dlg-ok">' + esc(o.ok || 'Confirmar') + '</button>' +
+        '</div></div>';
+      const prevFocus = document.activeElement;
+      const done = (v) => {
+        document.removeEventListener('keydown', onKey, true);
+        el.remove();
+        if (prevFocus && prevFocus.focus) prevFocus.focus();
+        resolve(v);
+      };
+      const onKey = (e) => {
+        if (e.key === 'Escape') {
+          e.stopPropagation();
+          done(false);
+        }
+      };
+      el.addEventListener('click', (e) => {
+        if (e.target === el || e.target.id === 'dlg-cancel') done(false);
+        else if (e.target.id === 'dlg-ok') done(true);
+      });
+      document.addEventListener('keydown', onKey, true);
+      document.body.appendChild(el);
+      $('#dlg-ok', el).focus();
+    });
+  }
+
   /* ================================================================== */
   /* Componentes reutilizáveis                                           */
   /* ================================================================== */
@@ -823,8 +864,8 @@
           commit();
           toast('Frequência salva');
         },
-        'clear-att'() {
-          if (!confirm('Limpar os dados de frequência desta matéria?')) return;
+        async 'clear-att'() {
+          if (!(await askConfirm('Limpar os dados de frequência desta matéria?', { ok: 'Limpar', danger: true }))) return;
           getSubject(id).attendance = {};
           commit();
         },
@@ -845,10 +886,10 @@
           commit();
           toast('Matéria atualizada');
         },
-        'delete-subject'() {
+        async 'delete-subject'() {
           const n = state.schedule.filter((e) => e.subjectId === id).length;
           const msg = 'Excluir “' + subjectName(id) + '”?' + (n ? '\nAs ' + n + ' aula(s) desta matéria na grade também serão removidas.' : '') + '\nOs abonos de atestados desta matéria também serão removidos.';
-          if (!confirm(msg)) return;
+          if (!(await askConfirm(msg, { ok: 'Excluir', danger: true }))) return;
           deleteSubject(id);
           closeSheet();
           commit();
@@ -923,7 +964,7 @@
       f.end = $('#ls-end', body).value;
     }
 
-    function save(again) {
+    async function save(again) {
       const body = $('.sheet-body', topSheet().el);
       readForm(body);
       if (!f.subjectId) return toast('Escolha a matéria.', 'error');
@@ -940,7 +981,7 @@
         const fe = e ?? s + 1;
         return s < xe && xs < fe;
       });
-      if (overlap && !confirm('Este horário se sobrepõe a ' + subjectName(overlap.subjectId) + ' (' + overlap.start + '). Salvar mesmo assim?')) return;
+      if (overlap && !(await askConfirm('Este horário se sobrepõe a ' + subjectName(overlap.subjectId) + ' (' + overlap.start + '). Salvar mesmo assim?'))) return;
       const rec = { id: f.id || uid(), day: f.day, subjectId: f.subjectId, teacher: f.teacher, start: f.start, end: f.end };
       const i = state.schedule.findIndex((x) => x.id === rec.id);
       if (i >= 0) state.schedule[i] = rec;
@@ -984,8 +1025,8 @@
       actions: {
         'save-lesson': () => save(false),
         'save-lesson-again': () => save(true),
-        'delete-lesson'() {
-          if (!confirm('Excluir esta aula da grade?\nAtestados já confirmados mantêm as aulas abonadas.')) return;
+        async 'delete-lesson'() {
+          if (!(await askConfirm('Excluir esta aula da grade?\nAtestados já confirmados mantêm as aulas abonadas.', { ok: 'Excluir', danger: true }))) return;
           state.schedule = state.schedule.filter((x) => x.id !== f.id);
           closeSheet();
           commit();
@@ -1126,7 +1167,7 @@
       if (!f.allSubjects && !f.subjectIds.length) return toast('Selecione as matérias afetadas.', 'error');
       const list = lessons();
       const covered = confirmIt ? list.filter((l) => !f.unchecked.has(l.key)) : [];
-      if (confirmIt && !covered.length && !confirm('Nenhuma aula selecionada. Salvar o atestado sem abonar aulas?')) return;
+      if (confirmIt && !covered.length && !(await askConfirm('Nenhuma aula selecionada. Salvar o atestado sem abonar aulas?'))) return;
       try {
         for (const n of f.newFiles) {
           await S.files.put({ id: n.id, name: n.file.name, type: n.file.type, size: n.file.size, blob: n.file, createdAt: Date.now() });
@@ -1259,8 +1300,8 @@
           closeSheet();
           goTab('schedule');
         },
-        'remove-attachment'(el) {
-          if (!confirm('Excluir este anexo? Ele será apagado do aparelho ao salvar.')) return;
+        async 'remove-attachment'(el) {
+          if (!(await askConfirm('Excluir este anexo? Ele será apagado do aparelho ao salvar.', { ok: 'Excluir', danger: true }))) return;
           f.removed.push(el.dataset.id);
           const body = $('.sheet-body', topSheet().el);
           $('#ct-attach', body).innerHTML = attachmentsHtml();
@@ -1273,7 +1314,7 @@
           $('#ct-attach', $('.sheet-body', topSheet().el)).innerHTML = attachmentsHtml();
         },
         async 'cert-delete'() {
-          if (!confirm('Excluir este atestado? As aulas abonadas por ele voltarão a contar como falta, e os anexos serão apagados.')) return;
+          if (!(await askConfirm('Excluir este atestado? As aulas abonadas por ele voltarão a contar como falta, e os anexos serão apagados.', { ok: 'Excluir', danger: true }))) return;
           const cert = state.certificates.find((c) => c.id === f.id);
           if (cert) {
             for (const a of cert.attachments) {
@@ -1439,7 +1480,9 @@
           '<input type="file" id="imp-file" accept="image/*' + (kind === 'certificate' ? ',application/pdf' : '') + '" hidden></label>';
         if (st.file) {
           html += '<div class="import-preview">' + (st.file.type.startsWith('image/') ? '<img src="' + esc(st.url) + '" alt="Imagem enviada">' : '<span class="attach-icon">PDF</span> ' + esc(st.file.name)) + '</div>';
-          if (st.file.type.startsWith('image/')) {
+          if (st.file.type.startsWith('image/') && window.__CFE_NO_OCR) {
+            html += '<p class="small muted">Nesta versão o reconhecimento automático não está disponível. No iPhone, abra a imagem em Fotos, toque e segure no texto (Texto ao Vivo), copie e cole abaixo.</p>';
+          } else if (st.file.type.startsWith('image/')) {
             html += st.busy
               ? '<div class="ocr-box"><span class="ocr-status">' + esc(st.status) + '</span><div class="progress"><div id="ocr-progress" style="width:' + Math.round(st.progress * 100) + '%"></div></div></div>'
               : '<button class="btn btn-primary block" data-action="run-ocr">Reconhecer texto no aparelho</button>' +
@@ -1508,7 +1551,7 @@
       }
     }
 
-    function confirmAttendance() {
+    async function confirmAttendance() {
       const chosen = st.rows.filter((r) => r.include);
       if (!chosen.length) return toast('Selecione ao menos uma matéria.', 'error');
       const seen = new Set();
@@ -1519,7 +1562,7 @@
         if (Object.keys(errors).length) return toast(subjectName(r.subjectId) + ': ' + Object.values(errors)[0], 'error');
       }
       const names = chosen.map((r) => subjectName(r.subjectId));
-      if (!confirm('Substituir a frequência de: ' + names.join(', ') + '?')) return;
+      if (!(await askConfirm('Substituir a frequência de: ' + names.join(', ') + '?'))) return;
       chosen.forEach((r) => {
         const att = {};
         Object.keys(r.values).forEach((k) => {
@@ -1586,6 +1629,19 @@
     }
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
     const name = 'frequencia-backup-' + todayISO() + '.json';
+    // Publicado no claude.ai: o arquivo é entregue pelo recurso de downloads da página.
+    if (window.claude && typeof window.claude.use === 'function') {
+      const dl = await window.claude.use('downloads').catch(() => null);
+      if (dl) {
+        try {
+          await dl.save({ filename: name, data: blob });
+          toast('Backup exportado');
+        } catch (e) {
+          if (!e || e.code !== 'declined') toast('Não foi possível exportar o backup aqui.', 'error');
+        }
+        return;
+      }
+    }
     const file = typeof File === 'function' ? new File([blob], name, { type: 'application/json' }) : null;
     // No iPhone, o menu de compartilhar permite salvar em Arquivos.
     if (file && navigator.canShare && navigator.canShare({ files: [file] }) && /iPhone|iPad|iPod/.test(navigator.userAgent)) {
@@ -1616,7 +1672,7 @@
     }
     const data = normalizeState(payload && payload.app === 'controle-frequencia-escolar' ? payload.data : null);
     if (!data) return toast('Este arquivo não é um backup deste app.', 'error');
-    if (!confirm('Importar este backup? Todos os dados atuais serão substituídos.\n\n' + data.subjects.length + ' matérias · ' + data.schedule.length + ' aulas na grade · ' + data.certificates.length + ' atestados')) return;
+    if (!(await askConfirm('Importar este backup? Todos os dados atuais serão substituídos.\n\n' + data.subjects.length + ' matérias · ' + data.schedule.length + ' aulas na grade · ' + data.certificates.length + ' atestados'))) return;
     try {
       await S.files.clear();
       for (const f of payload.files || []) {
@@ -1636,8 +1692,8 @@
   }
 
   async function wipeAll() {
-    if (!confirm('Apagar TODOS os dados? Matérias, grade, frequência, atestados e anexos serão excluídos deste aparelho.')) return;
-    if (!confirm('Tem certeza? Esta ação não pode ser desfeita. Considere exportar um backup antes.')) return;
+    if (!(await askConfirm('Apagar TODOS os dados? Matérias, grade, frequência, atestados e anexos serão excluídos deste aparelho.', { ok: 'Apagar tudo', danger: true }))) return;
+    if (!(await askConfirm('Tem certeza? Esta ação não pode ser desfeita. Considere exportar um backup antes.', { ok: 'Sim, apagar', danger: true }))) return;
     S.clearData();
     try {
       await S.files.clear();
@@ -1661,11 +1717,11 @@
     'close-sheet': () => closeSheet(),
     'open-subject': (el) => openSheet(subjectSheet(el.dataset.id)),
     'add-subject': () => openSheet(addSubjectSheet()),
-    'restore-subjects'() {
+    async 'restore-subjects'() {
       const existing = new Set(state.subjects.map((s) => s.name.toLowerCase()));
       const missing = C.DEFAULT_SUBJECTS.filter(([n]) => !existing.has(n.toLowerCase()));
       if (!missing.length) return toast('Todas as matérias padrão já estão cadastradas.');
-      if (!confirm('Adicionar ' + missing.length + ' matéria(s) padrão que estão faltando?\n' + missing.map((m) => m[0]).join(', '))) return;
+      if (!(await askConfirm('Adicionar ' + missing.length + ' matéria(s) padrão que estão faltando?\n' + missing.map((m) => m[0]).join(', ')))) return;
       missing.forEach(([name, total]) => state.subjects.push({ id: uid(), name, total, attendance: {} }));
       commit();
     },
@@ -1789,7 +1845,7 @@
   render();
   S.requestPersistence();
 
-  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  if ('serviceWorker' in navigator && location.protocol.startsWith('http') && !window.claude) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('sw.js').catch((e) => console.warn('SW não registrado', e));
     });
