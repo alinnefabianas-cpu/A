@@ -84,17 +84,30 @@
     return s;
   }
 
-  let state = normalizeState(S.load());
-  const firstRun = !state;
-  if (!state) state = defaultState();
+  const Acc = window.Accounts;
+  const AC = Acc.create();
+  /** Conta aberta: { account, key }. Sem sessão, mostra a tela de login. */
+  let session = null;
+  let state = defaultState();
 
   let calc = null;
   function recompute() {
     calc = C.computeAll(state, todayISO());
   }
 
+  // As gravações são criptografadas (assíncronas); a fila mantém a ordem.
+  let saveChain = Promise.resolve();
   function persist() {
-    if (!S.save(state)) toast('Não foi possível salvar no aparelho. Exporte um backup.', 'error');
+    if (!session) return saveChain;
+    const { account, key } = session;
+    const snapshot = JSON.stringify(state);
+    saveChain = saveChain
+      .then(() => AC.saveState(account.id, key, snapshot))
+      .catch((e) => {
+        console.error(e);
+        toast('Não foi possível salvar no aparelho. Exporte um backup.', 'error');
+      });
+    return saveChain;
   }
 
   /** Salva, recalcula e atualiza a tela. */
@@ -281,6 +294,11 @@
   function render() {
     const tab = TABS.find((t) => t.id === ui.tab) || TABS[0];
     $('#page-title').textContent = tab.title;
+    const chip = $('#account-chip');
+    if (chip && session) {
+      chip.innerHTML = '<span class="avatar small">' + esc(initial(session.account.name)) + '</span><span class="chip-name">' + esc(session.account.name) + '</span>';
+      chip.setAttribute('aria-label', 'Conta: ' + session.account.name);
+    }
     const views = { home: viewHome, subjects: viewSubjects, schedule: viewSchedule, certs: viewCerts, more: viewMore };
     $('#view').innerHTML = views[tab.id]();
     renderNav();
@@ -509,6 +527,11 @@
   function viewMore() {
     const st = state.settings;
     return (
+      '<section class="panel"><h2>Conta</h2>' +
+      '<button class="list-row account-row" data-action="account-menu"><span class="avatar">' + esc(initial(session.account.name)) + '</span>' +
+      '<span class="list-main"><span class="list-title">' + esc(session.account.name) + '</span><span class="list-sub">Senha, nome, sair ou excluir a conta</span></span>' + ICONS.chevron + '</button>' +
+      '</section>' +
+
       '<section class="panel"><h2>Importar de imagem ou texto</h2>' +
       '<p class="hint">Envie uma foto ou print. O texto é reconhecido <strong>no próprio aparelho</strong> e você confere tudo antes de adicionar.</p>' +
       '<div class="stack">' +
@@ -534,7 +557,7 @@
       '</section>' +
 
       '<section class="panel"><h2>Backup</h2>' +
-      '<p class="hint">Seus dados ficam salvos só neste aparelho/navegador. Exporte um backup para não perder nada ao trocar de celular ou limpar o navegador.</p>' +
+      '<p class="hint">Seus dados ficam salvos só neste aparelho/navegador. Exporte um backup para não perder nada ao trocar de celular ou limpar o navegador. O arquivo de backup <strong>não</strong> é protegido por senha: guarde-o em local seguro.</p>' +
       '<label class="switch-row"><span>Incluir anexos dos atestados no backup</span><input type="checkbox" class="switch" id="export-files" checked></label>' +
       '<div class="actions-row"><button class="btn btn-primary" data-action="export">Exportar dados</button>' +
       '<label class="btn btn-ghost file-btn">Importar backup<input type="file" accept="application/json,.json" id="import-backup" hidden></label></div>' +
@@ -542,12 +565,13 @@
 
       '<section class="panel"><h2>Privacidade</h2>' +
       '<ul class="bullets">' +
-      '<li>Tudo é salvo localmente, no seu aparelho. Não há conta, servidor nem rastreamento.</li>' +
-      '<li>Fotos e PDFs de atestados nunca são enviados para fora do aparelho.</li>' +
+      '<li>Tudo é salvo localmente, no seu aparelho. Não há servidor nem rastreamento.</li>' +
+      '<li>Cada conta tem seus próprios dados, criptografados com a senha dela. Sem a senha, ninguém consegue lê-los — nem recuperá-los.</li>' +
+      '<li>Fotos e PDFs de atestados nunca são enviados para fora do aparelho e também ficam criptografados.</li>' +
       '<li>O reconhecimento de texto (OCR) roda no aparelho. Na primeira vez, o app baixa o motor de OCR de uma CDN pública (jsDelivr) — sua imagem não é enviada.</li>' +
       '<li>Você pode excluir anexos individualmente em cada atestado, ou apagar tudo abaixo.</li>' +
       '</ul>' +
-      '<button class="btn btn-danger" data-action="wipe">Apagar todos os dados</button>' +
+      '<button class="btn btn-danger" data-action="wipe">Apagar os dados desta conta</button>' +
       '</section>' +
 
       '<section class="panel"><h2>Como os cálculos funcionam</h2>' +
@@ -1038,12 +1062,40 @@
 
   /* ---------------------- Folha: atestado ---------------------- */
 
+  /* Anexos: guardados no IndexedDB, criptografados com a chave da conta. */
+  async function putFile(id, blob, meta, key) {
+    const k = key || session.key;
+    const bytes = new Uint8Array(await blob.arrayBuffer());
+    const { iv, ct } = await Acc.encryptBytes(k, bytes);
+    await S.files.put({ id, accountId: session.account.id, name: meta.name, type: meta.type, size: meta.size, iv, data: ct, createdAt: Date.now() });
+  }
+
+  async function decryptRecord(rec, key) {
+    if (rec.blob) return rec.blob; // anexo antigo, sem criptografia
+    const bytes = await Acc.decryptBytes(key || session.key, rec.iv, rec.data);
+    return new Blob([bytes], { type: rec.type || 'application/octet-stream' });
+  }
+
+  async function getFileBlob(id) {
+    const rec = await S.files.get(id);
+    if (!rec || rec.accountId !== session.account.id) return null;
+    return decryptRecord(rec);
+  }
+
+  async function filesOf(accountId) {
+    return ((await S.files.all()) || []).filter((r) => r.accountId === accountId);
+  }
+
+  async function removeFilesOf(accountId) {
+    for (const r of await filesOf(accountId)) await S.files.remove(r.id);
+  }
+
   const objectURLs = {};
   async function fileURL(id) {
     if (objectURLs[id]) return objectURLs[id];
-    const rec = await S.files.get(id);
-    if (!rec || !rec.blob) return null;
-    objectURLs[id] = URL.createObjectURL(rec.blob);
+    const blob = await getFileBlob(id);
+    if (!blob) return null;
+    objectURLs[id] = URL.createObjectURL(blob);
     return objectURLs[id];
   }
   function revokeFileURL(id) {
@@ -1170,7 +1222,7 @@
       if (confirmIt && !covered.length && !(await askConfirm('Nenhuma aula selecionada. Salvar o atestado sem abonar aulas?'))) return;
       try {
         for (const n of f.newFiles) {
-          await S.files.put({ id: n.id, name: n.file.name, type: n.file.type, size: n.file.size, blob: n.file, createdAt: Date.now() });
+          await putFile(n.id, n.file, { name: n.file.name, type: n.file.type, size: n.file.size });
           f.attachments.push({ id: n.id, name: n.file.name, type: n.file.type, size: n.file.size });
         }
         for (const id of f.removed) {
@@ -1618,9 +1670,8 @@
     const payload = { app: 'controle-frequencia-escolar', format: 1, exportedAt: new Date().toISOString(), data: state, files: [] };
     if (includeFiles) {
       try {
-        const all = await S.files.all();
-        for (const f of all || []) {
-          payload.files.push({ id: f.id, name: f.name, type: f.type, size: f.size, dataURL: await S.blobToDataURL(f.blob) });
+        for (const f of await filesOf(session.account.id)) {
+          payload.files.push({ id: f.id, name: f.name, type: f.type, size: f.size, dataURL: await S.blobToDataURL(await decryptRecord(f)) });
         }
       } catch (e) {
         console.warn(e);
@@ -1672,12 +1723,18 @@
     }
     const data = normalizeState(payload && payload.app === 'controle-frequencia-escolar' ? payload.data : null);
     if (!data) return toast('Este arquivo não é um backup deste app.', 'error');
-    if (!(await askConfirm('Importar este backup? Todos os dados atuais serão substituídos.\n\n' + data.subjects.length + ' matérias · ' + data.schedule.length + ' aulas na grade · ' + data.certificates.length + ' atestados'))) return;
+    if (!(await askConfirm('Importar este backup na conta “' + session.account.name + '”? Os dados atuais desta conta serão substituídos.\n\n' + data.subjects.length + ' matérias · ' + data.schedule.length + ' aulas na grade · ' + data.certificates.length + ' atestados'))) return;
     try {
-      await S.files.clear();
+      await removeFilesOf(session.account.id);
       for (const f of payload.files || []) {
         const blob = S.dataURLToBlob(f.dataURL);
-        if (blob) await S.files.put({ id: f.id, name: f.name, type: f.type, size: f.size, blob, createdAt: Date.now() });
+        // Novo id: o mesmo backup pode ser importado em mais de uma conta.
+        const newId = uid();
+        if (blob) {
+          await putFile(newId, blob, { name: f.name, type: f.type, size: f.size });
+          data.certificates.forEach((c) => c.attachments.forEach((a) => a.id === f.id && (a.id = newId)));
+          f.id = newId;
+        }
       }
     } catch (e) {
       console.warn(e);
@@ -1692,11 +1749,10 @@
   }
 
   async function wipeAll() {
-    if (!(await askConfirm('Apagar TODOS os dados? Matérias, grade, frequência, atestados e anexos serão excluídos deste aparelho.', { ok: 'Apagar tudo', danger: true }))) return;
+    if (!(await askConfirm('Apagar todos os dados da conta “' + session.account.name + '”? Matérias, grade, frequência, atestados e anexos voltarão ao início. A conta continua existindo.', { ok: 'Apagar dados', danger: true }))) return;
     if (!(await askConfirm('Tem certeza? Esta ação não pode ser desfeita. Considere exportar um backup antes.', { ok: 'Sim, apagar', danger: true }))) return;
-    S.clearData();
     try {
-      await S.files.clear();
+      await removeFilesOf(session.account.id);
     } catch (e) {
       console.warn(e);
     }
@@ -1705,7 +1761,312 @@
     while (sheets.length) closeSheet();
     ui.tab = 'home';
     commit();
-    toast('Todos os dados foram apagados');
+    toast('Os dados desta conta foram apagados');
+  }
+
+
+  /* ================================================================== */
+  /* Contas: login, sessão e menu da conta                               */
+  /* ================================================================== */
+
+  const login = { mode: 'list', accountId: null, error: '', busy: false };
+
+  function initial(name) {
+    return (String(name || '?').trim()[0] || '?').toUpperCase();
+  }
+
+  const LOGO =
+    '<svg class="login-logo" viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#2f5bea"/>' +
+    '<circle cx="256" cy="256" r="150" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="44"/>' +
+    '<path d="M256 106a150 150 0 1 1-150 150" fill="none" stroke="#fff" stroke-width="44" stroke-linecap="round"/>' +
+    '<path d="m196 258 42 42 82-86" fill="none" stroke="#fff" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  function showLogin() {
+    document.body.classList.add('locked');
+    const accounts = AC.list();
+    if (!accounts.length) login.mode = 'create';
+    else if (login.mode !== 'create') login.mode = 'list';
+    renderLogin();
+  }
+
+  function renderLogin() {
+    const accounts = AC.list();
+    let html = '<div class="login"><div class="login-brand">' + LOGO + '<h1>Controle de Frequência Escolar</h1>' +
+      '<p>Grade, frequência e atestados, com o cálculo da frequência real.</p></div>';
+
+    if (login.mode === 'list') {
+      html +=
+        '<section class="login-card"><h2>Quem está usando?</h2><div class="account-list">' +
+        accounts
+          .map(
+            (a) =>
+              '<button class="account-btn" data-action="login-select" data-id="' + esc(a.id) + '">' +
+              '<span class="avatar">' + esc(initial(a.name)) + '</span><span class="account-name">' + esc(a.name) + '</span>' +
+              (AC.isRemembered(a.id) ? '<span class="tag">conectada</span>' : '') + ICONS.chevron + '</button>'
+          )
+          .join('') +
+        '</div><button class="btn btn-ghost block" data-action="login-new">' + ICONS.plus + ' Criar nova conta</button></section>';
+    } else if (login.mode === 'password') {
+      const a = AC.find(login.accountId);
+      html +=
+        '<section class="login-card"><form id="login-form" novalidate>' +
+        '<div class="login-who"><span class="avatar">' + esc(initial(a.name)) + '</span><h2>' + esc(a.name) + '</h2></div>' +
+        '<input type="text" name="username" autocomplete="username" value="' + esc(a.name) + '" hidden>' +
+        field('Senha', '<input type="password" id="login-password" name="password" autocomplete="current-password" required>') +
+        '<label class="switch-row"><span>Manter conectada neste aparelho</span><input type="checkbox" class="switch" id="login-remember"></label>' +
+        (login.error ? '<p class="error" role="alert">' + esc(login.error) + '</p>' : '') +
+        '<button class="btn btn-primary block" type="submit"' + (login.busy ? ' disabled' : '') + '>' + (login.busy ? 'Entrando…' : 'Entrar') + '</button>' +
+        '<div class="login-links"><button type="button" class="link" data-action="login-back">Outra conta</button>' +
+        '<button type="button" class="link" data-action="login-forgot">Esqueci a senha</button></div>' +
+        '</form></section>';
+    } else {
+      const legacy = !accounts.length && AC.legacyState();
+      html +=
+        '<section class="login-card"><form id="create-form" novalidate><h2>' + (accounts.length ? 'Nova conta' : 'Criar sua conta') + '</h2>' +
+        (legacy ? '<div class="callout callout-info">Encontramos dados já salvos neste aparelho. Eles serão colocados nesta nova conta.</div>' : '') +
+        field('Nome', '<input type="text" id="new-name" name="username" autocomplete="username" maxlength="40" placeholder="Ex.: Ana" required>') +
+        field('Senha', '<input type="password" id="new-password" name="new-password" autocomplete="new-password" required>', 'Pelo menos ' + Acc.MIN_PASSWORD + ' caracteres.') +
+        field('Confirmar senha', '<input type="password" id="new-password2" autocomplete="new-password" required>') +
+        '<label class="switch-row"><span>Manter conectada neste aparelho</span><input type="checkbox" class="switch" id="new-remember"></label>' +
+        (login.error ? '<p class="error" role="alert">' + esc(login.error) + '</p>' : '') +
+        '<button class="btn btn-primary block" type="submit"' + (login.busy ? ' disabled' : '') + '>' + (login.busy ? 'Criando…' : 'Criar conta') + '</button>' +
+        (accounts.length ? '<div class="login-links"><button type="button" class="link" data-action="login-back">Voltar</button></div>' : '') +
+        '</form></section>';
+    }
+
+    html +=
+      '<p class="login-note">As contas ficam só neste aparelho. Os dados de cada conta são criptografados com a senha dela; ' +
+      'se a senha for esquecida, não há como recuperá-los. Se “Manter conectada” estiver ligado, quem usar este aparelho abre a conta sem senha.</p>' +
+      '<p class="disclaimer">' + esc(DISCLAIMER) + '</p></div>';
+
+    $('#view').innerHTML = html;
+    $('#nav').innerHTML = '';
+    const focus = $('#login-password') || (login.mode === 'create' && $('#new-name'));
+    if (focus && !login.busy) focus.focus();
+  }
+
+  async function openAccount(id) {
+    login.accountId = id;
+    login.error = '';
+    if (AC.isRemembered(id)) {
+      const r = await AC.unlockRemembered(id);
+      if (r) return startSession(r);
+    }
+    login.mode = 'password';
+    renderLogin();
+  }
+
+  async function submitLogin(form) {
+    if (login.busy) return;
+    const pw = $('#login-password', form).value;
+    const remember = $('#login-remember', form).checked;
+    if (!pw) {
+      login.error = 'Digite a senha.';
+      return renderLogin();
+    }
+    login.busy = true;
+    login.error = '';
+    renderLogin();
+    try {
+      const r = await AC.unlock(login.accountId, pw);
+      if (remember) await AC.remember(r.account.id, r.key);
+      login.busy = false;
+      startSession(r);
+    } catch (e) {
+      login.busy = false;
+      login.error = e && e.code === 'password' ? 'Senha incorreta. Tente de novo.' : (e && e.message) || 'Não foi possível entrar.';
+      renderLogin();
+    }
+  }
+
+  async function submitCreate(form) {
+    if (login.busy) return;
+    const name = $('#new-name', form).value;
+    const pw = $('#new-password', form).value;
+    const pw2 = $('#new-password2', form).value;
+    const remember = $('#new-remember', form).checked;
+    const fail = (msg) => {
+      login.error = msg;
+      renderLogin();
+      // devolve o que foi digitado (renderLogin redesenha o formulário)
+      $('#new-name').value = name;
+    };
+    if (pw !== pw2) return fail('As senhas não são iguais.');
+    const legacy = AC.list().length ? null : normalizeState(AC.legacyState());
+    login.busy = true;
+    login.error = '';
+    renderLogin();
+    try {
+      const initialState = legacy || defaultState();
+      const r = await AC.createAccount(name, pw, initialState);
+      if (remember) await AC.remember(r.account.id, r.key);
+      login.busy = false;
+      await startSession({ account: r.account, key: r.key, state: initialState });
+      if (legacy) await migrateLegacyFiles();
+      toast('Conta criada');
+    } catch (e) {
+      login.busy = false;
+      fail(e && e.message ? e.message : 'Não foi possível criar a conta.');
+    }
+  }
+
+  /** Anexos salvos antes das contas: passam para a primeira conta, criptografados. */
+  async function migrateLegacyFiles() {
+    try {
+      for (const r of (await S.files.all()) || []) {
+        if (r.accountId || !r.blob) continue;
+        await putFile(r.id, r.blob, { name: r.name, type: r.type, size: r.size });
+      }
+      AC.clearLegacy();
+    } catch (e) {
+      console.warn('Migração de anexos', e);
+    }
+  }
+
+  function startSession(r) {
+    session = { account: r.account, key: r.key };
+    state = normalizeState(r.state) || defaultState();
+    Object.keys(objectURLs).forEach(revokeFileURL);
+    while (sheets.length) closeSheet();
+    ui.tab = 'home';
+    ui.subjectsMode = 'list';
+    login.mode = 'list';
+    login.error = '';
+    document.body.classList.remove('locked');
+    recompute();
+    render();
+    window.scrollTo(0, 0);
+  }
+
+  async function lock() {
+    await saveChain;
+    session = null;
+    state = defaultState();
+    Object.keys(objectURLs).forEach(revokeFileURL);
+    while (sheets.length) closeSheet();
+    showLogin();
+    window.scrollTo(0, 0);
+  }
+
+  async function deleteAccount(id) {
+    if (session && session.account.id === id) await saveChain;
+    try {
+      await removeFilesOf(id);
+    } catch (e) {
+      console.warn(e);
+    }
+    AC.remove(id);
+    if (session && session.account.id === id) {
+      session = null;
+      await lock();
+    } else {
+      showLogin();
+    }
+  }
+
+  async function boot() {
+    const last = AC.lastAccountId();
+    if (last && AC.isRemembered(last)) {
+      const r = await AC.unlockRemembered(last);
+      if (r) return startSession(r);
+    }
+    showLogin();
+  }
+
+  /* ---------------------- Folha: conta ---------------------- */
+
+  function accountSheet() {
+    return {
+      title: () => 'Conta',
+      alive: () => !!session,
+      render() {
+        const a = session.account;
+        return (
+          '<div class="account-head"><span class="avatar big">' + esc(initial(a.name)) + '</span><div><h3>' + esc(a.name) + '</h3>' +
+          '<p class="muted small">Conta neste aparelho · criada em ' + esc(C.fmtDateBR(String(a.createdAt || '').slice(0, 10))) + '</p></div></div>' +
+          '<label class="switch-row panel"><span>Manter conectada neste aparelho</span><input type="checkbox" class="switch" id="acc-remember"' + (AC.isRemembered(a.id) ? ' checked' : '') + '></label>' +
+          '<div class="sheet-actions"><button class="btn btn-primary block" data-action="acc-logout">Sair da conta</button></div>' +
+
+          '<section class="panel"><h3>Nome</h3>' +
+          field('Nome da conta', '<input type="text" id="acc-name" maxlength="40" value="' + esc(a.name) + '" autocomplete="off">') +
+          '<button class="btn btn-secondary block" data-action="acc-rename">Salvar nome</button></section>' +
+
+          '<section class="panel"><h3>Trocar senha</h3>' +
+          '<input type="text" autocomplete="username" value="' + esc(a.name) + '" hidden>' +
+          field('Senha atual', '<input type="password" id="acc-old" autocomplete="current-password">') +
+          field('Nova senha', '<input type="password" id="acc-new" autocomplete="new-password">', 'Pelo menos ' + Acc.MIN_PASSWORD + ' caracteres.') +
+          field('Confirmar nova senha', '<input type="password" id="acc-new2" autocomplete="new-password">') +
+          '<button class="btn btn-secondary block" data-action="acc-password">Trocar senha</button></section>' +
+
+          '<section class="panel"><h3>Excluir conta</h3><p class="hint">Apaga a conta e todos os dados dela neste aparelho, incluindo os anexos. Exporte um backup antes, se quiser guardar.</p>' +
+          '<button class="btn btn-danger-ghost block" data-action="acc-delete">Excluir esta conta</button></section>'
+        );
+      },
+      async onChange(e) {
+        if (e.target.id !== 'acc-remember') return;
+        if (e.target.checked) await AC.remember(session.account.id, session.key);
+        else AC.forget(session.account.id);
+        toast(e.target.checked ? 'Esta conta abrirá sem senha neste aparelho' : 'A senha será pedida ao abrir');
+      },
+      actions: {
+        async 'acc-logout'() {
+          AC.forget(session.account.id);
+          await lock();
+          toast('Você saiu da conta');
+        },
+        'acc-rename'() {
+          const body = $('.sheet-body', topSheet().el);
+          try {
+            const n = AC.rename(session.account.id, $('#acc-name', body).value);
+            session.account = AC.find(session.account.id);
+            render();
+            renderSheet(topSheet());
+            toast('Nome alterado para ' + n);
+          } catch (err) {
+            toast(err.message, 'error');
+          }
+        },
+        async 'acc-password'(el) {
+          const body = $('.sheet-body', topSheet().el);
+          const oldPw = $('#acc-old', body).value;
+          const pw = $('#acc-new', body).value;
+          if (pw !== $('#acc-new2', body).value) return toast('As novas senhas não são iguais.', 'error');
+          if (pw.length < Acc.MIN_PASSWORD) return toast('A nova senha precisa ter pelo menos ' + Acc.MIN_PASSWORD + ' caracteres.', 'error');
+          el.disabled = true;
+          el.textContent = 'Trocando…';
+          try {
+            await AC.unlock(session.account.id, oldPw);
+          } catch (err) {
+            el.disabled = false;
+            el.textContent = 'Trocar senha';
+            return toast('A senha atual está incorreta.', 'error');
+          }
+          try {
+            await saveChain;
+            const records = await filesOf(session.account.id);
+            const blobs = [];
+            for (const r of records) blobs.push({ r, blob: await decryptRecord(r) });
+            const res = await AC.changePassword(session.account.id, pw, state);
+            session = { account: res.account, key: res.key };
+            for (const { r, blob } of blobs) await putFile(r.id, blob, { name: r.name, type: r.type, size: r.size });
+            renderSheet(topSheet());
+            toast('Senha alterada');
+          } catch (err) {
+            console.error(err);
+            el.disabled = false;
+            el.textContent = 'Trocar senha';
+            toast('Não foi possível trocar a senha.', 'error');
+          }
+        },
+        async 'acc-delete'() {
+          const a = session.account;
+          if (!(await askConfirm('Excluir a conta “' + a.name + '”? Todos os dados e anexos dela serão apagados deste aparelho.', { ok: 'Excluir conta', danger: true }))) return;
+          if (!(await askConfirm('Tem certeza? Não dá para desfazer.', { ok: 'Sim, excluir', danger: true }))) return;
+          await deleteAccount(a.id);
+          toast('Conta excluída');
+        },
+      },
+    };
   }
 
   /* ================================================================== */
@@ -1747,6 +2108,32 @@
     },
     export: () => exportData(),
     wipe: () => wipeAll(),
+    'account-menu': () => openSheet(accountSheet()),
+    'login-select'(el) {
+      openAccount(el.dataset.id);
+    },
+    'login-new'() {
+      login.mode = 'create';
+      login.error = '';
+      renderLogin();
+    },
+    'login-back'() {
+      login.mode = AC.list().length ? 'list' : 'create';
+      login.error = '';
+      renderLogin();
+    },
+    async 'login-forgot'() {
+      const acc = AC.find(login.accountId);
+      if (!acc) return;
+      const ok = await askConfirm(
+        'Não é possível recuperar a senha: os dados da conta são criptografados com ela.\n\nSe você tiver um backup exportado, pode excluir esta conta, criar outra e importar o backup.',
+        { ok: 'Excluir esta conta', danger: true }
+      );
+      if (!ok) return;
+      if (!(await askConfirm('Excluir a conta “' + acc.name + '” e todos os dados dela neste aparelho? Não dá para desfazer.', { ok: 'Excluir', danger: true }))) return;
+      await deleteAccount(acc.id);
+      toast('Conta excluída');
+    },
   };
 
   document.addEventListener('click', (e) => {
@@ -1836,13 +2223,22 @@
     if (e.key === 'Escape' && sheets.length) closeSheet();
   });
 
+  document.addEventListener('submit', (e) => {
+    const f = e.target;
+    if (f.id === 'login-form') {
+      e.preventDefault();
+      submitLogin(f);
+    } else if (f.id === 'create-form') {
+      e.preventDefault();
+      submitCreate(f);
+    }
+  });
+
   /* ================================================================== */
   /* Início                                                              */
   /* ================================================================== */
 
-  recompute();
-  if (firstRun) persist();
-  render();
+  boot();
   S.requestPersistence();
 
   if ('serviceWorker' in navigator && location.protocol.startsWith('http') && !window.claude) {
@@ -1852,5 +2248,5 @@
   }
 
   // Exposto para testes automatizados.
-  window.__app = { getState: () => state, getCalc: () => calc };
+  window.__app = { getState: () => state, getCalc: () => calc, getSession: () => session && session.account };
 })();

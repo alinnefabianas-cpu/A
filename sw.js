@@ -1,5 +1,5 @@
 /* Service worker: rede primeiro, cache como reserva (funciona offline). */
-const CACHE = 'cfe-v2';
+const CACHE = 'cfe-v3';
 const SHELL = [
   './',
   'index.html',
@@ -8,6 +8,7 @@ const SHELL = [
   'js/parsers.js',
   'js/storage.js',
   'js/ocr.js',
+  'js/accounts.js',
   'js/app.js',
   'manifest.webmanifest',
   'icons/icon.svg',

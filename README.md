@@ -8,6 +8,7 @@ Feito para funcionar bem no celular, especialmente no iPhone (pode ser adicionad
 
 ## Como usar
 
+0. **Conta**: na primeira vez, crie uma conta com nome e senha. Cada pessoa que usa o aparelho pode ter a sua; os dados de uma conta não aparecem nas outras. Toque no seu nome, no topo, para trocar a senha, renomear, sair ou excluir a conta.
 1. **Grade**: cadastre as aulas da semana (dia, matéria, início, término, professor opcional). Aulas duplas são cadastradas como duas aulas com horários diferentes.
 2. **Matérias → Lançar frequência**: copie do sistema da escola as faltas e as aulas dadas (ou o percentual). Abrindo uma matéria, também dá para informar presenças e % de faltas.
 3. **Atestados**: informe o período e as matérias (ou “todas”). O app mostra as aulas da grade que caem no período; você desmarca o que não se aplica (feriado, aula cancelada) e confirma.
@@ -44,7 +45,11 @@ O texto reconhecido aparece num campo editável (dá para corrigir), e os dados 
 
 ## Privacidade e armazenamento
 
-- Os dados ficam salvos só no aparelho (localStorage); fotos e PDFs dos atestados ficam no IndexedDB do navegador.
+- **Contas locais**: as contas existem só no aparelho (não há servidor). Os dados de cada conta são criptografados com AES-GCM de 256 bits, com a chave derivada da senha (PBKDF2-SHA-256, 310 mil iterações). A senha não é guardada; sem ela os dados não podem ser lidos nem recuperados.
+- “Manter conectada neste aparelho” guarda a chave da conta no aparelho para abrir sem senha; ao sair da conta, ela é apagada.
+- Ao criar a primeira conta, dados de versões anteriores do app (sem contas) são movidos para ela e criptografados.
+- Os dados ficam no localStorage; fotos e PDFs dos atestados ficam no IndexedDB do navegador, também criptografados.
+- O backup exportado (JSON) **não** é criptografado: guarde-o em local seguro.
 - Não há conta, servidor nem rastreamento.
 - Em **Mais** há opções para exportar e importar backup (JSON, com ou sem anexos) e para apagar todos os dados. Anexos podem ser excluídos individualmente.
 - No iPhone, o Safari pode apagar dados de sites pouco usados. Adicionar o app à Tela de Início e exportar backups de vez em quando evita perdas.
@@ -84,6 +89,7 @@ css/styles.css        estilos (mobile-first, modo escuro, safe areas do iPhone)
 js/calc.js            núcleo de cálculo (puro, testável em Node)
 js/parsers.js         análise de texto de OCR/colado (frequência, grade, atestado)
 js/storage.js         localStorage + IndexedDB (anexos)
+js/accounts.js        contas locais e criptografia (Web Crypto)
 js/ocr.js             carregamento sob demanda do Tesseract.js
 js/app.js             interface
 sw.js                 service worker (funciona offline)

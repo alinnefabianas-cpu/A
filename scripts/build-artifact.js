@@ -31,7 +31,7 @@ const html = [
   body,
   // O claude.ai não serve o dicionário do OCR; a importação usa texto colado.
   '<script>window.__CFE_NO_OCR = true;</script>',
-  ...['js/calc.js', 'js/parsers.js', 'js/storage.js', 'js/ocr.js', 'js/app.js'].map(script),
+  ...['js/calc.js', 'js/parsers.js', 'js/storage.js', 'js/ocr.js', 'js/accounts.js', 'js/app.js'].map(script),
 ].join('\n');
 
 fs.mkdirSync(out, { recursive: true });
