@@ -19,6 +19,8 @@
 
   const root = document.getElementById('quiz-root');
   const page = document.body.dataset.page;
+  // Versão de página única (scripts/build-quiz-artifact.js): o resultado aparece na mesma página.
+  const SINGLE = window.__DR_SINGLE_PAGE === true;
 
   /* ----------------------------- utilidades ----------------------------- */
 
@@ -247,8 +249,8 @@
       </section>
     `);
     setTimeout(() => {
-      if (storageOk) location.assign(RESULT_URL);
-      else renderResult(state.answers, true); // sem sessionStorage: mostra aqui mesmo
+      if (storageOk && !SINGLE) location.assign(RESULT_URL);
+      else renderResult(state.answers, true); // página única ou sem sessionStorage: mostra aqui mesmo
     }, reducedMotion ? 400 : 1300);
   }
 
@@ -396,6 +398,14 @@
     A.track('offer_viewed', { profile: profileProp(key) });
   }
 
+  function readViewed() {
+    try {
+      return sessionStorage.getItem(VIEWED_KEY);
+    } catch (e) {
+      return null;
+    }
+  }
+
   function observeOffer(key) {
     const el = root.querySelector('[data-offer]');
     if (!el) return;
@@ -486,7 +496,8 @@
         else renderEmptyResult();
       } else {
         state = loadState();
-        if (state.started) renderQuestion();
+        if (SINGLE && L.isComplete(state.answers) && readViewed() === state.answers.join('')) renderResult(state.answers);
+        else if (state.started) renderQuestion();
         else renderIntro();
       }
     } catch (err) {
