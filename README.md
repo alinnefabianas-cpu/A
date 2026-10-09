@@ -95,3 +95,39 @@ js/app.js             interface
 sw.js                 service worker (funciona offline)
 tests/                testes com node:test
 ```
+
+## Quiz de foco — Dopamine Rewire
+
+Funil independente do app de frequência (não altera nenhum arquivo dele), em páginas estáticas:
+
+| Rota | Arquivo | Conteúdo |
+| --- | --- | --- |
+| `/quiz-foco` | `quiz-foco.html` | introdução e 7 perguntas |
+| `/resultado` | `resultado.html` | resultado personalizado + oferta (`#oferta`) |
+
+```
+quiz/quiz-logic.js    perguntas, perfis, contagem e desempate (puro, testado em Node)
+quiz/quiz-app.js      interface das duas páginas
+quiz/quiz-config.js   preço, checkout, benefícios — único arquivo a editar
+quiz/analytics.js     camada de eventos (dataLayer / CustomEvent 'dr:analytics')
+quiz/quiz.css         estilos
+tests/quiz.test.js    testes da lógica
+```
+
+- **Classificação**: A = Distrações constantes, B = Falta de prioridades, C = Sobrecarga de tarefas, D = Dificuldade para começar. Vence o perfil com mais respostas; em empate, o perfil empatado da resposta mais recente.
+- **Sessão**: só as letras das respostas ficam no `sessionStorage` (nada na URL). Atualizar a página mantém o progresso e o resultado; abrir `/resultado` sem ter respondido mostra o botão para começar.
+- **Não é diagnóstico**: o resultado é uma orientação baseada nas respostas, e o texto da página diz isso.
+
+### Antes de publicar a oferta
+
+Edite `quiz/quiz-config.js`:
+
+- `price`: ex. `{ amount: 29.9, currency: 'BRL', period: 'mês' }`. Com `null`, nenhum preço aparece para visitantes.
+- `checkoutUrl` (ou `productUrl`): link https do checkout. Sem link, o botão aparece desativado com “Disponível em breve”.
+- `benefits`: somente funcionalidades que o Dopamine Rewire realmente tem.
+
+Em `localhost` aparece um aviso com o que falta configurar; visitantes não o veem.
+
+**Pagamentos**: o quiz só redireciona para o checkout. Não há chave secreta no frontend, e nenhum acesso é liberado no navegador. A assinatura deve ser validada pelo provedor de pagamento/backend (webhook), e só aí o evento `subscription_confirmed` deve ser registrado.
+
+**Analytics**: eventos `quiz_started`, `quiz_question_answered` (só o número da pergunta), `quiz_completed`, `quiz_result_viewed`, `offer_viewed`, `offer_clicked`, `checkout_started`. Eles vão para `window.dataLayer` (se houver GTM) e para o evento `dr:analytics` em `window`. As respostas individuais nunca são enviadas; o perfil é enviado se `analyticsIncludeProfile` for `true`.
