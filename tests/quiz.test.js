@@ -101,3 +101,10 @@ test('textos de resultado não usam linguagem clínica', () => {
     for (const w of ['diagnóstico', 'tdah', 'transtorno', 'cura', 'dopamina']) assert.ok(!text.includes(w), w);
   }
 });
+
+test('Falta de prioridades: primeiro passo com exemplo separado', () => {
+  const p = Q.PROFILES.B;
+  assert.equal(p.description, 'Suas respostas indicam que decidir por onde começar pode estar consumindo tempo e energia.');
+  assert.equal(p.nextStep, 'Escolha uma tarefa importante e escreva uma única ação concreta para iniciá-la.');
+  assert.match(p.example, /resolver a primeira questão da lista/);
+});

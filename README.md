@@ -108,11 +108,21 @@ Funil independente do app de frequência (não altera nenhum arquivo dele), em p
 ```
 quiz/quiz-logic.js    perguntas, perfis, contagem e desempate (puro, testado em Node)
 quiz/quiz-app.js      interface das duas páginas
-quiz/quiz-config.js   preço, checkout, benefícios — único arquivo a editar
+quiz/quiz-config.js   preço, checkout, cobrança, funcionalidades, capturas — único arquivo a editar
 quiz/analytics.js     camada de eventos (dataLayer / CustomEvent 'dr:analytics')
-quiz/quiz.css         estilos
-tests/quiz.test.js    testes da lógica
+quiz/quiz.css         estilos; cores da marca no bloco brand:start/brand:end
+quiz/assets/logo.png  logo oficial (adicionar; veja quiz/assets/LEIA-ME.md)
+scripts/brand-color.js        extrai a cor da logo e atualiza as variáveis de cor
+scripts/build-quiz-artifact.js versão de página única para o claude.ai
+tests/quiz.test.js, tests/brand.test.js
 ```
+
+### Logo e cores da marca
+
+1. Salve a logo oficial em `quiz/assets/logo.png` (PNG quadrado, 8 bits). Ela aparece no topo, na transição, na apresentação, no cartão de assinatura e no rodapé, sempre inteira e com cantos arredondados. Sem o arquivo, aparece só o nome DOPAMINE REWIRE; o símbolo nunca é redesenhado.
+2. Rode `node scripts/brand-color.js` para extrair o turquesa predominante da logo. O script recalcula as variáveis `--brand`, `--brand-strong`, `--blue`, `--deep`, `--ink-2`, `--line`, `--tint` e `--wash`, com contraste mínimo de 4,5:1 para texto e botões. Use `--dry` para só ver os valores.
+
+As cores atuais são provisórias até esse passo.
 
 - **Classificação**: A = Distrações constantes, B = Falta de prioridades, C = Sobrecarga de tarefas, D = Dificuldade para começar. Vence o perfil com mais respostas; em empate, o perfil empatado da resposta mais recente.
 - **Sessão**: só as letras das respostas ficam no `sessionStorage` (nada na URL). Atualizar a página mantém o progresso e o resultado; abrir `/resultado` sem ter respondido mostra o botão para começar.
@@ -124,7 +134,10 @@ Edite `quiz/quiz-config.js`:
 
 - `price`: ex. `{ amount: 29.9, currency: 'BRL', period: 'mês' }`. Com `null`, nenhum preço aparece para visitantes.
 - `checkoutUrl` (ou `productUrl`): link https do checkout. Sem link, o botão aparece desativado com “Disponível em breve”.
-- `benefits`: somente funcionalidades que o Dopamine Rewire realmente tem.
+- `benefits`: somente benefícios que o Dopamine Rewire realmente oferece (lista do cartão de assinatura).
+- `features`: funcionalidades reais para os cartões da apresentação (`{ icon, title, text }`).
+- `screenshots`: capturas reais do miniapp para o mockup de celular. Sem elas, o celular mostra uma prévia montada com o resultado do visitante.
+- `billingNote` e `paymentProvider`: condições reais de cobrança e cancelamento e o nome do provedor de pagamento.
 
 Em `localhost` aparece um aviso com o que falta configurar; visitantes não o veem.
 

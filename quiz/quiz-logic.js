@@ -98,10 +98,9 @@
       id: 'prioridades',
       name: 'Falta de prioridades',
       title: 'Você não precisa fazer tudo. Precisa decidir o que vem primeiro.',
-      description:
-        'Suas respostas indicam que decidir por onde começar pode estar consumindo tempo e energia. Quando várias tarefas parecem importantes, ter um próximo passo claro pode facilitar sua rotina.',
-      nextStep:
-        'Escolha uma tarefa importante e escreva uma única ação concreta para iniciá-la. Por exemplo, em vez de escrever ‘estudar matemática’, escreva ‘resolver a primeira questão da lista’.',
+      description: 'Suas respostas indicam que decidir por onde começar pode estar consumindo tempo e energia.',
+      nextStep: 'Escolha uma tarefa importante e escreva uma única ação concreta para iniciá-la.',
+      example: 'Em vez de escrever ‘estudar matemática’, escreva ‘resolver a primeira questão da lista’.',
     },
     C: {
       id: 'sobrecarga',
