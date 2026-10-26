@@ -144,3 +144,43 @@ Em `localhost` aparece um aviso com o que falta configurar; visitantes não o ve
 **Pagamentos**: o quiz só redireciona para o checkout. Não há chave secreta no frontend, e nenhum acesso é liberado no navegador. A assinatura deve ser validada pelo provedor de pagamento/backend (webhook), e só aí o evento `subscription_confirmed` deve ser registrado.
 
 **Analytics**: eventos `quiz_started`, `quiz_question_answered` (só o número da pergunta), `quiz_completed`, `quiz_result_viewed`, `offer_viewed`, `offer_clicked`, `checkout_started`. Eles vão para `window.dataLayer` (se houver GTM) e para o evento `dr:analytics` em `window`. As respostas individuais nunca são enviadas; o perfil é enviado se `analyticsIncludeProfile` for `true`.
+
+## Curso Do Corte ao Pix
+
+Curso on-line de edição de vídeo e de como vender esse trabalho, no estilo de aulas curtas e gamificadas. Fica em `curso/`, separado do app de frequência (as contas de um não aparecem no outro).
+
+| Rota | Arquivo | Conteúdo |
+| --- | --- | --- |
+| `/curso/` | `curso/index.html` | login, quiz de personalização, trilha com 21 aulas, ferramentas e progresso |
+| `/curso/vendas.html` | `curso/vendas.html` | página de vendas |
+
+É instalável no celular (manifest e service worker próprios, escopo `/curso/`) e abre offline depois do primeiro acesso.
+
+### Login e progresso
+
+- **Sem configuração**: contas locais (nome e senha), com o progresso criptografado pela senha, como no app de frequência. Ficam só no aparelho.
+- **Com Supabase** (recomendado para vender): crie um projeto grátis em supabase.com, rode `curso/supabase.sql` no SQL Editor e preencha `supabaseUrl` e `supabaseAnonKey` em `curso/js/config.js`. O aluno entra com e-mail e senha, recupera a senha por e-mail e encontra o progresso em qualquer aparelho. Em *Authentication → URL Configuration*, coloque o endereço do curso como Site URL.
+- Há sempre uma cópia local do progresso; offline, o app continua funcionando e sincroniza quando a conexão volta, juntando o progresso dos aparelhos sem perder aulas.
+- `codigoAcesso` (opcional) pede um código na criação da conta. Ele fica visível no código da página, então é uma barreira simples, não um controle de acesso.
+
+### Vender pelo Shopify
+
+1. Publique a pasta em uma hospedagem estática com HTTPS e preencha `siteUrl`, `checkoutUrl`, `preco` e, se quiser, `codigoAcesso` em `curso/js/config.js`.
+2. Gere o PDF de acesso: `npm run curso:pdf` (sai em `dist/do-corte-ao-pix-acesso.pdf`).
+3. No app Digital Products da loja, anexe esse PDF ao produto do curso e publique.
+
+### Imagens
+
+As capas dos módulos e a imagem da página de vendas foram geradas para o curso e estão hospedadas no Higgsfield. Para guardar cópias no repositório (o app usa a cópia local quando existe): `npm run curso:imagens`.
+
+```
+curso/js/config.js     Supabase, código de acesso, preço, link de compra — único arquivo a editar
+curso/js/conteudo.js   módulos, aulas, quizzes, scripts e checklist
+curso/js/progresso.js  liberação das aulas, XP, sequência de dias e junção de progresso (puro, testado)
+curso/js/auth.js       login: Supabase ou contas locais (js/accounts.js com prefixo 'dcp')
+curso/js/app.js        interface do curso
+curso/js/vendas.js     página de vendas
+curso/supabase.sql     tabela e regras de acesso do progresso
+scripts/gerar-pdf-acesso.js, scripts/baixar-imagens-curso.js
+tests/curso.test.js
+```

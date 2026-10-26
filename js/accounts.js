@@ -16,11 +16,6 @@
 })(typeof self !== 'undefined' ? self : this, function (root) {
   'use strict';
 
-  const ACCOUNTS_KEY = 'cfe:accounts:v1';
-  const LAST_KEY = 'cfe:last-account';
-  const LEGACY_DATA_KEY = 'cfe:data:v1';
-  const dataKey = (id) => 'cfe:vault:' + id;
-  const rememberKey = (id) => 'cfe:remember:' + id;
   const ITERATIONS = 310000;
   const MIN_PASSWORD = 4;
 
@@ -98,8 +93,15 @@
 
   /* --------------------------- contas --------------------------- */
 
-  function create(storage) {
+  /* `prefix` separa as contas de apps diferentes no mesmo site (padrão: 'cfe'). */
+  function create(storage, options) {
     const st = storage || root.localStorage;
+    const prefix = (options && options.prefix) || 'cfe';
+    const ACCOUNTS_KEY = prefix + ':accounts:v1';
+    const LAST_KEY = prefix + ':last-account';
+    const LEGACY_DATA_KEY = prefix + ':data:v1';
+    const dataKey = (id) => prefix + ':vault:' + id;
+    const rememberKey = (id) => prefix + ':remember:' + id;
 
     const get = (k) => {
       try {
