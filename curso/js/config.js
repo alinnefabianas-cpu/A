@@ -26,7 +26,7 @@ window.CURSO_CONFIG = {
   preco: 'R$ 19,90',
   precoDe: '', // preço "de" riscado; use só se o curso já foi vendido por esse valor
   parcelas: '', // ex.: 'ou 12x de R$ 9,70' (confira o valor no seu checkout)
-  // Link do produto na sua loja Shopify (ex.: https://sualoja.com/products/do-corte-ao-pix)
-  checkoutUrl: '',
+  // Link de compra: leva direto ao checkout do produto na loja Shopify (/cart/<id da variante>:1)
+  checkoutUrl: 'https://t1gqti-b9.myshopify.com/cart/53579970740536:1',
   garantiaDias: 7,
 };
