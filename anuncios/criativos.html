@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Criativos · Do Corte ao Pix</title>
+<!--
+  Peças do anúncio da Meta. Cada peça é aberta com ?p=<nome> e exportada
+  no tamanho exato por scripts/exportar-anuncios.js:
+    feed    1080×1350 (4:5)   feed do Instagram e do Facebook
+    quadrado 1080×1080 (1:1)  feed e coluna da direita
+    stories 1080×1920 (9:16)  Stories e Reels
+    video   1080×1920 (9:16)  vídeo de 15 s (animação gravada)
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+:root{--ink:#151726;--paper:#F2F3F8;--blue:#2F4BFF;--teal:#0E9A88;--amber:#D98B17;--amber-soft:#FBEBD2;--muted:#9CA1BA;
+  --f-d:"Bricolage Grotesque","Avenir Next",sans-serif;--f-b:"Figtree","Helvetica Neue",Arial,sans-serif;--f-m:"JetBrains Mono",Menlo,monospace}
+*{box-sizing:border-box;margin:0}
+html,body{background:var(--ink);color:var(--paper);font-family:var(--f-b);overflow:hidden}
+.ad{position:relative;overflow:hidden;background:var(--ink)}
+.ad[data-p=feed]{width:1080px;height:1350px}
+.ad[data-p=quadrado]{width:1080px;height:1080px}
+.ad[data-p=stories],.ad[data-p=video]{width:1080px;height:1920px}
+.ad:not(.on){display:none}
+
+/* faixa de clipes como uma timeline de edição */
+.tl{position:absolute;left:0;right:0;display:flex;gap:10px;height:34px;padding:0 64px}
+.tl i{border-radius:8px;display:block}
+.brand{font-family:var(--f-d);font-weight:800;font-size:34px;display:flex;align-items:center;gap:14px}
+.brand b{width:22px;height:22px;border-radius:50%;background:#E5483F;box-shadow:0 0 0 8px rgba(229,72,63,.22)}
+.eyebrow{font-family:var(--f-m);font-size:26px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--f-d);font-weight:800;line-height:1.02;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--ink);background:var(--amber);padding:0 .14em;border-radius:.12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.phone{position:absolute;border-radius:64px;background:#05060B;padding:16px;box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 0 2px #2A2E41}
+.phone img{display:block;width:100%;border-radius:50px}
+.price{position:absolute;background:var(--amber);color:var(--ink);border-radius:999px;font-family:var(--f-d);font-weight:800;display:flex;align-items:baseline;gap:10px;transform:rotate(-6deg);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.price small{font-family:var(--f-b);font-weight:700;font-size:.42em}
+.chips{display:flex;flex-wrap:wrap;gap:14px}
+.chips span{font-family:var(--f-m);font-weight:700;font-size:28px;padding:14px 22px;border-radius:14px;background:#232637;color:var(--paper)}
+.chips span.v{box-shadow:inset 6px 0 0 var(--teal)}
+.chips span.a{box-shadow:inset 6px 0 0 var(--amber)}
+
+/* ---------- feed 4:5 ---------- */
+[data-p=feed] .tl{top:64px}
+[data-p=feed] .brand{position:absolute;left:64px;top:130px}
+[data-p=feed] h1{position:absolute;left:64px;top:220px;width:600px;font-size:92px}
+[data-p=feed] .chips{position:absolute;left:64px;bottom:76px;width:560px}
+[data-p=feed] .phone{right:-40px;top:200px;width:470px;transform:rotate(4deg)}
+[data-p=feed] .price{left:64px;top:700px;font-size:96px;padding:18px 44px;z-index:2}
+
+/* ---------- quadrado 1:1 ---------- */
+[data-p=quadrado] .tl{top:56px}
+[data-p=quadrado] .eyebrow{position:absolute;left:64px;top:130px}
+[data-p=quadrado] h1{position:absolute;left:64px;top:186px;width:560px;font-size:76px}
+[data-p=quadrado] .phone{right:56px;top:120px;width:380px;transform:rotate(-3deg)}
+[data-p=quadrado] .bottom{position:absolute;left:64px;bottom:64px;width:540px;display:flex;flex-direction:column;gap:22px}
+[data-p=quadrado] .bottom p{font-size:34px;line-height:1.3;color:#C9CCDD}
+[data-p=quadrado] .price{position:static;display:inline-flex;align-self:flex-start;font-size:64px;padding:12px 30px;transform:rotate(-4deg)}
+
+/* ---------- stories 9:16 (zona segura: 250 px em cima e embaixo) ---------- */
+[data-p=stories] .tl{top:270px}
+[data-p=stories] .brand{position:absolute;left:64px;top:340px}
+[data-p=stories] h1{position:absolute;left:64px;right:64px;top:420px;font-size:104px}
+[data-p=stories] .phone.a{left:70px;top:900px;width:420px;transform:rotate(-5deg)}
+[data-p=stories] .phone.b{right:70px;top:860px;width:420px;transform:rotate(5deg)}
+[data-p=stories] .price{left:50%;top:1490px;translate:-50% 0;font-size:96px;padding:18px 44px;z-index:2}
+[data-p=stories] .chips{position:absolute;left:64px;right:64px;top:690px}
+
+/* ---------- vídeo 9:16, 15 s ---------- */
+[data-p=video] .scene{position:absolute;inset:0;opacity:0;padding:300px 72px 0}
+[data-p=video] .tl{top:250px}
+[data-p=video] .playhead{position:absolute;top:236px;left:64px;width:6px;height:62px;background:var(--paper);border-radius:3px;z-index:3}
+[data-p=video].run .playhead{animation:ph 15s linear forwards}
+@keyframes ph{to{left:1010px}}
+[data-p=video] h1{font-size:112px}
+[data-p=video] .s1 h1{margin-top:160px}
+[data-p=video] .s2 h1{margin-top:120px;font-size:96px}
+[data-p=video] .s2 .phone{left:220px;top:860px;width:640px}
+[data-p=video] .s3 h1{font-size:96px;margin-top:120px}
+[data-p=video] .s3 .phone{left:220px;top:860px;width:640px}
+[data-p=video] .s4 h1{font-size:96px;margin-top:120px}
+[data-p=video] .s4 .phone{left:220px;top:860px;width:640px}
+[data-p=video] .s5{display:flex;flex-direction:column;gap:46px;padding-top:420px}
+[data-p=video] .s5 h1{font-size:120px}
+[data-p=video] .s5 .price{position:static;align-self:flex-start;font-size:120px;padding:22px 50px}
+[data-p=video] .s5 .chips span{font-size:34px}
+/* linha do tempo das cenas: 0–3 s, 3–6, 6–9, 9–12, 12–15 */
+[data-p=video].run .s1{animation:sc 3s 0s both}
+[data-p=video].run .s2{animation:sc 3s 3s both}
+[data-p=video].run .s3{animation:sc 3s 6s both}
+[data-p=video].run .s4{animation:sc 3s 9s both}
+[data-p=video].run .s5{animation:last 3s 12s both}
+@keyframes sc{0%{opacity:0;transform:translateY(40px)}8%{opacity:1;transform:none}92%{opacity:1}100%{opacity:0}}
+@keyframes last{0%{opacity:0;transform:scale(.96)}10%{opacity:1;transform:none}100%{opacity:1}}
+[data-p=video].run .phone{animation:float 3s ease-in-out both}
+@keyframes float{from{translate:0 60px}to{translate:0 0}}
+</style>
+</head>
+<body>
+
+<!-- FEED 4:5 -->
+<div class="ad" data-p="feed">
+  <div class="tl"><i style="flex:3;background:var(--teal)"></i><i style="flex:1.2;background:var(--blue)"></i><i style="flex:2;background:var(--amber)"></i><i style="flex:1;background:#2A2E41"></i></div>
+  <div class="brand"><b></b>Do Corte ao Pix</div>
+  <h1>Aprenda a editar vídeos e <em>cobrar</em> pelo seu trabalho</h1>
+  <div class="price">R$ 19,90</div>
+  <div class="chips"><span class="v">21 aulas de 3 a 5 min</span><span class="v">Direto no celular</span><span class="a">Portfólio, clientes e preço</span></div>
+  <div class="phone"><img src="telas/trilha.png" alt=""></div>
+</div>
+
+<!-- QUADRADO 1:1 -->
+<div class="ad" data-p="quadrado">
+  <div class="tl"><i style="flex:3;background:var(--teal)"></i><i style="flex:1.2;background:var(--blue)"></i><i style="flex:2;background:var(--amber)"></i><i style="flex:1;background:#2A2E41"></i></div>
+  <div class="eyebrow">Teste rápido</div>
+  <h1>A melhor frase está no segundo 25. <em>O que você faz?</em></h1>
+  <div class="phone"><img src="telas/quiz.png" alt=""></div>
+  <div class="bottom">
+    <p>Editar bem é saber prender a atenção. O curso ensina isso em aulas de 3 a 5 minutos, com teste e tarefa prática.</p>
+    <div class="price">R$ 19,90</div>
+  </div>
+</div>
+
+<!-- STORIES 9:16 -->
+<div class="ad" data-p="stories">
+  <div class="tl"><i style="flex:3;background:var(--teal)"></i><i style="flex:1.2;background:var(--blue)"></i><i style="flex:2;background:var(--amber)"></i><i style="flex:1;background:#2A2E41"></i></div>
+  <div class="brand"><b></b>Do Corte ao Pix</div>
+  <h1>Do primeiro corte ao <em>primeiro cliente</em></h1>
+  <div class="phone a"><img src="telas/quiz.png" alt=""></div>
+  <div class="phone b"><img src="telas/trilha.png" alt=""></div>
+  <div class="price">R$ 19,90</div>
+  <div class="chips"><span class="v">Edição no CapCut e DaVinci</span><span class="a">Onde achar clientes</span><span class="a">Quanto cobrar</span></div>
+</div>
+
+<!-- VÍDEO 9:16, 15 s -->
+<div class="ad" data-p="video">
+  <div class="tl"><i style="flex:3;background:var(--teal)"></i><i style="flex:3;background:var(--blue)"></i><i style="flex:3;background:var(--teal)"></i><i style="flex:3;background:var(--amber)"></i><i style="flex:3;background:var(--amber)"></i></div>
+  <div class="playhead"></div>
+  <section class="scene s1"><div class="eyebrow">Para quem edita no celular</div><br><h1>Você já edita vídeo <em>de graça</em> para os amigos?</h1></section>
+  <section class="scene s2"><h1>Aprenda a editar do jeito que <em>prende</em></h1><div class="phone"><img src="telas/quiz.png" alt=""></div></section>
+  <section class="scene s3"><h1>Portfólio, clientes e <em>preço</em></h1><div class="phone"><img src="telas/trilha.png" alt=""></div></section>
+  <section class="scene s4"><h1>Uma aula por dia, <em>5 minutos</em></h1><div class="phone"><img src="telas/fim.png" alt=""></div></section>
+  <section class="scene s5"><div class="brand"><b></b>Do Corte ao Pix</div><h1>21 aulas curtas no celular</h1><div class="price">R$ 19,90</div><div class="chips"><span class="v">Toque em Saiba mais</span></div></section>
+</div>
+
+<script>
+  const p = new URLSearchParams(location.search).get('p') || 'feed';
+  const el = document.querySelector('.ad[data-p="' + p + '"]');
+  el.classList.add('on');
+  // O exportador chama window.play() quando começa a gravar o vídeo.
+  window.play = () => el.classList.add('run');
+</script>
+</body>
+</html>
