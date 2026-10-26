@@ -20,10 +20,10 @@ window.CURSO_CONFIG = {
   codigoAcesso: '',
 
   /* Endereço público do curso (ex.: https://seusite.com/curso/). Vai no PDF entregue ao comprador. */
-  siteUrl: '',
+  siteUrl: 'https://alinnefabianas-cpu.github.io/A/curso/',
 
   /* Página de vendas */
-  preco: 'R$ 97',
+  preco: 'R$ 19,90',
   precoDe: '', // preço "de" riscado; use só se o curso já foi vendido por esse valor
   parcelas: '', // ex.: 'ou 12x de R$ 9,70' (confira o valor no seu checkout)
   // Link do produto na sua loja Shopify (ex.: https://sualoja.com/products/do-corte-ao-pix)
