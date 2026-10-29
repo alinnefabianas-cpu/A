@@ -33,6 +33,8 @@
     'political science': ['pol. science', 'political sci'],
     itinerario: ['itinerario formativo'],
     orientacao: ['orientacao educacional'],
+    ela: ['e. l. a.', 'e.l.a.', 'e. l. a'],
+    ggg: ['orientacao de estudo e carreira', 'orientacao de estudos e carreira'],
   };
 
   /** Monta a lista de padrões de busca para as matérias cadastradas. */
@@ -103,7 +105,8 @@
       if (prev && /[A-Za-zÀ-ÿ]/.test(prev)) continue; // parte de palavra, ex. "1A"
       const value = Number(m[1].replace(',', '.'));
       if (!Number.isFinite(value)) continue;
-      out.push({ value, pct: m[2] === '%', decimal: /[.,]/.test(m[1]), index: m.index, before: fold(cleaned.slice(Math.max(0, m.index - 16), m.index)) });
+      const dm = /[.,](\d+)$/.exec(m[1]);
+      out.push({ value, text: m[1], decimals: dm ? dm[1].length : 0, pct: m[2] === '%', decimal: /[.,]/.test(m[1]), index: m.index, before: fold(cleaned.slice(Math.max(0, m.index - 16), m.index)) });
     }
     return out;
   }
@@ -134,6 +137,26 @@
   }
 
   /**
+   * Linha de boletim sem cabeçalho: "Matemática 8.7 8.7 6 8.4 8.4 12 7 25 84.8%".
+   * Os inteiros antes do % são faltas por período seguidas do total; só aceita
+   * quando o último é exatamente a soma dos anteriores (a conta tem que fechar).
+   */
+  function boletim(nums, kw, values) {
+    if (kw.absences || kw.presences || kw.counted) return false;
+    const pcts = nums.filter((n) => n.pct);
+    if (pcts.length !== 1 || pcts[0].value > 100) return false;
+    const ints = nums.filter((n) => !n.pct && !n.decimal && n.index < pcts[0].index);
+    if (ints.length < 3) return false;
+    const total = ints[ints.length - 1];
+    const periods = ints.slice(0, -1).map((n) => n.value);
+    if (periods.reduce((a, v) => a + v, 0) !== total.value) return false;
+    values.absences = total.value;
+    values.presencePct = pcts[0].value;
+    values.__periods = periods;
+    return true;
+  }
+
+  /**
    * Frequência: devolve linhas { subjectId, subjectName, values, unassigned, raw }.
    */
   function parseAttendanceText(text, subjects) {
@@ -157,7 +180,10 @@
         return;
       }
       const s = subs[0];
-      blocks.push({ id: s.id, name: s.name, text: line.slice(s.end), raw: line, extra: 0, header });
+      // Nome como aparece no texto (tudo antes do primeiro número).
+      const firstDigit = line.search(/\d/);
+      const label = (firstDigit >= 0 ? line.slice(0, firstDigit) : line).replace(/[\s:|\-–—]+$/, '').trim();
+      blocks.push({ id: s.id, name: s.name, text: line.slice(s.end), raw: line, extra: 0, header, label, matchStart: s.start });
     });
 
     const rows = [];
@@ -181,6 +207,8 @@
           else if ((type === 'presences' || type === 'absences' || type === 'counted') && !n.pct && !n.decimal) values[type] = n.value;
           else unassigned.push(n.value);
         });
+      } else if (boletim(nums, kw, values)) {
+        // Boletim: notas (decimais), faltas por período, total de faltas e % de frequência.
       } else {
         const used = new Set();
         ['absences', 'presences', 'counted'].forEach((k) => {
@@ -205,9 +233,25 @@
         });
       }
       if (!Object.keys(values).length && !unassigned.length) return;
-      const row = { subjectId: b.id, subjectName: b.name, values, unassigned, raw: b.raw };
-      if (seen[b.id] !== undefined) rows[seen[b.id]].duplicate = true;
-      else seen[b.id] = rows.length;
+      const pctNum = nums.find((n) => n.pct && (n.value === values.presencePct || n.value === values.absencePct));
+      const row = {
+        subjectId: b.id,
+        subjectName: b.name,
+        label: b.label,
+        // A matéria só aparece no meio do nome (ex.: "Oficina de Literatura"):
+        // provavelmente é outra matéria — sugerir cadastrar uma nova.
+        suggestNew: b.matchStart > 0,
+        values,
+        unassigned,
+        pctDecimals: pctNum ? pctNum.decimals : null,
+        periods: values.__periods || null,
+        raw: b.raw,
+      };
+      delete values.__periods;
+      if (!row.suggestNew) {
+        if (seen[b.id] !== undefined) rows[seen[b.id]].duplicate = true;
+        else seen[b.id] = rows.length;
+      }
       rows.push(row);
     });
     return rows;

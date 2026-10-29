@@ -275,3 +275,42 @@ test('21 matérias padrão com os totais corretos', () => {
   assert.equal(map['GGG'], 40);
   assert.equal(C.DEFAULT_SUBJECTS.reduce((s, [, n]) => s + n, 0), 1680);
 });
+
+/* ------------- Total de aulas deduzido do percentual arredondado ------------- */
+test('Faltas + percentual com 1 casa decimal: total único vira cálculo exato', () => {
+  // Boletim: Língua Inglesa 4 faltas, 86,7% → só 30 aulas são compatíveis
+  assert.deepEqual(C.candidateTotals('absences', 4, 86.7, 1), [30]);
+  const r = C.computeSubject(subj('ing', { absences: 4, presencePct: 86.7, pctDecimals: 1 }, 40), 0);
+  assert.equal(r.mode, 'exact');
+  assert.equal(r.estimate, false);
+  assert.equal(r.T, 30);
+  assert.equal(r.P, 26);
+  assert.equal(C.fmtPct(r.freqReal), '86,67%');
+  assert.equal(r.remaining, 10);
+  // Química 24 faltas, 74,7% → 95 aulas → abaixo de 75%
+  const q = C.computeSubject(subj('qui', { absences: 24, presencePct: 74.7, pctDecimals: 1 }, 120), 0);
+  assert.equal(q.T, 95);
+  assert.equal(q.status, 'danger');
+  assert.equal(q.presencesNeeded, 1); // 72/96 = 75%
+  // E.L.A. 6 faltas, 90,0% → 60 aulas (o ",0" conta como casa decimal)
+  assert.equal(C.decimalsOf('90,0'), 1);
+  assert.equal(C.computeSubject(subj('ela', { absences: 6, presencePct: 90, pctDecimals: 1 }, 80), 0).T, 60);
+});
+
+test('Total ambíguo continua sendo estimativa e mostra as opções', () => {
+  // Matemática 25 faltas, 84,8% → 164 ou 165 aulas
+  assert.deepEqual(C.candidateTotals('absences', 25, 84.8, 1), [164, 165]);
+  const r = C.computeSubject(subj(MAT, { absences: 25, presencePct: 84.8, pctDecimals: 1 }, 200), 0);
+  assert.equal(r.estimate, true);
+  assert.ok([164, 165].includes(r.T));
+  assert.ok(r.notes.some((n) => n.includes('164 ou 165')));
+});
+
+test('Sem saber as casas decimais, não presume precisão (estimativa)', () => {
+  const r = C.computeSubject(subj(MAT, { absences: 4, presencePct: 86.7 }, 40), 0);
+  assert.equal(r.estimate, true);
+  // Presenças + percentual também deduzem
+  const p = C.computeSubject(subj(MAT, { presences: 26, presencePct: 86.7, pctDecimals: 1 }, 40), 0);
+  assert.equal(p.T, 30);
+  assert.equal(p.estimate, false);
+});

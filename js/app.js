@@ -222,9 +222,21 @@
       '<div class="card-pct">' + (r.estimate && r.hasCounts && r.covered > 0 ? '≈' : '') + esc(pct(f)) + '</div>' +
       progressBar(f, r.status) +
       '<div class="card-meta">' + meta.map(esc).join(' · ') + '</div>' +
+      cardMargin(r) +
       '<div class="card-foot">' + statusPill(r.status) + '</div>' +
       '</button>'
     );
+  }
+
+  /** Linha de ação no card: quanto ainda dá para faltar, ou quanto falta para voltar a 75%. */
+  function cardMargin(r) {
+    if (!r.hasCounts) return '';
+    const e = r.estimate ? '≈' : '';
+    if (r.presencesNeeded > 0) return '<div class="card-margin danger">Precisa de ' + e + plural(r.presencesNeeded, 'presença seguida', 'presenças seguidas') + '</div>';
+    if (r.allowedPeriod !== null && r.allowedPeriod < 0) return '<div class="card-margin danger">Não chega a 75% no fim do período</div>';
+    const n = r.allowedPeriod !== null ? r.allowedPeriod : r.allowedNow;
+    const when = r.allowedPeriod !== null ? ' até o fim' : ' agora';
+    return '<div class="card-margin' + (n <= 2 ? ' tight' : '') + '">Pode faltar mais ' + e + n + when + '</div>';
   }
 
   function emptyState(icon, title, text, actionHtml) {
@@ -384,7 +396,7 @@
               '<div class="quick-fields">' +
               quickInput(s.id, 'absences', 'Faltas', a.absences, 'numeric') +
               quickInput(s.id, 'counted', 'Aulas dadas', a.counted, 'numeric') +
-              quickInput(s.id, 'presencePct', 'Frequência %', a.presencePct, 'decimal') +
+              quickInput(s.id, 'presencePct', 'Frequência %', attValue(a, 'presencePct'), 'decimal') +
               '</div><div class="field-error" id="qe-' + esc(s.id) + '"></div></div>'
             );
           })
@@ -413,6 +425,24 @@
       '<div class="actions-row"><button class="btn btn-primary" data-action="add-subject">' + ICONS.plus + ' Adicionar matéria</button>' +
       '<button class="btn btn-ghost" data-action="restore-subjects">Restaurar matérias padrão</button></div>';
     return html;
+  }
+
+  /** Valor de um campo de frequência para exibir num formulário (mantém "90,0"). */
+  function attValue(a, k) {
+    const v = a ? a[k] : undefined;
+    if (v === undefined || v === null || v === '') return '';
+    if ((k === 'presencePct' || k === 'absencePct') && Number.isInteger(a.pctDecimals) && typeof v === 'number') {
+      return v.toFixed(a.pctDecimals).replace('.', ',');
+    }
+    return v;
+  }
+
+  /** Guarda quantas casas decimais o percentual tinha (permite deduzir o total exato). */
+  function setPctDecimals(att, rawPres, rawAbs) {
+    const raw = rawPres !== undefined && rawPres !== null && String(rawPres).trim() !== '' ? rawPres : rawAbs;
+    if (raw !== undefined && raw !== null && String(raw).trim() !== '') att.pctDecimals = C.decimalsOf(raw);
+    else delete att.pctDecimals;
+    return att;
   }
 
   function quickInput(id, fieldName, label, value, mode) {
@@ -777,7 +807,7 @@
         const lessons = state.schedule.filter((e) => e.subjectId === id);
         const coveredLessons = calc.coverage.lessons.filter((l) => l.subjectId === id).sort((x, y) => x.key.localeCompare(y.key));
         const attInput = (k, label, mode, hint) =>
-          field(label, '<input type="text" inputmode="' + mode + '" autocomplete="off" data-att="' + k + '" value="' + esc(a[k] === undefined || a[k] === null ? '' : a[k]) + '" placeholder="—">', hint, 'err-' + k);
+          field(label, '<input type="text" inputmode="' + mode + '" autocomplete="off" data-att="' + k + '" value="' + esc(attValue(a, k)) + '" placeholder="—">', hint, 'err-' + k);
 
         let html =
           '<section class="hero hero-' + r.status + '">' +
@@ -884,6 +914,7 @@
             const n = C.toNum(v[k]);
             if (n !== null) att[k] = n;
           });
+          setPctDecimals(att, v.presencePct, v.absencePct);
           getSubject(id).attendance = att;
           commit();
           toast('Frequência salva');
@@ -1426,11 +1457,17 @@
                 '<label class="quick-field"><span>' + label + '</span><input type="text" inputmode="' + mode + '" data-row="' + i + '" data-k="' + k + '" value="' + esc(v[k] === undefined ? '' : v[k]) + '" placeholder="—"></label>';
               return (
                 '<div class="import-row">' +
-                '<label class="check-row"><input type="checkbox" data-row-check="' + i + '"' + (r.include ? ' checked' : '') + '><span class="check-main"><strong>' + esc(subjectName(r.subjectId)) + '</strong>' +
+                '<label class="check-row"><input type="checkbox" data-row-check="' + i + '"' + (r.include ? ' checked' : '') + '><span class="check-main">' +
                 '<span class="small">' + (summary.length ? esc(summary.join(' · ')) : 'Nenhum valor identificado') + '</span>' +
+                (r.label && PZ.fold(r.label) !== PZ.fold(subjectName(r.subjectId)) ? '<span class="tag">No texto: “' + esc(r.label) + '”</span>' : '') +
+                (r.periods ? '<span class="tag">Faltas por período: ' + esc(r.periods.join(' + ')) + ' = ' + esc(v.absences) + ' ✓</span>' : '') +
                 (r.unassigned.length ? '<span class="tag tag-warn">Números não identificados: ' + esc(r.unassigned.join(', ')) + '</span>' : '') +
                 (r.duplicate ? '<span class="tag tag-warn">Matéria aparece mais de uma vez</span>' : '') +
                 '</span></label>' +
+                '<label class="field"><span class="field-label">Matéria</span><select data-row-subject="' + i + '">' +
+                subjectOptions(r.target === '__new' ? null : r.target, false) +
+                (r.label ? '<option value="__new"' + (r.target === '__new' ? ' selected' : '') + '>+ Nova matéria: ' + esc(r.label.slice(0, 60)) + '</option>' : '') +
+                '</select></label>' +
                 '<div class="quick-fields five">' + inp('presences', 'Presenças', 'numeric') + inp('absences', 'Faltas', 'numeric') + inp('counted', 'Aulas', 'numeric') + inp('presencePct', '% pres.', 'decimal') + inp('absencePct', '% faltas', 'decimal') + '</div>' +
                 '<div class="small muted raw">Texto: “' + esc(r.raw) + '”</div>' +
                 '</div>'
@@ -1470,7 +1507,9 @@
       st.text = $('#imp-text', body).value;
       if (!st.text.trim()) return toast('Não há texto para analisar.', 'error');
       if (kind === 'attendance') {
-        st.rows = PZ.parseAttendanceText(st.text, state.subjects).map((r) => Object.assign({}, r, { include: Object.keys(r.values).length > 0 && !r.duplicate }));
+        st.rows = PZ.parseAttendanceText(st.text, state.subjects).map((r) =>
+          Object.assign({}, r, { target: r.suggestNew && r.label ? '__new' : r.subjectId, include: Object.keys(r.values).length > 0 && !r.duplicate })
+        );
       } else if (kind === 'schedule') {
         st.rows = PZ.parseScheduleText(st.text, state.subjects).map((r) => Object.assign({}, r, { include: !!(r.day && r.start) }));
       } else {
@@ -1562,6 +1601,10 @@
           renderSheet(topSheet());
           return;
         }
+        if (t.dataset.rowSubject !== undefined) {
+          st.rows[+t.dataset.rowSubject].target = t.value;
+          return;
+        }
         if (t.dataset.rowCheck !== undefined) {
           st.rows[+t.dataset.rowCheck].include = t.checked;
           return;
@@ -1598,6 +1641,7 @@
         const v = t.value.trim();
         if (v === '') delete r.values[k];
         else r.values[k] = v;
+        if (k === 'presencePct' || k === 'absencePct') r.pctEdited = true;
       } else {
         r[k] = k === 'day' ? (t.value ? +t.value : null) : t.value;
       }
@@ -1606,27 +1650,42 @@
     async function confirmAttendance() {
       const chosen = st.rows.filter((r) => r.include);
       if (!chosen.length) return toast('Selecione ao menos uma matéria.', 'error');
+      const label = (r) => (r.target === '__new' ? r.label.slice(0, 60) + ' (nova)' : subjectName(r.target));
       const seen = new Set();
       for (const r of chosen) {
-        if (seen.has(r.subjectId)) return toast(subjectName(r.subjectId) + ' está selecionada mais de uma vez.', 'error');
-        seen.add(r.subjectId);
+        const key = r.target === '__new' ? '__new:' + PZ.fold(r.label) : r.target;
+        if (seen.has(key)) return toast(label(r) + ' está selecionada mais de uma vez.', 'error');
+        seen.add(key);
         const errors = C.validateAttendance(r.values);
-        if (Object.keys(errors).length) return toast(subjectName(r.subjectId) + ': ' + Object.values(errors)[0], 'error');
+        if (Object.keys(errors).length) return toast(label(r) + ': ' + Object.values(errors)[0], 'error');
       }
-      const names = chosen.map((r) => subjectName(r.subjectId));
-      if (!(await askConfirm('Substituir a frequência de: ' + names.join(', ') + '?'))) return;
+      if (!(await askConfirm('Substituir a frequência de: ' + chosen.map(label).join(', ') + '?'))) return;
+      let created = 0;
       chosen.forEach((r) => {
         const att = {};
         Object.keys(r.values).forEach((k) => {
           const n = C.toNum(r.values[k]);
           if (n !== null) att[k] = n;
         });
-        const s = getSubject(r.subjectId);
+        if (att.presencePct !== undefined || att.absencePct !== undefined) {
+          if (r.pctEdited) setPctDecimals(att, r.values.presencePct, r.values.absencePct);
+          else if (Number.isInteger(r.pctDecimals)) att.pctDecimals = r.pctDecimals;
+        }
+        let s = null;
+        if (r.target === '__new') {
+          const name = r.label.slice(0, 60).trim();
+          s = state.subjects.find((x) => x.name.toLowerCase() === name.toLowerCase());
+          if (!s) {
+            s = { id: uid(), name, total: null, attendance: {} };
+            state.subjects.push(s);
+            created++;
+          }
+        } else s = getSubject(r.target);
         if (s) s.attendance = att;
       });
       closeSheet();
       commit();
-      toast('Frequência importada: ' + plural(chosen.length, 'matéria', 'matérias'));
+      toast('Frequência importada: ' + plural(chosen.length, 'matéria', 'matérias') + (created ? ' · ' + plural(created, 'matéria nova', 'matérias novas') : ''));
     }
 
     function confirmSchedule() {
@@ -2211,6 +2270,8 @@
       const n = C.toNum(att[key]);
       if (n !== null) clean[key] = n;
     });
+    if (k === 'presencePct' || k === 'absencePct') setPctDecimals(clean, k === 'presencePct' ? raw : undefined, k === 'absencePct' ? raw : undefined);
+    if (clean.presencePct === undefined && clean.absencePct === undefined) delete clean.pctDecimals;
     s.attendance = clean;
     persist();
     recompute();

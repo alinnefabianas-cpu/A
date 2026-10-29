@@ -111,6 +111,47 @@
     return errors;
   }
 
+  /** Quantas casas decimais um número digitado tem ("84,8" → 1, "90.0" → 1, "75" → 0). */
+  function decimalsOf(v) {
+    if (v === null || v === undefined) return null;
+    const m = /[.,](\d+)/.exec(String(v).trim());
+    return m ? m[1].length : 0;
+  }
+
+  /**
+   * Totais de aulas (inteiros) compatíveis com uma quantidade conhecida
+   * (faltas ou presenças) e um percentual arredondado com `decimals` casas.
+   * Ex.: 4 faltas e 86,7% → só 30 aulas dão 86,7% (26/30 = 86,67%).
+   * Retorna null quando não dá para saber a precisão ou a busca não se aplica.
+   */
+  function candidateTotals(kind, known, pct, decimals) {
+    if (decimals === null || decimals === undefined || !Number.isInteger(decimals) || decimals < 0 || decimals > 4) return null;
+    if (known === null || pct === null || pct <= 0 || pct >= 100) return null;
+    const tol = 0.5 * Math.pow(10, -decimals) + 1e-9;
+    const out = [];
+    const ratioMin = (pct - tol) / 100;
+    const ratioMax = (pct + tol) / 100;
+    // presenças/total entre ratioMin e ratioMax
+    let lo;
+    let hi;
+    if (kind === 'absences') {
+      if (known <= 0 || ratioMax >= 1) return null;
+      lo = Math.max(known + 1, Math.floor(known / (1 - ratioMin)) - 1);
+      hi = Math.ceil(known / (1 - ratioMax)) + 1;
+    } else {
+      if (known <= 0 || ratioMin <= 0) return null;
+      lo = Math.max(known, Math.floor(known / ratioMax) - 1);
+      hi = Math.ceil(known / ratioMin) + 1;
+    }
+    if (hi - lo > 20000) return null;
+    for (let T = lo; T <= hi; T++) {
+      const P = kind === 'absences' ? T - known : known;
+      if (P < 0 || P > T) continue;
+      if (Math.abs((P / T) * 100 - pct) <= tol) out.push(T);
+    }
+    return out;
+  }
+
   /**
    * A partir dos dados que o usuário tiver (qualquer combinação), deduz
    * presenças (P), faltas (F) e total contabilizado (T).
@@ -174,21 +215,42 @@
         if (F > 0) warnings.push('Percentual de 100% é incompatível com ' + F + ' falta(s).');
         return { mode: 'percent', P: null, F: null, T: null, pct, estimate: true, notes, warnings };
       }
-      const rawT = F / (1 - pct / 100);
-      T = Math.round(rawT);
-      P = T - F;
-      estimate = true;
-      notes.push('Total estimado = faltas ÷ (1 − ' + fmtPct(pct) + ') = ' + rawT.toFixed(2).replace('.', ',') + ' → ' + T + '. Presenças = ' + T + ' − ' + F + ' = ' + P + '.');
+      const cands = candidateTotals('absences', F, pct, a.pctDecimals);
+      if (cands && cands.length === 1) {
+        T = cands[0];
+        P = T - F;
+        notes.push(
+          'Total de aulas deduzido: ' + T + ' é o único número de aulas em que ' + F + ' falta(s) dão ' + fmtPct(pct) +
+            ' (' + P + ' ÷ ' + T + ' = ' + fmtPct((P / T) * 100) + ', arredondado como no boletim). Presenças = ' + T + ' − ' + F + ' = ' + P + '.'
+        );
+      } else {
+        const rawT = F / (1 - pct / 100);
+        T = Math.round(rawT);
+        if (cands && cands.length > 1 && !cands.includes(T)) T = cands[0];
+        P = T - F;
+        estimate = true;
+        notes.push('Total estimado = faltas ÷ (1 − ' + fmtPct(pct) + ') = ' + rawT.toFixed(2).replace('.', ',') + ' → ' + T + '. Presenças = ' + T + ' − ' + F + ' = ' + P + '.');
+        if (cands && cands.length > 1) notes.push('Mais de um total é compatível com esses dados (' + cands.join(' ou ') + ' aulas). Informe o total de aulas para o cálculo exato.');
+      }
     } else if (P !== null && pct !== null) {
       if (pct <= 0) {
         warnings.push('Percentual de 0% é incompatível com presenças registradas.');
         return { mode: 'percent', P: null, F: null, T: null, pct, estimate: true, notes, warnings };
       }
-      const rawT = P / (pct / 100);
-      T = Math.round(rawT);
-      F = T - P;
-      estimate = true;
-      notes.push('Total estimado = presenças ÷ ' + fmtPct(pct) + ' = ' + rawT.toFixed(2).replace('.', ',') + ' → ' + T + '. Faltas = ' + T + ' − ' + P + ' = ' + F + '.');
+      const cands = candidateTotals('presences', P, pct, a.pctDecimals);
+      if (cands && cands.length === 1) {
+        T = cands[0];
+        F = T - P;
+        notes.push('Total de aulas deduzido: ' + T + ' é o único número de aulas em que ' + P + ' presença(s) dão ' + fmtPct(pct) + '. Faltas = ' + T + ' − ' + P + ' = ' + F + '.');
+      } else {
+        const rawT = P / (pct / 100);
+        T = Math.round(rawT);
+        if (cands && cands.length > 1 && !cands.includes(T)) T = cands[0];
+        F = T - P;
+        estimate = true;
+        notes.push('Total estimado = presenças ÷ ' + fmtPct(pct) + ' = ' + rawT.toFixed(2).replace('.', ',') + ' → ' + T + '. Faltas = ' + T + ' − ' + P + ' = ' + F + '.');
+        if (cands && cands.length > 1) notes.push('Mais de um total é compatível com esses dados (' + cands.join(' ou ') + ' aulas). Informe o total de aulas para o cálculo exato.');
+      }
     } else if (pct !== null) {
       return { mode: 'percent', P: null, F: null, T: null, pct, estimate: true, notes, warnings };
     } else {
@@ -579,6 +641,8 @@
     MAX_CERT_DAYS,
     toNum,
     fmtPct,
+    decimalsOf,
+    candidateTotals,
     validateAttendance,
     deriveAttendance,
     statusFromCounts,

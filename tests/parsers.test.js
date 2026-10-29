@@ -93,3 +93,30 @@ test('Atestado: texto sem datas não inventa nada', () => {
   assert.equal(r.days, null);
   assert.equal(r.suggestedStart, '');
 });
+
+test('Boletim: notas + faltas por período + total + % (a soma precisa fechar)', () => {
+  const text = [
+    'Língua Inglesa 9.6 9.6 1 9.5 9.5 1 2 4 86.7%',
+    'Matemática 8.7 8.7 6 8.4 8.4 12 7 25 84.8%',
+    'E. L. A. 9.9 9.9 0 9.8 9.8 2 4 6 90.0%',
+    'Orientação de estudo e Carreira - GGG 10.0 10.0 0 10.0 10.0 4 3 7 78.1%',
+    'Oficina de Literatura (Clube de livros de vestibulares) 10.0 10.0 0 8.8 8.8 4 3 7 79.4%',
+    'História 9.5 9.5 4 9.4 9.4 6 3 99 76.8%',
+  ].join('\n');
+  const rows = PZ.parseAttendanceText(text, SUBJECTS);
+  assert.equal(rows.length, 6);
+  assert.deepEqual(rows[0].values, { absences: 4, presencePct: 86.7 });
+  assert.deepEqual(rows[0].periods, [1, 1, 2]);
+  assert.equal(rows[0].pctDecimals, 1);
+  assert.deepEqual(rows[1].values, { absences: 25, presencePct: 84.8 });
+  assert.equal(rows[2].subjectId, id('ELA'));
+  assert.equal(rows[2].pctDecimals, 1);
+  assert.equal(rows[3].subjectId, id('GGG'));
+  assert.equal(rows[3].suggestNew, false);
+  // "Literatura" só no meio do nome → sugere matéria nova
+  assert.equal(rows[4].suggestNew, true);
+  assert.equal(rows[4].label, 'Oficina de Literatura (Clube de livros de vestibulares)');
+  // soma não fecha (4+6+3 ≠ 99) → não adivinha as faltas
+  assert.equal(rows[5].values.absences, undefined);
+  assert.ok(rows[5].unassigned.includes(99));
+});
