@@ -1,0 +1,32 @@
+/*
+ * Configuração do curso — único arquivo a editar para publicar.
+ */
+window.CURSO_CONFIG = {
+  /*
+   * Login na nuvem (progresso sincronizado entre aparelhos) com Supabase.
+   * Crie um projeto grátis em supabase.com, rode curso/supabase.sql no
+   * SQL Editor e cole aqui a "Project URL" e a "anon public key"
+   * (Project Settings → API). Vazio = contas locais, salvas só no aparelho.
+   */
+  supabaseUrl: '',
+  supabaseAnonKey: '',
+
+  /*
+   * Código enviado ao comprador (no arquivo entregue pelo Shopify) e pedido
+   * na criação da conta. É uma barreira simples: fica visível no código da
+   * página, então não substitui um controle de acesso no servidor.
+   * Vazio = qualquer pessoa pode criar conta.
+   */
+  codigoAcesso: '',
+
+  /* Endereço público do curso (ex.: https://seusite.com/curso/). Vai no PDF entregue ao comprador. */
+  siteUrl: 'https://alinnefabianas-cpu.github.io/A/curso/',
+
+  /* Página de vendas */
+  preco: 'R$ 19,90',
+  precoDe: '', // preço "de" riscado; use só se o curso já foi vendido por esse valor
+  parcelas: '', // ex.: 'ou 12x de R$ 9,70' (confira o valor no seu checkout)
+  // Link de compra: leva direto ao checkout do produto na loja Shopify (/cart/<id da variante>:1)
+  checkoutUrl: 'https://t1gqti-b9.myshopify.com/cart/53579970740536:1',
+  garantiaDias: 7,
+};

@@ -1,0 +1,19 @@
+{
+  "name": "Do Corte ao Pix — Curso de Edição de Vídeo",
+  "short_name": "Corte ao Pix",
+  "description": "Aprenda a editar vídeos e a vender seu trabalho, com aulas curtas, quizzes e ferramentas.",
+  "lang": "pt-BR",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F2F3F8",
+  "theme_color": "#151726",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
