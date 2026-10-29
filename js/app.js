@@ -232,8 +232,8 @@
   function cardMargin(r) {
     if (!r.hasCounts) return '';
     const e = r.estimate ? '≈' : '';
+    if (r.allowedPeriod !== null && r.allowedPeriod < 0) return '<div class="card-margin danger">Não chega a 75% até o fim do período</div>';
     if (r.presencesNeeded > 0) return '<div class="card-margin danger">Precisa de ' + e + plural(r.presencesNeeded, 'presença seguida', 'presenças seguidas') + '</div>';
-    if (r.allowedPeriod !== null && r.allowedPeriod < 0) return '<div class="card-margin danger">Não chega a 75% no fim do período</div>';
     const n = r.allowedPeriod !== null ? r.allowedPeriod : r.allowedNow;
     const when = r.allowedPeriod !== null ? ' até o fim' : ' agora';
     return '<div class="card-margin' + (n <= 2 ? ' tight' : '') + '">Pode faltar mais ' + e + n + when + '</div>';
@@ -761,7 +761,9 @@
           html += '<div class="answer danger"><span class="answer-num">0</span><span>Mesmo indo a todas as ' + r.remaining + ' aulas restantes, a frequência final ficará abaixo de 75%. Converse com a escola.</span></div>';
         }
       }
-      if (r.presencesNeeded > 0) {
+      if (r.presencesNeeded > 0 && r.remaining !== null && r.presencesNeeded > r.remaining) {
+        html += '<p class="small">Para voltar a 75% seriam necessárias ' + e + r.presencesNeeded + ' presenças seguidas, mais do que as ' + r.remaining + ' aulas que restam no período.</p>';
+      } else if (r.presencesNeeded > 0) {
         html += '<div class="answer danger"><span class="answer-num">' + e + r.presencesNeeded + '</span><span>presenças seguidas (sem faltas) para voltar a 75%.</span></div>';
       } else {
         html += '<p class="small">Se faltar seguidas a partir de agora, pode faltar <strong>' + e + r.allowedNow + '</strong> aula(s) e continuar com pelo menos 75% (sem contar presenças futuras).</p>';
