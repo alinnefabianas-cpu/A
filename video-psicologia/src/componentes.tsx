@@ -1,8 +1,35 @@
 import React from 'react';
-import {AbsoluteFill, Img, interpolate, random, staticFile, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, Img, interpolate, random, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import {COR, FONTE, fadeIO, prog} from './tema';
 import {TATICAS, type Estilo} from './roteiro';
 import {VisualCena} from './visuais/Visuais';
+
+/** true quando o vídeo é vertical (Shorts/Reels). */
+export const useVertical = () => {
+	const {width, height} = useVideoConfig();
+	return height > width;
+};
+
+/** Palco 1920x1080 das animações, centralizado em qualquer formato. */
+export const Palco: React.FC<{children: React.ReactNode}> = ({children}) => {
+	const {width, height} = useVideoConfig();
+	const vertical = height > width;
+	const escala = vertical ? 1.08 : 1;
+	return (
+		<div
+			style={{
+				position: 'absolute',
+				width: 1920,
+				height: 1080,
+				left: (width - 1920) / 2,
+				top: vertical ? 230 : (height - 1080) / 2,
+				transform: `scale(${escala})`,
+			}}
+		>
+			{children}
+		</div>
+	);
+};
 
 // ───────── Fundo cinematográfico (grão, vinheta, poeira, flicker, riscos) ─────────
 export const Fundo: React.FC = () => (
@@ -14,21 +41,22 @@ export const Acabamento: React.FC = () => {
 	const passo = Math.floor(f / 2);
 	const flicker = random('fl' + passo) * 0.07;
 	const risco = random('rk' + passo) > 0.86;
+	const {width: LW, height: LH} = useVideoConfig();
 	return (
 		<AbsoluteFill style={{pointerEvents: 'none'}}>
 			{/* poeira */}
-			<svg width={1920} height={1080} style={{position: 'absolute'}}>
+			<svg width={LW} height={LH} style={{position: 'absolute'}}>
 				{Array.from({length: 45}).map((_, i) => {
-					const x = (random('dx' + i) * 1920 + f * (random('dv' + i) - 0.5) * 1.2) % 1920;
-					const y = (random('dy' + i) * 1080 - f * (0.2 + random('du' + i) * 0.5) + 1080 * 10) % 1080;
+					const x = (random('dx' + i) * LW + f * (random('dv' + i) - 0.5) * 1.2 + LW * 10) % LW;
+					const y = (random('dy' + i) * LH - f * (0.2 + random('du' + i) * 0.5) + LH * 10) % LH;
 					return <circle key={i} cx={x} cy={y} r={0.8 + random('dr' + i) * 2.2} fill="#f3e9d6" opacity={0.08 + 0.25 * random('do' + i)} />;
 				})}
 				{risco && (
 					<line
-						x1={random('rx' + passo) * 1920}
+						x1={random('rx' + passo) * LW}
 						y1={0}
-						x2={random('rx' + passo) * 1920 + 4}
-						y2={1080}
+						x2={random('rx' + passo) * LW + 4}
+						y2={LH}
 						stroke="#f3e9d6"
 						strokeOpacity={0.12}
 						strokeWidth={1 + random('rw' + passo) * 1.5}
@@ -78,6 +106,7 @@ export const TextoCinetico: React.FC<{texto: string; destaque?: string[]; estilo
 	f,
 	dur,
 }) => {
+	const vertical = useVertical();
 	const palavras = texto.split(/\s+/);
 	const set = new Set(destaque.map(limpa));
 	const ritmo = estilo === 'grande' ? 5 : estilo === 'fala' ? 4 : 2.6;
@@ -86,8 +115,8 @@ export const TextoCinetico: React.FC<{texto: string; destaque?: string[]; estilo
 
 	const base: React.CSSProperties = {
 		position: 'absolute',
-		left: 160,
-		right: 160,
+		left: vertical ? 70 : 160,
+		right: vertical ? 70 : 160,
 		display: 'flex',
 		flexWrap: 'wrap',
 		justifyContent: 'center',
@@ -101,13 +130,13 @@ export const TextoCinetico: React.FC<{texto: string; destaque?: string[]; estilo
 	let fonte: React.CSSProperties;
 	if (estilo === 'grande') {
 		pos = {top: 0, bottom: 0};
-		fonte = {fontFamily: FONTE.titulo, fontWeight: 700, fontSize: 104, letterSpacing: 6, textTransform: 'uppercase', lineHeight: 1.15, gap: '0 34px'};
+		fonte = {fontFamily: FONTE.titulo, fontWeight: 700, fontSize: vertical ? 92 : 104, letterSpacing: 6, textTransform: 'uppercase', lineHeight: 1.15, gap: '0 34px'};
 	} else if (estilo === 'fala') {
 		pos = {top: 0, bottom: 0};
-		fonte = {fontFamily: FONTE.texto, fontStyle: 'italic', fontSize: 96, lineHeight: 1.2, gap: '0 26px'};
+		fonte = {fontFamily: FONTE.texto, fontStyle: 'italic', fontSize: vertical ? 88 : 96, lineHeight: 1.2, gap: '0 26px'};
 	} else {
-		pos = {bottom: estilo === 'defesa' ? 110 : 120, minHeight: 200};
-		fonte = {fontFamily: FONTE.texto, fontSize: 60, lineHeight: 1.3, gap: '0 18px'};
+		pos = vertical ? {top: 1290, minHeight: 300} : {bottom: estilo === 'defesa' ? 110 : 120, minHeight: 200};
+		fonte = {fontFamily: FONTE.texto, fontSize: vertical ? 70 : 60, lineHeight: 1.3, gap: '0 18px'};
 	}
 
 	const zoomLento = estilo === 'grande' ? 1 + f * 0.0012 : 1;
@@ -118,13 +147,15 @@ export const TextoCinetico: React.FC<{texto: string; destaque?: string[]; estilo
 	return (
 		<AbsoluteFill>
 			{estilo !== 'grande' && estilo !== 'fala' && (
-				<AbsoluteFill style={{background: 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 28%, rgba(0,0,0,0) 48%)', opacity: saida}} />
+				<AbsoluteFill style={{background: vertical
+								? 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.9) 25%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0) 60%)'
+								: 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 28%, rgba(0,0,0,0) 48%)', opacity: saida}} />
 			)}
 			{estilo === 'defesa' && (
 				<div
 					style={{
 						position: 'absolute',
-						bottom: 330,
+						...(vertical ? {top: 1210} : {bottom: 330}),
 						left: 0,
 						right: 0,
 						display: 'flex',
@@ -185,11 +216,14 @@ export const CartaoTatica: React.FC<{numero: number; nome: string; visual: Param
 	const num = prog(f, 0, 22);
 	const preench = prog(f, 14, 40);
 	const nomeP = prog(f, 18, 40);
-	const esp = interpolate(nomeP, [0, 1], [60, 14]);
+	const vertical = useVertical();
+	const esp = interpolate(nomeP, [0, 1], vertical ? [30, 6] : [60, 14]);
 	return (
 		<AbsoluteFill style={{opacity: vis}}>
 			<AbsoluteFill style={{opacity: 0.22, filter: 'blur(3px)', transform: `scale(${1.15 + f * 0.001})`}}>
-				<VisualCena nome={visual} f={f + 60} dur={dur + 60} />
+				<Palco>
+					<VisualCena nome={visual} f={f + 60} dur={dur + 60} />
+				</Palco>
 			</AbsoluteFill>
 			<AbsoluteFill style={{alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
 				<div style={{display: 'flex', alignItems: 'center', gap: 28, opacity: prog(f, 4, 18)}}>
@@ -226,8 +260,10 @@ export const CartaoTatica: React.FC<{numero: number; nome: string; visual: Param
 					style={{
 						fontFamily: FONTE.titulo,
 						fontWeight: 700,
-						fontSize: 78,
+						fontSize: vertical ? 66 : 78,
 						letterSpacing: esp,
+						textAlign: 'center',
+						padding: '0 40px',
 						color: COR.creme,
 						textTransform: 'uppercase',
 						opacity: nomeP,
@@ -249,7 +285,9 @@ export const Titulo: React.FC<{f: number; dur: number}> = ({f, dur}) => {
 	return (
 		<AbsoluteFill style={{opacity: vis, alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
 			<AbsoluteFill style={{opacity: 0.35}}>
-				<VisualCena nome="marionete" f={f + 40} dur={dur} />
+				<Palco>
+					<VisualCena nome="marionete" f={f + 40} dur={dur} />
+				</Palco>
 			</AbsoluteFill>
 			<AbsoluteFill style={{background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 60%)'}} />
 			<div
@@ -339,9 +377,14 @@ export const Lista: React.FC<{f: number; dur: number}> = ({f, dur}) => {
 };
 
 // ───────── Final + CTA ─────────
-export const Final: React.FC<{texto: string; f: number; dur: number}> = ({texto, f, dur}) => {
-	const a = prog(f, 0, 30) * (1 - prog(f, 150, 175));
-	const cta = prog(f, 180, 205) * (1 - prog(f, dur - 20, dur));
+export type CTA = {chamada: string; linha1: string; linha2: string; botao: string};
+const CTA_PADRAO: CTA = {chamada: 'Próximo vídeo', linha1: 'COMO RECONHECER UM NARCISISTA', linha2: 'EM 5 MINUTOS', botao: 'INSCREVA-SE'};
+
+export const Final: React.FC<{texto: string; f: number; dur: number; cta?: CTA}> = ({texto, f, dur, cta: c = CTA_PADRAO}) => {
+	const vertical = useVertical();
+	const troca = vertical ? 80 : 150;
+	const a = prog(f, 0, 30) * (1 - prog(f, troca, troca + 25));
+	const cta = prog(f, troca + 30, troca + 55) * (1 - prog(f, dur - 20, dur));
 	return (
 		<AbsoluteFill style={{background: '#020202'}}>
 			<AbsoluteFill style={{alignItems: 'center', justifyContent: 'center', opacity: a}}>
@@ -349,7 +392,8 @@ export const Final: React.FC<{texto: string; f: number; dur: number}> = ({texto,
 					style={{
 						fontFamily: FONTE.titulo,
 						fontWeight: 700,
-						fontSize: 96,
+						fontSize: vertical ? 72 : 96,
+						textAlign: 'center',
 						letterSpacing: interpolate(prog(f, 0, 90), [0, 1], [30, 10]),
 						color: COR.creme,
 						textTransform: 'uppercase',
@@ -357,16 +401,16 @@ export const Final: React.FC<{texto: string; f: number; dur: number}> = ({texto,
 				>
 					{texto.split('…')[0]}…
 				</div>
-				<div style={{fontFamily: FONTE.titulo, fontWeight: 900, fontSize: 120, color: COR.vermelho, textTransform: 'uppercase', opacity: prog(f, 40, 70), textShadow: '0 0 70px rgba(208,31,42,0.7)'}}>
+				<div style={{fontFamily: FONTE.titulo, fontWeight: 900, fontSize: vertical ? 92 : 120, textAlign: 'center', color: COR.vermelho, textTransform: 'uppercase', opacity: prog(f, 40, 70), textShadow: '0 0 70px rgba(208,31,42,0.7)'}}>
 					{texto.split('…')[1]}
 				</div>
 			</AbsoluteFill>
 			<AbsoluteFill style={{alignItems: 'center', justifyContent: 'center', flexDirection: 'column', opacity: cta, gap: 30}}>
-				<div style={{fontFamily: FONTE.texto, fontStyle: 'italic', fontSize: 44, color: COR.cinza}}>Próximo vídeo</div>
-				<div style={{fontFamily: FONTE.titulo, fontWeight: 700, fontSize: 70, color: COR.creme, letterSpacing: 6, textAlign: 'center', lineHeight: 1.2}}>
-					COMO RECONHECER UM NARCISISTA
+				<div style={{fontFamily: FONTE.texto, fontStyle: 'italic', fontSize: 44, color: COR.cinza}}>{c.chamada}</div>
+				<div style={{fontFamily: FONTE.titulo, fontWeight: 700, fontSize: vertical ? 60 : 70, color: COR.creme, letterSpacing: 6, textAlign: 'center', lineHeight: 1.2, padding: '0 50px'}}>
+					{c.linha1}
 					<br />
-					<span style={{color: COR.vermelho}}>EM 5 MINUTOS</span>
+					<span style={{color: COR.vermelho}}>{c.linha2}</span>
 				</div>
 				<div
 					style={{
@@ -381,7 +425,7 @@ export const Final: React.FC<{texto: string; f: number; dur: number}> = ({texto,
 						background: f % 40 < 20 ? 'rgba(208,31,42,0.25)' : 'rgba(208,31,42,0.1)',
 					}}
 				>
-					INSCREVA-SE
+					{c.botao}
 				</div>
 			</AbsoluteFill>
 		</AbsoluteFill>

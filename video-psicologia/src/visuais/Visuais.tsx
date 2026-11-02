@@ -53,7 +53,7 @@ const Svg: React.FC<{children: React.ReactNode}> = ({children}) => (
 );
 
 // Busto de frente (caixa 200x260)
-const BUSTO =
+export const BUSTO =
 	'M100 20 C70 20 55 45 55 75 C55 105 70 128 85 135 L85 150 C40 158 10 185 5 260 L195 260 C190 185 160 158 115 150 L115 135 C130 128 145 105 145 75 C145 45 130 20 100 20 Z';
 
 const Busto: React.FC<{x: number; y: number; s?: number; cor?: string; contorno?: string; op?: number; espelhar?: boolean}> = ({

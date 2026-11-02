@@ -58,7 +58,7 @@ export type Bloco =
 	| {tipo: 'citacao'; texto: string; autor: string; duracao?: number}
 	| {tipo: 'lista'; duracao?: number}
 	| {tipo: 'silencio'; duracao: number}
-	| {tipo: 'final'; texto: string; duracao?: number};
+	| {tipo: 'final'; texto: string; duracao?: number; cta?: {chamada: string; linha1: string; linha2: string; botao: string}};
 
 export const TATICAS = [
 	'Reforço intermitente',
@@ -189,14 +189,43 @@ export function duracaoDe(b: Bloco): number {
 	}
 }
 
-export const LINHA_DO_TEMPO: Item[] = (() => {
+export function montarLinha(roteiro: Bloco[], ritmo = 1): Item[] {
 	let t = 0;
-	return ROTEIRO.map((b) => {
-		const frames = duracaoDe(b);
+	return roteiro.map((b) => {
+		const frames = b.duracao ? b.duracao : Math.round(duracaoDe(b) * ritmo);
 		const item = {...b, inicio: t, frames} as Item;
 		t += frames;
 		return item;
 	});
-})();
+}
 
-export const DURACAO_TOTAL = LINHA_DO_TEMPO.reduce((s, i) => s + i.frames, 0);
+export const duracaoTotal = (linha: Item[]) => linha.reduce((s, i) => s + i.frames, 0);
+
+export const LINHA_DO_TEMPO = montarLinha(ROTEIRO);
+export const DURACAO_TOTAL = duracaoTotal(LINHA_DO_TEMPO);
+
+// ───────── SHORT (9:16, ~55s) ─────────
+export const ROTEIRO_SHORT: Bloco[] = [
+	{tipo: 'texto', texto: 'Se alguém faz isso com você…', destaque: ['você…'], visual: 'olho', sons: ['coracao'], estilo: 'grande'},
+	{tipo: 'texto', texto: 'você está sendo manipulado.', destaque: ['manipulado.'], visual: 'marionete', sons: ['hit'], estilo: 'grande'},
+	{tipo: 'tatica', numero: 1, nome: 'Gaslighting', visual: 'lampiao', duracao: 70},
+	{tipo: 'texto', texto: '“Isso nunca aconteceu.”', visual: 'sussurros', sons: ['sussurro'], estilo: 'fala'},
+	{tipo: 'texto', texto: 'O objetivo é fazer você duvidar da própria mente.', destaque: ['própria', 'mente.'], visual: 'espelho-quebrado', sons: ['boom']},
+	{tipo: 'tatica', numero: 2, nome: 'Reforço intermitente', visual: 'alavanca', duracao: 70},
+	{tipo: 'texto', texto: 'Um dia, carinho. No outro… frieza.', destaque: ['frieza.'], visual: 'celular'},
+	{tipo: 'texto', texto: 'É o mesmo mecanismo de um caça-níquel. Vicia.', destaque: ['caça-níquel.', 'Vicia.'], visual: 'caca-niquel', sons: ['caca-niquel']},
+	{tipo: 'tatica', numero: 3, nome: 'Silêncio punitivo', visual: 'onda', duracao: 70},
+	{tipo: 'texto', texto: 'Sem explicação. Apenas…', visual: 'onda', estilo: 'grande'},
+	{tipo: 'silencio', duracao: 45},
+	{tipo: 'texto', texto: 'A rejeição ativa no cérebro a mesma área da dor física.', destaque: ['dor', 'física.'], visual: 'cerebro', sons: ['boom']},
+	{tipo: 'texto', texto: 'Nenhuma funciona em quem conhece o próprio valor.', destaque: ['próprio', 'valor.'], visual: 'luz', sons: ['riser']},
+	{
+		tipo: 'final',
+		texto: 'Faltam 4 táticas… no vídeo completo.',
+		duracao: 190,
+		cta: {chamada: 'Vídeo completo no canal', linha1: 'AS 7 TÁTICAS', linha2: 'DE MANIPULAÇÃO', botao: 'SIGA ➜'},
+	},
+];
+
+export const LINHA_SHORT = montarLinha(ROTEIRO_SHORT, 0.8);
+export const DURACAO_SHORT = duracaoTotal(LINHA_SHORT);

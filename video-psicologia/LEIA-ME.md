@@ -12,6 +12,8 @@ npm install
 npm run audio -- 390      # gera trilha (segundos) + efeitos em public/audio
 npm run studio            # abre o editor visual do Remotion no navegador
 npm run render            # exporta out/video.mp4 (1080p, 30fps)
+npx remotion render src/index.ts Short out/short.mp4          # Short 9:16 (~46s)
+npx remotion still src/index.ts Thumbnail out/thumbnail.png   # thumbnail 1280x720
 ```
 
 ## Onde mexer
@@ -22,6 +24,8 @@ npm run render            # exporta out/video.mp4 (1080p, 30fps)
 | `src/visuais/Visuais.tsx` | As 27 animações (olho, marionete, caça-níquel, lampião, espelho quebrado, triângulo, porta, escada, cérebro…). |
 | `src/componentes.tsx` | Texto cinético, cartões "TÁTICA Nº", citação, recapitulação, final/CTA, grão, vinheta, poeira, flicker. |
 | `src/Video.tsx` | Montagem: câmera (zoom lento, tremor em impactos, flash), mixagem e volume da trilha (silêncio dramático). |
+| `ROTEIRO_SHORT` em `src/roteiro.ts` | Roteiro do Short (3 táticas, ritmo 20% mais rápido). |
+| `src/Thumbnail.tsx` | Thumbnail "ELE SABE O QUE FAZ". |
 | `src/tema.ts` | Cores e fontes. |
 | `scripts/gerar-audio.mjs` | Sintetizador da trilha (Lá menor, drone + piano) e dos efeitos (boom, hit, riser, whoosh, coração, relógio…). |
 

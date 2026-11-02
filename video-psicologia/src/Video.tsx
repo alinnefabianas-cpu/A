@@ -1,72 +1,74 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {AbsoluteFill, Audio, Sequence, interpolate, random, staticFile, useCurrentFrame} from 'remotion';
-import {LINHA_DO_TEMPO, DURACAO_TOTAL, type Item, type Som, type Visual} from './roteiro';
-import {Acabamento, CartaoTatica, Capitulo, Citacao, Final, Fundo, Lista, TextoCinetico, Titulo} from './componentes';
+import {LINHA_DO_TEMPO, duracaoTotal, type Item, type Som, type Visual} from './roteiro';
+import {Acabamento, Palco, CartaoTatica, Capitulo, Citacao, Final, Fundo, Lista, TextoCinetico, Titulo} from './componentes';
 import {VisualCena} from './visuais/Visuais';
 import {fadeIO} from './tema';
 
 type ItemTexto = Extract<Item, {tipo: 'texto'}>;
 
-// Junta textos seguidos com o mesmo visual num único plano (a animação continua entre frases)
 type Plano = {visual: Visual; inicio: number; frames: number; textos: ItemTexto[]};
-const PLANOS: Plano[] = [];
-for (const it of LINHA_DO_TEMPO) {
-	if (it.tipo !== 'texto') continue;
-	const ult = PLANOS[PLANOS.length - 1];
-	if (ult && ult.visual === it.visual && ult.inicio + ult.frames === it.inicio) {
-		ult.frames += it.frames;
-		ult.textos.push(it);
-	} else PLANOS.push({visual: it.visual, inicio: it.inicio, frames: it.frames, textos: [it]});
-}
-
-// Efeitos sonoros posicionados na linha do tempo
 type Evento = {som: Som | 'whoosh'; frame: number; volume: number};
-const EVENTOS: Evento[] = [];
 const VOL: Partial<Record<Som, number>> = {boom: 0.8, hit: 0.75, riser: 0.45, whoosh: 0.5, coracao: 0.9, relogio: 0.5, 'caca-niquel': 0.5, glitch: 0.35, sussurro: 0.55, porta: 0.5, passo: 0.6, tesoura: 0.7, 'acorde-final': 0.8};
-for (const it of LINHA_DO_TEMPO) {
-	if (it.tipo === 'texto') {
-		for (const s of it.sons ?? []) {
-			// o riser termina exatamente no começo do próximo bloco
-			const frame = s === 'riser' ? it.inicio + it.frames - 90 : it.inicio + 4;
-			EVENTOS.push({som: s, frame: Math.max(0, frame), volume: VOL[s] ?? 0.6});
+const cl = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
+
+function montar(linha: Item[]) {
+	const total = duracaoTotal(linha);
+	// Junta textos seguidos com o mesmo visual num único plano (a animação continua entre frases)
+	const planos: Plano[] = [];
+	for (const it of linha) {
+		if (it.tipo !== 'texto') continue;
+		const ult = planos[planos.length - 1];
+		if (ult && ult.visual === it.visual && ult.inicio + ult.frames === it.inicio) {
+			ult.frames += it.frames;
+			ult.textos.push(it);
+		} else planos.push({visual: it.visual, inicio: it.inicio, frames: it.frames, textos: [it]});
+	}
+
+	// Efeitos sonoros posicionados na linha do tempo
+	const eventos: Evento[] = [];
+	for (const it of linha) {
+		if (it.tipo === 'texto') {
+			for (const s of it.sons ?? []) {
+				// o riser termina exatamente no começo do próximo bloco
+				const frame = s === 'riser' ? it.inicio + it.frames - 90 : it.inicio + 4;
+				eventos.push({som: s, frame: Math.max(0, frame), volume: VOL[s] ?? 0.6});
+			}
+		} else if (it.tipo === 'tatica' || it.tipo === 'titulo') {
+			eventos.push({som: 'hit', frame: it.inicio, volume: 0.8});
+			eventos.push({som: 'whoosh', frame: Math.max(0, it.inicio - 12), volume: 0.45});
+		} else if (it.tipo === 'lista') {
+			for (let i = 0; i < 7; i++) eventos.push({som: 'boom', frame: it.inicio + i * 26, volume: 0.35});
+		} else if (it.tipo === 'citacao') {
+			eventos.push({som: 'whoosh', frame: it.inicio, volume: 0.4});
+		} else if (it.tipo === 'final') {
+			eventos.push({som: 'acorde-final', frame: it.inicio, volume: 0.8});
+			eventos.push({som: 'boom', frame: it.inicio + 40, volume: 0.6});
 		}
-	} else if (it.tipo === 'tatica' || it.tipo === 'titulo') {
-		EVENTOS.push({som: 'hit', frame: it.inicio, volume: 0.8});
-		EVENTOS.push({som: 'whoosh', frame: Math.max(0, it.inicio - 12), volume: 0.45});
-	} else if (it.tipo === 'lista') {
-		for (let i = 0; i < 7; i++) EVENTOS.push({som: 'boom', frame: it.inicio + i * 26, volume: 0.35});
-	} else if (it.tipo === 'citacao') {
-		EVENTOS.push({som: 'whoosh', frame: it.inicio, volume: 0.4});
-	} else if (it.tipo === 'final') {
-		EVENTOS.push({som: 'acorde-final', frame: it.inicio, volume: 0.8});
-		EVENTOS.push({som: 'boom', frame: it.inicio + 40, volume: 0.6});
 	}
+	const impactos = eventos.filter((e) => e.som === 'boom' || e.som === 'hit').map((e) => ({frame: e.frame, forca: e.volume}));
+
+	// Janelas sem trilha (silêncio dramático)
+	const silencios = linha.filter((i) => i.tipo === 'silencio').map((i) => [i.inicio, i.inicio + i.frames] as const);
+	const volumeTrilha = (f: number) => {
+		let v = 0.32;
+		for (const [a, b] of silencios) v *= 1 - Math.min(interpolate(f, [a - 6, a], [0, 1], cl), interpolate(f, [b - 4, b + 30], [1, 0], cl));
+		return v * interpolate(f, [0, 45], [0, 1], cl) * interpolate(f, [total - 120, total], [1, 0], cl);
+	};
+
+	// Capítulos (indicador "TÁTICA 03 / 07") — só no vídeo longo
+	const taticas = linha.filter((i): i is Extract<Item, {tipo: 'tatica'}> => i.tipo === 'tatica');
+	const idxLista = linha.findIndex((i) => i.tipo === 'lista');
+	const fimCapitulos = idxLista > 0 ? linha[idxLista - 1].inicio : -1;
+
+	return {linha, planos, eventos, impactos, volumeTrilha, taticas, fimCapitulos};
 }
-const IMPACTOS = EVENTOS.filter((e) => e.som === 'boom' || e.som === 'hit').map((e) => ({frame: e.frame, forca: e.volume}));
+type Montagem = ReturnType<typeof montar>;
 
-// Janelas sem trilha (silêncio dramático)
-const SILENCIOS = LINHA_DO_TEMPO.filter((i) => i.tipo === 'silencio').map((i) => [i.inicio, i.inicio + i.frames] as const);
-const volumeTrilha = (f: number) => {
-	let v = 0.32;
-	for (const [a, b] of SILENCIOS) {
-		v *= 1 - Math.min(interpolate(f, [a - 6, a], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}), interpolate(f, [b - 4, b + 30], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}));
-	}
-	const fimIn = interpolate(f, [0, 45], [0, 1], {extrapolateRight: 'clamp'});
-	const fimOut = interpolate(f, [DURACAO_TOTAL - 120, DURACAO_TOTAL], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
-	return v * fimIn * fimOut;
-};
-
-// Capítulos (indicador "TÁTICA 03 / 07")
-const TATICAS_T = LINHA_DO_TEMPO.filter((i): i is Extract<Item, {tipo: 'tatica'}> => i.tipo === 'tatica');
-const idxLista = LINHA_DO_TEMPO.findIndex((i) => i.tipo === 'lista');
-const FIM_CAPITULOS = LINHA_DO_TEMPO[idxLista - 1].inicio;
-
-const textoAtual = (f: number) => LINHA_DO_TEMPO.find((i) => f >= i.inicio && f < i.inicio + i.frames);
-
-const PlanoVisual: React.FC<{plano: Plano; indice: number}> = ({plano, indice}) => {
+const PlanoVisual: React.FC<{plano: Plano; indice: number; m: Montagem}> = ({plano, indice, m}) => {
 	const f = useCurrentFrame();
 	const global = plano.inicio + f;
-	const atual = textoAtual(global);
+	const atual = m.linha.find((i) => global >= i.inicio && global < i.inicio + i.frames);
 	const foco = atual?.tipo === 'texto' && (atual.estilo === 'grande' || atual.estilo === 'fala');
 	const transF = atual ? global - atual.inicio : 99;
 	const dim = foco ? interpolate(transF, [0, 12], [0.85, 0.28], {extrapolateRight: 'clamp'}) : 0.9;
@@ -76,18 +78,20 @@ const PlanoVisual: React.FC<{plano: Plano; indice: number}> = ({plano, indice}) 
 	return (
 		<AbsoluteFill style={{opacity: fadeIO(f, plano.frames, 12, 12) * dim, filter: foco ? 'blur(3px)' : undefined}}>
 			<AbsoluteFill style={{transform: `translate(${dx}px, -40px) scale(${zoom})`}}>
-				<VisualCena nome={plano.visual} f={f} dur={plano.frames} />
+				<Palco>
+					<VisualCena nome={plano.visual} f={f} dur={plano.frames} />
+				</Palco>
 			</AbsoluteFill>
 		</AbsoluteFill>
 	);
 };
 
-const Camera: React.FC<{children: React.ReactNode}> = ({children}) => {
+const Camera: React.FC<{children: React.ReactNode; m: Montagem}> = ({children, m}) => {
 	const f = useCurrentFrame();
 	let sx = 0;
 	let sy = 0;
 	let flash = 0;
-	for (const imp of IMPACTOS) {
+	for (const imp of m.impactos) {
 		const d = f - imp.frame;
 		if (d < 0 || d > 30) continue;
 		const k = Math.exp(-d / 5) * imp.forca;
@@ -103,9 +107,11 @@ const Camera: React.FC<{children: React.ReactNode}> = ({children}) => {
 	);
 };
 
-const IndicadorCapitulo: React.FC = () => {
+const IndicadorCapitulo: React.FC<{m: Montagem}> = ({m}) => {
 	const f = useCurrentFrame();
-	if (f < TATICAS_T[0].inicio || f >= FIM_CAPITULOS) return null;
+	const TATICAS_T = m.taticas;
+	const FIM_CAPITULOS = m.fimCapitulos;
+	if (!TATICAS_T.length || f < TATICAS_T[0].inicio || f >= FIM_CAPITULOS) return null;
 	let k = 0;
 	while (k + 1 < TATICAS_T.length && f >= TATICAS_T[k + 1].inicio) k++;
 	const t = TATICAS_T[k];
@@ -129,35 +135,38 @@ const Bloco: React.FC<{it: Item}> = ({it}) => {
 		case 'lista':
 			return <Lista f={f} dur={it.frames} />;
 		case 'final':
-			return <Final texto={it.texto} f={f} dur={it.frames} />;
+			return <Final texto={it.texto} f={f} dur={it.frames} cta={it.cta} />;
 		default:
 			return null;
 	}
 };
 
-export const Video: React.FC = () => (
-	<AbsoluteFill style={{backgroundColor: '#050505'}}>
-		<Fundo />
-		<Camera>
-			{PLANOS.map((p, i) => (
-				<Sequence key={'p' + i} from={p.inicio} durationInFrames={p.frames} layout="none">
-					<PlanoVisual plano={p} indice={i} />
-				</Sequence>
-			))}
-			{LINHA_DO_TEMPO.map((it, i) => (
-				<Sequence key={'b' + i} from={it.inicio} durationInFrames={it.frames} layout="none">
-					<Bloco it={it} />
-				</Sequence>
-			))}
-		</Camera>
-		<IndicadorCapitulo />
-		<Acabamento />
+export const Video: React.FC<{linha?: Item[]}> = ({linha = LINHA_DO_TEMPO}) => {
+	const m = useMemo(() => montar(linha), [linha]);
+	return (
+		<AbsoluteFill style={{backgroundColor: '#050505'}}>
+			<Fundo />
+			<Camera m={m}>
+				{m.planos.map((p, i) => (
+					<Sequence key={'p' + i} from={p.inicio} durationInFrames={p.frames} layout="none">
+						<PlanoVisual plano={p} indice={i} m={m} />
+					</Sequence>
+				))}
+				{m.linha.map((it, i) => (
+					<Sequence key={'b' + i} from={it.inicio} durationInFrames={it.frames} layout="none">
+						<Bloco it={it} />
+					</Sequence>
+				))}
+			</Camera>
+			<IndicadorCapitulo m={m} />
+			<Acabamento />
 
-		<Audio src={staticFile('audio/trilha.wav')} volume={volumeTrilha} />
-		{EVENTOS.map((e, i) => (
-			<Sequence key={'s' + i} from={e.frame} layout="none">
-				<Audio src={staticFile(`audio/${e.som}.wav`)} volume={e.volume} />
-			</Sequence>
-		))}
-	</AbsoluteFill>
-);
+			<Audio src={staticFile('audio/trilha.wav')} volume={m.volumeTrilha} />
+			{m.eventos.map((e, i) => (
+				<Sequence key={'s' + i} from={e.frame} layout="none">
+					<Audio src={staticFile(`audio/${e.som}.wav`)} volume={e.volume} />
+				</Sequence>
+			))}
+		</AbsoluteFill>
+	);
+};
