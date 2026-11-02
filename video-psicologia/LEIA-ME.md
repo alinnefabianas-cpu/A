@@ -14,6 +14,10 @@ npm run studio            # abre o editor visual do Remotion no navegador
 npm run render            # exporta out/video.mp4 (1080p, 30fps)
 npx remotion render src/index.ts Short out/short.mp4          # Short 9:16 (~46s)
 npx remotion still src/index.ts Thumbnail out/thumbnail.png   # thumbnail 1280x720
+
+# Episódio 2 — "Como reconhecer um narcisista em 5 minutos"
+npx remotion render src/index.ts Narcisista out/narcisista.mp4
+npx remotion still src/index.ts ThumbNarcisista out/thumbnail-narcisista.png
 ```
 
 ## Onde mexer
@@ -26,6 +30,7 @@ npx remotion still src/index.ts Thumbnail out/thumbnail.png   # thumbnail 1280x7
 | `src/Video.tsx` | Montagem: câmera (zoom lento, tremor em impactos, flash), mixagem e volume da trilha (silêncio dramático). |
 | `ROTEIRO_SHORT` em `src/roteiro.ts` | Roteiro do Short (3 táticas, ritmo 20% mais rápido). |
 | `src/Thumbnail.tsx` | Thumbnail "ELE SABE O QUE FAZ". |
+| `src/episodios/narcisista.ts` | Roteiro e configuração (rótulo "SINAL", título, nomes) do episódio 2. Copie este arquivo para criar novos episódios. |
 | `src/tema.ts` | Cores e fontes. |
 | `scripts/gerar-audio.mjs` | Sintetizador da trilha (Lá menor, drone + piano) e dos efeitos (boom, hit, riser, whoosh, coração, relógio…). |
 

@@ -1,8 +1,18 @@
-import React from 'react';
+import React, {createContext, useContext} from 'react';
 import {AbsoluteFill, Img, interpolate, random, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import {COR, FONTE, fadeIO, prog} from './tema';
 import {TATICAS, type Estilo} from './roteiro';
 import {VisualCena} from './visuais/Visuais';
+
+// ───────── Configuração do episódio (rótulos, título, nomes dos capítulos) ─────────
+export type ConfigEpisodio = {rotulo: string; nomes: string[]; titulo: {destaque: string; linha2: string; sub: string; visual: Parameters<typeof VisualCena>[0]['nome']}};
+export const CONFIG_TATICAS: ConfigEpisodio = {
+	rotulo: 'TÁTICA',
+	nomes: TATICAS,
+	titulo: {destaque: '7 TÁTICAS', linha2: 'DE MANIPULAÇÃO', sub: 'que você nem percebe', visual: 'marionete'},
+};
+export const EpisodioCtx = createContext<ConfigEpisodio>(CONFIG_TATICAS);
+const useEpisodio = () => useContext(EpisodioCtx);
 
 /** true quando o vídeo é vertical (Shorts/Reels). */
 export const useVertical = () => {
@@ -217,6 +227,7 @@ export const CartaoTatica: React.FC<{numero: number; nome: string; visual: Param
 	const preench = prog(f, 14, 40);
 	const nomeP = prog(f, 18, 40);
 	const vertical = useVertical();
+	const ep = useEpisodio();
 	const esp = interpolate(nomeP, [0, 1], vertical ? [30, 6] : [60, 14]);
 	return (
 		<AbsoluteFill style={{opacity: vis}}>
@@ -228,7 +239,7 @@ export const CartaoTatica: React.FC<{numero: number; nome: string; visual: Param
 			<AbsoluteFill style={{alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
 				<div style={{display: 'flex', alignItems: 'center', gap: 28, opacity: prog(f, 4, 18)}}>
 					<div style={{width: 220 * prog(f, 4, 26), height: 2, background: COR.creme, opacity: 0.6}} />
-					<span style={{fontFamily: FONTE.ui, fontWeight: 600, fontSize: 26, letterSpacing: 14, color: COR.cinza}}>TÁTICA</span>
+					<span style={{fontFamily: FONTE.ui, fontWeight: 600, fontSize: 26, letterSpacing: 14, color: COR.cinza}}>{ep.rotulo}</span>
 					<div style={{width: 220 * prog(f, 4, 26), height: 2, background: COR.creme, opacity: 0.6}} />
 				</div>
 				<div
@@ -280,13 +291,14 @@ export const CartaoTatica: React.FC<{numero: number; nome: string; visual: Param
 
 // ───────── Título principal ─────────
 export const Titulo: React.FC<{f: number; dur: number}> = ({f, dur}) => {
+	const {titulo} = useEpisodio();
 	const vis = fadeIO(f, dur, 4, 20);
 	const s = prog(f, 0, 30);
 	return (
 		<AbsoluteFill style={{opacity: vis, alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
 			<AbsoluteFill style={{opacity: 0.35}}>
 				<Palco>
-					<VisualCena nome="marionete" f={f + 40} dur={dur} />
+					<VisualCena nome={titulo.visual} f={f + 40} dur={dur} />
 				</Palco>
 			</AbsoluteFill>
 			<AbsoluteFill style={{background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 60%)'}} />
@@ -303,13 +315,13 @@ export const Titulo: React.FC<{f: number; dur: number}> = ({f, dur}) => {
 					filter: `blur(${(1 - s) * 20}px)`,
 				}}
 			>
-				7 TÁTICAS
+				{titulo.destaque}
 			</div>
 			<div style={{fontFamily: FONTE.titulo, fontWeight: 700, fontSize: 84, color: COR.creme, letterSpacing: interpolate(prog(f, 10, 45), [0, 1], [50, 18]), opacity: prog(f, 10, 35)}}>
-				DE MANIPULAÇÃO
+				{titulo.linha2}
 			</div>
 			<div style={{fontFamily: FONTE.texto, fontStyle: 'italic', fontSize: 46, color: COR.cinza, marginTop: 24, opacity: prog(f, 30, 55)}}>
-				que você nem percebe
+				{titulo.sub}
 			</div>
 			<Vazamento f={f} />
 		</AbsoluteFill>
@@ -344,11 +356,12 @@ export const Citacao: React.FC<{texto: string; autor: string; f: number; dur: nu
 
 // ───────── Recapitulação das 7 táticas ─────────
 export const Lista: React.FC<{f: number; dur: number}> = ({f, dur}) => {
+	const {nomes} = useEpisodio();
 	const vis = fadeIO(f, dur, 6, 14);
 	return (
 		<AbsoluteFill style={{opacity: vis, alignItems: 'center', justifyContent: 'center'}}>
 			<div style={{display: 'flex', flexDirection: 'column', gap: 10}}>
-				{TATICAS.map((t, i) => {
+				{nomes.map((t, i) => {
 					const ini = i * 26;
 					const p = prog(f, ini, ini + 10);
 					const atual = f >= ini && f < ini + 26;
@@ -433,13 +446,15 @@ export const Final: React.FC<{texto: string; f: number; dur: number; cta?: CTA}>
 };
 
 // ───────── Indicador de capítulo ─────────
-export const Capitulo: React.FC<{numero: number; progresso: number; op: number}> = ({numero, progresso, op}) => (
+export const Capitulo: React.FC<{numero: number; progresso: number; op: number}> = ({numero, progresso, op}) => {
+	const {rotulo, nomes} = useEpisodio();
+	return (
 	<div style={{position: 'absolute', top: 60, left: 80, opacity: op, display: 'flex', flexDirection: 'column', gap: 12}}>
 		<div style={{fontFamily: FONTE.ui, fontWeight: 600, fontSize: 20, letterSpacing: 6, color: COR.cinza}}>
-			TÁTICA <span style={{color: COR.vermelho}}>{String(numero).padStart(2, '0')}</span> / 07
+			{rotulo} <span style={{color: COR.vermelho}}>{String(numero).padStart(2, '0')}</span> / {String(nomes.length).padStart(2, '0')}
 		</div>
 		<div style={{display: 'flex', gap: 6}}>
-			{TATICAS.map((_, i) => (
+			{nomes.map((_, i) => (
 				<div key={i} style={{width: 34, height: 3, background: i + 1 < numero ? COR.creme : i + 1 === numero ? COR.escuro : COR.escuro, position: 'relative', overflow: 'hidden', opacity: 0.8}}>
 					{i + 1 === numero && <div style={{position: 'absolute', inset: 0, width: `${progresso * 100}%`, background: COR.vermelho}} />}
 				</div>
@@ -447,3 +462,4 @@ export const Capitulo: React.FC<{numero: number; progresso: number; op: number}>
 		</div>
 	</div>
 );
+};

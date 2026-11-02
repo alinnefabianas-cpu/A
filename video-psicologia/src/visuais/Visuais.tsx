@@ -934,7 +934,164 @@ const Luz: React.FC<P> = ({f}) => {
 	);
 };
 
+
+// ───────── episódio 2: narcisismo ─────────
+
+// Narciso olhando o próprio reflexo na água
+const Lago: React.FC<P> = ({f}) => {
+	const agua = CY - 10;
+	return (
+		<Svg>
+			<clipPath id="acimaAgua">
+				<rect x={0} y={0} width={W} height={agua} />
+			</clipPath>
+			<clipPath id="abaixoAgua">
+				<rect x={0} y={agua} width={W} height={H} />
+			</clipPath>
+			<rect x={0} y={agua} width={W} height={H - agua} fill="#0b0a0d" />
+			{/* figura de pé na margem */}
+			<g clipPath="url(#acimaAgua)" opacity={prog(f, 0, 25)}>
+				<g transform={`translate(${CX} ${agua - 168}) scale(1.4)`}>
+					<path d={BUSTO} transform="translate(-100 -140)" fill="#050404" stroke={COR.cinza} strokeWidth={1.5} />
+				</g>
+			</g>
+			{/* reflexo invertido e ondulado */}
+			<g clipPath="url(#abaixoAgua)" opacity={0.85 * prog(f, 10, 40)}>
+				<g transform={`translate(${CX + Math.sin(f / 10) * 6} ${agua + 168}) scale(1.4 -1.4)`} style={{filter: 'blur(1.5px)'}}>
+					<path d={BUSTO} transform="translate(-100 -140)" fill={COR.vermelhoEscuro} stroke={COR.vermelho} strokeWidth={2} />
+				</g>
+				<g filter="url(#brilho)" opacity={prog(f, 30, 50)}>
+					<ellipse cx={CX - 28} cy={agua + 168 + 92} rx={11} ry={4} fill="#ff3b3b" />
+					<ellipse cx={CX + 28} cy={agua + 168 + 92} rx={11} ry={4} fill="#ff3b3b" />
+				</g>
+				{Array.from({length: 14}).map((_, i) => (
+					<rect key={i} x={0} y={agua + 12 + i * 28 + Math.sin(f / 8 + i) * 4} width={W} height={3} fill="#0b0a0d" opacity={0.8} />
+				))}
+			</g>
+			{/* ondulações concêntricas */}
+			{[0, 1, 2, 3].map((k) => {
+				const t = ((f + k * 22) % 88) / 88;
+				return <ellipse key={k} cx={CX + 60} cy={agua + 40} rx={60 + t * 520} ry={(60 + t * 520) * 0.12} fill="none" stroke={COR.creme} strokeWidth={2} opacity={(1 - t) * 0.5} />;
+			})}
+			<line x1={0} y1={agua} x2={W} y2={agua} stroke={COR.creme} strokeOpacity={0.3} strokeWidth={1.5} {...desenho(prog(f, 0, 30))} />
+			<Rotulo x={CX + 240} y={agua - 300} t="NARKISSOS — MITO GREGO" f={f} atraso={30} />
+		</Svg>
+	);
+};
+
+const COROA = 'M-170 60 L-200 -90 L-100 -10 L0 -130 L100 -10 L200 -90 L170 60 Z';
+const Coroa: React.FC<P> = ({f}) => {
+	const sobe = prog(f, 0, 40);
+	const flut = Math.sin(f / 20) * 12;
+	return (
+		<Svg>
+			<circle cx={CX} cy={CY - 40} r={520} fill="url(#halo)" opacity={0.5} />
+			{Array.from({length: 24}).map((_, i) => {
+				const a = (i / 24) * Math.PI * 2 + f / 300;
+				return (
+					<line
+						key={i}
+						x1={CX + Math.cos(a) * 280}
+						y1={CY - 40 + Math.sin(a) * 280}
+						x2={CX + Math.cos(a) * (280 + 160 * sobe)}
+						y2={CY - 40 + Math.sin(a) * (280 + 160 * sobe)}
+						stroke={COR.ouro}
+						strokeOpacity={0.25}
+						strokeWidth={2}
+					/>
+				);
+			})}
+			<g transform={`translate(${CX} ${CY - 40 + (1 - sobe) * 120 + flut}) scale(1.5)`}>
+				<path d={COROA} fill="#120c04" stroke={COR.ouro} strokeWidth={3} filter="url(#brilho)" {...desenho(prog(f, 0, 45))} />
+				<rect x={-170} y={60} width={340} height={36} fill="#120c04" stroke={COR.ouro} strokeWidth={3} />
+				{[-200, 0, 200].map((x, i) => (
+					<circle key={x} cx={x} cy={i === 1 ? -140 : -100} r={14} fill={COR.vermelho} filter="url(#brilho)" opacity={prog(f, 30 + i * 6, 45 + i * 6)} />
+				))}
+			</g>
+			{/* pedestal / plateia pequena embaixo */}
+			{Array.from({length: 9}).map((_, i) => (
+				<g key={i} transform={`translate(${CX - 640 + i * 160} ${CY + 380}) scale(0.45) translate(-100 -140)`} opacity={0.5 * prog(f, 20 + i * 3, 40 + i * 3)}>
+					<path d={BUSTO} fill="#070606" stroke={COR.cinza} strokeWidth={3} />
+				</g>
+			))}
+		</Svg>
+	);
+};
+
+const Cronometro: React.FC<P> = ({f, dur}) => {
+	const total = 300;
+	const restante = Math.max(0, Math.round(total - (f / Math.max(dur, 1)) * 40));
+	const mm = Math.floor(restante / 60);
+	const ss = String(restante % 60).padStart(2, '0');
+	const R = 300;
+	const frac = restante / total;
+	const circ = 2 * Math.PI * R;
+	return (
+		<Svg>
+			<circle cx={CX} cy={CY} r={R + 80} fill="url(#halo)" opacity={0.3} />
+			{Array.from({length: 60}).map((_, i) => {
+				const a = (i / 60) * Math.PI * 2 - Math.PI / 2;
+				const r1 = R + 30;
+				const r2 = R + (i % 5 === 0 ? 70 : 48);
+				return <line key={i} x1={CX + Math.cos(a) * r1} y1={CY + Math.sin(a) * r1} x2={CX + Math.cos(a) * r2} y2={CY + Math.sin(a) * r2} stroke={COR.creme} strokeOpacity={i % 5 === 0 ? 0.6 : 0.2} strokeWidth={i % 5 === 0 ? 3 : 1.5} />;
+			})}
+			<circle cx={CX} cy={CY} r={R} fill="none" stroke={COR.escuro} strokeWidth={14} />
+			<circle
+				cx={CX}
+				cy={CY}
+				r={R}
+				fill="none"
+				stroke={COR.vermelho}
+				strokeWidth={14}
+				strokeLinecap="round"
+				strokeDasharray={`${circ * frac * prog(f, 0, 30)} ${circ}`}
+				transform={`rotate(-90 ${CX} ${CY})`}
+				filter="url(#brilho)"
+			/>
+			<text x={CX} y={CY + 50} textAnchor="middle" fill={COR.creme} fontFamily={FONTE.titulo} fontWeight={700} fontSize={170} opacity={prog(f, 5, 20)}>
+				{mm}:{ss}
+			</text>
+			<Rotulo x={CX} y={CY + 130} t="PRIMEIRA IMPRESSÃO" f={f} atraso={15} anchor="middle" />
+		</Svg>
+	);
+};
+
+// Balança da conversa: "eu" pesa muito mais que "você"
+const Balanca: React.FC<P> = ({f}) => {
+	const inclina = interpolate(prog(f, 15, 70), [0, 1], [0, 16]) + Math.sin(f / 15) * 0.8;
+	const a = (inclina * Math.PI) / 180;
+	const L = 420;
+	const py = CY - 150;
+	const esq = {x: CX - Math.cos(a) * L, y: py + Math.sin(a) * L};
+	const dir = {x: CX + Math.cos(a) * L, y: py - Math.sin(a) * L};
+	const prato = (p: {x: number; y: number}, txt: string, n: number, cor: string) => (
+		<g>
+			<line x1={p.x} y1={p.y} x2={p.x - 110} y2={p.y + 200} stroke={COR.cinza} strokeWidth={2} />
+			<line x1={p.x} y1={p.y} x2={p.x + 110} y2={p.y + 200} stroke={COR.cinza} strokeWidth={2} />
+			<path d={`M${p.x - 140} ${p.y + 200} Q${p.x} ${p.y + 270} ${p.x + 140} ${p.y + 200} Z`} fill="#141110" stroke={COR.creme} strokeWidth={2.5} />
+			{Array.from({length: n}).map((_, i) => (
+				<text key={i} x={p.x - 70 + (i % 3) * 70} y={p.y + 190 - Math.floor(i / 3) * 52} textAnchor="middle" fontFamily={FONTE.titulo} fontWeight={700} fontSize={40} fill={cor} opacity={prog(f, 10 + i * 4, 20 + i * 4)}>
+					{txt}
+				</text>
+			))}
+		</g>
+	);
+	return (
+		<Svg>
+			<path d={`M${CX - 160} ${CY + 330} L${CX + 160} ${CY + 330} L${CX + 20} ${py} L${CX - 20} ${py} Z`} fill="#0f0d0c" stroke={COR.creme} strokeWidth={2} />
+			<line x1={esq.x} y1={esq.y} x2={dir.x} y2={dir.y} stroke={COR.creme} strokeWidth={8} strokeLinecap="round" />
+			<circle cx={CX} cy={py} r={18} fill={COR.vermelho} filter="url(#brilho)" />
+			{prato(esq, 'EU', 9, COR.vermelho)}
+			{prato(dir, 'você', 1, COR.cinza)}
+		</Svg>
+	);
+};
+
 const MAPA: Record<Visual, React.FC<P>> = {
+	lago: Lago,
+	coroa: Coroa,
+	cronometro: Cronometro,
+	balanca: Balanca,
 	olho: Olho,
 	marionete: Marionete,
 	casal: Casal,

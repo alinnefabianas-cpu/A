@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import {AbsoluteFill, Audio, Sequence, interpolate, random, staticFile, useCurrentFrame} from 'remotion';
 import {LINHA_DO_TEMPO, duracaoTotal, type Item, type Som, type Visual} from './roteiro';
-import {Acabamento, Palco, CartaoTatica, Capitulo, Citacao, Final, Fundo, Lista, TextoCinetico, Titulo} from './componentes';
+import {Acabamento, CONFIG_TATICAS, EpisodioCtx, type ConfigEpisodio, Palco, CartaoTatica, Capitulo, Citacao, Final, Fundo, Lista, TextoCinetico, Titulo} from './componentes';
 import {VisualCena} from './visuais/Visuais';
 import {fadeIO} from './tema';
 
@@ -38,7 +38,7 @@ function montar(linha: Item[]) {
 			eventos.push({som: 'hit', frame: it.inicio, volume: 0.8});
 			eventos.push({som: 'whoosh', frame: Math.max(0, it.inicio - 12), volume: 0.45});
 		} else if (it.tipo === 'lista') {
-			for (let i = 0; i < 7; i++) eventos.push({som: 'boom', frame: it.inicio + i * 26, volume: 0.35});
+			for (let i = 0; i < Math.round((it.frames - 50) / 26); i++) eventos.push({som: 'boom', frame: it.inicio + i * 26, volume: 0.35});
 		} else if (it.tipo === 'citacao') {
 			eventos.push({som: 'whoosh', frame: it.inicio, volume: 0.4});
 		} else if (it.tipo === 'final') {
@@ -141,9 +141,10 @@ const Bloco: React.FC<{it: Item}> = ({it}) => {
 	}
 };
 
-export const Video: React.FC<{linha?: Item[]}> = ({linha = LINHA_DO_TEMPO}) => {
+export const Video: React.FC<{linha?: Item[]; episodio?: ConfigEpisodio}> = ({linha = LINHA_DO_TEMPO, episodio = CONFIG_TATICAS}) => {
 	const m = useMemo(() => montar(linha), [linha]);
 	return (
+		<EpisodioCtx.Provider value={episodio}>
 		<AbsoluteFill style={{backgroundColor: '#050505'}}>
 			<Fundo />
 			<Camera m={m}>
@@ -168,5 +169,6 @@ export const Video: React.FC<{linha?: Item[]}> = ({linha = LINHA_DO_TEMPO}) => {
 				</Sequence>
 			))}
 		</AbsoluteFill>
+		</EpisodioCtx.Provider>
 	);
 };

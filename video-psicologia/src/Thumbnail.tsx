@@ -4,7 +4,16 @@ import {COR, FONTE} from './tema';
 import {BUSTO} from './visuais/Visuais';
 
 // Thumbnail 1280x720: silhueta controlada por fios + frase curta de alto contraste
-export const Thumbnail: React.FC = () => {
+type Linha = [string, string, number?];
+export type PropsThumb = {tag?: string; linhas?: Linha[]; figura?: 'marionete' | 'coroa'};
+const PADRAO: Linha[] = [
+	['ELE', COR.creme],
+	['SABE', COR.vermelho, 150],
+	['O QUE', COR.creme],
+	['FAZ.', COR.creme],
+];
+
+export const Thumbnail: React.FC<PropsThumb> = ({tag = '7 TÁTICAS', linhas = PADRAO, figura = 'marionete'}) => {
 	const hx = 930; // centro da cabeça
 	const hy = 330;
 	const s = 2.6;
@@ -27,11 +36,22 @@ export const Thumbnail: React.FC = () => {
 						</feMerge>
 					</filter>
 				</defs>
+				{figura === 'marionete' && (<>
 				{/* barra da marionete */}
 				<rect x={hx - 300} y={barraY - 10} width={600} height={20} rx={5} fill="#120d0d" stroke={COR.creme} strokeWidth={2} transform={`rotate(-5 ${hx} ${barraY})`} />
 				{alvos.map((a, i) => (
 					<line key={i} x1={origens[i].x} y1={origens[i].y} x2={a.x} y2={a.y} stroke={COR.vermelho} strokeWidth={2.5} filter="url(#g)" />
 				))}
+				</>)}
+				{figura === 'coroa' && (
+					<g transform={`translate(${hx + 10} ${hy - 200}) rotate(-8) scale(0.52)`} filter="url(#g)">
+						<path d="M-170 60 L-200 -90 L-100 -10 L0 -130 L100 -10 L200 -90 L170 60 Z" fill="#1a1205" stroke={COR.ouro} strokeWidth={6} />
+						<rect x={-170} y={60} width={340} height={40} fill="#1a1205" stroke={COR.ouro} strokeWidth={6} />
+						<circle cx={0} cy={-140} r={18} fill={COR.vermelho} />
+						<circle cx={-200} cy={-100} r={14} fill={COR.vermelho} />
+						<circle cx={200} cy={-100} r={14} fill={COR.vermelho} />
+					</g>
+				)}
 				{/* silhueta */}
 				<g transform={`translate(${hx} ${hy}) scale(${s}) translate(-100 -75)`}>
 					<path d={BUSTO} fill="#030202" stroke={COR.vermelho} strokeWidth={1.4} filter="url(#g)" />
@@ -41,7 +61,7 @@ export const Thumbnail: React.FC = () => {
 					<ellipse cx={hx - 46} cy={hy - 5} rx={16} ry={6} fill="#ff3b3b" />
 					<ellipse cx={hx + 46} cy={hy - 5} rx={16} ry={6} fill="#ff3b3b" />
 				</g>
-				{alvos.map((a, i) => (
+				{figura === 'marionete' && alvos.map((a, i) => (
 					<circle key={'n' + i} cx={a.x} cy={a.y} r={5} fill={COR.vermelho} />
 				))}
 			</svg>
@@ -49,20 +69,15 @@ export const Thumbnail: React.FC = () => {
 			<div style={{position: 'absolute', left: 56, top: 120, display: 'flex', flexDirection: 'column'}}>
 				<div style={{display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14}}>
 					<div style={{width: 46, height: 4, background: COR.vermelho}} />
-					<span style={{fontFamily: FONTE.ui, fontWeight: 600, fontSize: 24, letterSpacing: 6, color: COR.vermelho}}>7 TÁTICAS</span>
+					<span style={{fontFamily: FONTE.ui, fontWeight: 600, fontSize: 24, letterSpacing: 6, color: COR.vermelho}}>{tag}</span>
 				</div>
-				{[
-					['ELE', COR.creme],
-					['SABE', COR.vermelho],
-					['O QUE', COR.creme],
-					['FAZ.', COR.creme],
-				].map(([t, c]) => (
+				{linhas.map(([t, c, tam]) => (
 					<div
 						key={t}
 						style={{
 							fontFamily: FONTE.titulo,
 							fontWeight: 900,
-							fontSize: t === 'SABE' ? 150 : 108,
+							fontSize: tam ?? 108,
 							lineHeight: 0.98,
 							color: c,
 							letterSpacing: 2,

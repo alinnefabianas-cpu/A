@@ -32,7 +32,11 @@ export type Visual =
 	| 'espelho'
 	| 'mascara'
 	| 'tesoura'
-	| 'luz';
+	| 'luz'
+	| 'lago'
+	| 'coroa'
+	| 'cronometro'
+	| 'balanca';
 
 export type Som =
 	| 'boom'
