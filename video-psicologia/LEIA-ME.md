@@ -50,7 +50,7 @@ npx remotion still src/index.ts ThumbNarcisista out/thumbnail-narcisista.png
 `node scripts/folha-contato.mjs 100 500 900` renderiza quadros soltos em `out/contato/`.
 
 ## Narração (episódio 2)
-A narração foi gerada no Higgsfield com a voz **"Andre" (ElevenLabs)**, uma fala por bloco do roteiro,
+A narração foi gerada no Higgsfield com a voz **"Leo" no motor MiniMax** (português do Brasil sem sotaque; a "Andre" do ElevenLabs soou com sotaque), uma fala por bloco do roteiro,
 salva em `public/voz-narcisista/NN.mp3` (NN = índice do bloco em `ROTEIRO_NARCISISTA`).
 
 1. `npx tsx scripts/falas.ts` lista o texto de cada fala (o que deve ser gravado/gerado em cada arquivo).

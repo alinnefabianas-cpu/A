@@ -211,7 +211,7 @@ export function duracaoDe(b: Bloco): number {
 		case 'citacao':
 			return Math.round(palavras(b.texto) * 12 + 90);
 		case 'lista':
-			return 7 * 26 + 50;
+			return TATICAS.length * 26 + 50;
 		case 'final':
 			return 300;
 		case 'silencio':

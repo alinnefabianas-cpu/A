@@ -11,13 +11,12 @@ export const SINAIS = [
 	'Todos os ex são loucos',
 	'O teste do garçom',
 	'Não suporta a menor crítica',
-	'Ele admite',
 ];
 
 export const CONFIG_NARCISISTA: ConfigEpisodio = {
 	rotulo: 'SINAL',
 	nomes: SINAIS,
-	titulo: {destaque: 'NARCISISTA', linha2: 'EM 5 MINUTOS', sub: '7 sinais para reconhecer antes que seja tarde', visual: 'lago'},
+	titulo: {destaque: 'NARCISISTA', linha2: 'EM 5 MINUTOS', sub: '6 sinais para reconhecer antes que seja tarde', visual: 'lago'},
 };
 
 export const ROTEIRO_NARCISISTA: Bloco[] = [
@@ -86,15 +85,6 @@ export const ROTEIRO_NARCISISTA: Bloco[] = [
 	{tipo: 'texto', texto: 'O psicanalista Heinz Kohut chamou isso de ferida narcísica.', destaque: ['ferida', 'narcísica.'], visual: 'espelho-quebrado'},
 	{tipo: 'texto', texto: 'A reação vem desproporcional: frieza, sarcasmo… ou raiva.', destaque: ['raiva.'], visual: 'cerebro', sons: ['glitch']},
 	{tipo: 'texto', texto: 'Quem não aguenta um arranhão no ego… vai cobrar esse arranhão de você.', destaque: ['cobrar'], visual: 'espelho-quebrado', estilo: 'defesa'},
-
-	// ───────── 7 ─────────
-	{tipo: 'tatica', numero: 7, nome: SINAIS[6], visual: 'olho'},
-	{tipo: 'texto', texto: 'O último sinal é o mais estranho de todos.', visual: 'olho', sons: ['riser']},
-	{tipo: 'texto', texto: 'Em 2014, pesquisadores testaram uma única pergunta:', destaque: ['2014,'], visual: 'grafico', sons: ['relogio']},
-	{tipo: 'texto', texto: '“Você se considera narcisista?”', visual: 'sussurros', estilo: 'fala', sons: ['boom']},
-	{tipo: 'texto', texto: 'E os narcisistas… respondiam que sim. Com orgulho.', destaque: ['sim.', 'orgulho.'], visual: 'coroa', sons: ['hit']},
-	{tipo: 'texto', texto: 'Para eles, não é defeito. É prova de que são superiores.', destaque: ['superiores.'], visual: 'coroa'},
-	{tipo: 'texto', texto: 'Às vezes, a forma mais fácil de descobrir… é perguntar. E acreditar na resposta.', destaque: ['acreditar'], visual: 'luz', estilo: 'defesa'},
 
 	// ───────── FECHAMENTO ─────────
 	{tipo: 'texto', texto: 'Recapitulando.', visual: 'cronometro'},

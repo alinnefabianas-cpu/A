@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useContext, useMemo} from 'react';
 import {AbsoluteFill, Audio, Sequence, interpolate, random, staticFile, useCurrentFrame} from 'remotion';
 import {ATRASO_VOZ, FPS, LINHA_DO_TEMPO, duracaoTotal, type Item, type Som, type Visual, type Voz} from './roteiro';
 import {Acabamento, CONFIG_TATICAS, EpisodioCtx, type ConfigEpisodio, Palco, CartaoTatica, Capitulo, Citacao, Final, Fundo, Lista, TextoCinetico, Titulo} from './componentes';
@@ -34,12 +34,47 @@ export function temposPalavras(texto: string, voz: Voz): number[] {
 		if (atual.length) segs.push(atual);
 		return segs;
 	};
+	// Agrupa os trechos de voz em k blocos consecutivos (um por frase), escolhendo os
+	// cortes que melhor casam a duração de cada bloco com o tamanho do texto da frase.
+	const agrupar = (pesos: number[]): number[][] | null => {
+		const k = pesos.length;
+		const n = regioes.length;
+		if (k > n) return null;
+		const totalP = pesos.reduce((x, y) => x + y, 0);
+		const totalD = regioes.reduce((x, [a, b]) => x + (b - a), 0);
+		const durAte = [0];
+		regioes.forEach(([a, b], i) => durAte.push(durAte[i] + (b - a)));
+		const custo = (i: number, j: number, seg: number) => ((durAte[j] - durAte[i]) / totalD - pesos[seg] / totalP) ** 2;
+		// melhor[seg][j] = menor custo usando as j primeiras regiões para os seg primeiros blocos
+		const melhor = Array.from({length: k + 1}, () => Array(n + 1).fill(Infinity));
+		const volta = Array.from({length: k + 1}, () => Array(n + 1).fill(0));
+		melhor[0][0] = 0;
+		for (let seg = 1; seg <= k; seg++)
+			for (let j = seg; j <= n; j++)
+				for (let i = seg - 1; i < j; i++) {
+					const c = melhor[seg - 1][i] + custo(i, j, seg - 1);
+					if (c < melhor[seg][j]) {
+						melhor[seg][j] = c;
+						volta[seg][j] = i;
+					}
+				}
+		const out: number[][] = [];
+		let j = n;
+		for (let seg = k; seg >= 1; seg--) {
+			const i = volta[seg][j];
+			out.unshift([regioes[i][0], regioes[j - 1][1]]);
+			j = i;
+		}
+		return out;
+	};
 	for (const re of [/[.,:;?!…]$/, /[.:;?!…]$/]) {
 		const segs = segmentar(re);
-		if (segs.length !== regioes.length) continue;
+		const grupos = agrupar(segs.map((seg) => seg.reduce((x, i) => x + palavras[i].length + 1, 0)));
+		if (!grupos || grupos.length !== segs.length) continue;
+		const regs = grupos;
 		const out: number[] = [];
 		segs.forEach((seg, k) => {
-			const [a, b] = regioes[k];
+			const [a, b] = regs[k];
 			const total = seg.reduce((s, i) => s + palavras[i].length + 1, 0);
 			let acum = 0;
 			for (const i of seg) {
@@ -65,15 +100,19 @@ export function temposPalavras(texto: string, voz: Voz): number[] {
 	});
 }
 
-/** Momento em que cada item da recapitulação é dito (um trecho de voz por item). */
-export function marcasLista(n: number, it: Item): number[] {
-	const r = it.voz?.regioes ?? [];
-	if (r.length >= n) return r.slice(0, n).map(([a]) => ATRASO_VOZ + Math.round(a * FPS) - 2);
-	const passo = it.voz ? (it.voz.fim * FPS) / n : 26;
-	return Array.from({length: n}, (_, i) => (it.voz ? ATRASO_VOZ : 0) + Math.round(i * passo));
+/** Momento em que cada item da recapitulação é dito (primeira palavra de cada item). */
+export function marcasLista(nomes: string[], it: Item): number[] {
+	if (!it.voz) return nomes.map((_, i) => i * 26);
+	const tempos = temposPalavras(nomes.join('. ') + '.', it.voz);
+	let w = 0;
+	return nomes.map((n) => {
+		const t = tempos[w];
+		w += n.split(/\s+/).length;
+		return t;
+	});
 }
 
-function montar(linha: Item[]) {
+function montar(linha: Item[], nomes: string[]) {
 	const narrado = linha.some((i) => i.voz);
 	const somK = narrado ? 0.65 : 1;
 	const total = duracaoTotal(linha);
@@ -101,7 +140,7 @@ function montar(linha: Item[]) {
 			eventos.push({som: 'hit', frame: it.inicio, volume: 0.8});
 			eventos.push({som: 'whoosh', frame: Math.max(0, it.inicio - 12), volume: 0.45});
 		} else if (it.tipo === 'lista') {
-			for (const mk of marcasLista(7, it)) eventos.push({som: 'boom', frame: it.inicio + mk, volume: 0.35 * somK});
+			for (const mk of marcasLista(nomes, it)) eventos.push({som: 'boom', frame: it.inicio + mk, volume: 0.35 * somK});
 		} else if (it.tipo === 'citacao') {
 			eventos.push({som: 'whoosh', frame: it.inicio, volume: 0.4});
 		} else if (it.tipo === 'final') {
@@ -186,6 +225,7 @@ const IndicadorCapitulo: React.FC<{m: Montagem}> = ({m}) => {
 
 const Bloco: React.FC<{it: Item}> = ({it}) => {
 	const f = useCurrentFrame();
+	const nomes = useContext(EpisodioCtx).nomes;
 	switch (it.tipo) {
 		case 'texto':
 			return <TextoCinetico texto={it.texto} destaque={it.destaque} estilo={it.estilo} f={f} dur={it.frames} tempos={it.voz ? temposPalavras(it.texto, it.voz) : undefined} />;
@@ -196,7 +236,7 @@ const Bloco: React.FC<{it: Item}> = ({it}) => {
 		case 'citacao':
 			return <Citacao texto={it.texto} autor={it.autor} f={f} dur={it.frames} />;
 		case 'lista':
-			return <Lista f={f} dur={it.frames} marcas={it.voz ? marcasLista(7, it) : undefined} />;
+			return <Lista f={f} dur={it.frames} marcas={it.voz ? marcasLista(nomes, it) : undefined} />;
 		case 'final':
 			return <Final texto={it.texto} f={f} dur={it.frames} cta={it.cta} />;
 		default:
@@ -205,7 +245,7 @@ const Bloco: React.FC<{it: Item}> = ({it}) => {
 };
 
 export const Video: React.FC<{linha?: Item[]; episodio?: ConfigEpisodio}> = ({linha = LINHA_DO_TEMPO, episodio = CONFIG_TATICAS}) => {
-	const m = useMemo(() => montar(linha), [linha]);
+	const m = useMemo(() => montar(linha, episodio.nomes), [linha, episodio]);
 	return (
 		<EpisodioCtx.Provider value={episodio}>
 		<AbsoluteFill style={{backgroundColor: '#050505'}}>

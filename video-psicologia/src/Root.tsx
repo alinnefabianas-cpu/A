@@ -15,7 +15,7 @@ const ComFontes: React.FC<{short?: boolean; thumb?: boolean; ep?: 'narcisista'}>
 	if (thumb && ep === 'narcisista')
 		return (
 			<Thumbnail
-				tag="7 SINAIS EM 5 MINUTOS"
+				tag="6 SINAIS EM 5 MINUTOS"
 				figura="coroa"
 				linhas={[
 					['ELE', COR.creme],
