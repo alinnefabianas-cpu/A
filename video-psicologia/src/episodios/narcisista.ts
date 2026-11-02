@@ -1,6 +1,7 @@
 // Episódio 2: "Como reconhecer um narcisista em 5 minutos"
 // (o vídeo prometido no final do episódio 1)
-import {type Bloco, montarLinha, duracaoTotal} from '../roteiro';
+import {type Bloco, type Voz, montarLinha, duracaoTotal} from '../roteiro';
+import vozes from './narcisista-voz.json';
 import type {ConfigEpisodio} from '../componentes';
 
 export const SINAIS = [
@@ -110,5 +111,5 @@ export const ROTEIRO_NARCISISTA: Bloco[] = [
 	},
 ];
 
-export const LINHA_NARCISISTA = montarLinha(ROTEIRO_NARCISISTA);
+export const LINHA_NARCISISTA = montarLinha(ROTEIRO_NARCISISTA, 1, vozes as Record<string, Voz>);
 export const DURACAO_NARCISISTA = duracaoTotal(LINHA_NARCISISTA);

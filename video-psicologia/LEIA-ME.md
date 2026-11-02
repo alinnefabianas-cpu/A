@@ -48,3 +48,15 @@ npx remotion still src/index.ts ThumbNarcisista out/thumbnail-narcisista.png
 
 ## Revisão rápida
 `node scripts/folha-contato.mjs 100 500 900` renderiza quadros soltos em `out/contato/`.
+
+## Narração (episódio 2)
+A narração foi gerada no Higgsfield com a voz **"Andre" (ElevenLabs)**, uma fala por bloco do roteiro,
+salva em `public/voz-narcisista/NN.mp3` (NN = índice do bloco em `ROTEIRO_NARCISISTA`).
+
+1. `npx tsx scripts/falas.ts` lista o texto de cada fala (o que deve ser gravado/gerado em cada arquivo).
+2. `python3 scripts/medir-voz.py narcisista` mede cada MP3 (duração e pausas) e grava `src/episodios/narcisista-voz.json`.
+3. O vídeo se ajusta sozinho: cada cena dura o tempo da fala, cada frase da legenda entra quando é dita
+   (os trechos entre pausas são casados com os trechos entre pontuações), a recapitulação acende cada sinal
+   no momento em que é falado, e a trilha/efeitos abaixam para a voz.
+
+Para regravar uma frase, substitua só aquele `NN.mp3` e rode o passo 2 de novo.

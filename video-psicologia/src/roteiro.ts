@@ -167,7 +167,33 @@ export const ROTEIRO: Bloco[] = [
 ];
 
 // ───────── linha do tempo ─────────
-export type Item = Bloco & {inicio: number; frames: number};
+export type Voz = {arquivo: string; dur: number; inicio: number; fim: number; regioes: number[][]};
+export type Item = Bloco & {inicio: number; frames: number; voz?: Voz};
+
+/** Frames de espera antes da voz entrar em cada bloco. */
+export const ATRASO_VOZ = 8;
+
+function duracaoComVoz(b: Bloco, v: Voz): number {
+	const fala = ATRASO_VOZ + Math.ceil(v.fim * FPS);
+	switch (b.tipo) {
+		case 'texto': {
+			const folga = b.estilo === 'grande' ? 26 : b.estilo === 'defesa' ? 30 : b.estilo === 'fala' ? 16 : 12;
+			return fala + folga;
+		}
+		case 'tatica':
+			return Math.max(100, fala + 24);
+		case 'titulo':
+			return Math.max(130, fala + 30);
+		case 'citacao':
+			return fala + 50;
+		case 'lista':
+			return fala + 30;
+		case 'final':
+			return Math.max(300, fala + 230);
+		default:
+			return fala + 12;
+	}
+}
 
 const palavras = (s: string) => s.trim().split(/\s+/).length;
 
@@ -193,11 +219,12 @@ export function duracaoDe(b: Bloco): number {
 	}
 }
 
-export function montarLinha(roteiro: Bloco[], ritmo = 1): Item[] {
+export function montarLinha(roteiro: Bloco[], ritmo = 1, vozes: Record<string, Voz> = {}): Item[] {
 	let t = 0;
-	return roteiro.map((b) => {
-		const frames = b.duracao ? b.duracao : Math.round(duracaoDe(b) * ritmo);
-		const item = {...b, inicio: t, frames} as Item;
+	return roteiro.map((b, i) => {
+		const voz = vozes[String(i)];
+		const frames = voz ? duracaoComVoz(b, voz) : b.duracao ? b.duracao : Math.round(duracaoDe(b) * ritmo);
+		const item = {...b, inicio: t, frames, ...(voz ? {voz} : {})} as Item;
 		t += frames;
 		return item;
 	});

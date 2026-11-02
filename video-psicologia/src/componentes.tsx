@@ -109,12 +109,13 @@ export const Vazamento: React.FC<{f: number}> = ({f}) => {
 // ───────── Texto cinético ─────────
 const limpa = (w: string) => w.toLowerCase().replace(/[“”"]/g, '');
 
-export const TextoCinetico: React.FC<{texto: string; destaque?: string[]; estilo?: Estilo; f: number; dur: number}> = ({
+export const TextoCinetico: React.FC<{texto: string; destaque?: string[]; estilo?: Estilo; f: number; dur: number; tempos?: number[]}> = ({
 	texto,
 	destaque = [],
 	estilo = 'normal',
 	f,
 	dur,
+	tempos,
 }) => {
 	const vertical = useVertical();
 	const palavras = texto.split(/\s+/);
@@ -182,7 +183,7 @@ export const TextoCinetico: React.FC<{texto: string; destaque?: string[]; estilo
 			)}
 			<div style={{...base, ...pos, ...fonte, transform: `scale(${zoomLento}) translateX(${gx}px)`}}>
 				{palavras.map((w, i) => {
-					const ini = 4 + i * ritmo;
+					const ini = tempos ? tempos[i] : 4 + i * ritmo;
 					const p = prog(f, ini, ini + 14);
 					const hl = set.has(limpa(w));
 					const pop = hl ? interpolate(f, [ini, ini + 8, ini + 18], [1.25, 1.08, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}) : 1;
@@ -355,16 +356,17 @@ export const Citacao: React.FC<{texto: string; autor: string; f: number; dur: nu
 };
 
 // ───────── Recapitulação das 7 táticas ─────────
-export const Lista: React.FC<{f: number; dur: number}> = ({f, dur}) => {
+export const Lista: React.FC<{f: number; dur: number; marcas?: number[]}> = ({f, dur, marcas}) => {
 	const {nomes} = useEpisodio();
 	const vis = fadeIO(f, dur, 6, 14);
 	return (
 		<AbsoluteFill style={{opacity: vis, alignItems: 'center', justifyContent: 'center'}}>
 			<div style={{display: 'flex', flexDirection: 'column', gap: 10}}>
 				{nomes.map((t, i) => {
-					const ini = i * 26;
+					const ini = marcas ? marcas[i] : i * 26;
+					const prox = marcas ? (marcas[i + 1] ?? dur) : ini + 26;
 					const p = prog(f, ini, ini + 10);
-					const atual = f >= ini && f < ini + 26;
+					const atual = f >= ini && f < prox;
 					return (
 						<div key={t} style={{display: 'flex', alignItems: 'baseline', gap: 36, opacity: p * (atual ? 1 : 0.45), transform: `translateX(${(1 - p) * -80}px)`}}>
 							<span style={{fontFamily: FONTE.titulo, fontWeight: 900, fontSize: 64, color: COR.vermelho, width: 110, textAlign: 'right'}}>{String(i + 1).padStart(2, '0')}</span>

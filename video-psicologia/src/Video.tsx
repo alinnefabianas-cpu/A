@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react';
 import {AbsoluteFill, Audio, Sequence, interpolate, random, staticFile, useCurrentFrame} from 'remotion';
-import {LINHA_DO_TEMPO, duracaoTotal, type Item, type Som, type Visual} from './roteiro';
+import {ATRASO_VOZ, FPS, LINHA_DO_TEMPO, duracaoTotal, type Item, type Som, type Visual, type Voz} from './roteiro';
 import {Acabamento, CONFIG_TATICAS, EpisodioCtx, type ConfigEpisodio, Palco, CartaoTatica, Capitulo, Citacao, Final, Fundo, Lista, TextoCinetico, Titulo} from './componentes';
 import {VisualCena} from './visuais/Visuais';
 import {fadeIO} from './tema';
@@ -12,7 +12,70 @@ type Evento = {som: Som | 'whoosh'; frame: number; volume: number};
 const VOL: Partial<Record<Som, number>> = {boom: 0.8, hit: 0.75, riser: 0.45, whoosh: 0.5, coracao: 0.9, relogio: 0.5, 'caca-niquel': 0.5, glitch: 0.35, sussurro: 0.55, porta: 0.5, passo: 0.6, tesoura: 0.7, 'acorde-final': 0.8};
 const cl = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
 
+/** Frame (relativo ao bloco) em que cada palavra é dita: posição proporcional aos
+ * caracteres, distribuída só pelos trechos com voz (as pausas não contam). */
+export function temposPalavras(texto: string, voz: Voz): number[] {
+	const palavras = texto.split(/\s+/);
+	const regioes = voz.regioes.length ? voz.regioes : [[voz.inicio, voz.fim]];
+	const fr = (t: number) => Math.max(0, ATRASO_VOZ + Math.round(t * FPS) - 3);
+	const limpa = (w: string) => w.replace(/[“”"]/g, '');
+
+	// Tenta casar cada trecho de voz com um trecho de texto entre pontuações
+	const segmentar = (re: RegExp) => {
+		const segs: number[][] = [];
+		let atual: number[] = [];
+		palavras.forEach((w, i) => {
+			atual.push(i);
+			if (re.test(limpa(w))) {
+				segs.push(atual);
+				atual = [];
+			}
+		});
+		if (atual.length) segs.push(atual);
+		return segs;
+	};
+	for (const re of [/[.,:;?!…]$/, /[.:;?!…]$/]) {
+		const segs = segmentar(re);
+		if (segs.length !== regioes.length) continue;
+		const out: number[] = [];
+		segs.forEach((seg, k) => {
+			const [a, b] = regioes[k];
+			const total = seg.reduce((s, i) => s + palavras[i].length + 1, 0);
+			let acum = 0;
+			for (const i of seg) {
+				out[i] = fr(a + (acum / total) * (b - a));
+				acum += palavras[i].length + 1;
+			}
+		});
+		return out;
+	}
+
+	// Sem casamento: proporcional aos caracteres, só nos trechos com voz
+	const total = palavras.reduce((s, w) => s + w.length + 1, 0);
+	const fala = regioes.reduce((s, [a, b]) => s + (b - a), 0);
+	let acum = 0;
+	return palavras.map((w) => {
+		let alvo = (acum / total) * fala;
+		acum += w.length + 1;
+		for (const [a, b] of regioes) {
+			if (alvo <= b - a) return fr(a + alvo);
+			alvo -= b - a;
+		}
+		return fr(voz.fim);
+	});
+}
+
+/** Momento em que cada item da recapitulação é dito (um trecho de voz por item). */
+export function marcasLista(n: number, it: Item): number[] {
+	const r = it.voz?.regioes ?? [];
+	if (r.length >= n) return r.slice(0, n).map(([a]) => ATRASO_VOZ + Math.round(a * FPS) - 2);
+	const passo = it.voz ? (it.voz.fim * FPS) / n : 26;
+	return Array.from({length: n}, (_, i) => (it.voz ? ATRASO_VOZ : 0) + Math.round(i * passo));
+}
+
 function montar(linha: Item[]) {
+	const narrado = linha.some((i) => i.voz);
+	const somK = narrado ? 0.65 : 1;
 	const total = duracaoTotal(linha);
 	// Junta textos seguidos com o mesmo visual num único plano (a animação continua entre frases)
 	const planos: Plano[] = [];
@@ -32,13 +95,13 @@ function montar(linha: Item[]) {
 			for (const s of it.sons ?? []) {
 				// o riser termina exatamente no começo do próximo bloco
 				const frame = s === 'riser' ? it.inicio + it.frames - 90 : it.inicio + 4;
-				eventos.push({som: s, frame: Math.max(0, frame), volume: VOL[s] ?? 0.6});
+				eventos.push({som: s, frame: Math.max(0, frame), volume: (VOL[s] ?? 0.6) * somK});
 			}
 		} else if (it.tipo === 'tatica' || it.tipo === 'titulo') {
 			eventos.push({som: 'hit', frame: it.inicio, volume: 0.8});
 			eventos.push({som: 'whoosh', frame: Math.max(0, it.inicio - 12), volume: 0.45});
 		} else if (it.tipo === 'lista') {
-			for (let i = 0; i < Math.round((it.frames - 50) / 26); i++) eventos.push({som: 'boom', frame: it.inicio + i * 26, volume: 0.35});
+			for (const mk of marcasLista(7, it)) eventos.push({som: 'boom', frame: it.inicio + mk, volume: 0.35 * somK});
 		} else if (it.tipo === 'citacao') {
 			eventos.push({som: 'whoosh', frame: it.inicio, volume: 0.4});
 		} else if (it.tipo === 'final') {
@@ -51,7 +114,7 @@ function montar(linha: Item[]) {
 	// Janelas sem trilha (silêncio dramático)
 	const silencios = linha.filter((i) => i.tipo === 'silencio').map((i) => [i.inicio, i.inicio + i.frames] as const);
 	const volumeTrilha = (f: number) => {
-		let v = 0.32;
+		let v = narrado ? 0.13 : 0.32;
 		for (const [a, b] of silencios) v *= 1 - Math.min(interpolate(f, [a - 6, a], [0, 1], cl), interpolate(f, [b - 4, b + 30], [1, 0], cl));
 		return v * interpolate(f, [0, 45], [0, 1], cl) * interpolate(f, [total - 120, total], [1, 0], cl);
 	};
@@ -125,7 +188,7 @@ const Bloco: React.FC<{it: Item}> = ({it}) => {
 	const f = useCurrentFrame();
 	switch (it.tipo) {
 		case 'texto':
-			return <TextoCinetico texto={it.texto} destaque={it.destaque} estilo={it.estilo} f={f} dur={it.frames} />;
+			return <TextoCinetico texto={it.texto} destaque={it.destaque} estilo={it.estilo} f={f} dur={it.frames} tempos={it.voz ? temposPalavras(it.texto, it.voz) : undefined} />;
 		case 'titulo':
 			return <Titulo f={f} dur={it.frames} />;
 		case 'tatica':
@@ -133,7 +196,7 @@ const Bloco: React.FC<{it: Item}> = ({it}) => {
 		case 'citacao':
 			return <Citacao texto={it.texto} autor={it.autor} f={f} dur={it.frames} />;
 		case 'lista':
-			return <Lista f={f} dur={it.frames} />;
+			return <Lista f={f} dur={it.frames} marcas={it.voz ? marcasLista(7, it) : undefined} />;
 		case 'final':
 			return <Final texto={it.texto} f={f} dur={it.frames} cta={it.cta} />;
 		default:
@@ -163,6 +226,13 @@ export const Video: React.FC<{linha?: Item[]; episodio?: ConfigEpisodio}> = ({li
 			<Acabamento />
 
 			<Audio src={staticFile('audio/trilha.wav')} volume={m.volumeTrilha} />
+			{m.linha.map((it, i) =>
+				it.voz ? (
+					<Sequence key={'v' + i} from={it.inicio + ATRASO_VOZ} layout="none">
+						<Audio src={staticFile(it.voz.arquivo)} volume={1} />
+					</Sequence>
+				) : null,
+			)}
 			{m.eventos.map((e, i) => (
 				<Sequence key={'s' + i} from={e.frame} layout="none">
 					<Audio src={staticFile(`audio/${e.som}.wav`)} volume={e.volume} />
