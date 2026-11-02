@@ -1,0 +1,21 @@
+{
+  "name": "video-psicologia-sombria",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "audio": "node scripts/gerar-audio.mjs",
+    "render": "remotion render src/index.ts Video out/video.mp4",
+    "preview": "remotion still src/index.ts Video out/frame.png"
+  },
+  "dependencies": {
+    "@fontsource/cinzel": "^5.3.0",
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/playfair-display": "^5.3.0",
+    "@remotion/cli": "^4.0.539",
+    "@types/react": "^19.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.539",
+    "typescript": "^7.0.2"
+  }
+}
