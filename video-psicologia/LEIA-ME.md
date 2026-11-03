@@ -75,3 +75,16 @@ npx remotion render src/index.ts ReelsEditora out/reels.mp4
 
 - `src/reels/Reels.tsx` → `PERFIL`: profissão, @ do Instagram (vazio = não aparece), texto do botão e lista de serviços.
 - `public/reels/*.mp4`: trechos do portfólio (cortados dos vídeos exportados com ffmpeg). Troque por outros trabalhos mantendo os nomes.
+
+## Reels 2 — "Você grava. Eu cuido do resto." (9:16, 29,5s)
+Arquivo pronto: `exportados/reels-servicos.mp4`.
+
+Gancho com "REC" → 5 passos (cortes, legendas, motion, trilha e efeitos, thumbnail), cada um com um trecho
+do portfólio e uma linha do tempo de editor que ganha uma faixa por passo → "Edição para: criadores, marcas… você." → CTA "Agenda aberta".
+
+```bash
+node scripts/gerar-trilha-reels2.mjs   # trilha 120 BPM em Ré menor
+npx remotion render src/index.ts ReelsServicos out/reels-servicos.mp4
+```
+
+Textos dos passos e do público: `PASSOS` e `PUBLICO` em `src/reels/Reels2.tsx`. Clipes e thumbnails em `public/reels2/`.
