@@ -13,20 +13,26 @@ const POR_EXTENSO: Record<string, string> = {
 };
 const extenso = (t: string) => t.replace(/\b(1944|1950|1966|1979|2010|2014)\b/g, (m) => POR_EXTENSO[m]);
 
+// Ajustes de pronúncia para a voz sintética
+const pronuncia = (t: string) => extenso(t).replace(/\bB\. F\. Skinner\b/g, 'Skinner');
+
+export type OpcoesFala = {rotulo: string; titulo: string};
+const PADRAO: OpcoesFala = {rotulo: 'Sinal', titulo: 'Como reconhecer um narcisista… em cinco minutos.'};
+
 /** Texto que a narração lê em cada bloco (null = bloco sem voz). */
-export function falaDoBloco(b: Bloco, nomes: string[] = []): string | null {
-	const t = falaBruta(b, nomes);
-	return t ? extenso(t) : null;
+export function falaDoBloco(b: Bloco, nomes: string[] = [], op: OpcoesFala = PADRAO): string | null {
+	const t = falaBruta(b, nomes, op);
+	return t ? pronuncia(t) : null;
 }
 
-function falaBruta(b: Bloco, nomes: string[]): string | null {
+function falaBruta(b: Bloco, nomes: string[], op: OpcoesFala): string | null {
 	switch (b.tipo) {
 		case 'texto':
 			return b.texto.replace(/[“”"]/g, '');
 		case 'titulo':
-			return 'Como reconhecer um narcisista… em cinco minutos.';
+			return op.titulo;
 		case 'tatica':
-			return `Sinal número ${NUM[b.numero]}. ${b.nome}.`;
+			return `${op.rotulo} número ${NUM[b.numero]}. ${b.nome}.`;
 		case 'citacao':
 			return `${b.texto} ${b.autor}.`;
 		case 'lista':

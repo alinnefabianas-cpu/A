@@ -1,3 +1,4 @@
+import vozesTaticas from './episodios/taticas-voz.json';
 // Roteiro do vídeo como dados. Edite os textos aqui: a duração de cada cena
 // é calculada automaticamente pela quantidade de palavras.
 
@@ -232,7 +233,7 @@ export function montarLinha(roteiro: Bloco[], ritmo = 1, vozes: Record<string, V
 
 export const duracaoTotal = (linha: Item[]) => linha.reduce((s, i) => s + i.frames, 0);
 
-export const LINHA_DO_TEMPO = montarLinha(ROTEIRO);
+export const LINHA_DO_TEMPO = montarLinha(ROTEIRO, 1, vozesTaticas as Record<string, Voz>);
 export const DURACAO_TOTAL = duracaoTotal(LINHA_DO_TEMPO);
 
 // ───────── SHORT (9:16, ~55s) ─────────

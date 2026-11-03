@@ -88,3 +88,8 @@ npx remotion render src/index.ts ReelsServicos out/reels-servicos.mp4
 ```
 
 Textos dos passos e do público: `PASSOS` e `PUBLICO` em `src/reels/Reels2.tsx`. Clipes e thumbnails em `public/reels2/`.
+
+## Narração (episódio 1)
+Mesma voz do episódio 2 ("Leo", MiniMax), em `public/voz-taticas/NN.mp3` (NN = índice em `ROTEIRO`).
+`npx tsx scripts/falas.ts taticas` lista as falas; `python3 scripts/medir-voz.py taticas` mede e grava
+`src/episodios/taticas-voz.json`; `npx tsx scripts/gerar-srt.ts taticas` gera a legenda `.srt`.
