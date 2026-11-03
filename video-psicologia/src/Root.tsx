@@ -5,13 +5,15 @@ import {ALTURA, DURACAO_SHORT, DURACAO_TOTAL, FPS, LARGURA, LINHA_SHORT} from '.
 import {Thumbnail} from './Thumbnail';
 import {CONFIG_NARCISISTA, DURACAO_NARCISISTA, LINHA_NARCISISTA} from './episodios/narcisista';
 import {COR} from './tema';
+import {DURACAO_REELS, Reels} from './reels/Reels';
 
-const ComFontes: React.FC<{short?: boolean; thumb?: boolean; ep?: 'narcisista'}> = ({short, thumb, ep}) => {
+const ComFontes: React.FC<{short?: boolean; thumb?: boolean; ep?: 'narcisista'; reels?: boolean}> = ({short, thumb, ep, reels}) => {
 	const [handle] = useState(() => delayRender('Carregando fontes'));
 	useEffect(() => {
 		const fontes = ['700 40px Cinzel', '900 40px Cinzel', '400 40px "Playfair Display"', 'italic 400 40px "Playfair Display"', '700 40px "Playfair Display"', 'italic 700 40px "Playfair Display"', '600 20px Inter', '400 20px Inter'];
 		Promise.all(fontes.map((f) => document.fonts.load(f, 'ÁÇãõê…'))).then(() => continueRender(handle));
 	}, [handle]);
+	if (reels) return <Reels />;
 	if (thumb && ep === 'narcisista')
 		return (
 			<Thumbnail
@@ -37,5 +39,6 @@ export const Root: React.FC = () => (
 		<Composition id="Thumbnail" component={ComFontes} defaultProps={{thumb: true}} durationInFrames={1} fps={FPS} width={1280} height={720} />
 		<Composition id="Narcisista" component={ComFontes} defaultProps={{ep: 'narcisista'}} durationInFrames={DURACAO_NARCISISTA} fps={FPS} width={LARGURA} height={ALTURA} />
 		<Composition id="ThumbNarcisista" component={ComFontes} defaultProps={{ep: 'narcisista', thumb: true}} durationInFrames={1} fps={FPS} width={1280} height={720} />
+		<Composition id="ReelsEditora" component={ComFontes} defaultProps={{reels: true}} durationInFrames={DURACAO_REELS} fps={FPS} width={1080} height={1920} />
 	</>
 );

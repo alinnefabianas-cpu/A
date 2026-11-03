@@ -60,3 +60,18 @@ salva em `public/voz-narcisista/NN.mp3` (NN = índice do bloco em `ROTEIRO_NARCI
    no momento em que é falado, e a trilha/efeitos abaixam para a voz.
 
 Para regravar uma frase, substitua só aquele `NN.mp3` e rode o passo 2 de novo.
+
+## Reels de divulgação — "Editora de vídeo" (9:16, 28,5s)
+Arquivo pronto: `exportados/reels-editora-de-video.mp4`.
+
+Estrutura: gancho ("Seu vídeo tem 3 segundos") → antes/depois → montagem com 7 cortes do portfólio
+no beat (texto cinético, motion design, legenda sincronizada, sound design…) → flashes rápidos → serviços → CTA.
+
+```bash
+npm run audio -- 30                    # efeitos sonoros (public/audio)
+node scripts/gerar-trilha-reels.mjs    # trilha 120 BPM sincronizada com os cortes
+npx remotion render src/index.ts ReelsEditora out/reels.mp4
+```
+
+- `src/reels/Reels.tsx` → `PERFIL`: profissão, @ do Instagram (vazio = não aparece), texto do botão e lista de serviços.
+- `public/reels/*.mp4`: trechos do portfólio (cortados dos vídeos exportados com ffmpeg). Troque por outros trabalhos mantendo os nomes.
