@@ -1,0 +1,19 @@
+{
+  "name": "video-carrossel-parodia",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts Apresentacao exportados/carrossel-apresentacao-personagens.mp4",
+    "still": "remotion still src/index.ts Apresentacao out/frame.png"
+  },
+  "dependencies": {
+    "@fontsource/baloo-2": "^5.2.8",
+    "@fontsource/permanent-marker": "^5.2.8",
+    "@remotion/cli": "4.0.539",
+    "@types/react": "^19.3.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.539",
+    "typescript": "^7.0.2"
+  }
+}
