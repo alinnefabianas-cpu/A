@@ -1,4 +1,4 @@
-# Carrossel – a paródia · apresentação dos personagens
+# Carrossel – la película · apresentação dos personagens
 
 - Vídeo final: `exportados/carrossel-apresentacao-personagens.mp4` (1920x1080, 30 fps, 28 s, com o áudio original)
 - Vídeo original: `public/onibus.mp4`

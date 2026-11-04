@@ -18,7 +18,7 @@ const FPS = 30;
 export const DURACAO = 851; // 28,37 s do vídeo original
 
 type Lado = 'esq' | 'dir';
-type Personagem = {nome: string; inicio: number; fim: number; lado: Lado};
+type Personagem = {nome: string; inicio: number; fim: number; lado: Lado; recuo?: number};
 
 // Tempos (em segundos) de quando cada pessoa passa pela câmera.
 // Ajuste aqui se algum nome precisar adiantar/atrasar.
@@ -27,13 +27,13 @@ const PERSONAGENS: Personagem[] = [
   {nome: 'Graça', inicio: 1.0, fim: 1.65, lado: 'dir'},
   {nome: 'Alicia', inicio: 1.75, fim: 3.1, lado: 'esq'},
   {nome: 'Carmem', inicio: 3.1, fim: 4.5, lado: 'dir'},
-  {nome: 'Margarida', inicio: 4.55, fim: 5.45, lado: 'esq'},
-  {nome: 'Cirilo', inicio: 5.5, fim: 7.3, lado: 'dir'},
-  {nome: 'Laura', inicio: 7.3, fim: 9.1, lado: 'esq'},
-  {nome: 'Maria Joaquina', inicio: 9.2, fim: 10.4, lado: 'esq'},
-  {nome: 'Valeria', inicio: 10.4, fim: 11.6, lado: 'dir'},
-  {nome: 'Adriano', inicio: 12.2, fim: 13.4, lado: 'esq'},
-  {nome: 'Marcelina', inicio: 13.4, fim: 14.7, lado: 'dir'},
+  {nome: 'Margarida', inicio: 5.0, fim: 5.85, lado: 'dir'},
+  {nome: 'Cirilo', inicio: 5.9, fim: 8.7, lado: 'dir'},
+  {nome: 'Laura', inicio: 9.2, fim: 10.3, lado: 'esq', recuo: 640},
+  {nome: 'Maria Joaquina', inicio: 10.3, fim: 11.6, lado: 'dir'},
+  {nome: 'Valeria', inicio: 12.15, fim: 13.15, lado: 'dir'},
+  {nome: 'Adriano', inicio: 13.15, fim: 14.2, lado: 'esq'},
+  {nome: 'Marcelina', inicio: 14.2, fim: 15.3, lado: 'dir'},
   {nome: 'Mario', inicio: 15.4, fim: 16.6, lado: 'dir'},
   {nome: 'Bibi', inicio: 16.6, fim: 17.6, lado: 'esq'},
   {nome: 'Jaime', inicio: 17.6, fim: 18.65, lado: 'esq'},
@@ -214,7 +214,7 @@ const CartaoNome: React.FC<{p: Personagem; indice: number; dur: number}> = ({p, 
         style={{
           position: 'absolute',
           bottom: 110,
-          [esq ? 'left' : 'right']: 110,
+          [esq ? 'left' : 'right']: 110 + (p.recuo ?? 0),
           transform: `translateX(${desliza}px) rotate(${giro}deg) scale(${escala})`,
           transformOrigin: esq ? 'left bottom' : 'right bottom',
           opacity: sai,
@@ -310,39 +310,6 @@ const CartaoNome: React.FC<{p: Personagem; indice: number; dur: number}> = ({p, 
   );
 };
 
-/* ---------- Selo fixo ---------- */
-
-const Selo: React.FC = () => {
-  const frame = useCurrentFrame();
-  const op = interpolate(frame, [0, 10, f(FINAL_INICIO) - 8, f(FINAL_INICIO)], [0, 1, 1, 0], {
-    extrapolateLeft: 'clamp',
-    extrapolateRight: 'clamp',
-  });
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        top: 54,
-        left: 64,
-        opacity: op,
-        display: 'flex',
-        alignItems: 'center',
-        gap: 16,
-        background: 'rgba(27,16,51,0.72)',
-        padding: '10px 28px 10px 16px',
-        borderRadius: 999,
-        border: '4px solid rgba(255,255,255,0.9)',
-      }}
-    >
-      <Estrela size={50} cor="#FF3B5C" style={{transform: `rotate(${frame * 3}deg)`}} />
-      <span style={{fontFamily: NOME, fontWeight: 800, fontSize: 40, color: '#fff', letterSpacing: 2}}>
-        CARROSSEL
-      </span>
-      <span style={{fontFamily: MAO, fontSize: 32, color: '#FFC83D'}}>a paródia</span>
-    </div>
-  );
-};
-
 /* ---------- Encerramento ---------- */
 
 const Final: React.FC = () => {
@@ -351,27 +318,15 @@ const Final: React.FC = () => {
   const fundo = interpolate(frame, [0, 12], [0, 0.45], {extrapolateRight: 'clamp'});
   const linha1 = spring({frame, fps, config: {damping: 10, stiffness: 160}});
   const linha2 = spring({frame: frame - 10, fps, config: {damping: 9, stiffness: 140}});
-  const linha3 = spring({frame: frame - 24, fps, config: {damping: 12, stiffness: 160}});
   const balanca = Math.sin(frame / 7) * 2.5;
-  const letras = 'NOSSA TURMA!'.split('');
+  const letras = 'CARROSSEL'.split('');
   return (
     <AbsoluteFill style={{alignItems: 'center', justifyContent: 'center'}}>
       <AbsoluteFill style={{background: '#1B1033', opacity: fundo}} />
       <div style={{position: 'absolute', left: '50%', top: '50%'}}>
         <Explosao seed="final" cores={['#FFC83D', '#FF3B5C', '#2F80FF', '#22C17A', '#B14DFF']} n={16} raio={720} />
       </div>
-      <div
-        style={{
-          fontFamily: MAO,
-          fontSize: 76,
-          color: '#FFFFFF',
-          transform: `scale(${linha1}) rotate(-3deg)`,
-          textShadow: '0 6px 0 rgba(0,0,0,0.4)',
-        }}
-      >
-        e essa é a
-      </div>
-      <div style={{display: 'flex', transform: `scale(${linha2}) rotate(${balanca}deg)`, margin: '6px 0 18px'}}>
+      <div style={{display: 'flex', transform: `scale(${linha1}) rotate(${balanca}deg)`}}>
         {letras.map((l, i) => {
           const pula = Math.sin(frame / 4 - i * 0.6) * 10;
           return (
@@ -380,14 +335,13 @@ const Final: React.FC = () => {
               style={{
                 fontFamily: NOME,
                 fontWeight: 800,
-                fontSize: 200,
+                fontSize: 230,
                 lineHeight: 1,
                 color: CORES[i % CORES.length].fundo,
-                WebkitTextStroke: '10px #FFFFFF',
+                WebkitTextStroke: '11px #FFFFFF',
                 paintOrder: 'stroke fill',
-                textShadow: '0 14px 0 rgba(27,16,51,0.9)',
+                textShadow: '0 16px 0 rgba(27,16,51,0.9)',
                 transform: `translateY(${pula}px)`,
-                width: l === ' ' ? 60 : undefined,
               }}
             >
               {l}
@@ -397,22 +351,20 @@ const Final: React.FC = () => {
       </div>
       <div
         style={{
-          transform: `scale(${linha3})`,
+          marginTop: 30,
+          transform: `scale(${linha2}) rotate(-3deg)`,
           display: 'flex',
           alignItems: 'center',
-          gap: 18,
+          gap: 22,
           background: '#FFFFFF',
           borderRadius: 999,
-          padding: '10px 40px',
-          boxShadow: '0 10px 0 rgba(0,0,0,0.3)',
+          padding: '6px 46px 14px',
+          boxShadow: '0 12px 0 rgba(0,0,0,0.3)',
         }}
       >
-        <Estrela size={56} cor="#FF3B5C" style={{transform: `rotate(${frame * 4}deg)`}} />
-        <span style={{fontFamily: NOME, fontWeight: 800, fontSize: 64, color: '#1B1033', letterSpacing: 3}}>
-          CARROSSEL
-        </span>
-        <span style={{fontFamily: MAO, fontSize: 48, color: '#FF3B5C'}}>a paródia</span>
-        <Estrela size={56} cor="#2F80FF" style={{transform: `rotate(${-frame * 4}deg)`}} />
+        <Estrela size={64} cor="#FF3B5C" style={{transform: `rotate(${frame * 4}deg)`}} />
+        <span style={{fontFamily: MAO, fontSize: 96, color: '#1B1033'}}>la película</span>
+        <Estrela size={64} cor="#2F80FF" style={{transform: `rotate(${-frame * 4}deg)`}} />
       </div>
     </AbsoluteFill>
   );
@@ -426,7 +378,6 @@ export const Apresentacao: React.FC = () => (
     <Vinheta />
     <Grao />
     <Flash />
-    <Selo />
     {PERSONAGENS.map((p, i) => {
       const dur = f(p.fim) - f(p.inicio);
       return (
