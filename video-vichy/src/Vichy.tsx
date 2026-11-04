@@ -680,7 +680,54 @@ const ORDEM: [keyof typeof CENAS, React.FC][] = [
 	['logos', CenaLogos],
 ];
 
-export const Vichy: React.FC = () => {
+// Marca d'água para prévia ao cliente: "Gabi" em mosaico diagonal + selo no canto
+const MarcaDagua: React.FC<{nome: string}> = ({nome}) => (
+	<AbsoluteFill style={{pointerEvents: 'none', overflow: 'hidden'}}>
+		<div style={{position: 'absolute', left: -700, top: -700, width: 2500, height: 3300, transform: 'rotate(-28deg)'}}>
+			{Array.from({length: 14}).flatMap((_, r) =>
+				Array.from({length: 6}).map((__, c) => (
+					<div
+						key={`${r}-${c}`}
+						style={{
+							position: 'absolute',
+							left: c * 460 + (r % 2) * 230,
+							top: r * 240,
+							fontFamily: SERIF,
+							fontStyle: 'italic',
+							fontWeight: 900,
+							fontSize: 110,
+							color: 'rgba(255,255,255,.2)',
+							WebkitTextStroke: '2px rgba(0,0,0,.12)',
+						}}
+					>
+						{nome}
+					</div>
+				)),
+			)}
+		</div>
+		<div
+			style={{
+				position: 'absolute',
+				left: '50%',
+				bottom: 120,
+				transform: 'translateX(-50%)',
+				background: 'rgba(0,0,0,.45)',
+				color: C.branco,
+				fontFamily: SANS,
+				fontWeight: 800,
+				fontSize: 30,
+				letterSpacing: 4,
+				padding: '12px 28px',
+				borderRadius: 40,
+				whiteSpace: 'nowrap',
+			}}
+		>
+			PRÉVIA · © {nome.toUpperCase()}
+		</div>
+	</AbsoluteFill>
+);
+
+export const Vichy: React.FC<{marca?: string}> = ({marca}) => {
 	return (
 		<AbsoluteFill style={{background: C.navy}}>
 			{ORDEM.map(([k, Cena]) => (
@@ -692,6 +739,7 @@ export const Vichy: React.FC = () => {
 				<Swipe key={k} em={CENAS[k][0]} />
 			))}
 			<Audio src={staticFile('audio/trilha.wav')} />
+			{marca ? <MarcaDagua nome={marca} /> : null}
 		</AbsoluteFill>
 	);
 };
