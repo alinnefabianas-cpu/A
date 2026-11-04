@@ -18,11 +18,11 @@ const FPS = 30;
 export const DURACAO = 851; // 28,37 s do vídeo original
 
 type Lado = 'esq' | 'dir';
-type Personagem = {nome: string; inicio: number; fim: number; lado: Lado; recuo?: number};
+export type Personagem = {nome: string; inicio: number; fim: number; lado: Lado; recuo?: number};
 
 // Tempos (em segundos) de quando cada pessoa passa pela câmera.
 // Ajuste aqui se algum nome precisar adiantar/atrasar.
-const PERSONAGENS: Personagem[] = [
+export const PERSONAGENS: Personagem[] = [
   {nome: 'Diretora Olivia', inicio: 0.1, fim: 1.0, lado: 'esq'},
   {nome: 'Graça', inicio: 1.0, fim: 1.65, lado: 'dir'},
   {nome: 'Alicia', inicio: 1.75, fim: 3.1, lado: 'esq'},
@@ -43,9 +43,9 @@ const PERSONAGENS: Personagem[] = [
   {nome: 'Kokimoto', inicio: 22.4, fim: 24.0, lado: 'esq'},
 ];
 
-const FINAL_INICIO = 24.3;
+export const FINAL_INICIO = 24.3;
 
-const CORES = [
+export const CORES = [
   {fundo: '#FF3B5C', tinta: '#FFFFFF'},
   {fundo: '#FFC83D', tinta: '#3A1C00'},
   {fundo: '#2F80FF', tinta: '#FFFFFF'},
@@ -100,7 +100,7 @@ const Flash: React.FC = () => {
   return <AbsoluteFill style={{background: '#FFF6D6', opacity: op, mixBlendMode: 'screen'}} />;
 };
 
-const Vinheta: React.FC = () => (
+export const Vinheta: React.FC = () => (
   <AbsoluteFill
     style={{
       background:
@@ -109,7 +109,7 @@ const Vinheta: React.FC = () => (
   />
 );
 
-const Grao: React.FC = () => {
+export const Grao: React.FC = () => {
   const frame = useCurrentFrame();
   const seed = Math.floor(frame / 2) % 12;
   return (
@@ -142,7 +142,7 @@ const Estrela: React.FC<{size: number; cor: string; style?: React.CSSProperties}
   </svg>
 );
 
-const Explosao: React.FC<{seed: string; cores: string[]; n?: number; raio?: number}> = ({
+export const Explosao: React.FC<{seed: string; cores: string[]; n?: number; raio?: number}> = ({
   seed,
   cores,
   n = 9,
@@ -184,7 +184,7 @@ const Explosao: React.FC<{seed: string; cores: string[]; n?: number; raio?: numb
 
 /* ---------- Cartão de nome ---------- */
 
-const CartaoNome: React.FC<{p: Personagem; indice: number; dur: number}> = ({p, indice, dur}) => {
+export const CartaoNome: React.FC<{p: Personagem; indice: number; dur: number}> = ({p, indice, dur}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const cor = CORES[indice % CORES.length];
@@ -312,7 +312,7 @@ const CartaoNome: React.FC<{p: Personagem; indice: number; dur: number}> = ({p, 
 
 /* ---------- Encerramento ---------- */
 
-const Final: React.FC = () => {
+export const Final: React.FC = () => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const fundo = interpolate(frame, [0, 12], [0, 0.45], {extrapolateRight: 'clamp'});
