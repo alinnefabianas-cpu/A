@@ -30,33 +30,19 @@ type Pagina = {
 };
 
 const PAGINAS: Pagina[] = [
-  {
-    cena: 'cena1.mp4', ate: 1.7, vel: 0.5,
-    creditos: [['Maria Joaquina', 'Flavia'], ['Cirilo', 'Enrico'], ['Kokimoto', 'Pang'], ['Paulo', 'Frassi']],
-  },
-  {
-    cena: 'cena2.mp4', ate: 2.38, vel: 0.65,
-    creditos: [['Carmen', 'Manu E.'], ['Professora Helena', 'Julia'], ['Davi', 'Pietro'], ['Adriano', 'Pietro']],
-  },
-  {
-    cena: 'cena3.mp4', ate: 2.29, vel: 0.65,
-    creditos: [['Valeria', 'Nunuka'], ['Daniel', 'Kevin'], ['Jaime', 'Brito'], ['Alicia', 'Cata']],
-  },
+  {cena: 'cena1.mp4', ate: 2.44, vel: 1, creditos: [['Maria Joaquina', 'Flavia'], ['Cirilo', 'Enrico'], ['Kokimoto', 'Pang']]},
+  {cena: 'cena2.mp4', ate: 2.38, vel: 1, creditos: [['Paulo', 'Frassi'], ['Carmen', 'Manu E.'], ['Professora Helena', 'Julia']]},
+  {cena: 'cena3.mp4', ate: 2.29, vel: 1, creditos: [['Davi', 'Pietro'], ['Adriano', 'Pietro']]},
   {
     cena: 'cena4.mp4', ate: 5.0, vel: 1, vertical: true,
-    creditos: [['Mario', 'Mendes'], ['Laura', 'Velem'], ['Marcelina', 'Yasmin'], ['Jorge', 'Kawa (primeiro ano)']],
+    creditos: [['Valeria', 'Nunuka'], ['Daniel', 'Kevin'], ['Jaime', 'Brito'], ['Alicia', 'Cata']],
   },
+  {cena: 'cena5.mp4', ate: 3.04, vel: 1, creditos: [['Mario', 'Mendes'], ['Laura', 'Velem'], ['Marcelina', 'Yasmin']]},
+  {cena: 'cena6.mp4', ate: 3.07, vel: 1, creditos: [['Jorge', 'Kawa (primeiro ano)'], ['Graça', 'Ana Luisa'], ['Didi Ma / Margarida', 'Gabi L.']]},
+  {cena: 'cena7.mp4', ate: 2.25, vel: 1, creditos: [['Bibi', 'Gabi Porf'], ['Bandido 1', 'Marcio'], ['Bandido 2', 'Kadu']]},
   {
-    cena: 'cena5.mp4', ate: 3.04, vel: 0.85,
-    creditos: [['Graça', 'Ana Luisa'], ['Didi Ma / Margarida', 'Gabi L.'], ['Bibi', 'Gabi Porf']],
-  },
-  {
-    cena: 'cena6.mp4', ate: 3.07, vel: 0.85,
-    creditos: [['Bandido 1', 'Marcio'], ['Bandido 2', 'Kadu'], ['Dono do sítio', 'Tio Ronaldo']],
-  },
-  {
-    cena: 'cena7.mp4', ate: 2.2, vel: 0.6,
-    creditos: [['Diretora', 'Luca Nass'], ['Galã', 'Enzo Gaby'], ['Sumô', 'Brito']],
+    cena: 'cena8.mp4', ate: 4.5, vel: 1,
+    creditos: [['Dono do sítio', 'Tio Ronaldo'], ['Diretora', 'Luca Nass'], ['Galã', 'Enzo Gaby'], ['Sumô', 'Brito']],
   },
 ];
 
@@ -199,7 +185,6 @@ const Cena: React.FC<{p: Pagina; indice: number; dur: number}> = ({p, indice, du
             />
             <OffthreadVideo
               src={fonte}
-              muted
               playbackRate={p.vel}
               style={{position: 'absolute', width: '100%', height: '100%', objectFit: 'contain'}}
             />
@@ -207,7 +192,6 @@ const Cena: React.FC<{p: Pagina; indice: number; dur: number}> = ({p, indice, du
         ) : (
           <OffthreadVideo
             src={fonte}
-            muted
             playbackRate={p.vel}
             style={{width: '100%', height: '100%', objectFit: 'cover', filter: 'saturate(1.12) contrast(1.05)'}}
           />
@@ -256,7 +240,7 @@ const ListaCreditos: React.FC<{p: Pagina; indice: number; dur: number}> = ({p, i
   return (
     <div style={{position: 'absolute', left: 1210, top: 0, width: 660, height: 1080}}>
       {p.creditos.map(([pers, ator], i) => {
-        const d = 3 + i * 5;
+        const d = 2 + i * 4;
         const entra = spring({frame: frame - d, fps, config: {damping: 14, stiffness: 150}});
         const sai = interpolate(frame, [dur - 10 + i * 2, dur - 2 + i * 2], [0, 1], {
           extrapolateLeft: 'clamp',
@@ -457,10 +441,12 @@ const FimCard: React.FC = () => {
 
 export const Creditos: React.FC = () => {
   const frame = useCurrentFrame();
-  const volume = interpolate(frame, [0, 8, DURACAO_CREDITOS - 40, DURACAO_CREDITOS], [0, 0.9, 0.9, 0], {
-    extrapolateLeft: 'clamp',
-    extrapolateRight: 'clamp',
-  });
+  const volume = interpolate(
+    frame,
+    [0, 8, ABERTURA - 8, ABERTURA + 4, FIM_PAGINAS - 4, FIM_PAGINAS + 8, DURACAO_CREDITOS - 40, DURACAO_CREDITOS],
+    [0, 0.9, 0.9, 0.16, 0.16, 0.9, 0.9, 0],
+    {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'},
+  );
   return (
     <AbsoluteFill style={{background: FUNDO}}>
       <Fundo />

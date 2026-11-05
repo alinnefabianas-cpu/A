@@ -16,7 +16,7 @@ Para gerar de novo: `npm install` e `npm run render`.
 - Para gerar: `npx remotion render src/index.ts Apaixonadas exportados/apaixonadas-pelo-gala.mp4`
 
 ## Créditos finais
-- `exportados/creditos-carrossel-la-pelicula.mp4` (34 s): abertura, 7 páginas de elenco com as cenas em `public/creditos/`, Câmera/Edição e FIM.
-- Nomes, cenas e velocidade (câmera lenta) de cada página: `PAGINAS` em `src/Creditos.tsx`.
+- `exportados/creditos-carrossel-la-pelicula.mp4` (32 s): abertura, 8 páginas de elenco com as cenas (com áudio original, nivelado) em `public/creditos/`, Câmera/Edição e FIM.
+- Nomes e cenas de cada página: `PAGINAS` em `src/Creditos.tsx`.
 - Música: valsa original de caixinha de música, `node scripts/gerar-valsa.mjs` → `public/sons/valsa.wav`.
 - Para gerar: `npx remotion render src/index.ts Creditos exportados/creditos-carrossel-la-pelicula.mp4`
