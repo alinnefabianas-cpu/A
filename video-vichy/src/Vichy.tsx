@@ -31,15 +31,24 @@ const SANS = 'Montserrat, sans-serif';
 
 // ---------- linha do tempo (frames) ----------
 export const CENAS = {
-	gancho: [0, 90],
-	vichy: [90, 225],
-	semanas: [225, 330],
-	meses: [330, 465],
-	agua: [465, 600],
-	cta: [600, 735],
-	logos: [735, 840],
+	gancho: [0, 105],
+	vichy: [105, 270],
+	semanas: [270, 390],
+	meses: [390, 525],
+	agua: [525, 735],
+	cta: [735, 990],
+	logos: [990, 1095],
 } as const;
-export const DURACAO = 840;
+export const DURACAO = 1095;
+// Narração (voz "Leo", MiniMax, PT-BR): public/voz/0N.mp3 entra 6 frames após o início de cada cena
+const FALAS: [keyof typeof CENAS, string][] = [
+	['gancho', 'voz/01.mp3'],
+	['vichy', 'voz/02.mp3'],
+	['semanas', 'voz/03.mp3'],
+	['meses', 'voz/04.mp3'],
+	['agua', 'voz/05.mp3'],
+	['cta', 'voz/06.mp3'],
+];
 
 // ---------- utilitários ----------
 const ease = Easing.bezier(0.16, 1, 0.3, 1);
@@ -171,10 +180,9 @@ const Balao: React.FC<{txt: string; x: number; y: number; d: number; rot: number
 				transform: `translate(-50%,-50%) scale(${p}) rotate(${rot}deg)`,
 				background: fundo,
 				color: cor,
-				fontFamily: SERIF,
-				fontStyle: 'italic',
-				fontWeight: 700,
-				fontSize: 50,
+				fontFamily: SANS,
+				fontWeight: 800,
+				fontSize: 46,
 				padding: '16px 34px 22px',
 				borderRadius: 40,
 				boxShadow: '0 12px 30px rgba(0,0,0,.25)',
@@ -319,7 +327,7 @@ const CenaVichy: React.FC = () => {
 				>
 					<Bandeira w={46} /> INTERCÂMBIO LINGUÍSTICO
 				</div>
-				<Sobe d={10} style={{fontFamily: SERIF, fontWeight: 700, fontStyle: 'italic', fontSize: 300, color: C.navy, lineHeight: 1, marginTop: 30, marginLeft: -10}}>
+				<Sobe d={10} style={{fontFamily: SERIF, fontWeight: 900, fontStyle: 'italic', fontSize: 300, color: C.navy, lineHeight: 1, marginTop: 30, marginLeft: -10}}>
 					Vichy
 				</Sobe>
 				<div
@@ -377,7 +385,7 @@ const CenaSemanas: React.FC = () => {
 				</Sobe>
 				<div style={{display: 'flex', alignItems: 'center', gap: 30, fontFamily: SANS, fontWeight: 900, lineHeight: 1}}>
 					<span style={{fontSize: 400, transform: `scale(${n2}) rotate(${(1 - n2) * -30}deg)`, display: 'inline-block'}}>2</span>
-					<span style={{fontFamily: SERIF, fontStyle: 'italic', fontWeight: 700, fontSize: 120, transform: `scale(${ou})`, display: 'inline-block'}}>ou</span>
+					<span style={{fontFamily: SANS, fontWeight: 800, fontSize: 110, transform: `scale(${ou})`, display: 'inline-block'}}>ou</span>
 					<span style={{fontSize: 400, transform: `scale(${n3}) rotate(${(1 - n3) * 30}deg)`, display: 'inline-block'}}>3</span>
 				</div>
 				<Sobe d={26} style={{fontFamily: SERIF, fontStyle: 'italic', fontWeight: 900, fontSize: 170, lineHeight: 1, marginTop: -20}}>
@@ -438,11 +446,11 @@ const CenaMeses: React.FC = () => {
 				</Sobe>
 			</div>
 			<AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', paddingTop: 80}}>
-				<CartaoMes mes="junho" d={14} rot={-3} y={0} />
-				<CartaoMes mes="julho" d={26} rot={2} y={50} />
-				<CartaoMes mes="setembro" d={38} rot={-2} y={50} />
+				<CartaoMes mes="junho" d={70} rot={-3} y={0} />
+				<CartaoMes mes="julho" d={86} rot={2} y={50} />
+				<CartaoMes mes="setembro" d={100} rot={-2} y={50} />
 			</AbsoluteFill>
-			<div style={{position: 'absolute', bottom: 330, width: '100%', textAlign: 'center', fontFamily: SANS, fontWeight: 700, fontSize: 44, color: C.navy, opacity: lerp(f, 66, 80)}}>
+			<div style={{position: 'absolute', bottom: 330, width: '100%', textAlign: 'center', fontFamily: SANS, fontWeight: 700, fontSize: 44, color: C.navy, opacity: lerp(f, 112, 126)}}>
 				Escolha a sua turma ✈︎
 			</div>
 			<Grao op={0.09} />
@@ -549,18 +557,18 @@ const CenaAgua: React.FC = () => {
 				<Sobe d={30} style={{fontFamily: SANS, fontWeight: 700, fontSize: 52, marginTop: 8}}>
 					Alliance Française · Vichy
 				</Sobe>
-				<div style={{width: lerp(f, 40, 56) * 220, height: 5, background: C.dourado, margin: '46px auto', borderRadius: 3}} />
-				<Sobe d={46} style={{fontFamily: SERIF, fontStyle: 'italic', fontWeight: 700, fontSize: 84}}>
+				<div style={{width: lerp(f, 100, 116) * 220, height: 5, background: C.dourado, margin: '46px auto', borderRadius: 3}} />
+				<Sobe d={112} style={{fontFamily: SANS, fontWeight: 700, fontSize: 70}}>
 					a rainha das
 				</Sobe>
-				<Sobe d={54} style={{fontFamily: SERIF, fontStyle: 'italic', fontWeight: 900, fontSize: 128, lineHeight: 1.05}}>
+				<Sobe d={122} style={{fontFamily: SERIF, fontStyle: 'italic', fontWeight: 900, fontSize: 128, lineHeight: 1.05}}>
 					cidades de água
 				</Sobe>
 			</div>
-			<Brilho x={140} y={1170} s={70} d={62} />
-			<Brilho x={950} y={1080} s={54} d={70} />
-			<Brilho x={880} y={1350} s={40} d={78} cor={C.branco} />
-			<Brilho x={210} y={640} s={44} d={58} cor={C.branco} />
+			<Brilho x={140} y={1170} s={70} d={130} />
+			<Brilho x={950} y={1080} s={54} d={138} />
+			<Brilho x={880} y={1350} s={40} d={146} cor={C.branco} />
+			<Brilho x={210} y={640} s={44} d={126} cor={C.branco} />
 			<Grao op={0.04} />
 		</AbsoluteFill>
 	);
@@ -579,8 +587,8 @@ const Telefone: React.FC<{size: number; cor: string}> = ({size, cor}) => (
 const CenaCTA: React.FC = () => {
 	const f = useCurrentFrame();
 	const logo = usePop(2, 12);
-	const tel = usePop(40, 10);
-	const pulso = 1 + Math.max(0, Math.sin((f - 50) / 6)) * 0.03 * (f > 50 ? 1 : 0);
+	const tel = usePop(125, 10);
+	const pulso = 1 + Math.max(0, Math.sin((f - 140) / 6)) * 0.03 * (f > 140 ? 1 : 0);
 	return (
 		<AbsoluteFill style={{background: `radial-gradient(circle at 50% 35%, #2A3F86 0%, ${C.navy} 60%, ${C.navyEsc} 100%)`}}>
 			<div style={{position: 'absolute', top: 270, width: '100%', display: 'flex', justifyContent: 'center', transform: `scale(${logo})`}}>
@@ -590,7 +598,7 @@ const CenaCTA: React.FC = () => {
 				<Sobe d={14} style={{fontFamily: SANS, fontWeight: 800, fontSize: 70}}>
 					Todas as informações
 				</Sobe>
-				<Sobe d={20} style={{fontFamily: SERIF, fontStyle: 'italic', fontWeight: 700, fontSize: 70, marginTop: 6}}>
+				<Sobe d={20} style={{fontFamily: SANS, fontWeight: 700, fontSize: 60, marginTop: 6}}>
 					na recepção da
 				</Sobe>
 				<Sobe d={26} style={{fontFamily: SERIF, fontStyle: 'italic', fontWeight: 900, fontSize: 92}}>
@@ -620,7 +628,7 @@ const CenaCTA: React.FC = () => {
 					(83) 98750-3895
 				</div>
 			</div>
-			<div style={{position: 'absolute', top: 1380, width: '100%', textAlign: 'center', fontFamily: SANS, fontWeight: 700, fontSize: 46, color: C.dourado, opacity: lerp(f, 62, 76)}}>
+			<div style={{position: 'absolute', top: 1380, width: '100%', textAlign: 'center', fontFamily: SANS, fontWeight: 700, fontSize: 46, color: C.dourado, opacity: lerp(f, 190, 204)}}>
 				À bientôt en France ! ✨
 			</div>
 			<Grao op={0.05} />
@@ -738,7 +746,12 @@ export const Vichy: React.FC<{marca?: string}> = ({marca}) => {
 			{ORDEM.slice(1).map(([k]) => (
 				<Swipe key={k} em={CENAS[k][0]} />
 			))}
-			<Audio src={staticFile('audio/trilha.wav')} />
+			<Audio src={staticFile('audio/trilha.wav')} volume={0.32} />
+			{FALAS.map(([k, arq]) => (
+				<Sequence key={arq} from={CENAS[k][0] + 6} name={`voz-${k}`}>
+					<Audio src={staticFile(arq)} />
+				</Sequence>
+			))}
 			{marca ? <MarcaDagua nome={marca} /> : null}
 		</AbsoluteFill>
 	);

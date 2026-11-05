@@ -16,11 +16,11 @@ const noise = () => rnd() * 2 - 1;
 const midi = (m) => 440 * Math.pow(2, (m - 69) / 12);
 
 // Marcos em segundos — iguais a CENAS em src/Vichy.tsx (frame/30)
-const DUR = 28;
+const DUR = 36.5;
 const B = 0.5;
-const CORTES = [3, 7.5, 11, 15.5, 20, 24.5];
-const BATIDA_INI = 3; // batida entra junto com a cena "Vichy"
-const BATIDA_FIM = 24.5; // some nos logos
+const CORTES = [3.5, 9, 13, 17.5, 24.5, 33];
+const BATIDA_INI = 3.5; // batida entra junto com a cena "Vichy"
+const BATIDA_FIM = 33; // some nos logos
 
 const n = Math.ceil(DUR * SR);
 const L = new Float32Array(n);
@@ -111,7 +111,7 @@ for (const c of CORTES) {
 	add(c, glock(midi(84), 0.09), 1.2, 0.3);
 }
 // Acorde final sustentado nos logos
-for (const m of [60, 64, 67, 72, 76]) add(24.5, glock(midi(m), 0.06), 3.4, (m - 66) / 20);
+for (const m of [60, 64, 67, 72, 76]) add(33, glock(midi(m), 0.06), 3.4, (m - 66) / 20);
 
 // Normaliza + fades
 let mx = 0;
