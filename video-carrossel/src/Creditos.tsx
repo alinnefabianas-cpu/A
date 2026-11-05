@@ -3,7 +3,6 @@ import '@fontsource/baloo-2/800.css';
 import '@fontsource/permanent-marker/400.css';
 import {
   AbsoluteFill,
-  Audio,
   Easing,
   OffthreadVideo,
   Sequence,
@@ -41,7 +40,7 @@ const PAGINAS: Pagina[] = [
   {cena: 'cena6.mp4', ate: 3.07, vel: 1, creditos: [['Jorge', 'Kawa (primeiro ano)'], ['Graça', 'Ana Luisa'], ['Didi Ma / Margarida', 'Gabi L.']]},
   {cena: 'cena7.mp4', ate: 2.25, vel: 1, creditos: [['Bibi', 'Gabi Porf'], ['Bandido 1', 'Marcio'], ['Bandido 2', 'Kadu']]},
   {
-    cena: 'cena8.mp4', ate: 4.5, vel: 1,
+    cena: 'cena8.mp4', ate: 4.85, vel: 1,
     creditos: [['Dono do sítio', 'Tio Ronaldo'], ['Diretora', 'Luca Nass'], ['Galã', 'Enzo Gaby'], ['Sumô', 'Brito']],
   },
 ];
@@ -440,13 +439,6 @@ const FimCard: React.FC = () => {
 /* ---------- Composição ---------- */
 
 export const Creditos: React.FC = () => {
-  const frame = useCurrentFrame();
-  const volume = interpolate(
-    frame,
-    [0, 8, ABERTURA - 8, ABERTURA + 4, FIM_PAGINAS - 4, FIM_PAGINAS + 8, DURACAO_CREDITOS - 40, DURACAO_CREDITOS],
-    [0, 0.9, 0.9, 0.16, 0.16, 0.9, 0.9, 0],
-    {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'},
-  );
   return (
     <AbsoluteFill style={{background: FUNDO}}>
       <Fundo />
@@ -469,7 +461,6 @@ export const Creditos: React.FC = () => {
         <Fechamento />
       </Sequence>
       <Grao />
-      <Audio src={staticFile('sons/valsa.wav')} volume={volume} />
     </AbsoluteFill>
   );
 };

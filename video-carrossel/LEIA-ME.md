@@ -18,5 +18,5 @@ Para gerar de novo: `npm install` e `npm run render`.
 ## Créditos finais
 - `exportados/creditos-carrossel-la-pelicula.mp4` (32 s): abertura, 8 páginas de elenco com as cenas (com áudio original, nivelado) em `public/creditos/`, Câmera/Edição e FIM.
 - Nomes e cenas de cada página: `PAGINAS` em `src/Creditos.tsx`.
-- Música: valsa original de caixinha de música, `node scripts/gerar-valsa.mjs` → `public/sons/valsa.wav`.
+- Sem música: só o áudio original de cada cena.
 - Para gerar: `npx remotion render src/index.ts Creditos exportados/creditos-carrossel-la-pelicula.mp4`
