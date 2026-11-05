@@ -14,3 +14,9 @@ Para gerar de novo: `npm install` e `npm run render`.
 - `exportados/apaixonadas-pelo-gala.mp4` (15 s), feita a partir de `public/apaixonadas.mp4` (IMG_9025 convertido para H.264).
 - Zooms da câmera: `CAMERA` em `src/Apaixonadas.tsx`; sons sintetizados em `public/sons/`.
 - Para gerar: `npx remotion render src/index.ts Apaixonadas exportados/apaixonadas-pelo-gala.mp4`
+
+## Créditos finais
+- `exportados/creditos-carrossel-la-pelicula.mp4` (34 s): abertura, 7 páginas de elenco com as cenas em `public/creditos/`, Câmera/Edição e FIM.
+- Nomes, cenas e velocidade (câmera lenta) de cada página: `PAGINAS` em `src/Creditos.tsx`.
+- Música: valsa original de caixinha de música, `node scripts/gerar-valsa.mjs` → `public/sons/valsa.wav`.
+- Para gerar: `npx remotion render src/index.ts Creditos exportados/creditos-carrossel-la-pelicula.mp4`
