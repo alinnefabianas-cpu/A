@@ -446,11 +446,11 @@ const CenaMeses: React.FC = () => {
 				</Sobe>
 			</div>
 			<AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', paddingTop: 80}}>
-				<CartaoMes mes="junho" d={70} rot={-3} y={0} />
-				<CartaoMes mes="julho" d={86} rot={2} y={50} />
-				<CartaoMes mes="setembro" d={100} rot={-2} y={50} />
+				<CartaoMes mes="junho" d={24} rot={-3} y={0} />
+				<CartaoMes mes="julho" d={36} rot={2} y={50} />
+				<CartaoMes mes="setembro" d={48} rot={-2} y={50} />
 			</AbsoluteFill>
-			<div style={{position: 'absolute', bottom: 330, width: '100%', textAlign: 'center', fontFamily: SANS, fontWeight: 700, fontSize: 44, color: C.navy, opacity: lerp(f, 112, 126)}}>
+			<div style={{position: 'absolute', bottom: 330, width: '100%', textAlign: 'center', fontFamily: SANS, fontWeight: 700, fontSize: 44, color: C.navy, opacity: lerp(f, 66, 80)}}>
 				Escolha a sua turma ✈︎
 			</div>
 			<Grao op={0.09} />
@@ -557,18 +557,18 @@ const CenaAgua: React.FC = () => {
 				<Sobe d={30} style={{fontFamily: SANS, fontWeight: 700, fontSize: 52, marginTop: 8}}>
 					Alliance Française · Vichy
 				</Sobe>
-				<div style={{width: lerp(f, 100, 116) * 220, height: 5, background: C.dourado, margin: '46px auto', borderRadius: 3}} />
-				<Sobe d={112} style={{fontFamily: SANS, fontWeight: 700, fontSize: 70}}>
+				<div style={{width: lerp(f, 50, 66) * 220, height: 5, background: C.dourado, margin: '46px auto', borderRadius: 3}} />
+				<Sobe d={58} style={{fontFamily: SANS, fontWeight: 700, fontSize: 70}}>
 					a rainha das
 				</Sobe>
-				<Sobe d={122} style={{fontFamily: SERIF, fontStyle: 'italic', fontWeight: 900, fontSize: 128, lineHeight: 1.05}}>
+				<Sobe d={66} style={{fontFamily: SERIF, fontStyle: 'italic', fontWeight: 900, fontSize: 128, lineHeight: 1.05}}>
 					cidades de água
 				</Sobe>
 			</div>
-			<Brilho x={140} y={1170} s={70} d={130} />
-			<Brilho x={950} y={1080} s={54} d={138} />
-			<Brilho x={880} y={1350} s={40} d={146} cor={C.branco} />
-			<Brilho x={210} y={640} s={44} d={126} cor={C.branco} />
+			<Brilho x={140} y={1170} s={70} d={76} />
+			<Brilho x={950} y={1080} s={54} d={84} />
+			<Brilho x={880} y={1350} s={40} d={92} cor={C.branco} />
+			<Brilho x={210} y={640} s={44} d={72} cor={C.branco} />
 			<Grao op={0.04} />
 		</AbsoluteFill>
 	);
@@ -735,7 +735,8 @@ const MarcaDagua: React.FC<{nome: string}> = ({nome}) => (
 	</AbsoluteFill>
 );
 
-export const Vichy: React.FC<{marca?: string}> = ({marca}) => {
+// narracao: liga a voz (public/voz). Desligada por padrão a pedido do cliente.
+export const Vichy: React.FC<{marca?: string; narracao?: boolean}> = ({marca, narracao = false}) => {
 	return (
 		<AbsoluteFill style={{background: C.navy}}>
 			{ORDEM.map(([k, Cena]) => (
@@ -746,9 +747,9 @@ export const Vichy: React.FC<{marca?: string}> = ({marca}) => {
 			{ORDEM.slice(1).map(([k]) => (
 				<Swipe key={k} em={CENAS[k][0]} />
 			))}
-			<Audio src={staticFile('audio/musica.mp3')} volume={0.22} />
+			<Audio src={staticFile('audio/musica.mp3')} volume={narracao ? 0.22 : 0.7} />
 			<Audio src={staticFile('audio/efeitos.wav')} volume={0.35} />
-			{FALAS.map(([k, arq]) => (
+			{narracao && FALAS.map(([k, arq]) => (
 				<Sequence key={arq} from={CENAS[k][0] + 6} name={`voz-${k}`}>
 					<Audio src={staticFile(arq)} />
 				</Sequence>
