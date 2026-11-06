@@ -36,10 +36,10 @@ export const CENAS = {
 	semanas: [270, 390],
 	meses: [390, 525],
 	agua: [525, 735],
-	cta: [735, 990],
-	logos: [990, 1095],
+	cta: [735, 885],
+	logos: [885, 990],
 } as const;
-export const DURACAO = 1095;
+export const DURACAO = 990;
 // Narração (voz "Leo", MiniMax, PT-BR): public/voz/0N.mp3 entra 6 frames após o início de cada cena
 const FALAS: [keyof typeof CENAS, string][] = [
 	['gancho', 'voz/01.mp3'],
@@ -587,8 +587,8 @@ const Telefone: React.FC<{size: number; cor: string}> = ({size, cor}) => (
 const CenaCTA: React.FC = () => {
 	const f = useCurrentFrame();
 	const logo = usePop(2, 12);
-	const tel = usePop(125, 10);
-	const pulso = 1 + Math.max(0, Math.sin((f - 140) / 6)) * 0.03 * (f > 140 ? 1 : 0);
+	const tel = usePop(50, 10);
+	const pulso = 1 + Math.max(0, Math.sin((f - 65) / 6)) * 0.03 * (f > 65 ? 1 : 0);
 	return (
 		<AbsoluteFill style={{background: `radial-gradient(circle at 50% 35%, #2A3F86 0%, ${C.navy} 60%, ${C.navyEsc} 100%)`}}>
 			<div style={{position: 'absolute', top: 270, width: '100%', display: 'flex', justifyContent: 'center', transform: `scale(${logo})`}}>
@@ -628,7 +628,7 @@ const CenaCTA: React.FC = () => {
 					(83) 98750-3895
 				</div>
 			</div>
-			<div style={{position: 'absolute', top: 1380, width: '100%', textAlign: 'center', fontFamily: SANS, fontWeight: 700, fontSize: 46, color: C.dourado, opacity: lerp(f, 190, 204)}}>
+			<div style={{position: 'absolute', top: 1380, width: '100%', textAlign: 'center', fontFamily: SANS, fontWeight: 700, fontSize: 46, color: C.dourado, opacity: lerp(f, 80, 94)}}>
 				À bientôt en France ! ✨
 			</div>
 			<Grao op={0.05} />
@@ -746,7 +746,8 @@ export const Vichy: React.FC<{marca?: string}> = ({marca}) => {
 			{ORDEM.slice(1).map(([k]) => (
 				<Swipe key={k} em={CENAS[k][0]} />
 			))}
-			<Audio src={staticFile('audio/trilha.wav')} volume={0.32} />
+			<Audio src={staticFile('audio/musica.mp3')} volume={0.22} />
+			<Audio src={staticFile('audio/efeitos.wav')} volume={0.35} />
 			{FALAS.map(([k, arq]) => (
 				<Sequence key={arq} from={CENAS[k][0] + 6} name={`voz-${k}`}>
 					<Audio src={staticFile(arq)} />

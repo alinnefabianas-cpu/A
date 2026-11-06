@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "studio": "remotion studio src/index.ts",
-    "audio": "node scripts/gerar-trilha.mjs",
+    "audio": "node scripts/gerar-efeitos.mjs",
     "render": "remotion render src/index.ts Vichy exportados/reels-intercambio-vichy-2027.mp4",
     "still": "remotion still src/index.ts Vichy out/frame.png"
   },
