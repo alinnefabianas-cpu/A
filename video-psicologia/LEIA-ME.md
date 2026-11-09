@@ -93,3 +93,15 @@ Textos dos passos e do público: `PASSOS` e `PUBLICO` em `src/reels/Reels2.tsx`.
 Mesma voz do episódio 2 ("Leo", MiniMax), em `public/voz-taticas/NN.mp3` (NN = índice em `ROTEIRO`).
 `npx tsx scripts/falas.ts taticas` lista as falas; `python3 scripts/medir-voz.py taticas` mede e grava
 `src/episodios/taticas-voz.json`; `npx tsx scripts/gerar-srt.ts taticas` gera a legenda `.srt`.
+
+## Episódio 3 — "Como se libertar de uma relação tóxica"
+Roteiro e configuração em `src/episodios/liberdade.ts` (rótulo "PASSO"), narração em `public/voz-liberdade/`.
+Animações novas: `gaiola`, `pedra`, `rede`, `chuva`, `amanhecer`.
+
+```bash
+npx tsx scripts/falas.ts liberdade            # textos para narrar
+python3 scripts/medir-voz.py liberdade        # mede a narração
+npx tsx scripts/gerar-srt.ts liberdade        # legenda .srt
+npx remotion render src/index.ts Liberdade out/liberdade.mp4
+npx remotion still src/index.ts ThumbLiberdade out/thumbnail-liberdade.png
+```

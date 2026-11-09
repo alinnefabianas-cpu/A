@@ -5,7 +5,7 @@ import {BUSTO} from './visuais/Visuais';
 
 // Thumbnail 1280x720: silhueta controlada por fios + frase curta de alto contraste
 type Linha = [string, string, number?];
-export type PropsThumb = {tag?: string; linhas?: Linha[]; figura?: 'marionete' | 'coroa'};
+export type PropsThumb = {tag?: string; linhas?: Linha[]; figura?: 'marionete' | 'coroa' | 'gaiola'};
 const PADRAO: Linha[] = [
 	['ELE', COR.creme],
 	['SABE', COR.vermelho, 150],
@@ -52,12 +52,32 @@ export const Thumbnail: React.FC<PropsThumb> = ({tag = '7 TÁTICAS', linhas = PA
 						<circle cx={200} cy={-100} r={14} fill={COR.vermelho} />
 					</g>
 				)}
+				{figura === 'gaiola' && <circle cx={hx + 380} cy={hy} r={330} fill="#fff1d6" opacity={0.22} filter="url(#g)" />}
 				{/* silhueta */}
 				<g transform={`translate(${hx} ${hy}) scale(${s}) translate(-100 -75)`}>
-					<path d={BUSTO} fill="#030202" stroke={COR.vermelho} strokeWidth={1.4} filter="url(#g)" />
+					<path d={BUSTO} fill="#030202" stroke={figura === "gaiola" ? COR.creme : COR.vermelho} strokeWidth={1.4} filter="url(#g)" />
 				</g>
+				{figura === 'gaiola' && (
+					<g>
+						{/* grades (com vão onde ficava a porta) */}
+						{Array.from({length: 5}).map((_, i) => {
+							const x = hx - 250 + i * 70;
+							return <line key={i} x1={x} y1={hy - 300 + Math.abs(i - 3) * 14} x2={x} y2={720} stroke={COR.creme} strokeOpacity={0.85} strokeWidth={6} />;
+						})}
+						<path d={`M${hx - 270} ${hy - 255} Q${hx} ${hy - 400} ${hx + 270} ${hy - 255}`} fill="none" stroke={COR.creme} strokeOpacity={0.85} strokeWidth={6} />
+						{/* porta aberta para fora, presa na dobradiça */}
+						<path
+							d={`M${hx + 110} ${hy - 300} L${hx + 300} ${hy - 360} L${hx + 300} 760 L${hx + 110} 720 Z M${hx + 173} ${hy - 320} L${hx + 173} 733 M${hx + 236} ${hy - 340} L${hx + 236} 746`}
+							fill="none"
+							stroke={COR.vermelho}
+							strokeWidth={6}
+							strokeLinejoin="round"
+							filter="url(#g)"
+						/>
+					</g>
+				)}
 				{/* olhos */}
-				<g filter="url(#g)">
+				<g filter="url(#g)" opacity={figura === 'gaiola' ? 0 : 1}>
 					<ellipse cx={hx - 46} cy={hy - 5} rx={16} ry={6} fill="#ff3b3b" />
 					<ellipse cx={hx + 46} cy={hy - 5} rx={16} ry={6} fill="#ff3b3b" />
 				</g>

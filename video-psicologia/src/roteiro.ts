@@ -37,7 +37,12 @@ export type Visual =
 	| 'lago'
 	| 'coroa'
 	| 'cronometro'
-	| 'balanca';
+	| 'balanca'
+	| 'gaiola'
+	| 'pedra'
+	| 'rede'
+	| 'chuva'
+	| 'amanhecer';
 
 export type Som =
 	| 'boom'

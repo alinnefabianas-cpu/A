@@ -1087,7 +1087,170 @@ const Balanca: React.FC<P> = ({f}) => {
 	);
 };
 
+
+// ───────── episódio 3: liberdade ─────────
+
+// Gaiola cuja porta se abre; a figura de dentro começa a sair
+const Gaiola: React.FC<P> = ({f}) => {
+	const abre = prog(f, 25, 70);
+	const sai = prog(f, 55, 110);
+	const gx = CX;
+	const topo = CY - 300;
+	const base = CY + 300;
+	const larg = 380;
+	const barras = 11;
+	return (
+		<Svg>
+			<circle cx={gx + 420} cy={CY} r={500} fill="url(#haloCreme)" opacity={0.25 + 0.35 * abre} />
+			{/* luz saindo pela porta */}
+			<path d={`M${gx + larg / 2} ${CY - 150} L${gx + larg / 2} ${base} L${W} ${base + 200} L${W} ${CY - 400} Z`} fill="url(#feixe)" opacity={0.6 * abre} />
+			<path d={`M${gx - larg / 2} ${topo + 60} Q${gx} ${topo - 120} ${gx + larg / 2} ${topo + 60}`} fill="none" stroke={COR.creme} strokeWidth={4} {...desenho(prog(f, 0, 25))} />
+			<line x1={gx} y1={topo - 60} x2={gx} y2={topo - 140} stroke={COR.creme} strokeWidth={3} />
+			<circle cx={gx} cy={topo - 155} r={16} fill="none" stroke={COR.creme} strokeWidth={3} />
+			{Array.from({length: barras}).map((_, i) => {
+				const x = gx - larg / 2 + (i / (barras - 1)) * larg;
+				const naPorta = i >= barras - 4;
+				if (naPorta) return null;
+				const yTopo = topo + 60 - Math.sin((i / (barras - 1)) * Math.PI) * 170;
+				return <line key={i} x1={x} y1={yTopo} x2={x} y2={base} stroke={COR.creme} strokeWidth={3} opacity={0.85} {...desenho(prog(f, i * 1.5, 20 + i * 1.5))} />;
+			})}
+			<line x1={gx - larg / 2 - 20} y1={base} x2={gx + larg / 2 + 20} y2={base} stroke={COR.creme} strokeWidth={6} />
+			{/* porta: 3 barras que giram para fora */}
+			<g transform={`translate(${gx + larg / 2} 0) scale(${1 - abre * 1.8} 1) translate(${-(gx + larg / 2)} 0)`}>
+				{[0, 1, 2].map((k) => {
+					const x = gx + larg / 2 - k * (larg / (barras - 1));
+					return <line key={k} x1={x} y1={CY - 150} x2={x} y2={base} stroke={COR.vermelho} strokeWidth={3} filter="url(#brilho)" />;
+				})}
+				<line x1={gx + larg / 2 - 2 * (larg / (barras - 1))} y1={CY - 150} x2={gx + larg / 2} y2={CY - 150} stroke={COR.vermelho} strokeWidth={3} />
+			</g>
+			{/* figura */}
+			<g transform={`translate(${gx + sai * 380} ${base - 10})`} opacity={prog(f, 5, 25)}>
+				<circle cx={0} cy={-230} r={34} fill="#060505" stroke={COR.creme} strokeOpacity={0.8} strokeWidth={2} />
+				<path d="M-50 -185 L50 -185 L66 0 L-66 0 Z" fill="#060505" stroke={COR.creme} strokeOpacity={0.8} strokeWidth={2} />
+			</g>
+		</Svg>
+	);
+};
+
+// Pedra cinza: palavras voam e batem sem efeito
+const PALAVRAS_PEDRA = ['culpa', 'drama', 'você nunca', 'exagerada', 'louca', 'egoísta', 'sempre isso'];
+const Pedra: React.FC<P> = ({f}) => {
+	const px = CX + 120;
+	return (
+		<Svg>
+			<ellipse cx={px} cy={CY + 230} rx={330} ry={34} fill="#000" opacity={0.6} />
+			<path
+				d={`M${px - 300} ${CY + 220} C${px - 330} ${CY + 40} ${px - 210} ${CY - 170} ${px - 30} ${CY - 190} C${px + 150} ${CY - 210} ${px + 310} ${CY - 60} ${px + 300} ${CY + 120} C${px + 290} ${CY + 220} ${px + 150} ${CY + 240} ${px} ${CY + 240} C${px - 150} ${CY + 245} ${px - 280} ${CY + 250} ${px - 300} ${CY + 220} Z`}
+				fill="#3a3734"
+				stroke="#6d6862"
+				strokeWidth={3}
+				opacity={prog(f, 0, 20)}
+			/>
+			<path d={`M${px - 140} ${CY - 120} Q${px - 60} ${CY - 60} ${px - 120} ${CY + 40} M${px + 90} ${CY - 140} Q${px + 160} ${CY - 40} ${px + 120} ${CY + 60}`} fill="none" stroke="#2a2725" strokeWidth={4} />
+			{PALAVRAS_PEDRA.map((w, i) => {
+				const ini = 10 + i * 16;
+				const t = f - ini;
+				if (t < 0) return null;
+				const y0 = CY - 160 + (i % 4) * 90;
+				const xImpacto = px - 300 + Math.abs(y0 - CY) * 0.25;
+				const voo = Math.min(t / 14, 1);
+				const x = interpolate(voo, [0, 1], [-200, xImpacto - 40]);
+				const caiu = Math.max(0, t - 14);
+				const y = y0 + caiu * caiu * 0.6;
+				const op = t < 14 ? 1 : Math.max(0, 1 - caiu / 22);
+				return (
+					<text key={i} x={x - caiu * 2} y={y} textAnchor="end" fill={i % 2 ? COR.vermelho : COR.creme} fontFamily={FONTE.texto} fontStyle="italic" fontSize={46} opacity={op} transform={`rotate(${caiu * -2} ${x} ${y})`}>
+						{w}
+					</text>
+				);
+			})}
+			<Rotulo x={px} y={CY + 320} t="SEM REAÇÃO = SEM COMBUSTÍVEL" f={f} atraso={30} anchor="middle" />
+		</Svg>
+	);
+};
+
+// Rede: pessoas ao redor acendem e se ligam de novo ao centro
+const Rede: React.FC<P> = ({f}) => {
+	const n = 8;
+	const R = 360;
+	return (
+		<Svg>
+			<circle cx={CX} cy={CY} r={260} fill="url(#haloCreme)" opacity={0.25 + 0.25 * prog(f, 20, 80)} />
+			{Array.from({length: n}).map((_, i) => {
+				const a = (i / n) * Math.PI * 2 - Math.PI / 2;
+				const x = CX + Math.cos(a) * R * 1.35;
+				const y = CY + Math.sin(a) * R * 0.85;
+				const liga = prog(f, 10 + i * 9, 30 + i * 9);
+				return (
+					<g key={i}>
+						<line x1={CX} y1={CY} x2={CX + (x - CX) * liga} y2={CY + (y - CY) * liga} stroke={COR.ouro} strokeWidth={2.5} opacity={0.8} filter="url(#brilho)" />
+						<g transform={`translate(${x} ${y + 30}) scale(0.5) translate(-100 -140)`} opacity={0.3 + 0.7 * liga}>
+							<path d={BUSTO} fill={liga > 0.95 ? '#1d1a14' : '#0b0a0a'} stroke={liga > 0.95 ? COR.ouro : COR.escuro} strokeWidth={4} />
+						</g>
+					</g>
+				);
+			})}
+			<g transform={`translate(${CX} ${CY + 40}) scale(0.75) translate(-100 -140)`}>
+				<path d={BUSTO} fill="#0d0b0b" stroke={COR.creme} strokeWidth={3} />
+			</g>
+		</Svg>
+	);
+};
+
+// Chuva fina sobre uma figura sozinha
+const Chuva: React.FC<P> = ({f}) => (
+	<Svg>
+		{Array.from({length: 140}).map((_, i) => {
+			const x = random('cx' + i) * W;
+			const vel = 18 + random('cv' + i) * 14;
+			const y = ((random('cy' + i) * H + f * vel) % (H + 100)) - 50;
+			return <line key={i} x1={x} y1={y} x2={x - 6} y2={y + 34} stroke={COR.creme} strokeOpacity={0.12 + random('co' + i) * 0.2} strokeWidth={1.5} />;
+		})}
+		<g transform={`translate(${CX} ${CY + 140})`} opacity={prog(f, 0, 20)}>
+			<circle cx={0} cy={-260} r={42} fill="#060505" stroke={COR.cinza} strokeWidth={2} />
+			<path d="M-62 -205 L62 -205 L84 60 L50 60 L36 300 L-36 300 L-50 60 L-84 60 Z" fill="#060505" stroke={COR.cinza} strokeWidth={2} />
+		</g>
+		<rect x={0} y={CY + 440} width={W} height={2} fill={COR.creme} opacity={0.1} />
+	</Svg>
+);
+
+// Amanhecer: o sol nasce atrás da linha do horizonte
+const Amanhecer: React.FC<P> = ({f, dur}) => {
+	const sobe = prog(f, 0, Math.max(60, dur));
+	const hz = CY + 160;
+	const sy = hz + 120 - sobe * 260;
+	return (
+		<Svg>
+			<defs>
+				<linearGradient id="ceuAmanhecer" x1="0" y1="0" x2="0" y2="1">
+					<stop offset="0%" stopColor="#050505" />
+					<stop offset="70%" stopColor="#3a1408" stopOpacity={0.4 + 0.5 * sobe} />
+					<stop offset="100%" stopColor="#c96a2b" stopOpacity={0.5 * sobe} />
+				</linearGradient>
+				<clipPath id="acimaHorizonte">
+					<rect x={0} y={0} width={W} height={hz} />
+				</clipPath>
+			</defs>
+			<rect x={0} y={0} width={W} height={hz} fill="url(#ceuAmanhecer)" />
+			<g clipPath="url(#acimaHorizonte)">
+				<circle cx={CX} cy={sy} r={180} fill="#ffb36b" opacity={0.9} filter="url(#brilhoForte)" />
+				{Array.from({length: 18}).map((_, i) => {
+					const a = Math.PI + (i / 17) * Math.PI;
+					return <line key={i} x1={CX + Math.cos(a) * 220} y1={sy + Math.sin(a) * 220} x2={CX + Math.cos(a) * (220 + 300 * sobe)} y2={sy + Math.sin(a) * (220 + 300 * sobe)} stroke="#ffcf8a" strokeOpacity={0.25} strokeWidth={3} />;
+				})}
+			</g>
+			<rect x={0} y={hz} width={W} height={H - hz} fill="#050404" />
+			<line x1={0} y1={hz} x2={W} y2={hz} stroke="#ffcf8a" strokeOpacity={0.5 * sobe} strokeWidth={2} />
+		</Svg>
+	);
+};
+
 const MAPA: Record<Visual, React.FC<P>> = {
+	gaiola: Gaiola,
+	pedra: Pedra,
+	rede: Rede,
+	chuva: Chuva,
+	amanhecer: Amanhecer,
 	lago: Lago,
 	coroa: Coroa,
 	cronometro: Cronometro,

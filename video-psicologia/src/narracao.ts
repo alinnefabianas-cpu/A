@@ -8,10 +8,11 @@ const POR_EXTENSO: Record<string, string> = {
 	'1950': 'mil novecentos e cinquenta',
 	'1966': 'mil novecentos e sessenta e seis',
 	'1979': 'mil novecentos e setenta e nove',
+	'1981': 'mil novecentos e oitenta e um',
 	'2010': 'dois mil e dez',
 	'2014': 'dois mil e catorze',
 };
-const extenso = (t: string) => t.replace(/\b(1944|1950|1966|1979|2010|2014)\b/g, (m) => POR_EXTENSO[m]);
+const extenso = (t: string) => t.replace(/\b(1944|1950|1966|1979|1981|2010|2014)\b/g, (m) => POR_EXTENSO[m]);
 
 // Ajustes de pronúncia para a voz sintética
 const pronuncia = (t: string) => extenso(t).replace(/\bB\. F\. Skinner\b/g, 'Skinner');
