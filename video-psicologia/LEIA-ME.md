@@ -105,3 +105,18 @@ npx tsx scripts/gerar-srt.ts liberdade        # legenda .srt
 npx remotion render src/index.ts Liberdade out/liberdade.mp4
 npx remotion still src/index.ts ThumbLiberdade out/thumbnail-liberdade.png
 ```
+
+## Reels de apresentação — Gabi Lima (9:16, 30s)
+Arquivo pronto: `exportados/reels-apresentacao-gabi-lima.mp4`.
+
+Identidade própria: off-white `#F3EFE7` + azul-escuro `#0E1B36`, Inter pesada + Playfair itálico.
+Cenas: "oi, eu sou a GABI LIMA" (letras saindo de máscara, selo girando) → "Eu transformo gravações em histórias que prendem"
+→ 01 Reels (mockup de celular) → 02 YouTube (janela + cursor) → 03 Thumbnails (cartas) → 04 Motion graphics (formas,
+curva de animação) → "O que eu faço" (6 cartões com ícones desenhados) → letreiro → CTA com monograma "GL".
+
+```bash
+node scripts/gerar-trilha-gabi.mjs     # trilha 120 BPM em Dó maior + pop.wav + swoosh.wav
+npx remotion render src/index.ts ApresentacaoGabi out/apresentacao.mp4
+```
+
+Nome, profissão, @ e botão: `GABI` em `src/reels/Apresentacao.tsx`; cores em `C`. Clipes em `public/gabi/`.
