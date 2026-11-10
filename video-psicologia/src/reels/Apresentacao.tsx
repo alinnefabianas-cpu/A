@@ -9,16 +9,17 @@ export const GABI = {
 	nome: 'GABI',
 	sobrenome: 'LIMA',
 	profissao: 'EDITORA DE VÍDEO',
-	arroba: '', // ex.: '@gabilima.edit' — vazio = não aparece
+	arroba: '@gabilimaeditora',
 	botao: 'ME CHAMA NO DIRECT',
 };
 
 const C = {
-	off: '#F3EFE7',
-	off2: '#E7E1D5',
-	navy: '#0E1B36',
-	navy2: '#1D3461',
-	azul: '#9DB3D9',
+	// tiradas do logo
+	off: '#F2F3EE',
+	off2: '#E3E5DD',
+	navy: '#162D8B',
+	navy2: '#0F1F63',
+	azul: '#8A9CAB',
 };
 const F = {
 	forte: '"Inter", sans-serif',
@@ -56,6 +57,34 @@ const Mascara: React.FC<{txt: string; f: number; d?: number; tam: number; cor: s
 		})}
 	</div>
 );
+
+/** Logo em duas camadas (máscaras PNG): "gabi" é revelado da esquerda para a direita
+ * e ".LIMA" sobe logo depois. As cores vêm do CSS, então funciona em qualquer fundo. */
+const LOGO_W = 1530;
+const LOGO_H = 966;
+export const Logo: React.FC<{f: number; d?: number; largura: number; corGabi?: string; corLima?: string}> = ({f, d = 0, largura, corGabi = C.navy, corLima = C.azul}) => {
+	const h = (largura * LOGO_H) / LOGO_W;
+	const wipe = prog(f, d, d + 20);
+	const s = sp(f, d, 12);
+	const lima = sp(f, d + 14, 13);
+	const camada = (arq: string, cor: string): React.CSSProperties => ({
+		position: 'absolute',
+		inset: 0,
+		background: cor,
+		WebkitMaskImage: `url(${staticFile(arq)})`,
+		WebkitMaskSize: '100% 100%',
+		maskImage: `url(${staticFile(arq)})`,
+		maskSize: '100% 100%',
+	});
+	return (
+		<div style={{position: 'relative', width: largura, height: h, transform: `scale(${0.85 + s * 0.15})`}}>
+			<Img src={staticFile('gabi/logo-gabi.png')} style={{display: 'none'}} />
+			<Img src={staticFile('gabi/logo-lima.png')} style={{display: 'none'}} />
+			<div style={{...camada('gabi/logo-gabi.png', corGabi), clipPath: `inset(0 ${(1 - wipe) * 100}% 0 0)`}} />
+			<div style={{...camada('gabi/logo-lima.png', corLima), opacity: lima, transform: `translateY(${(1 - lima) * h * 0.12}px)`}} />
+		</div>
+	);
+};
 
 /** Selo circular girando com texto em volta. */
 const Selo: React.FC<{f: number; raio: number; cor: string; texto: string; centro?: React.ReactNode}> = ({f, raio, cor, texto, centro}) => {
@@ -121,7 +150,7 @@ const Interface: React.FC<{cor: string}> = ({cor}) => {
 	const txt: React.CSSProperties = {position: 'absolute', fontFamily: F.forte, fontWeight: 600, fontSize: 22, letterSpacing: 4, color: cor, opacity: op, mixBlendMode: 'difference'};
 	return (
 		<AbsoluteFill style={{pointerEvents: 'none'}}>
-			<div style={{...txt, top: 70, left: 80}}>GABI LIMA ©26</div>
+			<div style={{...txt, top: 70, left: 80}}>{GABI.arroba.toUpperCase()}</div>
 			<div style={{...txt, top: 70, right: 80}}>PORTFÓLIO</div>
 			<div style={{...txt, bottom: 80, left: 80}}>● REC {tc}</div>
 			<div style={{...txt, bottom: 80, right: 80}}>9:16</div>
@@ -146,9 +175,10 @@ const Intro: React.FC = () => {
 				<div style={{position: 'absolute', top: 960 - 40 - sobe * 380, width: 80 + barra * 760, height: 80 - barra * 64, borderRadius: 40, background: C.navy, transform: `scale(${ponto})`, opacity: 1 - prog(f, 30, 40)}} />
 				<div style={{marginTop: -140}}>
 					<div style={{opacity: sobe, transform: `translateY(${(1 - sobe) * 30}px)`, textAlign: 'center', fontFamily: F.serif, fontStyle: 'italic', fontSize: 64, color: C.navy2, marginBottom: 10}}>oi, eu sou a</div>
-					<Mascara txt={GABI.nome} f={f} d={30} tam={300} cor={C.navy} passo={3} />
-					<Mascara txt={GABI.sobrenome} f={f} d={40} tam={300} cor={C.navy} contorno passo={3} />
-					<div style={{height: 6, background: C.navy, width: 640 * linha, margin: '20px auto 0'}} />
+					<div style={{display: 'flex', justifyContent: 'center', marginTop: 20}}>
+						<Logo f={f} d={30} largura={900} />
+					</div>
+					<div style={{height: 6, background: C.navy, width: 640 * linha, margin: '30px auto 0'}} />
 					<div style={{textAlign: 'center', marginTop: 24, fontFamily: F.forte, fontWeight: 600, fontSize: 34, letterSpacing: 12, color: C.navy2, opacity: prog(f, 58, 70)}}>{GABI.profissao}</div>
 				</div>
 			</AbsoluteFill>
@@ -324,7 +354,7 @@ const Icone: React.FC<{tipo: number; p: number; cor: string}> = ({tipo, p, cor})
 		['M20 90 L45 40 L70 90 Z', 'M75 35 h25 v25 h-25 Z', 'M85 85 m-12 0 a12 12 0 1 0 24 0 a12 12 0 1 0 -24 0'], // motion
 		['M15 60 L30 60 L38 35 L48 85 L58 25 L68 95 L78 45 L86 60 L105 60'], // som
 		['M18 28 H102 V92 H18 Z', 'M18 80 L45 55 L65 72 L80 60 L102 80', 'M78 42 m-7 0 a7 7 0 1 0 14 0 a7 7 0 1 0 -14 0'], // thumbnail
-		['M30 18 H78 L95 35 V102 H30 Z', 'M45 50 H80', 'M45 68 H80', 'M45 86 H66'], // roteiro
+		['M60 60 m-44 0 a44 44 0 1 0 88 0 a44 44 0 1 0 -88 0', 'M60 60 m-24 0 a24 24 0 1 0 48 0 a24 24 0 1 0 -48 0', 'M60 60 L104 16', 'M88 16 H104 V32'], // direct response (alvo + seta)
 	];
 	return (
 		<svg width={120} height={120} viewBox="0 0 120 120">
@@ -333,7 +363,7 @@ const Icone: React.FC<{tipo: number; p: number; cor: string}> = ({tipo, p, cor})
 	);
 };
 
-const SERVICOS = ['CORTES', 'LEGENDAS', 'MOTION', 'TRILHA & SFX', 'THUMBNAILS', 'ROTEIRO'];
+const SERVICOS = ['CORTES', 'LEGENDAS', 'MOTION', 'TRILHA & SFX', 'THUMBNAILS', 'DIRECT RESPONSE'];
 const Servicos: React.FC = () => {
 	const f = useCurrentFrame();
 	return (
@@ -354,7 +384,7 @@ const Servicos: React.FC = () => {
 								<Icone tipo={i} p={prog(f, d + 4, d + 22)} cor={C.off} />
 								<span style={{fontFamily: F.serif, fontStyle: 'italic', fontSize: 40, color: C.azul}}>0{i + 1}</span>
 							</div>
-							<div style={{fontFamily: F.forte, fontWeight: 800, fontSize: 44, color: C.off, letterSpacing: 1}}>{s}</div>
+							<div style={{fontFamily: F.forte, fontWeight: 800, fontSize: 42, lineHeight: 1.05, color: C.off, letterSpacing: 1}}>{s}</div>
 						</div>
 					);
 				})}
@@ -365,7 +395,7 @@ const Servicos: React.FC = () => {
 
 const Letreiro: React.FC = () => {
 	const f = useCurrentFrame();
-	const linhas = ['EDIÇÃO ✳ MOTION ✳ RITMO ✳ ', 'STORYTELLING ✳ LEGENDAS ✳ ', 'REELS ✳ YOUTUBE ✳ ANÚNCIOS ✳ '];
+	const linhas = ['EDIÇÃO ✳ MOTION ✳ RITMO ✳ ', 'STORYTELLING ✳ LEGENDAS ✳ ', 'REELS ✳ ANÚNCIOS ✳ DIRECT RESPONSE ✳ '];
 	return (
 		<Revela cor={C.navy} x="50%" y="50%">
 			<AbsoluteFill style={{justifyContent: 'center', transform: 'rotate(-8deg) scale(1.2)'}}>
@@ -390,20 +420,9 @@ const Cta: React.FC = () => {
 	return (
 		<Revela cor={C.off} x="50%" y="40%">
 			<Formas f={f} cor={C.navy2} n={9} semente={30} />
-			<AbsoluteFill style={{alignItems: 'center', paddingTop: 380}}>
-				<div style={{transform: `scale(${selo}) rotate(${(1 - selo) * -90}deg)`}}>
-					<Selo
-						f={f}
-						raio={170}
-						cor={C.navy}
-						texto={`${GABI.nome} ${GABI.sobrenome} • ${GABI.profissao} • `}
-						centro={
-							<g>
-								<circle r={118} fill={C.navy} />
-								<text textAnchor="middle" dy={34} fill={C.off} style={{fontFamily: F.serif, fontStyle: 'italic', fontWeight: 700, fontSize: 104}}>GL</text>
-							</g>
-						}
-					/>
+			<AbsoluteFill style={{alignItems: 'center', paddingTop: 400}}>
+				<div style={{opacity: selo}}>
+					<Logo f={f} d={4} largura={700} />
 				</div>
 				<div style={{marginTop: 60}}>
 					<Mascara txt="BORA CRIAR" f={f} d={24} tam={124} cor={C.navy} passo={1} />
@@ -412,7 +431,7 @@ const Cta: React.FC = () => {
 				<div style={{marginTop: 80, transform: `scale(${sp(f, 60, 10) * pulso})`}}>
 					<div style={{fontFamily: F.forte, fontWeight: 800, fontSize: 40, letterSpacing: 3, color: C.off, background: C.navy, padding: '30px 54px', borderRadius: 60}}>{GABI.botao} →</div>
 				</div>
-				<div style={{marginTop: 40, fontFamily: F.forte, fontWeight: 600, fontSize: 30, letterSpacing: 8, color: C.navy2, opacity: prog(f, 76, 88)}}>{GABI.arroba || 'AGENDA ABERTA'}</div>
+				<div style={{marginTop: 44, fontFamily: F.forte, fontWeight: 800, fontSize: 46, letterSpacing: 1, color: C.navy, opacity: prog(f, 76, 88), transform: `translateY(${(1 - sp(f, 76)) * 30}px)`}}>{GABI.arroba}</div>
 			</AbsoluteFill>
 		</Revela>
 	);

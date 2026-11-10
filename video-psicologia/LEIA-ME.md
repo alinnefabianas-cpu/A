@@ -109,10 +109,10 @@ npx remotion still src/index.ts ThumbLiberdade out/thumbnail-liberdade.png
 ## Reels de apresentação — Gabi Lima (9:16, 30s)
 Arquivo pronto: `exportados/reels-apresentacao-gabi-lima.mp4`.
 
-Identidade própria: off-white `#F3EFE7` + azul-escuro `#0E1B36`, Inter pesada + Playfair itálico.
+Identidade com as cores do logo: off-white `#F2F3EE` + azul `#162D8B` + cinza-azulado `#8A9CAB`, Inter pesada + Playfair itálico.
 Cenas: "oi, eu sou a GABI LIMA" (letras saindo de máscara, selo girando) → "Eu transformo gravações em histórias que prendem"
 → 01 Reels (mockup de celular) → 02 YouTube (janela + cursor) → 03 Thumbnails (cartas) → 04 Motion graphics (formas,
-curva de animação) → "O que eu faço" (6 cartões com ícones desenhados) → letreiro → CTA com monograma "GL".
+curva de animação) → "O que eu faço" (6 cartões com ícones desenhados) → letreiro → CTA com o logo e @gabilimaeditora. O logo fica em `public/gabi/logo-gabi.png` e `logo-lima.png` (máscaras; a cor vem do código).
 
 ```bash
 node scripts/gerar-trilha-gabi.mjs     # trilha 120 BPM em Dó maior + pop.wav + swoosh.wav
