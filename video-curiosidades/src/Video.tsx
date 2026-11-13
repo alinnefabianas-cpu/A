@@ -5,7 +5,7 @@ import {
 	Amendoim, Balao, Bandeja, CabinePassageiros, CeuNoturno, Cockpit, ConsoleFrente, Coxa, Cozinha, FileiraPoltronas,
 	H, Interrogacao, LinhasImpacto, Peixe, Poltrona, Relogio, W, Zzz,
 } from './Cenarios';
-import {CENAS, FPS} from './roteiro';
+import {FPS, Lingua, MARCAS, Marca, TEXTOS, cenas, marcaEm, pastaVoz, Palavra} from './roteiro';
 import {Legenda} from './Legenda';
 
 const s2f = (s: number) => Math.round(s * FPS);
@@ -76,15 +76,18 @@ const PilotosNoCockpit: React.FC<{
 // ======================= CENAS =======================
 
 // 0 — gancho: os dois com o MESMO prato… e um "proibido"
-const Cena0: React.FC<{dur: number}> = ({dur}) => {
+type P = {dur: number; m: (k: Marca) => number; tx: Record<string, string>};
+
+const Cena0: React.FC<P> = ({dur, m}) => {
 	const f = useCurrentFrame();
-	const proibido = usePop(s2f(2.55), 9);
+	const tP = m('proibido');
+	const proibido = usePop(tP, 9);
 	return (
 		<>
-			<Camera de={[540, 1080, 1.25]} para={[540, 1020, 1.1]} dur={dur} soco={s2f(2.55)}>
+			<Camera de={[540, 1080, 1.25]} para={[540, 1020, 1.1]} dur={dur} soco={tP}>
 				<PilotosNoCockpit
-					cmd={{expressao: f > s2f(2.55) ? 'assustado' : 'feliz', bracoD: 30, cotoveloD: -45, bracoE: 30, cotoveloE: -45}}
-					cop={{expressao: f > s2f(2.55) ? 'assustado' : 'feliz', bracoD: 30, cotoveloD: -45, bracoE: 30, cotoveloE: -45}}
+					cmd={{expressao: f > tP ? 'assustado' : 'feliz', bracoD: 30, cotoveloD: -45, bracoE: 30, cotoveloE: -45}}
+					cop={{expressao: f > tP ? 'assustado' : 'feliz', bracoD: 30, cotoveloD: -45, bracoE: 30, cotoveloE: -45}}
 					extraFrente={
 						<>
 							<g transform="translate(290, 1250)"><Bandeja comida="frango" s={0.9} /></g>
@@ -99,18 +102,20 @@ const Cena0: React.FC<{dur: number}> = ({dur}) => {
 					}
 				/>
 			</Camera>
-			<Sfx src="buzz" em={s2f(2.55)} vol={0.35} />
+			<Sfx src="buzz" em={tP} vol={0.35} />
 			<Sfx src="pop" em={s2f(0.1)} vol={0.4} />
 		</>
 	);
 };
 
 // 1 — voo noturno (avião) → passageiros dormindo
-const Cena1: React.FC<{dur: number}> = ({dur}) => {
+const Cena1: React.FC<P> = ({dur, m, tx}) => {
 	const f = useCurrentFrame();
-	const corte = s2f(3.1);
-	const rel = usePop(s2f(1.75));
-	const cont = usePop(corte + s2f(1.1), 12);
+	const corte = m('corte1') - 2;
+	const tRel = m('relogio');
+	const tCont = m('contador');
+	const rel = usePop(tRel);
+	const cont = usePop(tCont, 12);
 	if (f < corte)
 		return (
 			<>
@@ -119,12 +124,12 @@ const Cena1: React.FC<{dur: number}> = ({dur}) => {
 					{rel > 0 && (
 						<g transform={`translate(540, 430) scale(${rel})`}>
 							<Relogio hora={10} s={1.6} />
-							<text x={0} y={220} textAnchor="middle" fontFamily="Nunito" fontWeight={900} fontSize={110} fill="#fff" stroke="#000" strokeWidth={16} paintOrder="stroke">10h</text>
+							<text x={0} y={220} textAnchor="middle" fontFamily="Nunito" fontWeight={900} fontSize={110} fill="#fff" stroke="#000" strokeWidth={16} paintOrder="stroke">{tx.horas}</text>
 						</g>
 					)}
 				</Camera>
 				<Sfx src="aviao" em={0} vol={0.35} />
-				<Sfx src="pop" em={s2f(1.75)} vol={0.4} />
+				<Sfx src="pop" em={tRel} vol={0.4} />
 			</>
 		);
 	const cores = ['#5a8f6a', '#b8577a', '#d9a03a', '#4f7cc9', '#8a63c2', '#c9603a', '#3a9c9c', '#6b6b6b'];
@@ -157,7 +162,7 @@ const Cena1: React.FC<{dur: number}> = ({dur}) => {
 							<g transform={`translate(540, 520) scale(${cont})`}>
 								<rect x={-260} y={-110} width={520} height={190} rx={40} fill="#ffd23f" stroke="#000" strokeWidth={12} />
 								<text x={0} y={40} textAnchor="middle" fontFamily="Nunito" fontWeight={900} fontSize={130} fill="#000">
-									{Math.min(300, Math.round(interpolate(f - corte - s2f(1.1), [0, 18], [0, 300], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})))} zZz
+									{Math.min(300, Math.round(interpolate(f - tCont, [0, 18], [0, 300], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})))} zZz
 								</text>
 							</g>
 						)}
@@ -165,17 +170,17 @@ const Cena1: React.FC<{dur: number}> = ({dur}) => {
 				</Camera>
 			</Sequence>
 			<Sfx src="whoosh" em={corte - 4} vol={0.4} />
-			<Sfx src="pop" em={corte + s2f(1.1)} vol={0.45} />
+			<Sfx src="pop" em={tCont} vol={0.45} />
 		</>
 	);
 };
 
 // 2 — comandante pede frango; copiloto também
-const Cena2: React.FC<{dur: number; reg: number[][]}> = ({dur, reg}) => {
+const Cena2: React.FC<P> = ({dur, m}) => {
 	const f = useCurrentFrame();
-	const tCmd = s2f(reg[1][0]);
-	const tCop = s2f(reg[2][0]);
-	const tCopFala = s2f(reg[3][0]);
+	const tCmd = m('cmd');
+	const tCop = m('cop');
+	const tCopFala = m('copFala');
 	const focoX = interpolate(f, [tCop - 6, tCop + 8], [330, 750], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic)});
 	const z = interpolate(f, [0, tCmd], [1.05, 1.35], {extrapolateRight: 'clamp'});
 	return (
@@ -183,8 +188,8 @@ const Cena2: React.FC<{dur: number; reg: number[][]}> = ({dur, reg}) => {
 			<svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} style={{position: 'absolute'}}>
 				<g transform={`translate(${W / 2}, ${H / 2}) scale(${f < tCmd ? z : 1.35}) translate(${-(f < tCmd ? 540 : focoX)}, ${-1000})`}>
 					<PilotosNoCockpit
-						cmd={{falando: f >= tCmd && f < s2f(reg[1][1]), expressao: 'feliz', bracoD: f >= tCmd && f < tCop ? 120 : 15, cotoveloD: f >= tCmd && f < tCop ? 30 : 10}}
-						cop={{falando: f >= tCopFala && f < s2f(reg[3][1]), expressao: f >= tCopFala ? 'feliz' : 'neutro', olhar: -1, bracoE: f >= tCopFala ? 140 : 15, cotoveloE: 20}}
+						cmd={{falando: f >= tCmd && f < tCop - 4, expressao: 'feliz', bracoD: f >= tCmd && f < tCop ? 120 : 15, cotoveloD: f >= tCmd && f < tCop ? 30 : 10}}
+						cop={{falando: f >= tCopFala && f < dur - 6, expressao: f >= tCopFala ? 'feliz' : 'neutro', olhar: -1, bracoE: f >= tCopFala ? 140 : 15, cotoveloE: 20}}
 						extraFrente={
 							<>
 								<Balao x={430} y={720} inicio={tCmd + 10} lado={-1}><g transform="translate(-6,0)"><Coxa s={0.95} /></g></Balao>
@@ -203,11 +208,11 @@ const Cena2: React.FC<{dur: number; reg: number[][]}> = ({dur, reg}) => {
 };
 
 // 3 — comissária: "NÃO. Um de vocês vai de peixe."
-const Cena3: React.FC<{dur: number; reg: number[][]}> = ({dur, reg}) => {
+const Cena3: React.FC<P> = ({dur, m, tx}) => {
 	const f = useCurrentFrame();
 	const {fps} = useVideoConfig();
-	const tNao = s2f(reg[1][0]);
-	const tPeixe = s2f(reg[2][0]) + 4;
+	const tNao = m('nao');
+	const tPeixe = m('peixe') + 4;
 	const entra = spring({frame: f, fps, config: {damping: 14}});
 	const peixe = usePop(tPeixe, 10);
 	const nao = f >= tNao && f < tPeixe;
@@ -230,7 +235,7 @@ const Cena3: React.FC<{dur: number; reg: number[][]}> = ({dur, reg}) => {
 									espelhar
 									olhar={1}
 									expressao={nao ? 'bravo' : 'serio'}
-									falando={f >= s2f(reg[0][0]) && f < s2f(reg[2][1])}
+									falando={f >= 4 && f < dur - 6}
 									bracoD={nao ? 150 : f >= tPeixe ? 75 : 15}
 									cotoveloD={nao ? 0 : f >= tPeixe ? -10 : 10}
 									itemD={nao ? <g transform="scale(1.3)"><rect x={-26} y={-60} width={52} height={70} rx={20} fill="#fff" stroke="#241820" strokeWidth={7} /></g> : undefined}
@@ -244,7 +249,7 @@ const Cena3: React.FC<{dur: number; reg: number[][]}> = ({dur, reg}) => {
 							{nao && (
 								<g transform={`translate(330, 620) rotate(-10) scale(${naoPop})`}>
 									<rect x={-210} y={-100} width={420} height={180} rx={30} fill="#e8262f" stroke="#000" strokeWidth={12} />
-									<text x={0} y={45} textAnchor="middle" fontFamily="Nunito" fontWeight={900} fontSize={130} fill="#fff">NÃO!</text>
+									<text x={0} y={45} textAnchor="middle" fontFamily="Nunito" fontWeight={900} fontSize={130} fill="#fff">{tx.nao}</text>
 								</g>
 							)}
 						</>
@@ -259,9 +264,9 @@ const Cena3: React.FC<{dur: number; reg: number[][]}> = ({dur, reg}) => {
 };
 
 // 4 — "Parece frescura... até você entender o motivo."
-const Cena4: React.FC<{dur: number; reg: number[][]}> = ({dur, reg}) => {
+const Cena4: React.FC<P> = ({dur, m}) => {
 	const f = useCurrentFrame();
-	const tMotivo = s2f(reg[1][0]);
+	const tMotivo = m('motivo');
 	const depois = f >= tMotivo;
 	return (
 		<>
@@ -283,9 +288,9 @@ const Cena4: React.FC<{dur: number; reg: number[][]}> = ({dur, reg}) => {
 };
 
 // 5 — frango estragado → os dois passam mal
-const Cena5: React.FC<{dur: number; reg: number[][]}> = ({dur, reg}) => {
+const Cena5: React.FC<P> = ({dur, m, tx}) => {
 	const f = useCurrentFrame();
-	const corte = s2f(reg[1][0]) - 2;
+	const corte = m('corte5') - 2;
 	if (f < corte) {
 		const podre = interpolate(f, [s2f(0.5), s2f(1.4)], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
 		return (
@@ -298,7 +303,7 @@ const Cena5: React.FC<{dur: number; reg: number[][]}> = ({dur, reg}) => {
 					</g>
 					{podre > 0.6 && (
 						<text x={540} y={560} textAnchor="middle" fontFamily="Nunito" fontWeight={900} fontSize={120} fill="#b6ff6b" stroke="#000" strokeWidth={16} paintOrder="stroke" transform={`rotate(-6 540 560)`}>
-							ECA!
+							{tx.eca}
 						</text>
 					)}
 				</Camera>
@@ -321,7 +326,7 @@ const Cena5: React.FC<{dur: number; reg: number[][]}> = ({dur, reg}) => {
 };
 
 // 6 — "E aí... quem pilota o avião?"
-const Cena6: React.FC<{dur: number}> = ({dur}) => {
+const Cena6: React.FC<P> = ({dur}) => {
 	const f = useCurrentFrame();
 	return (
 		<>
@@ -337,10 +342,10 @@ const Cena6: React.FC<{dur: number}> = ({dur}) => {
 };
 
 // 7 — refeições diferentes, cozinhas diferentes, horários diferentes
-const Cena7: React.FC<{dur: number; reg: number[][]}> = ({dur, reg}) => {
-	const tA = s2f(2.7), tB = s2f(3.25);
-	const tC1 = s2f(reg[1][0]) + 3, tC2 = s2f(reg[1][0]) + 18;
-	const tH1 = s2f(reg[3][0]) + 6, tH2 = s2f(reg[3][0]) + 22;
+const Cena7: React.FC<P> = ({dur, m, tx}) => {
+	const tA = m('refeicoes'), tB = tA + 16;
+	const tC1 = m('cozinhas') + 3, tC2 = tC1 + 15;
+	const tH1 = m('horarios') + 3, tH2 = tH1 + 16;
 	const a = usePop(tA), b = usePop(tB), c1 = usePop(tC1), c2 = usePop(tC2), h1 = usePop(tH1), h2 = usePop(tH2);
 	const Placa: React.FC<{k: number; x: number; txt: string; cor: string}> = ({k, x, txt, cor}) =>
 		k > 0 ? (
@@ -355,8 +360,8 @@ const Cena7: React.FC<{dur: number; reg: number[][]}> = ({dur, reg}) => {
 			<Camera de={[540, 1000, 1.2]} para={[540, 960, 1.0]} dur={dur}>
 				<Cozinha />
 				<Personagem x={540} y={1060} escala={0.85} roupa="comissaria" cabelo="#6b3a1f" expressao="feliz" bracoD={95} cotoveloD={-20} bracoE={95} cotoveloE={-20} />
-				<Placa k={c1} x={290} txt="COZINHA 1" cor="#2f5bd3" />
-				<Placa k={c2} x={790} txt="COZINHA 2" cor="#e8833a" />
+				<Placa k={c1} x={290} txt={tx.cozinha1} cor="#2f5bd3" />
+				<Placa k={c2} x={790} txt={tx.cozinha2} cor="#e8833a" />
 				{a > 0 && <g transform={`translate(${interpolate(a, [0, 1], [-200, 290])}, 1000)`}><Bandeja comida="frango" s={1.25} rotulo="A" /></g>}
 				{b > 0 && <g transform={`translate(${interpolate(b, [0, 1], [1280, 790])}, 1000)`}><Bandeja comida="peixe" s={1.25} rotulo="B" /></g>}
 				{h1 > 0 && <g transform={`translate(290, 1480) scale(${h1})`}><Relogio hora={1} s={1.5} /></g>}
@@ -370,12 +375,13 @@ const Cena7: React.FC<{dur: number; reg: number[][]}> = ({dur, reg}) => {
 };
 
 // 8 — comandante não divide nem o amendoim
-const Cena8: React.FC<{dur: number}> = ({dur}) => {
+const Cena8: React.FC<P> = ({dur, m, tx}) => {
 	const f = useCurrentFrame();
-	const nega = f > s2f(1.3);
+	const tNega = m('nega');
+	const nega = f > tNega;
 	return (
 		<>
-			<Camera de={[540, 1080, 1.3]} para={[480, 1060, 1.45]} dur={dur} soco={s2f(1.3)}>
+			<Camera de={[540, 1080, 1.3]} para={[480, 1060, 1.45]} dur={dur} soco={tNega}>
 				<PilotosNoCockpit
 					cmd={{expressao: nega ? 'bravo' : 'serio', olhar: 1, inclinar: nega ? Math.sin(f / 2.2) * 6 : 0, bracoD: 40, cotoveloD: 110, bracoE: 40, cotoveloE: 110}}
 					cop={{expressao: 'pidao', olhar: -1, bracoE: 85, cotoveloE: -5, inclinar: -6}}
@@ -383,20 +389,20 @@ const Cena8: React.FC<{dur: number}> = ({dur}) => {
 				/>
 				{nega && (
 					<text x={170} y={700} fontFamily="Nunito" fontWeight={900} fontSize={110} fill="#fff" stroke="#000" strokeWidth={14} paintOrder="stroke" transform="rotate(-8 170 700)">
-						MEU!
+						{tx.meu}
 					</text>
 				)}
 			</Camera>
-			<Sfx src="pop" em={s2f(1.3)} vol={0.5} />
+			<Sfx src="pop" em={tNega} vol={0.5} />
 		</>
 	);
 };
 
 // 9 — "…não é só uma dor de barriga. É um problema de trezentas pessoas."
-const Cena9: React.FC<{dur: number; reg: number[][]}> = ({dur, reg}) => {
+const Cena9: React.FC<P> = ({dur, m}) => {
 	const f = useCurrentFrame();
-	const c1 = s2f(reg[1][0]) - 2;
-	const c2 = s2f(reg[2][0]) - 2;
+	const c1 = m('barriga') - 2;
+	const c2 = m('problema') - 2;
 	const placar = usePop(c2, 9);
 	if (f < c1)
 		return (
@@ -441,20 +447,25 @@ const Cena9: React.FC<{dur: number; reg: number[][]}> = ({dur, reg}) => {
 	);
 };
 
-const CENA_COMP: React.FC<{dur: number; reg: number[][]}>[] = [Cena0, Cena1, Cena2, Cena3, Cena4, Cena5, Cena6, Cena7, Cena8, Cena9];
+const CENA_COMP: React.FC<P>[] = [Cena0, Cena1, Cena2, Cena3, Cena4, Cena5, Cena6, Cena7, Cena8, Cena9];
 
-export const Pilotos: React.FC = () => {
+export const Pilotos: React.FC<{lingua: Lingua}> = ({lingua}) => {
+	const lista = cenas(lingua);
+	const mk = (palavras: Palavra[]) => (k: Marca) => {
+		const [w, n] = MARCAS[lingua][k]!;
+		return marcaEm(palavras, w, n ?? 1);
+	};
 	return (
 		<AbsoluteFill style={{background: '#000'}}>
-			{CENAS.map((c) => {
+			{lista.map((c) => {
 				const C = CENA_COMP[c.indice];
-				const ultima = c.indice === CENAS.length - 1;
+				const ultima = c.indice === lista.length - 1;
 				return (
 					<Sequence key={c.indice} from={c.inicio} durationInFrames={c.duracao + (ultima ? 18 : 0)}>
-						<C dur={c.duracao} reg={c.regioes} />
+						<C dur={c.duracao} m={mk(c.palavras)} tx={TEXTOS[lingua]} />
 						<Vinheta />
-						<Legenda palavras={c.palavras} />
-						<Audio src={staticFile(`voz/${String(c.indice).padStart(2, '0')}.mp3`)} volume={1} />
+						<Legenda palavras={c.palavras} lingua={lingua} />
+						<Audio src={staticFile(`${pastaVoz(lingua)}/${String(c.indice).padStart(2, '0')}.mp3`)} volume={1} />
 					</Sequence>
 				);
 			})}

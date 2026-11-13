@@ -12,23 +12,28 @@ sem material de terceiros.
 ```bash
 npm install
 npm run audio    # sintetiza a trilha e os efeitos em public/audio
-npm run voz      # mede public/voz/NN.mp3 e grava src/voz.json (tempo de cada fala)
-npm run studio   # editor visual
-npm run render   # exporta exportados/pilotos-comida.mp4
+npm run voz -- pt   # mede public/voz/NN.mp3 e grava src/voz.json (tempo de cada fala)
+npm run voz -- en   # idem para public/voz-en -> src/voz-en.json
+npm run studio      # editor visual
+npm run render      # versão PT: exportados/pilotos-comida.mp4
+npm run render:en   # versão EN: exportados/pilots-same-meal-EN.mp4
 ```
 
 ## Onde mexer
 | Arquivo | O que controla |
 |---|---|
-| `src/roteiro.ts` | Texto das falas e palavras em amarelo. A duração de cada cena vem da fala. |
+| `src/roteiro.ts` | Falas em PT e EN, palavras em amarelo, textos desenhados (NÃO!/NO!…) e `MARCAS`: a palavra da fala em que cada ação da cena acontece. A duração de cada cena vem da fala. |
 | `src/Video.tsx` | As 10 cenas (câmera, poses, objetos, efeitos sonoros) e a mixagem. |
 | `src/Personagem.tsx` | O boneco: roupas (comandante, copiloto, comissária, passageiro), expressões, braços. |
 | `src/Cenarios.tsx` | Cockpit, céu noturno com avião, cabine, cozinha e objetos (frango, peixe, amendoim, relógio, balão). |
 | `src/Legenda.tsx` | Legenda palavra por palavra. |
 
 ## Narração
-Voz **"Leo" (MiniMax) no Higgsfield**, uma fala por cena em `public/voz/NN.mp3`.
-Para trocar o texto: gere de novo o MP3 da fala, rode `npm run voz` e renderize.
+- PT: voz **"Leo" (MiniMax)** no Higgsfield, em `public/voz/NN.mp3`.
+- EN: voz **"Brooks" (ElevenLabs)** no Higgsfield, em `public/voz-en/NN.mp3`.
+
+Uma fala por cena.
+Para trocar o texto: gere de novo o MP3 da fala, rode `npm run voz -- <pt|en>` e renderize. Se mudar uma palavra usada em `MARCAS`, ajuste a marca também (o render avisa se ela sumir).
 A legenda distribui as palavras só pelos trechos com voz (pula as pausas), então fica sincronizada sozinha.
 
 ## Para fazer o próximo episódio

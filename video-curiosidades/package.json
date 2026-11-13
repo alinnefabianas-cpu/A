@@ -6,7 +6,8 @@
     "audio": "node scripts/gerar-trilha.mjs",
     "voz": "python3 scripts/medir-voz.py",
     "render": "remotion render src/index.ts Pilotos exportados/pilotos-comida.mp4",
-    "still": "remotion still src/index.ts Pilotos out/frame.png"
+    "still": "remotion still src/index.ts Pilotos out/frame.png",
+    "render:en": "remotion render src/index.ts PilotosEN exportados/pilots-same-meal-EN.mp4"
   },
   "dependencies": {
     "@fontsource/nunito": "^5.2.8",
