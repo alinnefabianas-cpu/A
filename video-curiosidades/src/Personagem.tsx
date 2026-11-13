@@ -3,7 +3,7 @@ import {useCurrentFrame} from 'remotion';
 
 export const CONTORNO = '#241820';
 
-export type Roupa = 'comandante' | 'copiloto' | 'comissaria' | 'passageiro';
+export type Roupa = 'comandante' | 'copiloto' | 'comissaria' | 'passageiro' | 'executivo' | 'bombeiro';
 export type Expressao = 'feliz' | 'neutro' | 'confuso' | 'enjoado' | 'bravo' | 'dormindo' | 'assustado' | 'serio' | 'pidao';
 
 type Props = {
@@ -152,6 +152,8 @@ const ROUPAS: Record<Roupa, {tronco: string; detalhe: string}> = {
 	copiloto: {tronco: '#2b3d6b', detalhe: '#f2c14e'},
 	comissaria: {tronco: '#c8323f', detalhe: '#f6e7c8'},
 	passageiro: {tronco: '#5a8f6a', detalhe: '#fff'},
+	executivo: {tronco: '#3b3f4a', detalhe: '#d63b3b'},
+	bombeiro: {tronco: '#c9a227', detalhe: '#e8e8e8'},
 };
 
 export const Personagem: React.FC<Props> = (p) => {
@@ -161,7 +163,7 @@ export const Personagem: React.FC<Props> = (p) => {
 	const piscando = f % 97 < 4 && exp !== 'dormindo';
 	const abre = p.falando ? Math.max(0, Math.sin(f * 0.9) * 0.6 + Math.sin(f * 0.43) * 0.4) : 0;
 	const roupa = ROUPAS[p.roupa];
-	const tronco = p.roupa === 'passageiro' && p.cor ? p.cor : roupa.tronco;
+	const tronco = (p.roupa === 'passageiro' || p.roupa === 'executivo') && p.cor ? p.cor : roupa.tronco;
 	const enjoo = p.enjoo ?? 0;
 	const pele = enjoo > 0 ? mix('#ffffff', '#bfe3a0', enjoo) : '#ffffff';
 	const cabelo = p.cabelo ?? '#4a3326';
@@ -256,6 +258,24 @@ const DetalheRoupa: React.FC<{roupa: Roupa; cor: string}> = ({roupa, cor}) => {
 			</g>
 		);
 	}
+	if (roupa === 'executivo')
+		return (
+			<g>
+				<path d="M-32 -448 L0 -386 L32 -448 Z" fill="#fff" stroke={CONTORNO} strokeWidth={5} />
+				<path d="M0 -436 L-12 -404 L0 -300 L12 -404 Z" fill={cor} stroke={CONTORNO} strokeWidth={4} />
+				<path d="M-32 -448 L-6 -300 M32 -448 L6 -300" stroke={CONTORNO} strokeWidth={5} />
+				<circle cx={-24} cy={-270} r={6} fill={CONTORNO} />
+			</g>
+		);
+	if (roupa === 'bombeiro')
+		return (
+			<g>
+				<rect x={-76} y={-330} width={152} height={22} fill={cor} stroke={CONTORNO} strokeWidth={4} />
+				<rect x={-74} y={-262} width={148} height={22} fill={cor} stroke={CONTORNO} strokeWidth={4} />
+				<line x1={0} y1={-446} x2={0} y2={-200} stroke={CONTORNO} strokeWidth={6} />
+				{[-400, -370].map((y) => <rect key={y} x={-14} y={y} width={28} height={10} rx={3} fill="#555" />)}
+			</g>
+		);
 	return <path d="M-26 -446 Q0 -420 26 -446" stroke={CONTORNO} strokeWidth={6} fill="none" />;
 };
 
@@ -264,7 +284,7 @@ const Cabelo: React.FC<{roupa: Roupa; cor: string}> = ({roupa, cor}) => {
 		return <path d="M-120 -590 C-110 -690 110 -690 120 -590 C80 -640 30 -650 -10 -626 C-50 -650 -100 -630 -120 -590Z" fill={cor} stroke={CONTORNO} strokeWidth={8} />;
 	if (roupa === 'copiloto')
 		return <path d="M-116 -600 C-100 -690 100 -690 116 -600 L96 -626 L70 -606 L40 -632 L10 -606 L-20 -634 L-50 -606 L-80 -630Z" fill={cor} stroke={CONTORNO} strokeWidth={8} strokeLinejoin="round" />;
-	if (roupa === 'passageiro')
+	if (roupa === 'passageiro' || roupa === 'executivo')
 		return <path d="M-112 -610 C-96 -690 96 -690 112 -610 C70 -650 -40 -660 -112 -610Z" fill={cor} stroke={CONTORNO} strokeWidth={8} />;
 	return null;
 };
@@ -279,6 +299,15 @@ const Chapeu: React.FC<{roupa: Roupa; cor: string; tronco: string}> = ({roupa, c
 				<path d="M-60 -640 Q0 -652 60 -640" stroke={cor} strokeWidth={6} fill="none" />
 				<circle cx={0} cy={-668} r={18} fill={cor} stroke={CONTORNO} strokeWidth={5} />
 				<path d="M-40 -668 h-20 M40 -668 h20" stroke={cor} strokeWidth={8} strokeLinecap="round" />
+			</g>
+		);
+	if (roupa === 'bombeiro')
+		return (
+			<g>
+				<path d="M-140 -606 C-150 -760 150 -760 140 -606 Z" fill="#d6262f" stroke={CONTORNO} strokeWidth={W} />
+				<path d="M-190 -610 Q0 -560 190 -610 L180 -590 Q0 -540 -180 -590Z" fill="#b01e26" stroke={CONTORNO} strokeWidth={7} />
+				<path d="M0 -748 L0 -612" stroke="#8f1820" strokeWidth={14} />
+				<path d="M-40 -700 h80 v50 l-40 22 l-40 -22z" fill="#f2c14e" stroke={CONTORNO} strokeWidth={6} />
 			</g>
 		);
 	if (roupa === 'comissaria')

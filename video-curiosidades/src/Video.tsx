@@ -8,10 +8,10 @@ import {
 import {FPS, Lingua, MARCAS, Marca, TEXTOS, cenas, marcaEm, pastaVoz, Palavra} from './roteiro';
 import {Legenda} from './Legenda';
 
-const s2f = (s: number) => Math.round(s * FPS);
+export const s2f = (s: number) => Math.round(s * FPS);
 
 // ---------- câmera: zoom/pan suave + tremor ----------
-const Camera: React.FC<{
+export const Camera: React.FC<{
 	de?: [number, number, number]; // [x, y, zoom] — ponto focal e zoom
 	para?: [number, number, number];
 	dur: number;
@@ -37,17 +37,17 @@ const Camera: React.FC<{
 	);
 };
 
-const Vinheta: React.FC = () => (
+export const Vinheta: React.FC = () => (
 	<AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.45) 100%)', pointerEvents: 'none'}} />
 );
 
-const Sfx: React.FC<{src: string; em: number; vol?: number}> = ({src, em, vol = 0.6}) => (
+export const Sfx: React.FC<{src: string; em: number; vol?: number}> = ({src, em, vol = 0.6}) => (
 	<Sequence from={Math.max(0, em)} layout="none">
 		<Audio src={staticFile(`audio/${src}.wav`)} volume={vol} />
 	</Sequence>
 );
 
-const usePop = (inicio: number, damping = 10) => {
+export const usePop = (inicio: number, damping = 10) => {
 	const f = useCurrentFrame();
 	const {fps} = useVideoConfig();
 	return f < inicio ? 0 : spring({frame: f - inicio, fps, config: {damping, stiffness: 190}});

@@ -117,10 +117,13 @@ export function marcaEm(palavras: Palavra[], palavra: string, n = 1): number {
 
 export const FIM_EXTRA = 18; // frames de respiro no final
 
-export function cenas(l: Lingua): Cena[] {
+export type VozJson = Record<string, Voz>;
+
+// monta as cenas de qualquer episódio: uma fala por cena, duração = duração da fala
+export function montarCenas(falas: string[], voz: VozJson): Cena[] {
 	let t = 0;
-	return FALAS[l].map((texto, i) => {
-		const v = VOZES[l][String(i)];
+	return falas.map((texto, i) => {
+		const v = voz[String(i)];
 		const duracao = Math.ceil((v.dur + PAD) * FPS);
 		const c = {indice: i, texto, inicio: t, duracao, palavras: tempoDasPalavras(texto, v)};
 		t += duracao;
@@ -128,4 +131,6 @@ export function cenas(l: Lingua): Cena[] {
 	});
 }
 
-export const duracaoTotal = (l: Lingua) => cenas(l).reduce((a, c) => a + c.duracao, 0) + FIM_EXTRA;
+export const cenas = (l: Lingua) => montarCenas(FALAS[l], VOZES[l]);
+export const duracaoDe = (lista: Cena[]) => lista.reduce((a, c) => a + c.duracao, 0) + FIM_EXTRA;
+export const duracaoTotal = (l: Lingua) => duracaoDe(cenas(l));

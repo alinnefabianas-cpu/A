@@ -3,7 +3,7 @@ import {interpolate, useCurrentFrame} from 'remotion';
 import {DESTAQUES, Lingua, Palavra} from './roteiro';
 
 // Uma palavra por vez, grande, branca com contorno preto grosso (estilo Shorts).
-export const Legenda: React.FC<{palavras: Palavra[]; lingua: Lingua; y?: number}> = ({palavras, lingua, y = 1250}) => {
+export const Legenda: React.FC<{palavras: Palavra[]; lingua?: Lingua; destaques?: Set<string>; y?: number}> = ({palavras, lingua = 'pt', destaques, y = 1250}) => {
 	const f = useCurrentFrame();
 	let atual: Palavra | undefined;
 	for (const p of palavras) if (f >= p.inicio) atual = p;
@@ -12,7 +12,7 @@ export const Legenda: React.FC<{palavras: Palavra[]; lingua: Lingua; y?: number}
 	if (atual === ultima && f > ultima.fim + 10) return null;
 	const limpa = atual.texto.replace(/[.,!?;:…]+$/g, '').replace(/^[.…]+/, '');
 	const chave = limpa.toLowerCase().replace(/[^\p{L}\p{N}]/gu, '');
-	const destaque = DESTAQUES[lingua].has(chave);
+	const destaque = (destaques ?? DESTAQUES[lingua]).has(chave);
 	const t = f - atual.inicio;
 	const s = interpolate(t, [0, 3, 6], [0.72, 1.12, 1], {extrapolateRight: 'clamp'});
 	return (

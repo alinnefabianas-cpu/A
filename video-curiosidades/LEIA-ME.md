@@ -39,3 +39,10 @@ A legenda distribui as palavras só pelos trechos com voz (pula as pausas), ent�
 ## Para fazer o próximo episódio
 Copie a pasta, troque `FALAS` em `src/roteiro.ts`, gere as falas e reescreva as cenas em `src/Video.tsx`
 reaproveitando `Personagem` e os cenários.
+
+## Episódio 2 (EN): "The Elevator Button That Does NOTHING"
+- Composição `Elevador`: `npm run render:elevador` -> `exportados/elevator-close-button-EN.mp4` (50s).
+- Roteiro e cenas: `src/elevador/Elevador.tsx`; cenários (interior do elevador, painel, lei de 1990, faixa de pedestre): `src/elevador/cenarios.tsx`.
+- Voz "Brooks" (ElevenLabs) em `public/voz-elevador/NN.mp3`; medir com `npm run voz -- elevador`.
+- Novas roupas do boneco: `executivo` e `bombeiro`.
+- As ações de cada cena são presas a palavras da fala com `m('palavra')`.
