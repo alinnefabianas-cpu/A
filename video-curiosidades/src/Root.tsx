@@ -1,5 +1,6 @@
 import React from 'react';
-import {Composition} from 'remotion';
+import {Composition, Still} from 'remotion';
+import {Banner, BannerGuia, FotoPerfil} from './Marca';
 import '@fontsource/nunito/900.css';
 import '@fontsource/nunito/800.css';
 import {Pilotos} from './Video';
@@ -16,5 +17,8 @@ export const Root: React.FC = () => (
 		{EPISODIOS.map((ep) => (
 			<Composition key={ep.id} id={ep.id} component={PlayerEpisodio} defaultProps={{ep}} durationInFrames={duracaoDe(ep.cenas)} fps={FPS} width={1080} height={1920} />
 		))}
+		<Still id="FotoPerfil" component={FotoPerfil} width={800} height={800} />
+		<Still id="Banner" component={Banner} width={2560} height={1440} />
+		<Still id="BannerGuia" component={BannerGuia} width={2560} height={1440} />
 	</>
 );
