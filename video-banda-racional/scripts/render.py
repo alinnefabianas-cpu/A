@@ -319,6 +319,9 @@ def compose_title_frame(sh, c, k, img):
         thr = c["thr"]
         hz = (0.05, (0.9, 0.85, 0.75))
     occ = smoothstep(thr - 0.025, thr + 0.025, d).astype(np.float32)
+    if sh["title"] == 1:   # painel escuro de madeira fica atras: so bandeiras/pessoas (claras ou coloridas) ocultam
+        bright = cv2.GaussianBlur((img.max(2) > 0.42).astype(np.float32), (0, 0), 1.5)
+        occ = occ * bright
     if sh["title"] == 2:   # so os musicos (uniforme branco) passam na frente; arvores proximas nao
         occ = occ * cv2.dilate(white_mask(img), np.ones((5, 5), np.uint8))
     occ = DP.refine(occ, img, 6, 2e-3)

@@ -33,7 +33,7 @@ if __name__ == "__main__":
     os.makedirs(BR + "final", exist_ok=True)
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", BR + "video_only.mp4", "-i", BR + "audio_premix.wav",
                     "-filter:a", ln + ",aresample=48000", "-map", "0:v", "-map", "1:a",
-                    "-c:v", "libx264", "-preset", "slow", "-crf", "17", "-profile:v", "high", "-pix_fmt", "yuv420p",
+                    "-c:v", "libx264", "-preset", "medium", "-crf", "17", "-profile:v", "high", "-pix_fmt", "yuv420p",
                     "-x264-params", "keyint=60:min-keyint=30", "-c:a", "aac", "-b:a", "320k", "-movflags", "+faststart",
                     "-shortest", out], check=True)
     print("FINAL", out)

@@ -2,7 +2,7 @@
 
 Trailer vertical de 1:59,5 para Instagram e Facebook (1080×1920, 30 fps, H.264 + AAC, −14 LUFS).
 
-O vídeo final não está no repositório porque é grande demais (~170 MB). Os scripts aqui geram o vídeo a partir das filmagens originais da pasta do Google Drive.
+O arquivo `Banda_Racional_Trailer_9x16.mp4` (46 MB, versão para redes sociais) está nesta pasta. Os scripts geram o vídeo a partir das filmagens originais da pasta do Google Drive.
 
 ## Estrutura do trailer
 
