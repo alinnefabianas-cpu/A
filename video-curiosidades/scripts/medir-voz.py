@@ -11,6 +11,9 @@ pasta = 'voz' if lingua == 'pt' else f'voz-{lingua}'
 
 raiz = pathlib.Path(__file__).resolve().parent.parent
 saida = {}
+# episódios automáticos (src/episodios/<slug>/) guardam o voz.json dentro da própria pasta
+ep_dir = raiz / 'src' / 'episodios' / lingua
+destino = ep_dir / 'voz.json' if ep_dir.is_dir() else raiz / 'src' / ('voz.json' if lingua == 'pt' else f'voz-{lingua}.json')
 for mp3 in sorted((raiz / 'public' / pasta).glob('*.mp3')):
     dur = float(subprocess.check_output(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', str(mp3)]).strip())
     log = subprocess.run(['ffmpeg', '-i', str(mp3), '-af', 'silencedetect=n=-38dB:d=0.09', '-f', 'null', '-'], capture_output=True, text=True).stderr
@@ -25,5 +28,5 @@ for mp3 in sorted((raiz / 'public' / pasta).glob('*.mp3')):
     if dur - t > 0.08:
         regioes.append([round(t, 3), round(dur, 3)])
     saida[int(mp3.stem)] = {'dur': round(dur, 3), 'regioes': regioes}
-(raiz / 'src' / ('voz.json' if lingua == 'pt' else f'voz-{lingua}.json')).write_text(json.dumps(saida, indent=1))
+destino.write_text(json.dumps(saida, indent=1))
 print(json.dumps(saida))
