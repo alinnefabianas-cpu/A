@@ -1,0 +1,20 @@
+{
+  "name": "video-curiosidades",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "audio": "node scripts/gerar-trilha.mjs",
+    "voz": "python3 scripts/medir-voz.py",
+    "render": "remotion render src/index.ts Pilotos exportados/pilotos-comida.mp4",
+    "still": "remotion still src/index.ts Pilotos out/frame.png"
+  },
+  "dependencies": {
+    "@fontsource/nunito": "^5.2.8",
+    "@remotion/cli": "4.0.539",
+    "@types/react": "^19.3.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.539",
+    "typescript": "^7.0.2"
+  }
+}
