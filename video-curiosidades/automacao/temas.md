@@ -8,7 +8,7 @@ Nunca repita um tema já marcado.
 
 - [x] 2026-11-13 · pilots-same-meal · Why pilots never eat the same meal
 - [x] 2026-11-13 · elevator-close-button · The elevator "close door" button that does nothing
-- [ ] Why airplane windows are round (1950s jet crashes; square corners concentrate stress)
+- [x] 2026-11-14 · round-windows · Why airplane windows are round (feito à mão)
 - [ ] The tiny hole in airplane windows (breather hole balances pressure between panes)
 - [ ] Why school buses are yellow (1939 conference picked "National School Bus Chrome" for visibility)
 - [ ] Why stop signs are octagons (1920s US: more sides = more danger; shape recognizable from behind)
