@@ -3,7 +3,7 @@ import {useCurrentFrame} from 'remotion';
 
 export const CONTORNO = '#241820';
 
-export type Roupa = 'comandante' | 'copiloto' | 'comissaria' | 'passageiro' | 'executivo' | 'bombeiro';
+export type Roupa = 'comandante' | 'copiloto' | 'comissaria' | 'passageiro' | 'executivo' | 'bombeiro' | 'soldado' | 'oficial' | 'fazendeiro';
 export type Expressao = 'feliz' | 'neutro' | 'confuso' | 'enjoado' | 'bravo' | 'dormindo' | 'assustado' | 'serio' | 'pidao';
 
 type Props = {
@@ -154,6 +154,9 @@ const ROUPAS: Record<Roupa, {tronco: string; detalhe: string}> = {
 	passageiro: {tronco: '#5a8f6a', detalhe: '#fff'},
 	executivo: {tronco: '#3b3f4a', detalhe: '#d63b3b'},
 	bombeiro: {tronco: '#c9a227', detalhe: '#e8e8e8'},
+	soldado: {tronco: '#8a7f4a', detalhe: '#5e5530'},
+	oficial: {tronco: '#7d7444', detalhe: '#c9a227'},
+	fazendeiro: {tronco: '#3f6fb0', detalhe: '#e9e2d0'},
 };
 
 export const Personagem: React.FC<Props> = (p) => {
@@ -205,7 +208,7 @@ export const Personagem: React.FC<Props> = (p) => {
 							<ellipse cx={80} cy={-530} rx={18} ry={10} fill="#f6a5b4" opacity={0.7} />
 						</>
 					)}
-					{p.roupa === 'comandante' && <path d="M-44 -532 Q-22 -548 0 -536 Q22 -548 44 -532 Q22 -524 0 -530 Q-22 -524 -44 -532Z" fill="#4a3326" stroke={CONTORNO} strokeWidth={4} />}
+					{(p.roupa === 'comandante' || p.roupa === 'oficial') && <path d="M-44 -532 Q-22 -548 0 -536 Q22 -548 44 -532 Q22 -524 0 -530 Q-22 -524 -44 -532Z" fill="#4a3326" stroke={CONTORNO} strokeWidth={4} />}
 					<Boca exp={exp} abre={abre} />
 					{exp === 'enjoado' && (
 						<path d="M96 -610 Q110 -580 100 -566 Q86 -574 96 -610Z" fill="#8fd3ff" stroke={CONTORNO} strokeWidth={4} />
@@ -267,6 +270,28 @@ const DetalheRoupa: React.FC<{roupa: Roupa; cor: string}> = ({roupa, cor}) => {
 				<circle cx={-24} cy={-270} r={6} fill={CONTORNO} />
 			</g>
 		);
+	if (roupa === 'soldado' || roupa === 'oficial')
+		return (
+			<g>
+				<path d="M-30 -448 L0 -410 L30 -448" fill="none" stroke={CONTORNO} strokeWidth={5} />
+				<rect x={-58} y={-400} width={44} height={36} rx={6} fill="none" stroke={CONTORNO} strokeWidth={4} />
+				<rect x={14} y={-400} width={44} height={36} rx={6} fill="none" stroke={CONTORNO} strokeWidth={4} />
+				<rect x={-76} y={-290} width={152} height={20} fill={cor} stroke={CONTORNO} strokeWidth={4} />
+				<rect x={-14} y={-292} width={28} height={24} rx={4} fill="#c9a227" stroke={CONTORNO} strokeWidth={3} />
+				{roupa === 'oficial' && <path d="M-74 -440 L-48 -446 M74 -440 L48 -446" stroke={cor} strokeWidth={8} />}
+			</g>
+		);
+	if (roupa === 'fazendeiro')
+		return (
+			<g>
+				<path d="M-78 -380 C-82 -440 -40 -452 0 -452 C40 -452 82 -440 78 -380 L74 -330 H-74Z" fill="#c8323f" stroke={CONTORNO} strokeWidth={6} />
+				<path d="M-74 -380 H74 M-74 -350 H74 M-30 -452 V-330 M30 -452 V-330" stroke="rgba(0,0,0,0.25)" strokeWidth={6} />
+				<path d="M-44 -330 L-50 -450 M44 -330 L50 -450" stroke="#2c4f82" strokeWidth={14} />
+				<circle cx={-44} cy={-340} r={7} fill="#f2c14e" stroke={CONTORNO} strokeWidth={3} />
+				<circle cx={44} cy={-340} r={7} fill="#f2c14e" stroke={CONTORNO} strokeWidth={3} />
+				<rect x={-30} y={-310} width={60} height={40} rx={6} fill="none" stroke="#2c4f82" strokeWidth={5} />
+			</g>
+		);
 	if (roupa === 'bombeiro')
 		return (
 			<g>
@@ -299,6 +324,34 @@ const Chapeu: React.FC<{roupa: Roupa; cor: string; tronco: string}> = ({roupa, c
 				<path d="M-60 -640 Q0 -652 60 -640" stroke={cor} strokeWidth={6} fill="none" />
 				<circle cx={0} cy={-668} r={18} fill={cor} stroke={CONTORNO} strokeWidth={5} />
 				<path d="M-40 -668 h-20 M40 -668 h20" stroke={cor} strokeWidth={8} strokeLinecap="round" />
+			</g>
+		);
+	if (roupa === 'soldado')
+		return (
+			<g>
+				<path d="M-112 -630 C-110 -730 110 -730 112 -630 Z" fill="#8a7f4a" stroke={CONTORNO} strokeWidth={W} />
+				<rect x={-112} y={-656} width={224} height={26} fill="#4f4828" stroke={CONTORNO} strokeWidth={5} />
+				<path d="M-112 -636 C-150 -700 -170 -720 -150 -740 C-130 -720 -120 -690 -100 -650Z" fill="#7a7040" stroke={CONTORNO} strokeWidth={7} strokeLinejoin="round" />
+				<path d="M-100 -630 Q20 -600 190 -628 L176 -612 Q20 -584 -96 -612Z" fill="#7a7040" stroke={CONTORNO} strokeWidth={7} />
+				<circle cx={-128} cy={-690} r={14} fill="#c9a227" stroke={CONTORNO} strokeWidth={4} />
+			</g>
+		);
+	if (roupa === 'oficial')
+		return (
+			<g>
+				<path d="M-130 -636 C-130 -716 130 -716 130 -636 Z" fill="#7d7444" stroke={CONTORNO} strokeWidth={W} />
+				<rect x={-112} y={-646} width={224} height={28} fill="#8f2f2f" stroke={CONTORNO} strokeWidth={6} />
+				<path d="M-112 -618 Q0 -580 112 -618 L100 -604 Q0 -572 -100 -604Z" fill="#2a2416" stroke={CONTORNO} strokeWidth={6} />
+				<circle cx={0} cy={-668} r={16} fill="#c9a227" stroke={CONTORNO} strokeWidth={5} />
+			</g>
+		);
+	if (roupa === 'fazendeiro')
+		return (
+			<g>
+				<ellipse cx={0} cy={-628} rx={200} ry={40} fill="#e8c46a" stroke={CONTORNO} strokeWidth={W} />
+				<path d="M-104 -630 C-104 -730 104 -730 104 -630 Z" fill="#e8c46a" stroke={CONTORNO} strokeWidth={W} />
+				<rect x={-104} y={-660} width={208} height={24} fill="#c8323f" stroke={CONTORNO} strokeWidth={5} />
+				<path d="M-160 -640 Q0 -600 160 -640" stroke="rgba(0,0,0,0.15)" strokeWidth={6} fill="none" />
 			</g>
 		);
 	if (roupa === 'bombeiro')

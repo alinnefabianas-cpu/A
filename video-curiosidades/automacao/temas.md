@@ -22,7 +22,7 @@ Nunca repita um tema já marcado.
 - [ ] Why ketchup was once sold as medicine (1830s "tomato pills")
 - [ ] Why flamingos are pink (pigments from their food; born grey)
 - [ ] Why the Leaning Tower of Pisa leans (soft soil; started tilting during construction)
-- [ ] The Great Emu War (1932 Australia: soldiers with machine guns vs emus, emus won)
+- [x] 2026-11-14 · emu-war · The Great Emu War (feito à mão)
 - [ ] The craziest Olympic marathon ever (1904 St. Louis: car ride, rat poison "energy drink")
 - [ ] The Great Molasses Flood (Boston 1919: a wave of molasses through the streets)
 - [ ] The Dancing Plague of 1518 (Strasbourg: people danced for days)

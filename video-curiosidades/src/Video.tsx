@@ -28,11 +28,14 @@ export const Camera: React.FC<{
 	if (soco !== undefined && f >= soco) z *= 1 + 0.12 * Math.exp(-(f - soco) / 4);
 	// entrada da cena: leve zoom-in de corte
 	z *= 1 + 0.05 * Math.exp(-f / 3);
+	// nunca mostrar além da arte (evita faixa preta): mantém o quadro dentro de 0..W x 0..H
+	const xc = z >= 1 ? Math.min(Math.max(x, W / 2 / z), W - W / 2 / z) : W / 2;
+	const yc = z >= 1 ? Math.min(Math.max(y, H / 2 / z), H - H / 2 / z) : H / 2;
 	const tx = Math.sin(f * 1.7) * tremor + Math.sin(f * 0.9) * tremor * 0.5;
 	const ty = Math.cos(f * 1.3) * tremor;
 	return (
 		<svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} style={{position: 'absolute'}}>
-			<g transform={`translate(${W / 2 + tx}, ${H / 2 + ty}) scale(${z}) translate(${-x}, ${-y})`}>{children}</g>
+			<g transform={`translate(${W / 2 + tx}, ${H / 2 + ty}) scale(${z}) translate(${-xc}, ${-yc})`}>{children}</g>
 		</svg>
 	);
 };

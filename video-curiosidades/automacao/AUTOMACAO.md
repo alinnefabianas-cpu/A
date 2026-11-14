@@ -16,7 +16,7 @@ npm install --no-audit --no-fund
 ls public/audio/trilha.wav || node scripts/gerar-trilha.mjs
 ```
 Antes de criar qualquer coisa, leia como foram feitos os episódios prontos, que são o padrão de qualidade:
-`src/Video.tsx` (pilotos), `src/elevador/Elevador.tsx` e `src/elevador/cenarios.tsx` (elevador),
+`src/episodios/emu-war/` (o melhor exemplo do formato automático: `Episodio.tsx` + `arte.tsx`), `src/Video.tsx` (pilotos), `src/elevador/Elevador.tsx` e `src/elevador/cenarios.tsx` (elevador),
 `src/Personagem.tsx`, `src/Cenarios.tsx`, `src/Episodio.tsx` e `src/episodios/_modelo/Episodio.tsx`.
 
 ## 1. Escolher os 3 temas
@@ -52,14 +52,15 @@ Depois adicione o episódio em `src/episodios/registro.ts` (import + item na lis
 
 Padrão visual obrigatório (o mesmo dos episódios prontos):
 - 1080x1920. Toda cena tem movimento de câmera (`Camera` com `de`/`para`, `soco` nos impactos, `tremor` em sustos).
-- Bonecos com `Personagem` (roupas: comandante, copiloto, comissaria, passageiro, executivo, bombeiro;
+- Bonecos com `Personagem` (roupas: comandante, copiloto, comissaria, passageiro, executivo, bombeiro, soldado, oficial, fazendeiro;
   dá para criar roupas novas no mesmo arquivo). Cenários ricos com gradiente, luz e profundidade, desenhados em SVG.
 - Cada ação acontece na palavra certa da fala: `m('word')` ou `m('word', 2)` para a 2ª ocorrência
   (as palavras são comparadas só pelas letras e números, em minúsculas: "doesn't" vira `doesnt`).
 - Um corte ou mudança visual forte a cada 2–3 s; objetos entram com `usePop`; placas curtas em caixa alta ("NO!", "PASSED").
 - Efeitos sonoros com `Sfx`: pop, whoosh, ding, buzz, boom, uhoh, barriga, alarme, aviao (em `public/audio/`).
 - A legenda fica em y≈1250–1400: não coloque texto importante nessa faixa.
-- A câmera nunca pode mostrar além da arte (faixa preta): com zoom z e foco (x, y), garanta y + 960/z ≤ 1920 e y − 960/z ≥ 0.
+- A `Camera` já impede faixa preta quando o zoom é ≥ 1; não use zoom menor que 1.
+- Se as pausas da narração ficarem longas e o vídeo passar de ~55 s, encurte as pausas com ffmpeg `silenceremove` (stop_duration=0.3, stop_silence=0.28) antes de medir a voz.
 - Nada de logotipos, marcas, rostos de pessoas reais ou emojis (a fonte não tem os glifos).
 
 ## 5. Controle de qualidade (obrigatório)
