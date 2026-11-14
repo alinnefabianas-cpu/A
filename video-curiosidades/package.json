@@ -9,7 +9,8 @@
     "still": "remotion still src/index.ts Pilotos out/frame.png",
     "render:en": "remotion render src/index.ts PilotosEN exportados/pilots-same-meal-EN.mp4",
     "render:elevador": "remotion render src/index.ts Elevador exportados/elevator-close-button-EN.mp4",
-    "render:emu": "remotion render src/index.ts EmuWar exportados/great-emu-war-EN.mp4"
+    "render:emu": "remotion render src/index.ts EmuWar exportados/great-emu-war-EN.mp4",
+    "render:maratona": "remotion render src/index.ts Marathon1904 exportados/marathon-1904-EN.mp4"
   },
   "dependencies": {
     "@fontsource/nunito": "^5.2.8",

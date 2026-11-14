@@ -3,7 +3,7 @@ import {useCurrentFrame} from 'remotion';
 
 export const CONTORNO = '#241820';
 
-export type Roupa = 'comandante' | 'copiloto' | 'comissaria' | 'passageiro' | 'executivo' | 'bombeiro' | 'soldado' | 'oficial' | 'fazendeiro';
+export type Roupa = 'comandante' | 'copiloto' | 'comissaria' | 'passageiro' | 'executivo' | 'bombeiro' | 'soldado' | 'oficial' | 'fazendeiro' | 'corredor' | 'carteiro' | 'treinador';
 export type Expressao = 'feliz' | 'neutro' | 'confuso' | 'enjoado' | 'bravo' | 'dormindo' | 'assustado' | 'serio' | 'pidao';
 
 type Props = {
@@ -28,6 +28,7 @@ type Props = {
 	itemD?: React.ReactNode; // desenhado na mão direita (coord. locais da mão)
 	itemE?: React.ReactNode;
 	fase?: number; // dessincroniza respiração/piscar
+	numero?: string; // número de corrida (roupa corredor/carteiro)
 };
 
 const W = 10; // espessura do contorno
@@ -157,6 +158,9 @@ const ROUPAS: Record<Roupa, {tronco: string; detalhe: string}> = {
 	soldado: {tronco: '#8a7f4a', detalhe: '#5e5530'},
 	oficial: {tronco: '#7d7444', detalhe: '#c9a227'},
 	fazendeiro: {tronco: '#3f6fb0', detalhe: '#e9e2d0'},
+	corredor: {tronco: '#f4f4f4', detalhe: '#1d2a66'},
+	carteiro: {tronco: '#f1ead8', detalhe: '#6b5a44'},
+	treinador: {tronco: '#6b4a36', detalhe: '#2a2a2a'},
 };
 
 export const Personagem: React.FC<Props> = (p) => {
@@ -166,7 +170,7 @@ export const Personagem: React.FC<Props> = (p) => {
 	const piscando = f % 97 < 4 && exp !== 'dormindo';
 	const abre = p.falando ? Math.max(0, Math.sin(f * 0.9) * 0.6 + Math.sin(f * 0.43) * 0.4) : 0;
 	const roupa = ROUPAS[p.roupa];
-	const tronco = (p.roupa === 'passageiro' || p.roupa === 'executivo') && p.cor ? p.cor : roupa.tronco;
+	const tronco = (p.roupa === 'passageiro' || p.roupa === 'executivo' || p.roupa === 'corredor' || p.roupa === 'treinador') && p.cor ? p.cor : roupa.tronco;
 	const enjoo = p.enjoo ?? 0;
 	const pele = enjoo > 0 ? mix('#ffffff', '#bfe3a0', enjoo) : '#ffffff';
 	const cabelo = p.cabelo ?? '#4a3326';
@@ -194,7 +198,7 @@ export const Personagem: React.FC<Props> = (p) => {
 				/>
 				{/* luz lateral (dá volume) */}
 				<path d="M-58 -400 C-62 -330 -60 -280 -50 -232" stroke="rgba(255,255,255,0.18)" strokeWidth={14} fill="none" strokeLinecap="round" />
-				<DetalheRoupa roupa={p.roupa} cor={roupa.detalhe} />
+				<DetalheRoupa roupa={p.roupa} cor={roupa.detalhe} numero={p.numero} />
 				{/* pescoço + cabeça */}
 				<g transform={`translate(0, ${respira * 0.3})`}>
 					{p.roupa === 'comissaria' && <circle cx={0} cy={-680} r={46} fill={cabelo} stroke={CONTORNO} strokeWidth={W} />}
@@ -208,7 +212,7 @@ export const Personagem: React.FC<Props> = (p) => {
 							<ellipse cx={80} cy={-530} rx={18} ry={10} fill="#f6a5b4" opacity={0.7} />
 						</>
 					)}
-					{(p.roupa === 'comandante' || p.roupa === 'oficial') && <path d="M-44 -532 Q-22 -548 0 -536 Q22 -548 44 -532 Q22 -524 0 -530 Q-22 -524 -44 -532Z" fill="#4a3326" stroke={CONTORNO} strokeWidth={4} />}
+					{(p.roupa === 'comandante' || p.roupa === 'oficial' || p.roupa === 'treinador') && <path d="M-44 -532 Q-22 -548 0 -536 Q22 -548 44 -532 Q22 -524 0 -530 Q-22 -524 -44 -532Z" fill="#4a3326" stroke={CONTORNO} strokeWidth={4} />}
 					<Boca exp={exp} abre={abre} />
 					{exp === 'enjoado' && (
 						<path d="M96 -610 Q110 -580 100 -566 Q86 -574 96 -610Z" fill="#8fd3ff" stroke={CONTORNO} strokeWidth={4} />
@@ -222,7 +226,7 @@ export const Personagem: React.FC<Props> = (p) => {
 	);
 };
 
-const DetalheRoupa: React.FC<{roupa: Roupa; cor: string}> = ({roupa, cor}) => {
+const DetalheRoupa: React.FC<{roupa: Roupa; cor: string; numero?: string}> = ({roupa, cor, numero}) => {
 	if (roupa === 'comandante' || roupa === 'copiloto') {
 		const faixas = roupa === 'comandante' ? 4 : 3;
 		return (
@@ -270,6 +274,40 @@ const DetalheRoupa: React.FC<{roupa: Roupa; cor: string}> = ({roupa, cor}) => {
 				<circle cx={-24} cy={-270} r={6} fill={CONTORNO} />
 			</g>
 		);
+	if (roupa === 'corredor' || roupa === 'carteiro') {
+		const calcao = roupa === 'corredor'
+			? <path d="M-76 -250 L-70 -170 L-8 -170 L0 -200 L8 -170 L70 -170 L76 -250Z" fill={cor} stroke={CONTORNO} strokeWidth={6} strokeLinejoin="round" />
+			: <path d="M-76 -250 L-74 -150 l12 -14 l12 14 l12 -14 l12 14 l14 -14 L0 -150 L0 -190 L4 -150 l12 -14 l12 14 l12 -14 l12 14 l12 -14 L76 -150 L76 -250Z" fill="#4a4f5c" stroke={CONTORNO} strokeWidth={6} strokeLinejoin="round" />;
+		return (
+			<g>
+				{calcao}
+				{roupa === 'corredor' ? (
+					<path d="M-40 -450 Q0 -400 40 -450" stroke={CONTORNO} strokeWidth={6} fill="none" />
+				) : (
+					<g>
+						<path d="M-30 -448 L0 -400 L30 -448" fill="none" stroke={CONTORNO} strokeWidth={5} />
+						<path d="M60 -440 L-50 -290" stroke="#6b5a44" strokeWidth={14} />
+						<rect x={-96} y={-310} width={70} height={60} rx={8} fill="#8a6a44" stroke={CONTORNO} strokeWidth={5} />
+					</g>
+				)}
+				{numero && (
+					<g transform="translate(0, -350)">
+						<rect x={-44} y={-34} width={88} height={64} rx={6} fill="#fff" stroke={CONTORNO} strokeWidth={5} />
+						<text x={0} y={16} textAnchor="middle" fontFamily="Nunito" fontWeight={900} fontSize={44} fill={CONTORNO}>{numero}</text>
+					</g>
+				)}
+			</g>
+		);
+	}
+	if (roupa === 'treinador')
+		return (
+			<g>
+				<path d="M-30 -448 L0 -396 L30 -448 Z" fill="#fff" stroke={CONTORNO} strokeWidth={5} />
+				<path d="M-14 -430 L14 -430 L0 -410Z" fill="#8f2f2f" />
+				<path d="M-30 -448 L-6 -300 M30 -448 L6 -300" stroke={CONTORNO} strokeWidth={5} />
+				<path d="M20 -330 Q40 -320 30 -300" stroke="#c9a227" strokeWidth={4} fill="none" />
+			</g>
+		);
 	if (roupa === 'soldado' || roupa === 'oficial')
 		return (
 			<g>
@@ -309,7 +347,7 @@ const Cabelo: React.FC<{roupa: Roupa; cor: string}> = ({roupa, cor}) => {
 		return <path d="M-120 -590 C-110 -690 110 -690 120 -590 C80 -640 30 -650 -10 -626 C-50 -650 -100 -630 -120 -590Z" fill={cor} stroke={CONTORNO} strokeWidth={8} />;
 	if (roupa === 'copiloto')
 		return <path d="M-116 -600 C-100 -690 100 -690 116 -600 L96 -626 L70 -606 L40 -632 L10 -606 L-20 -634 L-50 -606 L-80 -630Z" fill={cor} stroke={CONTORNO} strokeWidth={8} strokeLinejoin="round" />;
-	if (roupa === 'passageiro' || roupa === 'executivo')
+	if (roupa === 'passageiro' || roupa === 'executivo' || roupa === 'corredor')
 		return <path d="M-112 -610 C-96 -690 96 -690 112 -610 C70 -650 -40 -660 -112 -610Z" fill={cor} stroke={CONTORNO} strokeWidth={8} />;
 	return null;
 };
@@ -324,6 +362,23 @@ const Chapeu: React.FC<{roupa: Roupa; cor: string; tronco: string}> = ({roupa, c
 				<path d="M-60 -640 Q0 -652 60 -640" stroke={cor} strokeWidth={6} fill="none" />
 				<circle cx={0} cy={-668} r={18} fill={cor} stroke={CONTORNO} strokeWidth={5} />
 				<path d="M-40 -668 h-20 M40 -668 h20" stroke={cor} strokeWidth={8} strokeLinecap="round" />
+			</g>
+		);
+	if (roupa === 'treinador')
+		return (
+			<g>
+				<ellipse cx={0} cy={-630} rx={150} ry={26} fill="#2a2a2a" stroke={CONTORNO} strokeWidth={W} />
+				<path d="M-96 -632 C-100 -730 100 -730 96 -632 Z" fill="#2a2a2a" stroke={CONTORNO} strokeWidth={W} />
+				<rect x={-96} y={-658} width={192} height={18} fill="#6b4a36" />
+			</g>
+		);
+	if (roupa === 'corredor')
+		return <path d="M-118 -600 Q0 -650 118 -600 L118 -580 Q0 -628 -118 -580Z" fill="#e8463f" stroke={CONTORNO} strokeWidth={6} />;
+	if (roupa === 'carteiro')
+		return (
+			<g>
+				<path d="M-112 -630 C-110 -720 110 -720 112 -630 Z" fill="#4a4f5c" stroke={CONTORNO} strokeWidth={W} />
+				<path d="M-60 -630 Q60 -600 170 -626 L160 -610 Q60 -584 -56 -612Z" fill="#2a2e38" stroke={CONTORNO} strokeWidth={6} />
 			</g>
 		);
 	if (roupa === 'soldado')

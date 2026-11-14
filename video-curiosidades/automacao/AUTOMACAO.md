@@ -52,10 +52,11 @@ Depois adicione o episódio em `src/episodios/registro.ts` (import + item na lis
 
 Padrão visual obrigatório (o mesmo dos episódios prontos):
 - 1080x1920. Toda cena tem movimento de câmera (`Camera` com `de`/`para`, `soco` nos impactos, `tremor` em sustos).
-- Bonecos com `Personagem` (roupas: comandante, copiloto, comissaria, passageiro, executivo, bombeiro, soldado, oficial, fazendeiro;
+- Bonecos com `Personagem` (roupas: comandante, copiloto, comissaria, passageiro, executivo, bombeiro, soldado, oficial, fazendeiro, corredor, carteiro, treinador; corredor/carteiro aceitam `numero`;
   dá para criar roupas novas no mesmo arquivo). Cenários ricos com gradiente, luz e profundidade, desenhados em SVG.
 - Cada ação acontece na palavra certa da fala: `m('word')` ou `m('word', 2)` para a 2ª ocorrência
   (as palavras são comparadas só pelas letras e números, em minúsculas: "doesn't" vira `doesnt`).
+- Placas curtas: `Placa` de `src/Placa.tsx`. Exemplos completos: `src/episodios/emu-war/` e `src/episodios/marathon-1904/`.
 - Um corte ou mudança visual forte a cada 2–3 s; objetos entram com `usePop`; placas curtas em caixa alta ("NO!", "PASSED").
 - Efeitos sonoros com `Sfx`: pop, whoosh, ding, buzz, boom, uhoh, barriga, alarme, aviao (em `public/audio/`).
 - A legenda fica em y≈1250–1400: não coloque texto importante nessa faixa.
