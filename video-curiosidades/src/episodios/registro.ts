@@ -4,10 +4,12 @@ import type {DefEpisodio} from '../Episodio';
 import emuWar from './emu-war/Episodio';
 import marathon1904 from './marathon-1904/Episodio';
 import roundWindows from './round-windows/Episodio';
+import napoleon from './napoleon/Episodio';
 
 export const EPISODIOS: DefEpisodio[] = [
 	emuWar,
 	marathon1904,
 	roundWindows,
+	napoleon,
 	// AUTO-EPISODIOS (não apague esta linha)
 ];

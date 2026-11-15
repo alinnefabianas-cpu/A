@@ -37,4 +37,4 @@ Nunca repita um tema já marcado.
 - [ ] Why your fingers wrinkle in water (it's your nervous system, not water soaking in)
 - [ ] Why the Statue of Liberty is green (copper patina; it used to be shiny brown)
 - [ ] Why sharks are older than trees (sharks ~450 million years, trees ~385 million)
-- [ ] Why Napoleon wasn't actually short (French inches vs English inches; about average height)
+- [x] 2026-11-15 · napoleon · Napoleon wasn't actually short (feito à mão)

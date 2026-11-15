@@ -52,7 +52,7 @@ Depois adicione o episódio em `src/episodios/registro.ts` (import + item na lis
 
 Padrão visual obrigatório (o mesmo dos episódios prontos):
 - 1080x1920. Toda cena tem movimento de câmera (`Camera` com `de`/`para`, `soco` nos impactos, `tremor` em sustos).
-- Bonecos com `Personagem` (roupas: comandante, copiloto, comissaria, passageiro, executivo, bombeiro, soldado, oficial, fazendeiro, corredor, carteiro, treinador; corredor/carteiro aceitam `numero`;
+- Bonecos com `Personagem` (roupas: comandante, copiloto, comissaria, passageiro, executivo, bombeiro, soldado, oficial, fazendeiro, corredor, carteiro, treinador, napoleao, granadeiro; corredor/carteiro aceitam `numero`;
   dá para criar roupas novas no mesmo arquivo). Cenários ricos com gradiente, luz e profundidade, desenhados em SVG.
 - Cada ação acontece na palavra certa da fala: `m('word')` ou `m('word', 2)` para a 2ª ocorrência
   (as palavras são comparadas só pelas letras e números, em minúsculas: "doesn't" vira `doesnt`).
@@ -62,6 +62,7 @@ Padrão visual obrigatório (o mesmo dos episódios prontos):
 - A legenda fica em y≈1250–1400: não coloque texto importante nessa faixa.
 - A `Camera` já impede faixa preta quando o zoom é ≥ 1; não use zoom menor que 1.
 - Se as pausas da narração ficarem longas e o vídeo passar de ~55 s, encurte as pausas com ffmpeg `silenceremove` (stop_duration=0.3, stop_silence=0.28) antes de medir a voz.
+- Nada de nomes reais de jornais, empresas ou produtos (invente nomes, ex.: "THE DAILY SATIRE").
 - Nada de logotipos, marcas, rostos de pessoas reais ou emojis (a fonte não tem os glifos).
 
 ## 5. Controle de qualidade (obrigatório)
