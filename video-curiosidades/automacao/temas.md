@@ -29,7 +29,7 @@ Nunca repita um tema já marcado.
 - [ ] Why bananas are curved (they grow up toward the sun: negative geotropism)
 - [ ] Why we have leap years (Earth's orbit is ~365.24 days)
 - [ ] Why "Mayday" means emergency (from French "m'aidez", "help me")
-- [ ] Why Bluetooth is called Bluetooth (named after a Viking king, Harald Bluetooth; logo = his runes)
+- [x] 2026-11-15 · bluetooth · Why Bluetooth is called Bluetooth (feito à mão)
 - [ ] Why the Mona Lisa became so famous (the 1911 theft made headlines worldwide)
 - [ ] Why pen caps have a hole (so air can pass if a cap is swallowed)
 - [ ] Why traffic lights use red and green (borrowed from railway signals; red is visible from far)

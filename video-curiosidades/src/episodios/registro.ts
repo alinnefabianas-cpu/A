@@ -5,11 +5,13 @@ import emuWar from './emu-war/Episodio';
 import marathon1904 from './marathon-1904/Episodio';
 import roundWindows from './round-windows/Episodio';
 import napoleon from './napoleon/Episodio';
+import bluetooth from './bluetooth/Episodio';
 
 export const EPISODIOS: DefEpisodio[] = [
 	emuWar,
 	marathon1904,
 	roundWindows,
 	napoleon,
+	bluetooth,
 	// AUTO-EPISODIOS (não apague esta linha)
 ];

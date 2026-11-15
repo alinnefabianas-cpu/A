@@ -12,7 +12,8 @@
     "render:emu": "remotion render src/index.ts EmuWar exportados/great-emu-war-EN.mp4",
     "render:maratona": "remotion render src/index.ts Marathon1904 exportados/marathon-1904-EN.mp4",
     "render:janelas": "remotion render src/index.ts RoundWindows exportados/round-plane-windows-EN.mp4",
-    "render:napoleao": "remotion render src/index.ts Napoleon exportados/napoleon-not-short-EN.mp4"
+    "render:napoleao": "remotion render src/index.ts Napoleon exportados/napoleon-not-short-EN.mp4",
+    "render:bluetooth": "remotion render src/index.ts Bluetooth exportados/bluetooth-viking-king-EN.mp4"
   },
   "dependencies": {
     "@fontsource/nunito": "^5.2.8",

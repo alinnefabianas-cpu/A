@@ -3,7 +3,7 @@ import {useCurrentFrame} from 'remotion';
 
 export const CONTORNO = '#241820';
 
-export type Roupa = 'comandante' | 'copiloto' | 'comissaria' | 'passageiro' | 'executivo' | 'bombeiro' | 'soldado' | 'oficial' | 'fazendeiro' | 'corredor' | 'carteiro' | 'treinador' | 'napoleao' | 'granadeiro';
+export type Roupa = 'comandante' | 'copiloto' | 'comissaria' | 'passageiro' | 'executivo' | 'bombeiro' | 'soldado' | 'oficial' | 'fazendeiro' | 'corredor' | 'carteiro' | 'treinador' | 'napoleao' | 'granadeiro' | 'viking';
 export type Expressao = 'feliz' | 'neutro' | 'confuso' | 'enjoado' | 'bravo' | 'dormindo' | 'assustado' | 'serio' | 'pidao';
 
 type Props = {
@@ -163,6 +163,7 @@ const ROUPAS: Record<Roupa, {tronco: string; detalhe: string}> = {
 	treinador: {tronco: '#6b4a36', detalhe: '#2a2a2a'},
 	napoleao: {tronco: '#22397a', detalhe: '#f2c14e'},
 	granadeiro: {tronco: '#22397a', detalhe: '#e9e9e9'},
+	viking: {tronco: '#9b2f2a', detalhe: '#c9a227'},
 };
 
 export const Personagem: React.FC<Props> = (p) => {
@@ -218,6 +219,14 @@ export const Personagem: React.FC<Props> = (p) => {
 					<Boca exp={exp} abre={abre} />
 					{exp === 'enjoado' && (
 						<path d="M96 -610 Q110 -580 100 -566 Q86 -574 96 -610Z" fill="#8fd3ff" stroke={CONTORNO} strokeWidth={4} />
+					)}
+					{p.roupa === 'viking' && (
+						<g>
+							<path d="M-124 -560 C-150 -600 -130 -660 -100 -640 L-100 -540Z M124 -560 C150 -600 130 -660 100 -640 L100 -540Z" fill="#c9762e" stroke={CONTORNO} strokeWidth={6} />
+							<path d={`M-110 -530 C-100 -440 -40 ${-380 + abre * 10} 0 ${-370 + abre * 10} C40 ${-380 + abre * 10} 100 -440 110 -530 C80 -490 40 -${520 - abre * 30} 0 -${520 - abre * 30} C-40 -${520 - abre * 30} -80 -490 -110 -530Z`} fill="#c9762e" stroke={CONTORNO} strokeWidth={6} />
+							<path d="M-40 -530 Q0 -548 40 -530 Q20 -520 0 -526 Q-20 -520 -40 -530Z" fill="#a85f22" stroke={CONTORNO} strokeWidth={4} />
+							<path d="M-20 -420 L-24 -380 M20 -420 L24 -380" stroke="#a85f22" strokeWidth={6} />
+						</g>
 					)}
 					<Chapeu roupa={p.roupa} cor={roupa.detalhe} tronco={tronco} />
 				</g>
@@ -301,6 +310,17 @@ const DetalheRoupa: React.FC<{roupa: Roupa; cor: string; numero?: string}> = ({r
 			</g>
 		);
 	}
+	if (roupa === 'viking')
+		return (
+			<g>
+				<path d="M-96 -440 Q-110 -330 -100 -200 L-78 -200 L-78 -420Z M96 -440 Q110 -330 100 -200 L78 -200 L78 -420Z" fill="#6b4a36" stroke={CONTORNO} strokeWidth={5} />
+				<path d="M-96 -450 Q0 -400 96 -450 Q80 -420 0 -404 Q-80 -420 -96 -450Z" fill="#d9cbb0" stroke={CONTORNO} strokeWidth={5} />
+				{[-80, -50, -20, 10, 40, 70].map((x) => <circle key={x} cx={x} cy={-438 + Math.abs(x) * 0.25} r={14} fill="#e9dcc0" stroke={CONTORNO} strokeWidth={3} />)}
+				<rect x={-76} y={-290} width={152} height={22} fill="#4a3326" stroke={CONTORNO} strokeWidth={4} />
+				<circle cx={0} cy={-279} r={16} fill={cor} stroke={CONTORNO} strokeWidth={4} />
+				<path d="M0 -400 L0 -300" stroke={cor} strokeWidth={6} />
+			</g>
+		);
 	if (roupa === 'napoleao' || roupa === 'granadeiro')
 		return (
 			<g>
@@ -379,6 +399,13 @@ const Chapeu: React.FC<{roupa: Roupa; cor: string; tronco: string}> = ({roupa, c
 				<path d="M-60 -640 Q0 -652 60 -640" stroke={cor} strokeWidth={6} fill="none" />
 				<circle cx={0} cy={-668} r={18} fill={cor} stroke={CONTORNO} strokeWidth={5} />
 				<path d="M-40 -668 h-20 M40 -668 h20" stroke={cor} strokeWidth={8} strokeLinecap="round" />
+			</g>
+		);
+	if (roupa === 'viking')
+		return (
+			<g>
+				<path d="M-100 -640 L-110 -720 L-60 -680 L-30 -740 L0 -690 L30 -740 L60 -680 L110 -720 L100 -640Z" fill="#f2c14e" stroke={CONTORNO} strokeWidth={W - 2} strokeLinejoin="round" />
+				{[-60, 0, 60].map((x) => <circle key={x} cx={x} cy={-660} r={10} fill={x ? '#2f5bd3' : '#e8463f'} stroke={CONTORNO} strokeWidth={3} />)}
 			</g>
 		);
 	if (roupa === 'napoleao')
