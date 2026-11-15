@@ -35,6 +35,6 @@ Nunca repita um tema já marcado.
 - [ ] Why traffic lights use red and green (borrowed from railway signals; red is visible from far)
 - [ ] Why ships are painted red below the waterline (historic copper anti-fouling; red paint tradition)
 - [ ] Why your fingers wrinkle in water (it's your nervous system, not water soaking in)
-- [ ] Why the Statue of Liberty is green (copper patina; it used to be shiny brown)
+- [x] 2026-11-16 · liberty-green · Why the Statue of Liberty is green (feito à mão)
 - [ ] Why sharks are older than trees (sharks ~450 million years, trees ~385 million)
 - [x] 2026-11-15 · napoleon · Napoleon wasn't actually short (feito à mão)

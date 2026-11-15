@@ -14,7 +14,8 @@
     "render:janelas": "remotion render src/index.ts RoundWindows exportados/round-plane-windows-EN.mp4",
     "render:napoleao": "remotion render src/index.ts Napoleon exportados/napoleon-not-short-EN.mp4",
     "render:bluetooth": "remotion render src/index.ts Bluetooth exportados/bluetooth-viking-king-EN.mp4",
-    "render:danca": "remotion render src/index.ts DancingPlague exportados/dancing-plague-1518-EN.mp4"
+    "render:danca": "remotion render src/index.ts DancingPlague exportados/dancing-plague-1518-EN.mp4",
+    "render:estatua": "remotion render src/index.ts LibertyGreen exportados/statue-of-liberty-green-EN.mp4"
   },
   "dependencies": {
     "@fontsource/nunito": "^5.2.8",

@@ -7,6 +7,7 @@ import roundWindows from './round-windows/Episodio';
 import napoleon from './napoleon/Episodio';
 import bluetooth from './bluetooth/Episodio';
 import dancingPlague from './dancing-plague/Episodio';
+import libertyGreen from './liberty-green/Episodio';
 
 export const EPISODIOS: DefEpisodio[] = [
 	emuWar,
@@ -15,5 +16,6 @@ export const EPISODIOS: DefEpisodio[] = [
 	napoleon,
 	bluetooth,
 	dancingPlague,
+	libertyGreen,
 	// AUTO-EPISODIOS (não apague esta linha)
 ];
