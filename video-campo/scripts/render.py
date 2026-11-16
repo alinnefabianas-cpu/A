@@ -44,7 +44,7 @@ AMANHECER = ("eq=saturation=1.0:brightness=0.02,colorbalance=rh=0.05:gh=0.02:bh=
 FAROESTE = "eq=saturation=0.97:contrast=1.04,colortemperature=temperature=5000:mix=0.6"
 COR_CENA = {1: DIA_DOCE, 2: DIA, 3: TARDE, 4: TARDE, 5: TARDE, 6: TARDE, 7: TARDE,
             8: NOITE, 9: NOITE, 10: AMANHECER, 11: DIA, 12: FAROESTE, 13: FAROESTE,
-            14: DIA, 15: DIA_DOCE, 16: DIA_DOCE}
+            14: DIA_DOCE, 15: DIA_DOCE, 16: DIA_DOCE}
 AJUSTE_TAKE = {
     "C1716": "eq=brightness=-0.05:gamma=0.92",
     "C1724": "eq=gamma=1.04", "C1725": "eq=gamma=1.04",
@@ -135,9 +135,9 @@ MUSICA = [
     ("9-ninar",             S(8),            S(9) + 0.3,        0.0, 1.0, 0.6, 3),   # 8 noite
     ("10-travessura-noite", S(9),            E(9) + 0.3,        0.0, 0.2, 0.6, 0),    # 9 travessura noturna
     ("2-brincar",           S(10) + 0.4,     K("descoberta", 0.05), 6.0, 0.8, 0.1, 3),  # 10 bom dia... corte seco
-    ("5-cowboy",            S(12),           K("batom", 0.0),   0.0, 0.2, 0.05, 1),   # 12 faroeste ate o batom
-    ("11-plano-vinganca",   S(14),           S(15) + 0.5,       0.0, 0.3, 0.8, 1),    # 14 plano secreto
-    ("6-cha",               S(15),           K("cookie", 0.9),  0.0, 0.8, 0.4, 1),    # 15 cha... pausa no cookie
+    ("5-cowboy",            S(12),           K("batom", 0.45),   0.0, 0.2, 0.05, 1),   # 12 faroeste ate o batom
+    ("6-cha",               S(14),           K("plano", 0.4),   0.0, 0.8, 0.5, 1),    # 14-15 cha com a coelhinha
+    ("11-plano-vinganca",   K("plano", 0.0), K("cookie", 0.9),  0.0, 0.2, 0.4, 1),    # plano secreto... pausa no cookie
     ("3-trilha",            K("aranha", 0.9), K("satisfeito", 0.3), 20.0, 0.05, 0.4, 2),  # 16 susto: cortes rapidos
     ("7-final",             K("satisfeito", 0.0), TOTAL,        0.0, 0.3, 2.0, 1),    # 16 vinganca cumprida
 ]
@@ -152,13 +152,13 @@ AMBIENTE = [
 # (momento, efeito, ganho dB)
 EFEITOS = [
     (P(1, 0, 0.6), "balanco", -12), (P(1, 1, 0.3), "balanco", -14),
-    (P(2, 0, 0.0), "corda-pular", -6), (P(2, 1, 0.3), "corda-pular", -8), (P(2, 2, 0.2), "corda-pular", -9),
+    (P(2, 0, 0.0), "corda-pular", -6), (P(2, 1, 0.3), "corda-pular", -8),
     (K("ideia", 0.8), "ideia", -6),
     (K("lupa", 1.4), "brilho", -12),
     (K("chegada", 0.0), "surpresa", -4),
-    (P(5, 1, 0.5), "amarrar", -5), (P(5, 3, 0.8), "post-it", -6), (P(5, 4, 0.5), "post-it", -7),
-    (P(5, 5, 0.6), "post-it", -6), (P(5, 5, 1.4), "post-it", -9), (K("sai", 0.6), "passos-cascalho", -10),
-    (K("ganchos", 1.2), "bau", -6), (P(7, 1, 0.3), "bau", -10),
+    (P(5, 1, 0.5), "amarrar", -5), (P(5, 2, 0.8), "post-it", -6), (P(5, 3, 0.5), "post-it", -7),
+    (P(5, 4, 0.6), "post-it", -6), (P(5, 4, 1.4), "post-it", -9),
+    (K("ganchos", 1.2), "bau", -6), (K("lanterna", 0.7), "bau", -10),
     (K("lanterna", 1.6), "lanterna-clique", -4), (K("lanterna", 1.8), "brilho", -10),
     (P(8, 1, 0.3), "ziper", -8),
     (P(9, 0, 0.2), "passos-cascalho", -14), (P(9, 1, 0.8), "post-it", -14), (P(9, 3, 0.4), "brilho", -12),
@@ -167,9 +167,10 @@ EFEITOS = [
     (P(12, 1, 0.3), "espora", -9), (P(12, 2, 0.3), "whoosh", -13), (P(12, 3, 0.6), "espora", -11),
     (P(12, 4, 0.2), "passos-cascalho", -9),
     (K("saca", 0.6), "espora", -11),
-    (K("batom", 0.0), "disco-arranhando", -3),
-    (P(14, 0, 0.3), "brilho", -16),
-    (P(15, 0, 1.5), "xicara", -8), (P(15, 1, 0.4), "coelho", -12), (P(15, 3, 1.4), "xicara", -10),
+    (K("batom", 0.4), "disco-arranhando", -3),
+    (K("joga", 0.5), "whoosh", -8), (K("joga", 0.9), "pop", -8),
+    (P(14, 0, 1.5), "xicara", -8), (P(14, 1, 0.4), "coelho", -12), (P(15, 0, 1.4), "xicara", -10),
+    (K("plano", 0.3), "brilho", -16),
     (K("aranha", 1.1), "whoosh", -10),
     (K("grito", 0.0), "susto", -3),
     (K("satisfeito", 0.2), "brilho", -12),
