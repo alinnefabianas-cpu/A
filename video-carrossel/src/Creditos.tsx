@@ -52,9 +52,9 @@ const ELENCO: Credito[] = [
   ['Jaime', 'Brito'],
   ['Alicia', 'Cata'],
   ['Mario', 'Mendes'],
-  ['Laura', 'Velem'],
+  ['Laura', 'Valentina'],
   ['Marcelina', 'Yasmin'],
-  ['Jorge', 'Kawa (primeiro ano)'],
+  ['Jorge', 'Kadu'],
   ['Graça', 'Ana Luisa'],
   ['Didi Ma / Margarida', 'Gabi L.'],
   ['Bibi', 'Gabi Porf'],
@@ -110,9 +110,6 @@ const Linha: React.FC<{largura: number; style?: React.CSSProperties}> = ({largur
 
 const Titulo: React.FC<{tamanho?: number}> = ({tamanho = 1}) => (
   <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', transform: `scale(${tamanho})`}}>
-    <div style={{fontFamily: SANS, fontWeight: 500, fontSize: 22, letterSpacing: 12, color: OURO, marginBottom: 26}}>
-      UM FILME DA TURMA
-    </div>
     <div style={{fontFamily: SERIFA, fontWeight: 400, fontSize: 150, letterSpacing: 34, color: '#fff', lineHeight: 1, marginRight: -34}}>
       CARROSSEL
     </div>
