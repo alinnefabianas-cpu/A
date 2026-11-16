@@ -1,40 +1,38 @@
-# "Um dia no campo" — curta sem narração (9:16, 1080x1920, 2min35s)
+# "O Acampamento" — curta sem narração (9:16, 1080x1920, 2min50s)
 
-Montado a partir dos 101 takes brutos (Sony 4K vertical, C1683–C1789) da pasta do Drive.
-Arquivo final: `exportados/um-dia-no-campo.mp4`.
+Montado a partir dos 101 takes brutos (Sony 4K vertical, C1683–C1789), seguindo o
+`roteiro-o-acampamento.pdf` (16 cenas). Arquivo final: `exportados/o-acampamento.mp4`.
 
-## A história (7 blocos, cada um com sua trilha)
+## Cenas
+| # | Cena | Takes | Música / som | Luz |
+|---|------|-------|--------------|-----|
+| 1 | A menina no balanço | C1683 C1686 C1694 | delicada (violão + glockenspiel), rangido do balanço | dia suave |
+| 2 | A ideia | C1711 C1710 C1713 C1714 (close) | ukulele no ritmo dos pulos → para na ideia, "ding" e vira marotinha | dia |
+| 3 | O acampamento | C1716 C1734 | calma (violão + flauta), passarinhos | fim de tarde |
+| 4 | A lupa | C1724 C1722 C1723 | calma, brilho na lupa | fim de tarde |
+| 5 | A travessura da menina | C1725 C1730 C1729 C1731 C1733 C1732 | sting de surpresa, pizzicato rápido, corda, post-its; termina com ela saindo | fim de tarde |
+| 6 | Conversa com os porquinhos | C1734 C1736 C1737 | volta a música calma | fim de tarde |
+| 7 | A mala | C1739 (ganchos) C1743 (parte de trás) C1746 C1748 (lanterna) | mistério → descoberta, clique dos ganchos e da lanterna | fim de tarde |
+| 8 | Hora de dormir | C1752 C1754 | canção de ninar, grilos, zíper | **noite** |
+| 9 | A menina apronta de novo | C1757 C1758 C1761 C1760 (risada) | cue marota noturna, grilos | **noite** |
+| 10 | Bom dia! | C1755 C1762 | galo, passarinhos, música alegre | **amanhecer** |
+| 11 | A descoberta | C1761 (porquinhos maquiados) C1762 (close triste, congelado) | corte seco: música para, trombone triste | dia |
+| 12 | Vira cowboy | C1765 C1768 C1769 C1771 | faroeste crescente, esporas, passos | dourado |
+| 13 | A surpresa do batom | C1774 C1776 C1775 (close) | disco arranhando, música para | dourado |
+| 14 | O plano de vingança | C1781 (close) C1782 | suspense divertido | dia |
+| 15 | A hora do chá | C1777 C1780 C1781 C1789 C1787 | valsa delicada, xícaras, coelhinha; intercalado com o menino escondido | pastel |
+| 16 | A vingança | C1783 (cookie em câmera lenta) C1786 C1783 C1786 | pausa no cookie, whoosh da aranha, susto, cortes rápidos, final com o menino satisfeito | pastel |
 
-| # | Bloco | Takes | Trilha | Cor |
-|---|-------|-------|--------|-----|
-| 1 | **Jardim** – flores, a menina rega o canteiro e gira com o regador | C1695 C1699 C1702 C1704 C1701 C1705 C1706 | violão dedilhado + glockenspiel, manhã | dourado suave |
-| 2 | **Brincar** – pula corda na casa amarela, balanço entre as araucárias | C1711 C1713 C1712 C1690 C1687 C1688 C1694 | ukulele, palmas e assobio | claro, arejado |
-| 3 | **A trilha e a pegadinha** – o explorador com a lupa é amarrado na árvore e coberto de bilhetinhos | C1724 C1722 C1723 C1725 C1730 C1729 C1731 C1733 | pizzicato "sorrateiro", fagote e clarinete | sombras frias |
-| 4 | **O tesouro** – barraca, baú, fotos, mapa e lanterna | C1752 C1755 C1762 C1739 C1743 C1767 C1747 | orquestral misterioso que cresce até a descoberta | âmbar |
-| 5 | **O cowboy** – chapéu, coldre… e um pirulito no lugar do revólver | C1768 C1769 C1774 C1776 C1775 | faroeste cômico, assobio e castanholas | dourado/contraste |
-| 6 | **O chá** – pelúcias enfeitadas, chá com o coelho, chuva de pétalas do balcão | C1761 C1759 C1777 C1780 C1789 C1786 | valsa de caixinha de música e harpa | pastel |
-| 7 | **Final** – o cowboy segue pela estrada, o balanço de braços abertos | C1772 C1689 | violão e piano nostálgicos, acorde final | entardecer |
+Cortes exatos: `scripts/edl.py`. Trilhas/efeitos e seus tempos: `scripts/render.py` (`MUSICA`, `AMBIENTE`, `EFEITOS`).
 
-Os cortes exatos (entrada/saída de cada take) estão em `scripts/edl.py`.
-Descrição de todos os takes: `notas-dos-takes.md`.
-
-## Som
-- Sem narração e sem o som direto (tinha conversa da equipe).
-- Trilhas: ElevenLabs Music v2.5 (via Higgsfield), instrumentais, geradas para a duração de cada bloco — `audio/musica/`.
-- Efeitos: Mirelo SFX (via Higgsfield) — `audio/efeitos/`: pássaros (ambiente o filme todo), regador, corda,
-  balanço, passos no cascalho, lupa (brilho), corda amarrando, post-it, zíper da barraca, baú, mapa,
-  esporas, "pop" do pirulito, xícaras, coelho, pétalas, sininhos, whoosh.
-- Mix: cada trilha normalizada (−17 LUFS) com crossfade de 1,2 s entre blocos; master −15 LUFS, pico −1,5 dBTP.
-
-## Cor
-Correção em `scripts/render.py` (`BASE`, `SECAO_COR`, `AJUSTE_TAKE`): a câmera entregou tudo muito saturado e
-contrastado, então a base suaviza as altas, levanta levemente os pretos, tira o "neon" dos verdes/amarelos e
-aquece; cada bloco tem um tom próprio; vinheta leve. C1772 (céu estourado) recebeu ajuste extra.
+## Observações
+- Não há take do menino pegando a aranha escondido (cena 14) nem close da aranha caindo; a cena 16 usa o
+  plano do menino soltando a aranha do balcão + reação da menina.
+- Os "closes" (ideia, reação triste, batom, menino no balcão, cookie) são recortes dos proxies 1080p.
+- Trilhas: ElevenLabs Music v2.5; efeitos: Mirelo SFX (via Higgsfield). Som direto não usado (conversa da equipe).
 
 ## Refazer
 ```bash
-# 1) proxies 1080x1920 dos originais 4K (os clipes têm rotação de 90° nos metadados)
-ffmpeg -i C1683.MP4 -vf scale=1080:1920:flags=lanczos -c:v libx264 -crf 16 -preset veryfast -an proxy/C1683.mp4
-# 2) montagem + cor + mix + export
-python3 -I scripts/render.py proxy/ work/ exportados/um-dia-no-campo.mp4
+ffmpeg -i C1683.MP4 -vf scale=1080:1920:flags=lanczos -c:v libx264 -crf 16 -preset veryfast -an proxy/C1683.mp4  # cada take
+python3 -I scripts/render.py proxy/ work/ exportados/o-acampamento.mp4
 ```
