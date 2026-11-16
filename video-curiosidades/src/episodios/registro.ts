@@ -8,6 +8,7 @@ import napoleon from './napoleon/Episodio';
 import bluetooth from './bluetooth/Episodio';
 import dancingPlague from './dancing-plague/Episodio';
 import libertyGreen from './liberty-green/Episodio';
+import yellowBus from './yellow-bus/Episodio';
 
 export const EPISODIOS: DefEpisodio[] = [
 	emuWar,
@@ -17,5 +18,6 @@ export const EPISODIOS: DefEpisodio[] = [
 	bluetooth,
 	dancingPlague,
 	libertyGreen,
+	yellowBus,
 	// AUTO-EPISODIOS (não apague esta linha)
 ];
