@@ -9,6 +9,7 @@ import bluetooth from './bluetooth/Episodio';
 import dancingPlague from './dancing-plague/Episodio';
 import libertyGreen from './liberty-green/Episodio';
 import yellowBus from './yellow-bus/Episodio';
+import stopSign from './stop-sign/Episodio';
 
 export const EPISODIOS: DefEpisodio[] = [
 	emuWar,
@@ -19,5 +20,6 @@ export const EPISODIOS: DefEpisodio[] = [
 	dancingPlague,
 	libertyGreen,
 	yellowBus,
+	stopSign,
 	// AUTO-EPISODIOS (não apague esta linha)
 ];

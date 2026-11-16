@@ -11,7 +11,7 @@ Nunca repita um tema já marcado.
 - [x] 2026-11-14 · round-windows · Why airplane windows are round (feito à mão)
 - [ ] The tiny hole in airplane windows (breather hole balances pressure between panes)
 - [x] 2026-11-16 · yellow-bus · Why school buses are yellow (feito à mão)
-- [ ] Why stop signs are octagons (1920s US: more sides = more danger; shape recognizable from behind)
+- [x] 2026-11-16 · stop-sign · Why stop signs are octagons (feito à mão)
 - [ ] Why golf balls have dimples (turbulent boundary layer, less drag, flies about twice as far)
 - [ ] Why many buildings skip the 13th floor (triskaidekaphobia; the floor still exists)
 - [ ] Why jeans have a tiny pocket (originally for pocket watches)
