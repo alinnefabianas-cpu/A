@@ -16,7 +16,6 @@ Para gerar de novo: `npm install` e `npm run render`.
 - Para gerar: `npx remotion render src/index.ts Apaixonadas exportados/apaixonadas-pelo-gala.mp4`
 
 ## Créditos finais
-- `exportados/creditos-carrossel-la-pelicula.mp4` (32 s): abertura, 8 páginas de elenco com as cenas (com áudio original, nivelado) em `public/creditos/`, Câmera/Edição e FIM.
-- Nomes e cenas de cada página: `PAGINAS` em `src/Creditos.tsx`.
-- Sem música: só o áudio original de cada cena.
+- `exportados/creditos-carrossel-la-pelicula.mp4` (88 s), estilo cinema: título, os 9 vídeos da pasta do Drive em `public/creditos2/` (com o áudio original, nivelado) e os nomes subindo à direita, depois "Fim".
+- Nomes e ordem dos vídeos: `ELENCO`, `EQUIPE` e `CLIPES` em `src/Creditos.tsx`.
 - Para gerar: `npx remotion render src/index.ts Creditos exportados/creditos-carrossel-la-pelicula.mp4`
