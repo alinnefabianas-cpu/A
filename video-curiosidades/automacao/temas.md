@@ -30,7 +30,7 @@ Nunca repita um tema já marcado.
 - [ ] Why we have leap years (Earth's orbit is ~365.24 days)
 - [ ] Why "Mayday" means emergency (from French "m'aidez", "help me")
 - [x] 2026-11-15 · bluetooth · Why Bluetooth is called Bluetooth (feito à mão)
-- [ ] Why the Mona Lisa became so famous (the 1911 theft made headlines worldwide)
+- [x] 2026-11-17 · mona-lisa · Why the Mona Lisa became so famous (feito à mão)
 - [ ] Why pen caps have a hole (so air can pass if a cap is swallowed)
 - [ ] Why traffic lights use red and green (borrowed from railway signals; red is visible from far)
 - [ ] Why ships are painted red below the waterline (historic copper anti-fouling; red paint tradition)
