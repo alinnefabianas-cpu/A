@@ -1,4 +1,4 @@
-# "O Acampamento" — curta sem narração (9:16, 1080x1920, 2min27s)
+# "O Acampamento" — curta sem narração (9:16, 1080x1920, 2min24s)
 
 Montado a partir dos 101 takes brutos (Sony 4K vertical, C1683–C1789), seguindo o
 `roteiro-o-acampamento.pdf` (16 cenas). Arquivo final: `exportados/o-acampamento.mp4`.
@@ -17,7 +17,7 @@ Montado a partir dos 101 takes brutos (Sony 4K vertical, C1683–C1789), seguind
 | 9 | A menina apronta de novo | C1757 C1758 C1761 C1760 (risada) | cue marota noturna, grilos | **noite** |
 | 10 | Bom dia! | C1755 C1762 | galo, passarinhos, música alegre | **amanhecer** |
 | 11 | A descoberta | C1761 (porquinhos maquiados) C1762 (close triste, congelado) | corte seco: música para, trombone triste | dia |
-| 12 | Vira cowboy | C1764 C1768 C1769 C1771 | faroeste crescente, esporas, passos | dourado |
+| 12 | Vira cowboy | C1764 C1768 C1771 | faroeste crescente, esporas, passos | dourado |
 | 13 | A surpresa do batom | C1774 C1776 C1775 (close + ele joga o batom) | disco arranhando, música para, whoosh | dourado |
 | 14 | A hora do chá com a coelhinha | C1777 C1780 | valsa delicada, xícaras, coelhinha | pastel |
 | 15 | O plano de vingança (no balcão) | C1789 C1781 (close do menino) | suspense divertido | pastel |
