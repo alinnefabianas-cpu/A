@@ -42,7 +42,12 @@ export type Visual =
 	| 'pedra'
 	| 'rede'
 	| 'chuva'
-	| 'amanhecer';
+	| 'amanhecer'
+	| 'dopamina'
+	| 'ocitocina'
+	| 'ecg'
+	| 'neuronios'
+	| 'estudo';
 
 export type Som =
 	| 'boom'

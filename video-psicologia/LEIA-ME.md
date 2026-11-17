@@ -120,3 +120,13 @@ npx remotion render src/index.ts ApresentacaoGabi out/apresentacao.mp4
 ```
 
 Nome, profissão, @ e botão: `GABI` em `src/reels/Apresentacao.tsx`; cores em `C`. Clipes em `public/gabi/`.
+
+## Episódio 4 — "O cérebro de quem ama um narcisista"
+Roteiro em `src/episodios/cerebro.ts` (rótulo "MECANISMO"), narração em `public/voz-cerebro/`.
+Animações novas: `dopamina`, `ocitocina`, `ecg`, `neuronios`, `estudo`.
+
+```bash
+npx tsx scripts/falas.ts cerebro && python3 scripts/medir-voz.py cerebro && npx tsx scripts/gerar-srt.ts cerebro
+npx remotion render src/index.ts Cerebro out/cerebro.mp4
+npx remotion still src/index.ts ThumbCerebro out/thumbnail-cerebro.png
+```

@@ -3,12 +3,15 @@ import {writeFileSync} from 'node:fs';
 import {LINHA_NARCISISTA, SINAIS} from '../src/episodios/narcisista';
 import {ATRASO_VOZ, FPS, LINHA_DO_TEMPO, TATICAS} from '../src/roteiro';
 import {LINHA_LIBERDADE, PASSOS, FALA_TITULO} from '../src/episodios/liberdade';
+import * as CER from '../src/episodios/cerebro';
 
 // Uso: npx tsx scripts/gerar-srt.ts [narcisista|taticas]
 const ep = process.argv[2] || 'narcisista';
 const [linha, nomes, op, saida] =
 	ep === 'taticas'
 		? [LINHA_DO_TEMPO, TATICAS, {rotulo: 'Tática', titulo: 'Sete táticas de manipulação… que você nem percebe.'}, 'exportados/7-taticas-legendas-pt-BR.srt']
+		: ep === 'cerebro'
+			? [CER.LINHA_CEREBRO, CER.MECANISMOS, {rotulo: 'Mecanismo', titulo: CER.FALA_TITULO}, 'exportados/cerebro-legendas-pt-BR.srt']
 		: ep === 'liberdade'
 			? [LINHA_LIBERDADE, PASSOS, {rotulo: 'Passo', titulo: FALA_TITULO}, 'exportados/liberdade-legendas-pt-BR.srt']
 			: [LINHA_NARCISISTA, SINAIS, undefined, 'exportados/narcisista-legendas-pt-BR.srt'];

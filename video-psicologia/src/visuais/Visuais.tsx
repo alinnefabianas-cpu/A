@@ -1245,7 +1245,170 @@ const Amanhecer: React.FC<P> = ({f, dur}) => {
 	);
 };
 
+
+// ───────── episódio 4: cérebro ─────────
+
+// Molécula estilizada (anel hexagonal + cadeia) com rótulo; pulsos de "disparo"
+const Molecula: React.FC<P & {nome: string; formula: string; cor: string; cadeia: number}> = ({f, nome, formula, cor, cadeia}) => {
+	const hex = (cx: number, cy: number, r: number) =>
+		Array.from({length: 6})
+			.map((_, i) => {
+				const a = (Math.PI / 3) * i - Math.PI / 2;
+				return `${i ? 'L' : 'M'}${cx + Math.cos(a) * r} ${cy + Math.sin(a) * r}`;
+			})
+			.join(' ') + ' Z';
+	const rot = f * 0.15;
+	const r = 110;
+	const p = prog(f, 0, 40);
+	const nos = [
+		{x: CX - 150, y: CY - 40},
+		...Array.from({length: cadeia}).map((_, i) => ({x: CX - 150 + r * 1.7 + i * 120, y: CY - 40 + (i % 2 ? 70 : -10)})),
+	];
+	const pulso = (f % 45) / 45;
+	return (
+		<Svg>
+			<circle cx={CX} cy={CY - 40} r={460} fill="url(#halo)" opacity={0.25 + 0.2 * Math.sin(f / 10)} />
+			<g transform={`rotate(${rot} ${CX} ${CY - 40})`}>
+				<path d={hex(nos[0].x, nos[0].y, r)} fill="none" stroke={cor} strokeWidth={5} filter="url(#brilho)" {...desenho(p)} />
+				<path d={hex(nos[0].x, nos[0].y, r * 0.7)} fill="none" stroke={cor} strokeOpacity={0.5} strokeWidth={3} strokeDasharray="10 12" />
+				{nos.slice(1).map((n, i) => {
+					const a = i === 0 ? {x: nos[0].x + r, y: nos[0].y} : nos[i];
+					return (
+						<g key={i} opacity={prog(f, 15 + i * 6, 30 + i * 6)}>
+							<line x1={a.x} y1={a.y} x2={n.x} y2={n.y} stroke={COR.creme} strokeWidth={4} />
+							<circle cx={n.x} cy={n.y} r={20} fill="#0d0b0b" stroke={cor} strokeWidth={4} />
+						</g>
+					);
+				})}
+				<circle cx={nos[0].x} cy={nos[0].y} r={r * (1 + pulso * 1.6)} fill="none" stroke={cor} strokeWidth={3} opacity={(1 - pulso) * 0.6} />
+			</g>
+			<text x={CX} y={CY + 250} textAnchor="middle" fontFamily={FONTE.titulo} fontWeight={700} fontSize={90} letterSpacing={14} fill={cor} opacity={prog(f, 20, 40)} filter="url(#brilho)">
+				{nome}
+			</text>
+			<Rotulo x={CX} y={CY + 300} t={formula} f={f} atraso={30} anchor="middle" />
+		</Svg>
+	);
+};
+const Dopamina: React.FC<P> = (p) => <Molecula {...p} nome="DOPAMINA" formula="C₈H₁₁NO₂ — RECOMPENSA E DESEJO" cor={COR.vermelho} cadeia={3} />;
+const Ocitocina: React.FC<P> = (p) => <Molecula {...p} nome="OCITOCINA" formula="O HORMÔNIO DO VÍNCULO" cor={COR.ouro} cadeia={5} />;
+
+// Monitor cardíaco: batimento acelerando (estresse)
+const Ecg: React.FC<P> = ({f}) => {
+	const x0 = 160;
+	const larg = W - 320;
+	const base = CY;
+	const bpm = Math.round(interpolate(f, [0, 150], [72, 128], {extrapolateRight: 'clamp'}));
+	const periodo = interpolate(f, [0, 150], [220, 120], {extrapolateRight: 'clamp'});
+	const cursor = (f * 14) % larg;
+	let d = '';
+	for (let x = 0; x <= larg; x += 4) {
+		const t = (x + f * 14) % periodo;
+		let y = 0;
+		if (t > 40 && t < 50) y = -30;
+		else if (t >= 60 && t < 66) y = 40;
+		else if (t >= 66 && t < 74) y = -220;
+		else if (t >= 74 && t < 82) y = 80;
+		else if (t > 110 && t < 140) y = -40 * Math.sin(((t - 110) / 30) * Math.PI);
+		d += `${x ? 'L' : 'M'}${x0 + x} ${base + y}`;
+	}
+	return (
+		<Svg>
+			<Grade f={f} op={0.06} />
+			<clipPath id="ecgClip">
+				<rect x={x0} y={0} width={cursor} height={H} />
+			</clipPath>
+			<path d={d} fill="none" stroke={COR.vermelho} strokeOpacity={0.18} strokeWidth={3} />
+			<path d={d} fill="none" stroke={COR.vermelho} strokeWidth={4} filter="url(#brilho)" clipPath="url(#ecgClip)" />
+			<circle cx={x0 + cursor} cy={base} r={8} fill="#fff" filter="url(#brilhoForte)" />
+			<text x={W - 170} y={180} textAnchor="end" fontFamily={FONTE.titulo} fontWeight={700} fontSize={110} fill={COR.creme}>
+				{bpm}
+			</text>
+			<Rotulo x={W - 170} y={220} t="BPM" f={f} anchor="end" cor={COR.vermelho} />
+			<Rotulo x={170} y={180} t="CORTISOL ▲" f={f} atraso={10} cor={COR.vermelho} />
+		</Svg>
+	);
+};
+
+// Neurônios: conexões antigas se apagam e novas crescem
+const Neuronios: React.FC<P> = ({f}) => {
+	const n = 14;
+	const pts = Array.from({length: n}).map((_, i) => ({
+		x: 300 + random('nx' + i) * (W - 600),
+		y: 180 + random('ny' + i) * (H - 460),
+	}));
+	const ligacoes: [number, number, boolean][] = [];
+	for (let i = 0; i < n; i++)
+		for (let j = i + 1; j < n; j++) {
+			const dx = pts[i].x - pts[j].x;
+			const dy = pts[i].y - pts[j].y;
+			if (Math.hypot(dx, dy) < 420) ligacoes.push([i, j, random(`lv${i}-${j}`) > 0.5]);
+		}
+	return (
+		<Svg>
+			{ligacoes.map(([i, j, nova], k) => {
+				const a = pts[i];
+				const b = pts[j];
+				const p = nova ? prog(f, 20 + k * 2, 60 + k * 2) : 1;
+				const op = nova ? 0.9 : interpolate(f, [10, 90], [0.6, 0.08], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+				const mx = (a.x + b.x) / 2 + (random('cv' + k) - 0.5) * 120;
+				const my = (a.y + b.y) / 2 + (random('cw' + k) - 0.5) * 120;
+				const t = ((f / 30 + random('ct' + k)) % 1);
+				const px = (1 - t) * (1 - t) * a.x + 2 * (1 - t) * t * mx + t * t * b.x;
+				const py = (1 - t) * (1 - t) * a.y + 2 * (1 - t) * t * my + t * t * b.y;
+				return (
+					<g key={k}>
+						<path d={`M${a.x} ${a.y} Q${mx} ${my} ${b.x} ${b.y}`} fill="none" stroke={nova ? COR.ouro : COR.vermelho} strokeWidth={nova ? 3 : 2} opacity={op} {...desenho(p)} filter={nova ? 'url(#brilho)' : undefined} />
+						{nova && p > 0.95 && <circle cx={px} cy={py} r={5} fill="#fff1d6" filter="url(#brilho)" />}
+					</g>
+				);
+			})}
+			{pts.map((q, i) => (
+				<g key={i}>
+					<circle cx={q.x} cy={q.y} r={18 + 4 * Math.sin(f / 8 + i)} fill="#120f0b" stroke={COR.ouro} strokeWidth={3} />
+					<circle cx={q.x} cy={q.y} r={6} fill={COR.ouro} filter="url(#brilho)" />
+				</g>
+			))}
+			<Rotulo x={CX} y={H - 300} t="CAMINHOS NOVOS SE FORMAM. OS ANTIGOS ENFRAQUECEM." f={f} atraso={40} anchor="middle" />
+		</Svg>
+	);
+};
+
+
+// Folha de estudo científico (genérica): título, gráfico de barras e carimbo
+const Estudo: React.FC<P> = ({f}) => {
+	const x0 = CX - 360;
+	const y0 = CY - 360;
+	const barras = [0.35, 0.55, 0.42, 0.9, 0.62];
+	return (
+		<Svg>
+			<Grade f={f} op={0.05} />
+			<g transform={`rotate(-3 ${CX} ${CY})`}>
+				<rect x={x0} y={y0} width={720} height={720} fill="#14110f" stroke={COR.creme} strokeWidth={2} {...desenho(prog(f, 0, 25))} />
+				{[0, 1, 2].map((i) => (
+					<rect key={i} x={x0 + 50} y={y0 + 60 + i * 34} width={(i === 0 ? 520 : 600 - i * 120) * prog(f, 10 + i * 5, 30 + i * 5)} height={14} rx={7} fill={i === 0 ? COR.creme : COR.cinza} opacity={i === 0 ? 0.8 : 0.4} />
+				))}
+				<line x1={x0 + 70} y1={y0 + 620} x2={x0 + 650} y2={y0 + 620} stroke={COR.creme} strokeOpacity={0.6} strokeWidth={2} />
+				{barras.map((v, i) => {
+					const h = 360 * v * prog(f, 25 + i * 6, 50 + i * 6);
+					return <rect key={i} x={x0 + 110 + i * 105} y={y0 + 620 - h} width={60} height={h} fill={i === 3 ? COR.vermelho : COR.creme} opacity={i === 3 ? 1 : 0.35} filter={i === 3 ? 'url(#brilho)' : undefined} />;
+				})}
+				<g transform={`translate(${x0 + 560} ${y0 + 200}) rotate(-14) scale(${interpolate(prog(f, 55, 65), [0, 1], [1.6, 1])})`} opacity={prog(f, 55, 62)}>
+					<rect x={-110} y={-36} width={220} height={72} rx={8} fill="none" stroke={COR.vermelho} strokeWidth={5} />
+					<text x={0} y={14} textAnchor="middle" fontFamily={FONTE.ui} fontWeight={600} fontSize={34} letterSpacing={6} fill={COR.vermelho}>
+						ESTUDO
+					</text>
+				</g>
+			</g>
+		</Svg>
+	);
+};
+
 const MAPA: Record<Visual, React.FC<P>> = {
+	estudo: Estudo,
+	dopamina: Dopamina,
+	ocitocina: Ocitocina,
+	ecg: Ecg,
+	neuronios: Neuronios,
 	gaiola: Gaiola,
 	pedra: Pedra,
 	rede: Rede,

@@ -276,6 +276,8 @@ export const CartaoTatica: React.FC<{numero: number; nome: string; visual: Param
 						letterSpacing: esp,
 						textAlign: 'center',
 						padding: '0 40px',
+						maxWidth: 1700,
+						lineHeight: 1.15,
 						color: COR.creme,
 						textTransform: 'uppercase',
 						opacity: nomeP,
@@ -358,6 +360,7 @@ export const Citacao: React.FC<{texto: string; autor: string; f: number; dur: nu
 // ───────── Recapitulação das 7 táticas ─────────
 export const Lista: React.FC<{f: number; dur: number; marcas?: number[]}> = ({f, dur, marcas}) => {
 	const {nomes} = useEpisodio();
+	const longo = Math.max(...nomes.map((n) => n.length)) > 28;
 	const vis = fadeIO(f, dur, 6, 14);
 	return (
 		<AbsoluteFill style={{opacity: vis, alignItems: 'center', justifyContent: 'center'}}>
@@ -369,12 +372,12 @@ export const Lista: React.FC<{f: number; dur: number; marcas?: number[]}> = ({f,
 					const atual = f >= ini && f < prox;
 					return (
 						<div key={t} style={{display: 'flex', alignItems: 'baseline', gap: 36, opacity: p * (atual ? 1 : 0.45), transform: `translateX(${(1 - p) * -80}px)`}}>
-							<span style={{fontFamily: FONTE.titulo, fontWeight: 900, fontSize: 64, color: COR.vermelho, width: 110, textAlign: 'right'}}>{String(i + 1).padStart(2, '0')}</span>
+							<span style={{fontFamily: FONTE.titulo, fontWeight: 900, fontSize: longo ? 50 : 64, color: COR.vermelho, width: 110, textAlign: 'right'}}>{String(i + 1).padStart(2, '0')}</span>
 							<span
 								style={{
 									fontFamily: FONTE.titulo,
 									fontWeight: 700,
-									fontSize: 64,
+									fontSize: longo ? 50 : 64,
 									letterSpacing: 8,
 									color: COR.creme,
 									textTransform: 'uppercase',

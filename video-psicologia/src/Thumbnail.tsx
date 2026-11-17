@@ -5,7 +5,7 @@ import {BUSTO} from './visuais/Visuais';
 
 // Thumbnail 1280x720: silhueta controlada por fios + frase curta de alto contraste
 type Linha = [string, string, number?];
-export type PropsThumb = {tag?: string; linhas?: Linha[]; figura?: 'marionete' | 'coroa' | 'gaiola'};
+export type PropsThumb = {tag?: string; linhas?: Linha[]; figura?: 'marionete' | 'coroa' | 'gaiola' | 'cerebro'};
 const PADRAO: Linha[] = [
 	['ELE', COR.creme],
 	['SABE', COR.vermelho, 150],
@@ -55,7 +55,7 @@ export const Thumbnail: React.FC<PropsThumb> = ({tag = '7 TÁTICAS', linhas = PA
 				{figura === 'gaiola' && <circle cx={hx + 380} cy={hy} r={330} fill="#fff1d6" opacity={0.22} filter="url(#g)" />}
 				{/* silhueta */}
 				<g transform={`translate(${hx} ${hy}) scale(${s}) translate(-100 -75)`}>
-					<path d={BUSTO} fill="#030202" stroke={figura === "gaiola" ? COR.creme : COR.vermelho} strokeWidth={1.4} filter="url(#g)" />
+					<path d={BUSTO} fill="#030202" stroke={figura === "gaiola" ? COR.creme : figura === "cerebro" ? COR.cinza : COR.vermelho} strokeWidth={1.4} filter="url(#g)" />
 				</g>
 				{figura === 'gaiola' && (
 					<g>
@@ -76,8 +76,24 @@ export const Thumbnail: React.FC<PropsThumb> = ({tag = '7 TÁTICAS', linhas = PA
 						/>
 					</g>
 				)}
+				{figura === 'cerebro' && (
+					<g>
+						{/* cérebro brilhando dentro da cabeça, com uma região vermelha "viciada" */}
+						<g transform={`translate(${hx} ${hy - 25}) scale(0.78)`}>
+							{[[-40, -10, 62], [30, -22, 66], [62, 22, 46], [0, 30, 58], [-62, 26, 42]].map(([x, y, r], i) => (
+								<circle key={i} cx={x} cy={y} r={r} fill="none" stroke={COR.creme} strokeOpacity={0.75} strokeWidth={3} />
+							))}
+							<circle cx={-10} cy={0} r={46} fill={COR.vermelho} opacity={0.75} filter="url(#g)" />
+							<circle cx={-10} cy={0} r={20} fill="#ffb0b0" opacity={0.9} filter="url(#g)" />
+						</g>
+						{/* fios ligando a região a um celular */}
+						<path d={`M${hx - 8} ${hy - 25} C${hx + 140} ${hy - 120} ${hx + 200} ${hy + 20} ${hx + 225} ${hy + 90}`} fill="none" stroke={COR.vermelho} strokeWidth={4} strokeDasharray="10 10" filter="url(#g)" />
+						<rect x={hx + 190} y={hy + 90} width={90} height={160} rx={14} fill="#0a0808" stroke={COR.creme} strokeWidth={3} />
+						<circle cx={hx + 265} cy={hy + 100} r={16} fill={COR.vermelho} filter="url(#g)" />
+					</g>
+				)}
 				{/* olhos */}
-				<g filter="url(#g)" opacity={figura === 'gaiola' ? 0 : 1}>
+				<g filter="url(#g)" opacity={figura === 'gaiola' || figura === 'cerebro' ? 0 : 1}>
 					<ellipse cx={hx - 46} cy={hy - 5} rx={16} ry={6} fill="#ff3b3b" />
 					<ellipse cx={hx + 46} cy={hy - 5} rx={16} ry={6} fill="#ff3b3b" />
 				</g>
