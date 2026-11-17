@@ -11,6 +11,7 @@ import libertyGreen from './liberty-green/Episodio';
 import yellowBus from './yellow-bus/Episodio';
 import stopSign from './stop-sign/Episodio';
 import monaLisa from './mona-lisa/Episodio';
+import ketchup from './ketchup/Episodio';
 
 export const EPISODIOS: DefEpisodio[] = [
 	emuWar,
@@ -23,5 +24,6 @@ export const EPISODIOS: DefEpisodio[] = [
 	yellowBus,
 	stopSign,
 	monaLisa,
+	ketchup,
 	// AUTO-EPISODIOS (não apague esta linha)
 ];

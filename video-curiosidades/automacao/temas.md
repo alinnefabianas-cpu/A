@@ -19,7 +19,7 @@ Nunca repita um tema já marcado.
 - [ ] Why carrots are orange (Dutch growers in the 1600s; the "tribute to William of Orange" is a myth)
 - [ ] Why the Eiffel Tower grows in summer (metal expands; up to about 15 cm taller)
 - [ ] Why honey basically never spoils (low water, acidic, hydrogen peroxide)
-- [ ] Why ketchup was once sold as medicine (1830s "tomato pills")
+- [x] 2026-11-17 · ketchup · Why ketchup was once sold as medicine (feito à mão)
 - [ ] Why flamingos are pink (pigments from their food; born grey)
 - [ ] Why the Leaning Tower of Pisa leans (soft soil; started tilting during construction)
 - [x] 2026-11-14 · emu-war · The Great Emu War (feito à mão)
