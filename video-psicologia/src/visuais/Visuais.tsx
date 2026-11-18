@@ -1403,7 +1403,147 @@ const Estudo: React.FC<P> = ({f}) => {
 	);
 };
 
+
+// ───────── episódio 5: tipos de manipulador ─────────
+
+// Tríade Sombria: três círculos que se sobrepõem, centro vermelho
+const Triade: React.FC<P> = ({f}) => {
+	const r = 230;
+	const c = [
+		{x: CX, y: CY - 150, t: 'NARCISISMO'},
+		{x: CX - 170, y: CY + 120, t: 'MAQUIAVELISMO'},
+		{x: CX + 170, y: CY + 120, t: 'PSICOPATIA'},
+	];
+	const rot = Math.sin(f / 60) * 4;
+	return (
+		<Svg>
+			<g transform={`rotate(${rot} ${CX} ${CY})`}>
+				{c.map((k, i) => (
+					<g key={i} opacity={prog(f, i * 8, 25 + i * 8)}>
+						<circle cx={k.x} cy={k.y} r={r} fill={COR.vermelho} fillOpacity={0.07} stroke={COR.creme} strokeWidth={3} {...desenho(prog(f, i * 8, 35 + i * 8))} />
+						<text x={k.x + (k.x - CX) * 0.6} y={k.y + (k.y - CY) * 0.6 + (i === 0 ? -40 : 60)} textAnchor="middle" fontFamily={FONTE.titulo} fontWeight={700} fontSize={34} letterSpacing={6} fill={COR.creme}>
+							{k.t}
+						</text>
+					</g>
+				))}
+				<circle cx={CX} cy={CY + 30} r={60 + 8 * Math.sin(f / 6)} fill={COR.vermelho} opacity={0.75 * prog(f, 40, 60)} filter="url(#brilhoForte)" />
+			</g>
+			<Rotulo x={CX} y={CY + 470} t="TRÍADE SOMBRIA — PAULHUS & WILLIAMS, 2002" f={f} atraso={30} anchor="middle" />
+		</Svg>
+	);
+};
+
+// Rastreador: mapa com um ponto sendo seguido, notificações de vigilância
+const Rastreador: React.FC<P> = ({f}) => {
+	const x0 = CX - 520;
+	const y0 = CY - 320;
+	const ruas = [
+		'M0 120 L1040 160', 'M0 380 L1040 330', 'M0 560 L1040 600',
+		'M180 0 L240 640', 'M520 0 L470 640', 'M820 0 L880 640',
+	];
+	const t = (f % 180) / 180;
+	const px = x0 + 240 + t * 560;
+	const py = y0 + 360 - Math.sin(t * Math.PI) * 120;
+	const msgs = ['Onde você está?', 'Quem está aí com você?', 'Visto por último: 22:41'];
+	return (
+		<Svg>
+			<rect x={x0} y={y0} width={1040} height={640} rx={20} fill="#0e0d0c" stroke={COR.escuro} strokeWidth={3} />
+			<g transform={`translate(${x0} ${y0})`} stroke={COR.creme} strokeOpacity={0.12} strokeWidth={14} fill="none">
+				{ruas.map((d, i) => <path key={i} d={d} {...desenho(prog(f, i * 3, 25 + i * 3))} />)}
+			</g>
+			<path d={`M${x0 + 240} ${y0 + 360} Q${x0 + 520} ${y0 + 120} ${px} ${py}`} fill="none" stroke={COR.vermelho} strokeWidth={3} strokeDasharray="10 10" opacity={0.7} />
+			{[0, 1, 2].map((k) => {
+				const q = ((f + k * 20) % 60) / 60;
+				return <circle key={k} cx={px} cy={py} r={20 + q * 90} fill="none" stroke={COR.vermelho} strokeWidth={3} opacity={1 - q} />;
+			})}
+			<path d={`M${px} ${py} m-24 -40 a24 24 0 1 1 48 0 c0 22 -24 46 -24 46 c0 0 -24 -24 -24 -46 z`} fill={COR.vermelho} filter="url(#brilho)" />
+			{msgs.map((m, i) => {
+				const a = prog(f, 25 + i * 22, 35 + i * 22);
+				return (
+					<g key={i} opacity={a} transform={`translate(${(1 - a) * 40} 0)`}>
+						<rect x={x0 + 1080} y={y0 + 40 + i * 110} width={380} height={80} rx={16} fill="#1a1716" stroke={i === 2 ? COR.vermelho : COR.escuro} strokeWidth={2} />
+						<text x={x0 + 1104} y={y0 + 90 + i * 110} fill={i === 2 ? COR.vermelho : COR.creme} fontFamily={FONTE.ui} fontSize={26}>
+							{m}
+						</text>
+					</g>
+				);
+			})}
+		</Svg>
+	);
+};
+
+// Recibo: lista de favores que vira conta a pagar
+const ITENS_RECIBO = ['Te busquei no trabalho', 'Paguei o jantar', 'Ouvi seus problemas', 'Te emprestei dinheiro', 'Fiquei do seu lado'];
+const Recibo: React.FC<P> = ({f}) => {
+	const x0 = CX - 260;
+	const y0 = 120;
+	const n = Math.min(ITENS_RECIBO.length, Math.floor(f / 14) + 1);
+	const alto = 200 + n * 78 + 160;
+	return (
+		<Svg>
+			<path d={`M${x0} ${y0} L${x0 + 520} ${y0} L${x0 + 520} ${y0 + alto} ${Array.from({length: 13}).map((_, i) => `L${x0 + 520 - i * 40 - 20} ${y0 + alto + (i % 2 ? 0 : 18)}`).join(' ')} L${x0} ${y0 + alto} Z`} fill="#e9e2d4" opacity={0.95} />
+			<text x={CX} y={y0 + 80} textAnchor="middle" fontFamily={FONTE.ui} fontWeight={600} fontSize={34} letterSpacing={8} fill="#1a1716">
+				RECIBO
+			</text>
+			<line x1={x0 + 40} y1={y0 + 120} x2={x0 + 480} y2={y0 + 120} stroke="#1a1716" strokeDasharray="6 8" strokeWidth={2} />
+			{ITENS_RECIBO.slice(0, n).map((t, i) => (
+				<g key={i} opacity={prog(f, i * 14, i * 14 + 8)}>
+					<text x={x0 + 40} y={y0 + 190 + i * 78} fontFamily={FONTE.texto} fontStyle="italic" fontSize={30} fill="#1a1716">
+						{t}
+					</text>
+					<text x={x0 + 480} y={y0 + 190 + i * 78} textAnchor="end" fontFamily={FONTE.ui} fontSize={28} fill="#1a1716">
+						1x
+					</text>
+				</g>
+			))}
+			<line x1={x0 + 40} y1={y0 + alto - 120} x2={x0 + 480} y2={y0 + alto - 120} stroke="#1a1716" strokeWidth={2} />
+			<text x={x0 + 40} y={y0 + alto - 60} fontFamily={FONTE.ui} fontWeight={600} fontSize={32} fill={COR.vermelhoEscuro}>
+				TOTAL:
+			</text>
+			<text x={x0 + 480} y={y0 + alto - 60} textAnchor="end" fontFamily={FONTE.titulo} fontWeight={700} fontSize={40} fill={COR.vermelho} opacity={prog(f, 70, 80)}>
+				SUA LIBERDADE
+			</text>
+		</Svg>
+	);
+};
+
+// Máscaras: um rosto vazio com várias máscaras girando ao redor
+const Mascaras: React.FC<P> = ({f}) => {
+	const n = 5;
+	const R = 380;
+	const giro = f * 0.6;
+	const exprs = ['M-40 40 Q0 70 40 40', 'M-40 55 Q0 25 40 55', 'M-40 45 L40 45', 'M-40 40 Q0 80 40 40', 'M-30 50 Q0 30 30 50'];
+	return (
+		<Svg>
+			<circle cx={CX} cy={CY} r={500} fill="url(#halo)" opacity={0.25} />
+			<g transform={`translate(${CX} ${CY + 60}) scale(1.1) translate(-100 -140)`}>
+				<path d={BUSTO} fill="#060505" stroke={COR.cinza} strokeWidth={2} />
+			</g>
+			{Array.from({length: n}).map((_, i) => {
+				const a = ((giro + (i * 360) / n) * Math.PI) / 180;
+				const x = CX + Math.cos(a) * R;
+				const y = CY - 20 + Math.sin(a) * R * 0.45;
+				const z = (Math.sin(a) + 1) / 2;
+				const s = 0.55 + z * 0.45;
+				const destaque = i === 2;
+				return (
+					<g key={i} transform={`translate(${x} ${y}) scale(${s})`} opacity={(0.35 + z * 0.65) * prog(f, i * 6, 20 + i * 6)}>
+						<path d="M0 -130 C 90 -130 115 -60 110 0 C 105 70 60 135 0 140 C -60 135 -105 70 -110 0 C -115 -60 -90 -130 0 -130 Z" fill={destaque ? '#2a0a0d' : '#d8d1c3'} stroke={destaque ? COR.vermelho : COR.creme} strokeWidth={4} filter={destaque ? 'url(#brilho)' : undefined} />
+						<ellipse cx={-40} cy={-20} rx={22} ry={11} fill="#050505" />
+						<ellipse cx={40} cy={-20} rx={22} ry={11} fill="#050505" />
+						<path d={exprs[i]} fill="none" stroke={destaque ? COR.vermelho : '#3a3430'} strokeWidth={6} strokeLinecap="round" />
+					</g>
+				);
+			})}
+		</Svg>
+	);
+};
+
 const MAPA: Record<Visual, React.FC<P>> = {
+	triade: Triade,
+	rastreador: Rastreador,
+	recibo: Recibo,
+	mascaras: Mascaras,
 	estudo: Estudo,
 	dopamina: Dopamina,
 	ocitocina: Ocitocina,

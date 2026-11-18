@@ -4,12 +4,15 @@ import {ROTEIRO_NARCISISTA, SINAIS} from '../src/episodios/narcisista';
 import {ROTEIRO, TATICAS} from '../src/roteiro';
 import {ROTEIRO_LIBERDADE, PASSOS, FALA_TITULO} from '../src/episodios/liberdade';
 import * as CER from '../src/episodios/cerebro';
+import * as TIP from '../src/episodios/tipos';
 import {falaDoBloco} from '../src/narracao';
 
 const ep = process.argv[2] || 'narcisista';
 const [roteiro, nomes, op] =
 	ep === 'taticas'
 		? [ROTEIRO, TATICAS, {rotulo: 'Tática', titulo: 'Sete táticas de manipulação… que você nem percebe.'}]
+		: ep === 'tipos'
+			? [TIP.ROTEIRO_TIPOS, TIP.TIPOS, {rotulo: 'Tipo', titulo: TIP.FALA_TITULO}]
 		: ep === 'cerebro'
 			? [CER.ROTEIRO_CEREBRO, CER.MECANISMOS, {rotulo: 'Mecanismo', titulo: CER.FALA_TITULO}]
 		: ep === 'liberdade'

@@ -5,7 +5,7 @@ import {BUSTO} from './visuais/Visuais';
 
 // Thumbnail 1280x720: silhueta controlada por fios + frase curta de alto contraste
 type Linha = [string, string, number?];
-export type PropsThumb = {tag?: string; linhas?: Linha[]; figura?: 'marionete' | 'coroa' | 'gaiola' | 'cerebro'};
+export type PropsThumb = {tag?: string; linhas?: Linha[]; figura?: 'marionete' | 'coroa' | 'gaiola' | 'cerebro' | 'mascaras'};
 const PADRAO: Linha[] = [
 	['ELE', COR.creme],
 	['SABE', COR.vermelho, 150],
@@ -90,6 +90,18 @@ export const Thumbnail: React.FC<PropsThumb> = ({tag = '7 TÁTICAS', linhas = PA
 						<path d={`M${hx - 8} ${hy - 25} C${hx + 140} ${hy - 120} ${hx + 200} ${hy + 20} ${hx + 225} ${hy + 90}`} fill="none" stroke={COR.vermelho} strokeWidth={4} strokeDasharray="10 10" filter="url(#g)" />
 						<rect x={hx + 190} y={hy + 90} width={90} height={160} rx={14} fill="#0a0808" stroke={COR.creme} strokeWidth={3} />
 						<circle cx={hx + 265} cy={hy + 100} r={16} fill={COR.vermelho} filter="url(#g)" />
+					</g>
+				)}
+				{figura === 'mascaras' && (
+					<g>
+						{[[-215, -110, 0.48, false], [-100, -205, 0.52, false], [115, -205, 0.52, true], [230, -110, 0.48, false]].map(([dx, dy, sc, red], i) => (
+							<g key={i} transform={`translate(${hx + (dx as number)} ${hy + (dy as number)}) scale(${sc}) rotate(${(dx as number) / 18})`}>
+								<path d="M0 -130 C 90 -130 115 -60 110 0 C 105 70 60 135 0 140 C -60 135 -105 70 -110 0 C -115 -60 -90 -130 0 -130 Z" fill={red ? '#2a0a0d' : '#d8d1c3'} stroke={red ? COR.vermelho : COR.creme} strokeWidth={5} filter={red ? 'url(#g)' : undefined} />
+								<ellipse cx={-40} cy={-20} rx={22} ry={11} fill="#050505" />
+								<ellipse cx={40} cy={-20} rx={22} ry={11} fill="#050505" />
+								<path d={red ? 'M-40 40 Q0 75 40 40' : 'M-35 50 L35 50'} fill="none" stroke={red ? COR.vermelho : '#3a3430'} strokeWidth={7} strokeLinecap="round" />
+							</g>
+						))}
 					</g>
 				)}
 				{/* olhos */}

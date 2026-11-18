@@ -47,7 +47,11 @@ export type Visual =
 	| 'ocitocina'
 	| 'ecg'
 	| 'neuronios'
-	| 'estudo';
+	| 'estudo'
+	| 'triade'
+	| 'rastreador'
+	| 'recibo'
+	| 'mascaras';
 
 export type Som =
 	| 'boom'
