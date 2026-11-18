@@ -29,11 +29,11 @@ const Seta: React.FC<{x: number; y: number; dir: 'cima' | 'baixo' | 'esq' | 'dir
 // ============================================================
 export const Gancho: Cena = ({b}) => {
 	const f = useCurrentFrame();
-	const t20 = em(b, 'vigésimo');
-	const t7 = em(b, 'sétimo');
-	const tM = em(b, 'menos');
-	const tBug = em(b, 'bug');
-	const tEx = em(b, 'explicação');
+	const t20 = em(b, 'twentieth');
+	const t7 = em(b, 'seventh');
+	const tM = em(b, 'less');
+	const tBug = em(b, 'glitch');
+	const tEx = em(b, 'explanation');
 	const base = 860;
 	const ah = 34;
 	const yAndar = (n: number) => base - n * ah;
@@ -51,21 +51,21 @@ export const Gancho: Cena = ({b}) => {
 				{f >= t20 && (
 					<>
 						<rect x={560} y={yAndar(20)} width={330} height={ah} fill="none" stroke={COR.azul} strokeWidth={4} />
-						<TextoPixel x={520} y={yAndar(20) + 18} texto="20º" tam={32} cor={COR.ciano} ancora="end" t={t20} />
+						<TextoPixel x={520} y={yAndar(20) + 18} texto="20TH" tam={32} cor={COR.ciano} ancora="end" t={t20} />
 						<Sprite mapa={GATO} paleta={PALETA_GATO} x={960} y={yAndar(20) - 4} px={5} />
 					</>
 				)}
 				{f >= t7 && (
 					<>
 						<rect x={560} y={yAndar(7)} width={330} height={ah} fill="none" stroke={COR.amarelo} strokeWidth={4} />
-						<TextoPixel x={520} y={yAndar(7) + 18} texto="7º" tam={32} cor={COR.amarelo} ancora="end" t={t7} />
+						<TextoPixel x={520} y={yAndar(7) + 18} texto="7TH" tam={32} cor={COR.amarelo} ancora="end" t={t7} />
 						<Sprite mapa={GATO} paleta={PALETA_GATO} x={960} y={yAndar(7) - 4} px={5} />
 					</>
 				)}
 				{f >= tM && (
 					<>
-						<Barra x={1050} y={yAndar(20) - 30} w={360} valor={0.8} rotulo="VIDA" />
-						<Barra x={1050} y={yAndar(7) - 30} w={360} valor={0.3} cor={COR.vermelho} rotulo="VIDA" />
+						<Barra x={1050} y={yAndar(20) - 30} w={360} valor={0.8} rotulo="HP" />
+						<Barra x={1050} y={yAndar(7) - 30} w={360} valor={0.3} cor={COR.vermelho} rotulo="HP" />
 					</>
 				)}
 			</g>
@@ -76,7 +76,7 @@ export const Gancho: Cena = ({b}) => {
 					))}
 				</g>
 			)}
-			<TextoPixel x={1560} y={300} texto="BUG?" tam={90} cor={COR.vermelho} t={tBug} />
+			<TextoPixel x={1560} y={300} texto="GLITCH?" tam={90} cor={COR.vermelho} t={tBug} />
 			{f >= tEx && (
 				<g transform={`translate(1560 ${grade(560 - Math.max(0, Math.sin(prog(f, tEx, tEx + 8) * Math.PI)) * 40)})`} shapeRendering="crispEdges">
 					<rect x={-60} y={-60} width={120} height={120} fill={COR.amarelo} />
@@ -95,24 +95,24 @@ export const Gancho: Cena = ({b}) => {
 // ============================================================
 export const Estudo: Cena = ({b}) => {
 	const f = useCurrentFrame();
-	const tC = em(b, 'cento');
-	const tP = em(b, 'prédios');
-	const tN = em(b, 'noventa');
+	const tC = em(b, 'hundred');
+	const tP = em(b, 'buildings');
+	const tN = em(b, 'ninety');
 	const morto = (i: number) => i % 10 === 7;
 	const vistos = Math.min(132, Math.max(0, Math.floor(((f - tC) / Math.max(1, tP - tC)) * 132)));
 	return (
 		<g>
-			<TextoPixel x={420} y={250} texto="1987" tam={120} cor={COR.ciano} t={em(b, 'mil')} />
-			<TextoPixel x={420} y={390} texto="NOVA YORK" tam={40} t={em(b, 'york')} />
+			<TextoPixel x={420} y={250} texto="1987" tam={120} cor={COR.ciano} t={em(b, 'nineteen')} />
+			<TextoPixel x={420} y={390} texto="NEW YORK" tam={40} t={em(b, 'york')} />
 			{f >= em(b, 'york') && (
 				<g shapeRendering="crispEdges">
-					{[60, 110, 80, 150, 70, 120, 95].map((h, i) => (
-						<rect key={i} x={240 + i * 52} y={grade(500 - h * prog(f, em(b, 'york') + i, em(b, 'york') + i + 8))} width={44} height={grade(h * prog(f, em(b, 'york') + i, em(b, 'york') + i + 8))} fill={COR.predio} />
+					{[40, 70, 50, 90, 45, 75, 60].map((h, i) => (
+						<rect key={i} x={240 + i * 52} y={grade(530 - h * prog(f, em(b, 'york') + i, em(b, 'york') + i + 8))} width={44} height={grade(h * prog(f, em(b, 'york') + i, em(b, 'york') + i + 8))} fill={COR.predio} />
 					))}
 				</g>
 			)}
-			{f >= tC && <TextoPixel x={420} y={600} texto={`${vistos} GATOS`} tam={44} cor={COR.amarelo} t={tC} />}
-			<TextoPixel x={420} y={730} texto="90% VIVOS" tam={48} cor={COR.verde} t={tN} />
+			{f >= tC && <TextoPixel x={420} y={600} texto={`${vistos} CATS`} tam={44} cor={COR.amarelo} t={tC} />}
+			<TextoPixel x={420} y={730} texto="90% SURVIVED" tam={48} cor={COR.verde} t={tN} />
 			{Array.from({length: 132}, (_, i) => {
 				if (i >= vistos) return null;
 				const x = 860 + (i % 12) * 84;
@@ -129,11 +129,11 @@ export const Estudo: Cena = ({b}) => {
 // ============================================================
 export const Grafico: Cena = ({b}) => {
 	const f = useCurrentFrame();
-	const tP = em(b, 'pioravam');
-	const t7 = em(b, 'sétimo');
-	const tD = em(b, 'depois');
-	const tDim = em(b, 'diminuir');
-	const tF = em(b, 'fase');
+	const tP = em(b, 'worse');
+	const t7 = em(b, 'seventh');
+	const tD = em(b, 'after');
+	const tDim = em(b, 'drop');
+	const tF = em(b, 'level');
 	const altura = (n: number) => (n <= 7 ? n / 7 : Math.max(0.35, 1 - (n - 7) * 0.09));
 	const x0 = 340;
 	const base = 800;
@@ -143,8 +143,8 @@ export const Grafico: Cena = ({b}) => {
 		<g opacity={apagado ? 0.35 : 1}>
 			<rect x={x0 - 12} y={base} width={1320} height={8} fill={COR.branco} shapeRendering="crispEdges" />
 			<rect x={x0 - 12} y={base - H - 40} width={8} height={H + 48} fill={COR.branco} shapeRendering="crispEdges" />
-			<TextoPixel x={x0 + 20} y={base - H - 70} texto="FERIMENTOS" tam={24} ancora="start" t={0} />
-			<TextoPixel x={x0 + 1300} y={base + 60} texto="ANDAR" tam={24} ancora="end" t={0} />
+			<TextoPixel x={x0 + 20} y={base - H - 70} texto="INJURIES" tam={24} ancora="start" t={0} />
+			<TextoPixel x={x0 + 1300} y={base + 60} texto="FLOOR" tam={24} ancora="end" t={0} />
 			{Array.from({length: 14}, (_, i) => {
 				const n = i + 1;
 				const t = n <= 7 ? lerp(tP, t7, (n - 1) / 6) : lerp(tD, tDim + 6, (n - 8) / 6);
@@ -161,7 +161,7 @@ export const Grafico: Cena = ({b}) => {
 					</g>
 				);
 			})}
-			<TextoPixel x={x0 + 6 * 92 + 33} y={base - H - 10} texto="PICO" tam={26} cor={COR.vermelho} t={t7} />
+			<TextoPixel x={x0 + 6 * 92 + 33} y={base - H - 10} texto="PEAK" tam={26} cor={COR.vermelho} t={t7} />
 			{apagado && null}
 		</g>
 	);
@@ -169,7 +169,7 @@ export const Grafico: Cena = ({b}) => {
 
 export const GraficoComStart: Cena = ({b}) => {
 	const f = useCurrentFrame();
-	const tF = em(b, 'fase');
+	const tF = em(b, 'level');
 	return (
 		<g>
 			<Grafico b={b} />
@@ -188,11 +188,11 @@ export const GraficoComStart: Cena = ({b}) => {
 // ============================================================
 export const Giro: Cena = ({b}) => {
 	const f = useCurrentFrame();
-	const tMeio = em(b, 'meio');
-	const tDobra = em(b, 'dobra');
-	const tFr = em(b, 'frente');
-	const tTr = em(b, 'trás');
-	const tPr = em(b, 'pronto');
+	const tMeio = em(b, 'mid');
+	const tDobra = em(b, 'bends');
+	const tFr = em(b, 'front');
+	const tTr = em(b, 'back');
+	const tPr = em(b, 'boom');
 	const px = 14;
 	const cx = 960;
 	const cy = grade(470 + Math.sin(f * 0.3) * 8);
@@ -209,12 +209,12 @@ export const Giro: Cena = ({b}) => {
 			<g transform={`rotate(${-dobra} ${cx + 5 * px} ${cy})`}>
 				<Sprite mapa={GATO} paleta={PALETA_GATO} x={cx + 5 * px} y={cy} px={px} colunas={[10, 19]} escalaY={vira(tFr)} />
 			</g>
-			<TextoPixel x={cx - 5 * px} y={cy - 160} texto="DOBRA" tam={28} cor={COR.ciano} t={tDobra} sai={tFr} />
-			<TextoPixel x={cx + 5 * px} y={cy - 160} texto="1. FRENTE" tam={28} cor={COR.amarelo} t={tFr} sai={tPr} />
-			<TextoPixel x={cx - 5 * px} y={cy + 160} texto="2. TRÁS" tam={28} cor={COR.amarelo} t={tTr} sai={tPr} />
-			<TextoPixel x={cx} y={250} texto="PERFEITO!" tam={64} cor={COR.verde} t={tPr} />
-			<Conquista t={em(b, 'patas')} texto="PATAS PRA BAIXO" />
-			<CartaoFase numero="FASE 1" nome="O GIRO" ate={tMeio - 4} />
+			<TextoPixel x={cx - 5 * px} y={cy - 160} texto="BEND" tam={28} cor={COR.ciano} t={tDobra} sai={tFr} />
+			<TextoPixel x={cx + 5 * px} y={cy - 160} texto="1. FRONT" tam={28} cor={COR.amarelo} t={tFr} sai={tPr} />
+			<TextoPixel x={cx - 5 * px} y={cy + 160} texto="2. BACK" tam={28} cor={COR.amarelo} t={tTr} sai={tPr} />
+			<TextoPixel x={cx} y={250} texto="PERFECT!" tam={64} cor={COR.verde} t={tPr} />
+			<Conquista t={em(b, 'feet')} texto="FEET DOWN" />
+			<CartaoFase numero="LEVEL 1" nome="THE TWIST" ate={tMeio - 4} />
 		</g>
 	);
 };
@@ -224,10 +224,10 @@ export const Giro: Cena = ({b}) => {
 // ============================================================
 export const Coluna: Cena = ({b}) => {
 	const f = useCurrentFrame();
-	const tCo = em(b, 'coluna');
-	const tCl = em(b, 'clavícula');
-	const tBo = em(b, 'botão');
-	const tGi = em(b, 'girar');
+	const tCo = em(b, 'spine');
+	const tCl = em(b, 'collarbone');
+	const tBo = em(b, 'button');
+	const tGi = em(b, 'spin');
 	const px = 18;
 	const cx = 860;
 	const cy = 470;
@@ -238,7 +238,7 @@ export const Coluna: Cena = ({b}) => {
 	const apertado = f >= tGi && f < tGi + 8;
 	return (
 		<g>
-			<TextoPixel x={960} y={160} texto="RAIO-X" tam={32} cor={COR.ciano} t={0} />
+			<TextoPixel x={960} y={160} texto="X-RAY" tam={32} cor={COR.ciano} t={0} />
 			<g transform={`rotate(${giro} ${cx} ${cy})`}>
 				<Sprite mapa={GATO} paleta={PALETA_RAIOX} x={cx} y={cy} px={px} />
 				{/* coluna: blocos de vértebra que ondulam */}
@@ -251,11 +251,11 @@ export const Coluna: Cena = ({b}) => {
 				{/* clavícula solta */}
 				{f >= tCl && <rect x={grade(cx - w / 2 + 14 * px)} y={grade(cy - h / 2 + 8 * px + Math.sin(f * 0.4) * 10)} width={px * 2} height={8} fill={pisca(f, 6) ? COR.amarelo : COR.ciano} shapeRendering="crispEdges" />}
 			</g>
-			<TextoPixel x={860} y={720} texto="COLUNA FLEXÍVEL" tam={34} cor={COR.ciano} t={em(b, 'flexível')} />
+			<TextoPixel x={860} y={720} texto="FLEXIBLE SPINE" tam={34} cor={COR.ciano} t={em(b, 'flexible')} />
 			{f >= tCl && (
 				<g>
 					<rect x={1110} y={grade(cy + 3 * px)} width={190} height={6} fill={COR.amarelo} shapeRendering="crispEdges" />
-					<TextoPixel x={1320} y={grade(cy + 3 * px) + 4} texto="CLAVÍCULA SOLTA" tam={26} cor={COR.amarelo} ancora="start" t={tCl} />
+					<TextoPixel x={1320} y={grade(cy + 3 * px) + 4} texto="FLOATING COLLARBONE" tam={26} cor={COR.amarelo} ancora="start" t={tCl} />
 				</g>
 			)}
 			{f >= tBo && (
@@ -267,7 +267,7 @@ export const Coluna: Cena = ({b}) => {
 						A
 					</text>
 					<text x={0} y={140} textAnchor="middle" fontFamily={FONTE.pixel} fontSize={29} fill={COR.branco}>
-						GIRAR
+						SPIN
 					</text>
 				</g>
 			)}
@@ -280,31 +280,31 @@ export const Coluna: Cena = ({b}) => {
 // ============================================================
 export const Velocidade: Cena = ({b}) => {
 	const f = useCurrentFrame();
-	const tPor = em(b, 'por');
-	const tAc = em(b, 'acelerar');
-	const tCem = em(b, 'cem');
-	const tPe = em(b, 'pessoa');
-	const tDo = em(b, 'dobro');
-	const gato = prog(f, tAc, tCem + 10) * (100 / 200);
-	const pessoa = prog(f, tPe, tDo + 15) * (195 / 200);
+	const tPor = em(b, 'because');
+	const tAc = em(b, 'speeding');
+	const tCem = em(b, 'sixty');
+	const tPe = em(b, 'person');
+	const tDo = em(b, 'double');
+	const gato = prog(f, tAc, tCem + 10) * (60 / 120);
+	const pessoa = prog(f, tPe, tDo + 15) * (117 / 120);
 	return (
 		<g>
-			<TextoPixel x={960} y={170} texto="VELOCIDADE MÁXIMA DA QUEDA" tam={30} cor={COR.ciano} t={tPor} />
+			<TextoPixel x={960} y={170} texto="TOP FALLING SPEED" tam={30} cor={COR.ciano} t={tPor} />
 			<Caixa x={420} y={250} w={330} h={70} borda={COR.ciano} />
-			<TextoPixel x={585} y={287} texto="LEVE" tam={28} t={em(b, 'leve')} />
+			<TextoPixel x={585} y={287} texto="LIGHT" tam={28} t={em(b, 'light')} />
 			<Caixa x={780} y={250} w={380} h={70} borda={COR.ciano} />
-			<TextoPixel x={970} y={287} texto="PELUDO" tam={28} t={em(b, 'peludo')} />
+			<TextoPixel x={970} y={287} texto="FLUFFY" tam={28} t={em(b, 'fluffy')} />
 			<Sprite mapa={GATO} paleta={PALETA_GATO} x={290} y={420} px={6} />
 			<Barra x={420} y={392} w={1080} h={56} valor={gato} cor={COR.azul} blocos={20} />
-			<TextoPixel x={1540} y={420} texto="100 KM/H" tam={32} cor={COR.azul} ancora="start" t={tCem} />
+			<TextoPixel x={1540} y={420} texto="60 MPH" tam={32} cor={COR.azul} ancora="start" t={tCem} />
 			{f >= tPe && (
 				<>
 					<Sprite mapa={HUMANO} paleta={PALETA_HUMANO} x={290} y={640} px={7} />
 					<Barra x={420} y={612} w={1080} h={56} valor={pessoa} cor={COR.vermelho} blocos={20} />
 				</>
 			)}
-			<TextoPixel x={1540} y={640} texto="~200 KM/H" tam={32} cor={COR.vermelho} ancora="start" t={tDo} />
-			<CartaoFase numero="FASE 2" nome="VELOCIDADE MÁXIMA" ate={tPor - 4} />
+			<TextoPixel x={1540} y={640} texto="~120 MPH" tam={32} cor={COR.vermelho} ancora="start" t={tDo} />
+			<CartaoFase numero="LEVEL 2" nome="TOP SPEED" ate={tPor - 4} />
 		</g>
 	);
 };
@@ -314,8 +314,8 @@ export const Velocidade: Cena = ({b}) => {
 // ============================================================
 export const Andares: Cena = ({b}) => {
 	const f = useCurrentFrame();
-	const t5 = Math.max(20, em(b, 'cinco') + 8);
-	const tDa = em(b, 'daqui');
+	const t5 = Math.max(20, em(b, 'five') + 8);
+	const tDa = em(b, 'from');
 	const vmax = 10 / t5; // andares por frame
 	const caiu = f < t5 ? (vmax * f * f) / (2 * t5) : 5 + vmax * (f - t5);
 	const andar = Math.max(1, Math.round(25 - caiu));
@@ -325,11 +325,11 @@ export const Andares: Cena = ({b}) => {
 			<Predio x={240} w={480} topo={96} base={900} rolagem={caiu * 96} />
 			<Vento x={760} w={420} veloc={12 + 30 * veloc} densidade={10} />
 			<Sprite mapa={GATO_PARA} paleta={PALETA_GATO} x={960} y={grade(450 + Math.sin(f * 0.25) * 6)} px={9} />
-			<TextoPixel x={1560} y={250} texto={`ANDAR ${andar}`} tam={48} t={0} />
-			<Barra x={1300} y={420} w={520} h={56} valor={veloc} cor={veloc >= 1 ? COR.amarelo : COR.azul} blocos={10} rotulo="VELOCIDADE" />
-			{veloc >= 1 && <TextoPixel x={1560} y={540} texto="MÁX" tam={44} cor={COR.amarelo} t={t5} piscando />}
-			<TextoPixel x={1560} y={660} texto="TRAVADA" tam={36} cor={COR.ciano} t={tDa} />
-			<TextoPixel x={960} y={250} texto="5 ANDARES" tam={40} cor={COR.amarelo} t={em(b, 'cinco')} />
+			<TextoPixel x={1560} y={250} texto={`FLOOR ${andar}`} tam={48} t={0} />
+			<Barra x={1300} y={420} w={520} h={56} valor={veloc} cor={veloc >= 1 ? COR.amarelo : COR.azul} blocos={10} rotulo="SPEED" />
+			{veloc >= 1 && <TextoPixel x={1560} y={540} texto="MAX" tam={44} cor={COR.amarelo} t={t5} piscando />}
+			<TextoPixel x={1560} y={660} texto="LOCKED" tam={36} cor={COR.ciano} t={tDa} />
+			<TextoPixel x={960} y={250} texto="5 FLOORS" tam={40} cor={COR.amarelo} t={em(b, 'five')} />
 		</g>
 	);
 };
@@ -339,10 +339,10 @@ export const Andares: Cena = ({b}) => {
 // ============================================================
 export const Paraquedas: Cena = ({b}) => {
 	const f = useCurrentFrame();
-	const tQ = em(b, 'quando');
-	const tAb = em(b, 'abre');
-	const tFr = em(b, 'freia');
-	const tIm = em(b, 'impacto');
+	const tQ = em(b, 'once');
+	const tAb = em(b, 'spreads');
+	const tFr = em(b, 'slows');
+	const tIm = em(b, 'impact');
 	const rol = f < tFr ? f * 30 : tFr * 30 + (f - tFr) * 14;
 	const chao = grade(lerp(1100, 760, prog(f, tIm - 12, tIm)));
 	const pousou = f >= tIm;
@@ -360,12 +360,12 @@ export const Paraquedas: Cena = ({b}) => {
 				<>
 					<Seta x={grade(960 - 200 - ((f - tIm) % 20) * 3)} y={chao - 30} dir="esq" cor={COR.amarelo} />
 					<Seta x={grade(960 + 200 + ((f - tIm) % 20) * 3)} y={chao - 30} dir="dir" cor={COR.amarelo} />
-					<TextoPixel x={960} y={250} texto="IMPACTO ESPALHADO" tam={44} cor={COR.amarelo} t={tIm} />
+					<TextoPixel x={960} y={250} texto="IMPACT SPREAD OUT" tam={44} cor={COR.amarelo} t={tIm} />
 				</>
 			)}
-			<TextoPixel x={960} y={250} texto="RELAXA..." tam={44} cor={COR.ciano} t={em(b, 'relaxa')} sai={tFr} />
-			<Conquista t={em(b, 'esquilo')} texto="MODO ESQUILO VOADOR" dur={70} />
-			<CartaoFase numero="FASE 3" nome="PARAQUEDAS" ate={tQ - 4} />
+			<TextoPixel x={960} y={250} texto="RELAX..." tam={44} cor={COR.ciano} t={em(b, 'relaxes')} sai={tFr} />
+			<Conquista t={em(b, 'squirrel')} texto="FLYING SQUIRREL MODE" dur={70} />
+			<CartaoFase numero="LEVEL 3" nome="PARACHUTE" ate={tQ - 4} />
 		</g>
 	);
 };
@@ -375,27 +375,27 @@ export const Paraquedas: Cena = ({b}) => {
 // ============================================================
 export const Comparacao: Cena = ({b}) => {
 	const f = useCurrentFrame();
-	const tC = em(b, 'curta');
-	const tL = em(b, 'longa');
+	const tC = em(b, 'short');
+	const tL = em(b, 'long');
 	const itens: [string, string][] = [
-		['VIRAR', 'virar'],
-		['RELAXAR', 'relaxar'],
-		['PLANAR', 'planar'],
+		['TWIST', 'twist'],
+		['RELAX', 'relax'],
+		['GLIDE', 'glide'],
 	];
 	return (
 		<g>
 			{f >= tC && (
 				<Caixa x={120} y={140} w={820} h={700} borda={COR.vermelho}>
-					<TextoPixel x={530} y={230} texto="QUEDA CURTA" tam={40} cor={COR.vermelho} t={tC} />
+					<TextoPixel x={530} y={230} texto="SHORT FALL" tam={40} cor={COR.vermelho} t={tC} />
 					<rect x={200} y={720} width={660} height={10} fill={COR.linha} shapeRendering="crispEdges" />
-					<Sprite mapa={GATO} paleta={PALETA_TENSO} x={530 + (f >= em(b, 'tenso') && pisca(f, 2) ? 6 : 0)} y={650} px={9} />
-					<TextoPixel x={530} y={480} texto="!!" tam={60} cor={COR.vermelho} t={em(b, 'tenso')} piscando />
-					<TextoPixel x={530} y={790} texto="TENSO" tam={32} cor={COR.vermelho} t={em(b, 'tenso')} />
+					<Sprite mapa={GATO} paleta={PALETA_TENSO} x={530 + (f >= em(b, 'tense') && pisca(f, 2) ? 6 : 0)} y={650} px={9} />
+					<TextoPixel x={530} y={480} texto="!!" tam={60} cor={COR.vermelho} t={em(b, 'tense')} piscando />
+					<TextoPixel x={530} y={790} texto="TENSE" tam={32} cor={COR.vermelho} t={em(b, 'tense')} />
 				</Caixa>
 			)}
 			{f >= tL && (
 				<Caixa x={980} y={140} w={820} h={700} borda={COR.verde}>
-					<TextoPixel x={1390} y={230} texto="QUEDA LONGA" tam={40} cor={COR.verde} t={tL} />
+					<TextoPixel x={1390} y={230} texto="LONG FALL" tam={40} cor={COR.verde} t={tL} />
 					<Sprite mapa={GATO_PARA} paleta={PALETA_GATO} x={1390} y={grade(380 + Math.sin(f * 0.2) * 10)} px={8} />
 					{itens.map(([txt, p], i) => {
 						const t = em(b, p);
@@ -421,10 +421,10 @@ export const Comparacao: Cena = ({b}) => {
 // ============================================================
 export const Chefao: Cena = ({b}) => {
 	const f = useCurrentFrame();
-	const tCh = em(b, 'chefão');
-	const tMo = em(b, 'morriam');
-	const tVe = em(b, 'veterinário');
-	const tEs = em(b, 'estudo');
+	const tCh = em(b, 'boss');
+	const tMo = em(b, 'died');
+	const tVe = em(b, 'vet');
+	const tEs = em(b, 'study');
 	const alerta = f >= tCh && f < tCh + 36;
 	const chao = 800;
 	return (
@@ -438,9 +438,9 @@ export const Chefao: Cena = ({b}) => {
 			{f >= tCh + 24 && (
 				<g>
 					<Sprite mapa={CHEFAO} paleta={PALETA_CHEFAO} x={330} y={grade(420 + Math.sin(f * 0.15) * 14)} px={14} />
-					<Barra x={150} y={620} w={360} valor={1} cor={COR.vermelho} rotulo="CHEFÃO" />
-					<TextoPixel x={330} y={720} texto="VIÉS DE" tam={24} cor={COR.vermelho} t={tCh + 24} />
-					<TextoPixel x={330} y={760} texto="SOBREVIVÊNCIA" tam={24} cor={COR.vermelho} t={tCh + 24} />
+					<Barra x={150} y={620} w={360} valor={1} cor={COR.vermelho} rotulo="BOSS" />
+					<TextoPixel x={330} y={720} texto="SURVIVORSHIP" tam={24} cor={COR.vermelho} t={tCh + 24} />
+					<TextoPixel x={330} y={760} texto="BIAS" tam={24} cor={COR.vermelho} t={tCh + 24} />
 				</g>
 			)}
 			<rect x={620} y={chao} width={1240} height={10} fill={COR.linha} shapeRendering="crispEdges" />
@@ -473,8 +473,8 @@ export const Chefao: Cena = ({b}) => {
 				})}
 			{f >= tEs && (
 				<g>
-					<TextoPixel x={1300} y={300} texto="NÃO CONTADOS" tam={26} cor={COR.cinza} t={tEs} />
-					<TextoPixel x={1660} y={chao - 400} texto="O ESTUDO SÓ VIA ESTES" tam={22} cor={COR.amarelo} t={tEs + 6} ancora="end" />
+					<TextoPixel x={1300} y={300} texto="NOT COUNTED" tam={26} cor={COR.cinza} t={tEs} />
+					<TextoPixel x={1660} y={chao - 400} texto="THE STUDY ONLY SAW THESE" tam={22} cor={COR.amarelo} t={tEs + 6} ancora="end" />
 				</g>
 			)}
 		</g>
@@ -486,27 +486,27 @@ export const Chefao: Cena = ({b}) => {
 // ============================================================
 export const Vidas: Cena = ({b}) => {
 	const f = useCurrentFrame();
-	const tVi = em(b, 'vidas');
-	const tTe = em(b, 'tela');
+	const tVi = em(b, 'lives');
+	const tTe = em(b, 'screens');
 	const tIt = em(b, 'item');
 	const card = f >= tTe;
 	return (
 		<g>
 			{!card && (
 				<g>
-					{Array.from({length: 7}, (_, i) => {
+					{Array.from({length: 9}, (_, i) => {
 						const perdeu = f >= tVi + i * 2 && i > 0;
 						const tremor = perdeu && f < tVi + i * 2 + 10 ? (pisca(f, 2) ? 8 : -8) : 0;
-						return <Sprite key={i} mapa={CORACAO} paleta={perdeu ? PALETA_CORACAO_VAZIO : PALETA_CORACAO} x={570 + i * 130 + tremor} y={340} px={14} />;
+						return <Sprite key={i} mapa={CORACAO} paleta={perdeu ? PALETA_CORACAO_VAZIO : PALETA_CORACAO} x={480 + i * 120 + tremor} y={340} px={12} />;
 					})}
-					<TextoPixel x={960} y={200} texto="7 VIDAS?" tam={48} t={0} />
+					<TextoPixel x={960} y={200} texto="9 LIVES?" tam={48} t={0} />
 					<TextoPixel x={960} y={540} texto="GAME OVER?" tam={70} cor={COR.vermelho} t={tVi + 10} />
 				</g>
 			)}
 			{card && (
 				<g>
 					<Caixa x={560} y={130} w={800} h={720} borda={COR.amarelo} />
-					<TextoPixel x={960} y={210} texto="ITEM LENDÁRIO" tam={30} cor={COR.amarelo} t={tTe} />
+					<TextoPixel x={960} y={210} texto="LEGENDARY ITEM" tam={30} cor={COR.amarelo} t={tTe} />
 					{/* janela com tela */}
 					<g shapeRendering="crispEdges">
 						<rect x={760} y={260} width={400} height={330} fill={COR.ceu2} stroke={COR.branco} strokeWidth={12} />
@@ -518,8 +518,8 @@ export const Vidas: Cena = ({b}) => {
 						))}
 					</g>
 					<Sprite mapa={GATO} paleta={PALETA_GATO} x={960} y={540} px={5} />
-					<TextoPixel x={960} y={660} texto="TELA NA JANELA" tam={38} t={tTe + 4} />
-					<TextoPixel x={960} y={760} texto="+6 VIDAS" tam={34} cor={COR.verde} t={tIt} />
+					<TextoPixel x={960} y={660} texto="WINDOW SCREENS" tam={38} t={tTe + 4} />
+					<TextoPixel x={960} y={760} texto="+8 LIVES" tam={34} cor={COR.verde} t={tIt} />
 					{[0, 1, 2, 3].map((i) =>
 						pisca(f + i * 5, 7) ? <rect key={i} x={[620, 1280, 640, 1260][i]} y={[200, 260, 700, 640][i]} width={18} height={18} fill={COR.amarelo} shapeRendering="crispEdges" /> : null,
 					)}
@@ -534,17 +534,17 @@ export const Vidas: Cena = ({b}) => {
 // ============================================================
 export const Cta: Cena = ({b}) => {
 	const f = useCurrentFrame();
-	const tNa = em(b, 'nada');
-	const tCo = em(b, 'conta');
+	const tNa = em(b, 'nothing');
+	const tCo = em(b, 'tell');
 	const x = f < tNa ? lerp(-100, 620, prog(f, 0, tNa, (v) => v)) : 620;
-	const frase = '> COMENTE AQUI';
+	const frase = '> COMMENT BELOW';
 	const letras = Math.floor(Math.max(0, f - tCo) / 2);
 	const cont = Math.max(0, 9 - Math.floor(Math.max(0, f - tCo) / 15));
 	return (
 		<g>
 			<rect x={0} y={790} width={1920} height={12} fill={COR.linha} shapeRendering="crispEdges" />
 			<Sprite mapa={f < tNa ? anda(f) : GATO} paleta={PALETA_GATO} x={x} y={738} px={8} />
-			<TextoPixel x={620} y={560} texto="COMO SE NADA..." tam={30} cor={COR.ciano} t={tNa} />
+			<TextoPixel x={620} y={560} texto="LIKE NOTHING HAPPENED..." tam={30} cor={COR.ciano} t={tNa} />
 			{f >= tCo && (
 				<g>
 					<TextoPixel x={1360} y={200} texto={`CONTINUE? ${cont}`} tam={44} cor={COR.amarelo} t={tCo} />

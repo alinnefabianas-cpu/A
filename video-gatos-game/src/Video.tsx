@@ -26,15 +26,15 @@ const SONS: Som[] = [
 	...MOMENTOS_DESTAQUE.map((m) => ({frame: m.frame, arquivo: 'moeda', volume: 0.22})),
 	...BLOCOS.map((b) => ({frame: b.inicio, arquivo: 'blip', volume: 0.25})),
 	...[3, 5, 7].map((n) => ({frame: BLOCOS[n].inicio + 2, arquivo: 'fase', volume: 0.35})),
-	{frame: g(BLOCOS[0], 'bug'), arquivo: 'glitch', volume: 0.35},
-	{frame: g(BLOCOS[3], 'pronto'), arquivo: 'powerup', volume: 0.3},
-	{frame: g(BLOCOS[4], 'girar'), arquivo: 'pulo', volume: 0.35},
+	{frame: g(BLOCOS[0], 'glitch'), arquivo: 'glitch', volume: 0.35},
+	{frame: g(BLOCOS[3], 'boom'), arquivo: 'powerup', volume: 0.3},
+	{frame: g(BLOCOS[4], 'spin'), arquivo: 'pulo', volume: 0.35},
 	{frame: BLOCOS[6].inicio, arquivo: 'queda', volume: 0.25},
-	{frame: g(BLOCOS[7], 'esquilo'), arquivo: 'powerup', volume: 0.3},
-	{frame: g(BLOCOS[7], 'impacto'), arquivo: 'pancada', volume: 0.35},
-	{frame: g(BLOCOS[9], 'chefão'), arquivo: 'alarme', volume: 0.3},
-	{frame: g(BLOCOS[10], 'vidas'), arquivo: 'dano', volume: 0.35},
-	{frame: g(BLOCOS[10], 'tela'), arquivo: 'powerup', volume: 0.3},
+	{frame: g(BLOCOS[7], 'squirrel'), arquivo: 'powerup', volume: 0.3},
+	{frame: g(BLOCOS[7], 'impact'), arquivo: 'pancada', volume: 0.35},
+	{frame: g(BLOCOS[9], 'boss'), arquivo: 'alarme', volume: 0.3},
+	{frame: g(BLOCOS[10], 'lives'), arquivo: 'dano', volume: 0.35},
+	{frame: g(BLOCOS[10], 'screens'), arquivo: 'powerup', volume: 0.3},
 ];
 
 export const Video: React.FC = () => (

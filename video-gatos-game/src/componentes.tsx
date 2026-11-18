@@ -165,18 +165,18 @@ export const HUD: React.FC = () => {
 	const f = useCurrentFrame();
 	const pontos = MOMENTOS_DESTAQUE.filter((m) => m.frame <= f).length * 100;
 	const b = [...BLOCOS].reverse().find((x) => x.inicio <= f) ?? BLOCOS[0];
-	const tPerde = quandoDisse(10, 'vidas');
-	const tGanha = quandoDisse(10, 'tela');
-	const vidas = f >= tGanha ? 7 : f >= tPerde ? 1 : 7;
+	const tPerde = quandoDisse(10, 'lives');
+	const tGanha = quandoDisse(10, 'screens');
+	const vidas = f >= tGanha ? 9 : f >= tPerde ? 1 : 9;
 	const dano = f >= tPerde && f < tPerde + 20 && pisca(f, 3);
 	return (
 		<svg width={1920} height={1080} style={{position: 'absolute', inset: 0}} shapeRendering="crispEdges">
 			<rect x={0} y={0} width={1920} height={96} fill="#000" opacity={0.55} />
 			<rect x={0} y={93} width={1920} height={3} fill={COR.linha} />
 			<text x={48} y={60} fontFamily={FONTE.pixel} fontSize={31} fill={COR.branco}>
-				VIDAS
+				LIVES
 			</text>
-			{Array.from({length: 7}, (_, i) => (
+			{Array.from({length: 9}, (_, i) => (
 				<Sprite key={i} mapa={CORACAO} paleta={i < vidas && !dano ? PALETA_CORACAO : PALETA_CORACAO_VAZIO} x={230 + i * 54} y={50} px={6} />
 			))}
 			<text x={960} y={60} textAnchor="middle" fontFamily={FONTE.pixel} fontSize={39} fill={b.n === 9 ? COR.vermelho : COR.ciano}>
@@ -271,7 +271,7 @@ export const CartaoFase: React.FC<{numero: string; nome: string; ate: number}> =
 	);
 };
 
-/** Aviso "CONQUISTA DESBLOQUEADA" que desce do canto. */
+/** Aviso "ACHIEVEMENT UNLOCKED" que desce do canto. */
 export const Conquista: React.FC<{t: number; texto: string; dur?: number}> = ({t, texto, dur = 75}) => {
 	const f = useCurrentFrame();
 	if (f < t || f > t + dur) return null;
@@ -282,7 +282,7 @@ export const Conquista: React.FC<{t: number; texto: string; dur?: number}> = ({t
 			<Caixa x={0} y={0} w={w} h={130} borda={COR.amarelo} />
 			<Sprite mapa={TROFEU} paleta={PALETA_TROFEU} x={80} y={65} px={8} />
 			<text x={150} y={52} fontFamily={FONTE.pixel} fontSize={23} fill={COR.amarelo}>
-				CONQUISTA DESBLOQUEADA
+				ACHIEVEMENT UNLOCKED
 			</text>
 			<text x={150} y={96} fontFamily={FONTE.pixel} fontSize={31} fill={COR.branco}>
 				{texto}
