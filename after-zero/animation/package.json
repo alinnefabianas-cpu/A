@@ -1,0 +1,17 @@
+{
+  "name": "after-zero-animation",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts Ep001Scene01 out/picture.mp4 --muted",
+    "still": "remotion still src/index.ts Ep001Scene01 out/frame.png"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.539",
+    "@types/react": "^19.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "4.0.539",
+    "typescript": "^5.6.0"
+  }
+}

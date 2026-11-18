@@ -5,7 +5,28 @@
 Cinematic stylized-3D story channel (English). This folder holds the production
 system and episode assets. Source of truth: *AFTER ZERO – Project Brief & Pilot Episode*.
 
-## Status
+## v2 — 100% free pipeline (current)
+
+No paid image/video generation. Every shot is drawn and animated in code with
+**Remotion** (React + SVG) in `animation/`: layered parallax skylines, fog, god
+rays, dust, birds, and one vector Noah rig (lying, sitting, walking, back view,
+profile close-up) so he looks identical in every shot.
+
+```bash
+cd animation && npm install
+npx remotion studio src/index.ts              # live preview / edit
+npx remotion render src/index.ts Ep001Scene01 out/picture.mp4 --muted \
+  --browser-executable=/opt/pw-browsers/chromium_headless_shell-1243/chrome-linux/chrome-headless-shell
+cd .. && python3 tools/assemble.py config/episode_001_poc.json \
+  --picture animation/out/picture.mp4 --out renders/after_zero_ep001_scene01_v2_animated.mp4
+```
+
+Each shot is also its own composition (`Shot-S01` … `Shot-S13`) for quick fixes.
+Narration (already generated) and the synthesized score/SFX are reused, so v2 cost **0 credits**.
+For future scenes the narration can be recorded by you or made with any TTS; the
+pipeline only needs one MP3 and the subtitle timings in the config.
+
+## Status (v1, AI-generated)
 
 | Step | Status |
 |---|---|

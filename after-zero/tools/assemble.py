@@ -181,6 +181,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("config")
     ap.add_argument("--shot", action="append", default=[], help="force re-render of shot id")
+    ap.add_argument("--picture", help="use a pre-rendered picture track (e.g. Remotion) instead of shot segments")
+    ap.add_argument("--out", help="override output file (relative to the episode folder)")
     args = ap.parse_args()
 
     cfg = json.loads(Path(args.config).read_text())
@@ -201,6 +203,8 @@ def main():
     total = t
 
     parts = []
+    if args.picture:
+        cfg["shots"] = []
     for s in cfg["shots"]:
         out = segdir / f"{s['id']}.mp4"
         if out.exists() and s["id"] not in args.shot:
@@ -218,8 +222,11 @@ def main():
                 seg_title(s, ep, out, W, H, fps, tmp, cfg)
         parts.append(out)
 
-    picture = tmp / "picture.mp4"
-    concat(parts, picture, tmp)
+    if args.picture:
+        picture = Path(args.picture).resolve()
+    else:
+        picture = tmp / "picture.mp4"
+        concat(parts, picture, tmp)
 
     srt = ep / "subtitles" / f"{cfg['cut']}.en.srt"
     write_srt(cfg, srt)
@@ -229,7 +236,7 @@ def main():
     off_ms = int(vo["offset"] * 1000)
     music = ep / "music" / "music_poc.wav"
     sfx = ep / "sound_effects" / "sfx_poc.wav"
-    final = ep / cfg["output"]["file"]
+    final = ep / (args.out or cfg["output"]["file"])
     final.parent.mkdir(parents=True, exist_ok=True)
     fc = (
         f"[1:a]aformat=sample_rates=48000:channel_layouts=stereo,adelay={off_ms}|{off_ms},"
@@ -242,6 +249,8 @@ def main():
         f"loudnorm=I=-14:TP=-1.5:LRA=11,atrim=0:{total},afade=t=out:st={total - 1.5}:d=1.5[aout]"
     )
     vf = f"fade=in:st=0:d=1.0,fade=out:st={total - 1.2}:d=1.2"
+    if args.picture:
+        vf = "vignette=PI/6,noise=alls=3:allf=t," + vf
     run(["ffmpeg", "-y", "-i", str(picture), "-i", str(ep / vo["file"]), "-i", str(music), "-i", str(sfx),
          "-i", str(srt), "-filter_complex", fc, "-map", "0:v", "-map", "[aout]", "-map", "4:s",
          "-vf", vf, "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-maxrate", "16M", "-bufsize", "32M",
