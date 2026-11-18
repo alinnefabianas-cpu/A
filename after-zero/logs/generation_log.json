@@ -1,0 +1,34 @@
+{
+  "episode": "episode_001",
+  "cut": "poc_scene01",
+  "service": "Higgsfield (MCP)",
+  "date": "2026-11-17",
+  "credits_before": 42.64,
+  "credits_after": 4.69,
+  "credits_spent": 37.95,
+  "jobs": [
+    {"asset": "character_refs/noah_turnaround_v1.png", "job_id": "ccdc1fc1-a21a-4eb2-b03a-c7e2b3bd16da", "model": "gpt_image_2_6", "params": "16:9, quality=medium, 1k", "credits": 0.25,
+     "prompt": "Character reference turnaround sheet of an original stylized 3D animated movie character named Noah, a 27-year-old man. Three full-body views (front, side, back) ... dark brown messy hair, expressive brown eyes, light stubble, dark forest-green zip jacket, grey t-shirt, charcoal cargo pants, brown boots, grey backpack ... cinematic 3D render, original design."},
+    {"asset": "keyframes/k01_city_sunrise.png", "job_id": "a91cecce-8efe-41c2-a8ef-759623581a2c", "model": "gpt_image_2_6", "params": "16:9, medium, 1k", "credits": 0.5},
+    {"asset": "keyframes/k02_noah_sleeping.png", "job_id": "9ec92201-d978-4174-85a4-bd7094cf5529", "model": "gpt_image_2_6", "params": "16:9, medium, 1k, ref=noah_turnaround", "credits": 0.5},
+    {"asset": "keyframes/k03_phone.png", "job_id": "0562006f-c93a-4add-95fb-a9f5e8065fd4", "model": "gpt_image_2_6", "params": "16:9, medium, 1k", "credits": 0.5},
+    {"asset": "keyframes/k04_noah_window_back.png", "job_id": "2f75648e-2667-48e0-96d6-bc8f3ed2a015", "model": "gpt_image_2_6", "params": "16:9, medium, 1k, ref=noah_turnaround", "credits": 0.5},
+    {"asset": "keyframes/k05_empty_street.png", "job_id": "c5db7c24-56a7-4f03-89e4-a64d9b7c0d15", "model": "gpt_image_2_6", "params": "16:9, medium, 1k", "credits": 0.5},
+    {"asset": "keyframes/k06_traffic_light.png", "job_id": "d1faaad1-7a83-44a9-adf6-52a3141c64ff", "model": "gpt_image_2_6", "params": "16:9, medium, 1k", "credits": 0.5},
+    {"asset": "keyframes/k07_noah_closeup.png", "job_id": "906fb07b-0525-4af8-803a-ebdcef8ef593", "model": "gpt_image_2_6", "params": "16:9, medium, 1k, ref=noah_turnaround", "credits": 0.5},
+    {"asset": "keyframes/k08_aerial_city.png", "job_id": "ab96b2e3-f1e6-43a6-94d9-6553c9f829a1", "model": "gpt_image_2_6", "params": "16:9, medium, 1k", "credits": 0.5},
+    {"asset": "keyframes/k09_noah_phone_bed.png", "job_id": "8871a86b-aa19-4229-910c-38d19a7e4259", "model": "gpt_image_2_6", "params": "16:9, medium, 1k, ref=noah_turnaround+k02", "credits": 0.5},
+    {"asset": "keyframes/k10_hallway.png", "job_id": "4ab5b586-18c5-4eef-aec3-118128278633", "model": "gpt_image_2_6", "params": "16:9, medium, 1k", "credits": 0.5},
+    {"asset": "keyframes/k12_noah_walks.png", "job_id": "7282bb3a-d49f-4c6e-819b-2e7563700482", "model": "gpt_image_2_6", "params": "16:9, medium, 1k, ref=noah_turnaround+k04", "credits": 0.5},
+    {"asset": "voiceover/vo_scene01_v1.mp3", "job_id": "d9dfef39-fe54-4fcc-8d12-74049ad2d791", "model": "elevenlabs_v4_turbo", "params": "voice=Arthur (preset 30fc8796-ceb6-4a66-b3a7-4a145ef7f346), stability=0.55, similarity=0.8", "credits": 1.95},
+    {"asset": "generated_video/s01_city_sunrise.mp4", "job_id": "7fa6124d-611c-4064-aa87-0299cce5f16d", "model": "kling3_0", "params": "start_image=k01, 5s, std, sound=off", "credits": 7.5},
+    {"asset": "generated_video/s03_noah_sleeping.mp4", "job_id": "2f0827ce-e4a9-4802-8982-df6231cb048a", "model": "kling3_0", "params": "start_image=k02, 5s, std, sound=off", "credits": 7.5},
+    {"asset": "generated_video/s08_noah_window_back.mp4", "job_id": "7d9fc059-a9b9-4c97-abd8-a9cd9d4081fd", "model": "kling3_0", "params": "start_image=k04, 5s, std, sound=off", "credits": 7.5},
+    {"asset": "generated_video/s12_noah_closeup.mp4", "job_id": "bd2693ab-9fd2-47b3-ad04-c54cc6413106", "model": "kling3_0", "params": "start_image=k07, 5s, std, sound=off", "credits": 7.5}
+  ],
+  "local_assets": {
+    "music/music_poc.wav": "original, procedurally synthesized by tools/audio_design.py (no third-party audio)",
+    "sound_effects/sfx_poc.wav": "original, procedurally synthesized by tools/audio_design.py",
+    "fonts": "Inter Display (SIL OFL), DejaVu Sans Mono (free license)"
+  }
+}

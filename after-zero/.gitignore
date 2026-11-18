@@ -1,0 +1,8 @@
+.env
+*.env
+project/*/renders/_segments/
+project/*/renders/*.mp4
+!project/*/renders/*_preview720.mp4
+project/*/music/*.wav
+project/*/sound_effects/*.wav
+__pycache__/

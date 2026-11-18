@@ -1,0 +1,261 @@
+{
+  "episode": "episode_001",
+  "title": "WHAT IF YOU WERE THE LAST HUMAN ON EARTH?",
+  "cut": "poc_scene01",
+  "description": "Proof of concept: Scene 01 - The First Morning (~60s).",
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "file": "renders/after_zero_ep001_poc_scene01.mp4"
+  },
+  "voiceover": {
+    "file": "voiceover/vo_scene01_v1.mp3",
+    "offset": 7.5,
+    "gain_db": 0
+  },
+  "palette": {
+    "midnight": "#101820",
+    "forest": "#263C40",
+    "amber": "#D58B49",
+    "mist": "#D5D2C7",
+    "ice": "#78969A"
+  },
+  "shots": [
+    {
+      "id": "S01",
+      "type": "video",
+      "src": "generated_video/s01_city_sunrise.mp4",
+      "start": 0.0,
+      "dur": 5.0,
+      "note": "City at sunrise, birds"
+    },
+    {
+      "id": "S02",
+      "type": "clock",
+      "start": 5.0,
+      "dur": 2.5,
+      "from": "8:16",
+      "to": "8:17",
+      "flip_at": 1.2,
+      "bg": "keyframes/k01_city_sunrise.png"
+    },
+    {
+      "id": "S03",
+      "type": "video",
+      "src": "generated_video/s03_noah_sleeping.mp4",
+      "start": 7.5,
+      "dur": 6.25,
+      "speed": 0.8
+    },
+    {
+      "id": "S04",
+      "type": "still",
+      "src": "keyframes/k03_phone.png",
+      "start": 13.75,
+      "dur": 4.65,
+      "move": "push_in"
+    },
+    {
+      "id": "S05",
+      "type": "still",
+      "src": "keyframes/k10_hallway.png",
+      "start": 18.4,
+      "dur": 3.6,
+      "move": "pan_right"
+    },
+    {
+      "id": "S06",
+      "type": "still",
+      "src": "keyframes/k09_noah_phone_bed.png",
+      "start": 22.0,
+      "dur": 5.6,
+      "move": "push_in"
+    },
+    {
+      "id": "S07",
+      "type": "still",
+      "src": "keyframes/k12_noah_walks.png",
+      "start": 27.6,
+      "dur": 5.6,
+      "move": "pan_left"
+    },
+    {
+      "id": "S08",
+      "type": "video",
+      "src": "generated_video/s08_noah_window_back.mp4",
+      "start": 33.2,
+      "dur": 5.0
+    },
+    {
+      "id": "S09",
+      "type": "still",
+      "src": "keyframes/k05_empty_street.png",
+      "start": 38.2,
+      "dur": 2.9,
+      "move": "push_in"
+    },
+    {
+      "id": "S10",
+      "type": "still",
+      "src": "keyframes/k06_traffic_light.png",
+      "start": 41.1,
+      "dur": 2.2,
+      "move": "tilt_up"
+    },
+    {
+      "id": "S11",
+      "type": "still",
+      "src": "keyframes/k08_aerial_city.png",
+      "start": 43.3,
+      "dur": 5.3,
+      "move": "push_in_slow"
+    },
+    {
+      "id": "S12",
+      "type": "video",
+      "src": "generated_video/s12_noah_closeup.mp4",
+      "start": 48.6,
+      "dur": 5.0
+    },
+    {
+      "id": "S13",
+      "type": "title",
+      "start": 53.6,
+      "dur": 8.4,
+      "bg": "keyframes/k08_aerial_city.png"
+    }
+  ],
+  "subtitles": [
+    [
+      0.0,
+      2.21,
+      "Imagine waking up tomorrow morning..."
+    ],
+    [
+      2.73,
+      6.65,
+      "...and discovering that you are the only person left on Earth."
+    ],
+    [
+      7.3,
+      8.15,
+      "No messages."
+    ],
+    [
+      8.5,
+      9.53,
+      "No phone calls."
+    ],
+    [
+      9.84,
+      10.59,
+      "No traffic."
+    ],
+    [
+      11.07,
+      13.68,
+      "No voices coming from the apartment next door."
+    ],
+    [
+      14.66,
+      18.3,
+      "At first, you might think something unusual happened overnight."
+    ],
+    [
+      18.89,
+      19.98,
+      "Maybe it's a holiday."
+    ],
+    [
+      20.5,
+      21.98,
+      "Maybe there's a power outage."
+    ],
+    [
+      22.48,
+      24.98,
+      "Maybe everyone is simply somewhere else."
+    ],
+    [
+      25.71,
+      28.0,
+      "But then... you look outside."
+    ],
+    [
+      28.64,
+      31.2,
+      "And you realize something is terribly wrong."
+    ],
+    [
+      31.95,
+      33.37,
+      "Every street is empty."
+    ],
+    [
+      33.76,
+      35.32,
+      "Every building is silent."
+    ],
+    [
+      36.0,
+      38.26,
+      "And somewhere between yesterday and today..."
+    ],
+    [
+      38.86,
+      40.63,
+      "...humanity disappeared."
+    ],
+    [
+      41.59,
+      43.83,
+      "This is the story of Noah."
+    ],
+    [
+      44.56,
+      49.7,
+      "And this is what could happen... if you were the last human on Earth."
+    ]
+  ],
+  "subtitle_offset_from_voiceover": true,
+  "audio_cues": {
+    "silence_at": 6.2,
+    "music_start": 7.5,
+    "chord_len": 6.0,
+    "wind": [
+      [
+        38.2,
+        53.6,
+        0.22
+      ]
+    ],
+    "risers": [
+      [
+        43.3,
+        46.3
+      ]
+    ],
+    "impacts": [
+      46.3,
+      57.4
+    ],
+    "piano_at": [
+      22.0,
+      48.6
+    ],
+    "heartbeat": [
+      [
+        33.2,
+        43.3
+      ]
+    ],
+    "fade_out": 3.0
+  },
+  "mix": {
+    "vo_db": 0,
+    "music_db": -17,
+    "sfx_db": -12,
+    "duck": true
+  }
+}
