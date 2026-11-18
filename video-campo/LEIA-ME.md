@@ -1,4 +1,4 @@
-# "O Acampamento" — curta sem narração (9:16, 1080x1920, 2min24s)
+# "O Acampamento" — curta sem narração (9:16, 1080x1920, 2min22s)
 
 Montado a partir dos 101 takes brutos (Sony 4K vertical, C1683–C1789), seguindo o
 `roteiro-o-acampamento.pdf` (16 cenas). Arquivo final: `exportados/o-acampamento.mp4`.
