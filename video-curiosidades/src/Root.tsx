@@ -2,6 +2,7 @@ import React from 'react';
 import {Composition, Still} from 'remotion';
 import {Banner, BannerGuia, FotoPerfil} from './Marca';
 import {Longo, LINHA, ThumbLongo, FPS as FPS_LONGO} from './longo/Longo';
+import {ThumbA, ThumbB} from './longo/Thumbs';
 import '@fontsource/nunito/900.css';
 import '@fontsource/nunito/800.css';
 import {Pilotos} from './Video';
@@ -23,6 +24,8 @@ export const Root: React.FC = () => (
 		))}
 		<Composition id="Longo" component={Longo} durationInFrames={LINHA.total} fps={FPS_LONGO} width={1920} height={1080} />
 		<Still id="ThumbLongo" component={ThumbLongo} width={1280} height={720} />
+		<Still id="ThumbA" component={ThumbA} width={1280} height={720} />
+		<Still id="ThumbB" component={ThumbB} width={1280} height={720} />
 		<Still id="FotoPerfil" component={FotoPerfil} width={800} height={800} />
 		<Still id="Banner" component={Banner} width={2560} height={1440} />
 		<Still id="BannerGuia" component={BannerGuia} width={2560} height={1440} />
