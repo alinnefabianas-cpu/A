@@ -15,7 +15,7 @@ Nunca repita um tema já marcado.
 - [ ] Why golf balls have dimples (turbulent boundary layer, less drag, flies about twice as far)
 - [ ] Why many buildings skip the 13th floor (triskaidekaphobia; the floor still exists)
 - [ ] Why jeans have a tiny pocket (originally for pocket watches)
-- [ ] Why bubble wrap was invented as wallpaper (1957, textured wallpaper flop, then packaging)
+- [x] 2026-11-18 · bubble-wrap · Why bubble wrap was invented as wallpaper (feito à mão)
 - [ ] Why carrots are orange (Dutch growers in the 1600s; the "tribute to William of Orange" is a myth)
 - [ ] Why the Eiffel Tower grows in summer (metal expands; up to about 15 cm taller)
 - [ ] Why honey basically never spoils (low water, acidic, hydrogen peroxide)

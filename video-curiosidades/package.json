@@ -19,7 +19,8 @@
     "render:onibus": "remotion render src/index.ts YellowBus exportados/yellow-school-bus-EN.mp4",
     "render:pare": "remotion render src/index.ts StopSign exportados/stop-sign-octagon-EN.mp4",
     "render:monalisa": "remotion render src/index.ts MonaLisa exportados/mona-lisa-stolen-EN.mp4",
-    "render:ketchup": "remotion render src/index.ts Ketchup exportados/ketchup-medicine-EN.mp4"
+    "render:ketchup": "remotion render src/index.ts Ketchup exportados/ketchup-medicine-EN.mp4",
+    "render:bolhas": "remotion render src/index.ts BubbleWrap exportados/bubble-wrap-wallpaper-EN.mp4"
   },
   "dependencies": {
     "@fontsource/nunito": "^5.2.8",
