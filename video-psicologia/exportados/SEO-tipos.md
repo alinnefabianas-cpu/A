@@ -1,6 +1,6 @@
 # SEO: "Os 5 tipos de manipulador"
 
-> Os capítulos abaixo são da versão **sem narração** (4:10). Quando a versão narrada for gerada, os tempos mudam; este arquivo será atualizado.
+> Capítulos medidos na versão **narrada** (3:40).
 
 ## 1. Título (escolha 1 e teste os outros em "Testar e comparar")
 
@@ -17,14 +17,14 @@ Nem todo manipulador grita. Alguns sorriem, alguns choram, alguns fazem favores.
 
 ⏱️ CAPÍTULOS
 0:00 Nem todo manipulador grita
-0:28 Antes de começar
+0:29 Antes de começar
 0:39 Tipo 1: O Encantador
-1:12 Tipo 2: A Eterna Vítima
-1:49 Tipo 3: O Controlador
-2:22 Tipo 4: O Mártir
-2:53 Tipo 5: O Camaleão
-3:32 Recapitulando
-3:49 Maya Angelou
+1:06 Tipo 2: A Eterna Vítima
+1:37 Tipo 3: O Controlador
+2:05 Tipo 4: O Mártir
+2:30 Tipo 5: O Camaleão
+3:03 Recapitulando
+3:20 Maya Angelou
 
 📚 FONTES
 • Paulhus & Williams (2002) — "The Dark Triad of personality: Narcissism, Machiavellianism, and psychopathy", Journal of Research in Personality.
@@ -51,7 +51,13 @@ tipos de manipulador, pessoa manipuladora, como identificar um manipulador, mani
 
 ---
 
-## 4. Comentário fixado
+## 4. Legenda
+
+Envie **`tipos-legendas-pt-BR.srt`** em YouTube Studio → Legendas → Português (Brasil) → "Com sincronização".
+
+---
+
+## 5. Comentário fixado
 
 ```
 Qual deles você já conheceu? 👇
@@ -66,21 +72,21 @@ Responde só com o número. Próximo vídeo: 10 frases que só um manipulador di
 
 ---
 
-## 5. Configurações do upload
+## 6. Configurações do upload
 
 | Campo | Valor |
 |---|---|
 | Categoria | Educação |
 | Idioma do vídeo | Português (Brasil) |
 | Público | Não é conteúdo para crianças |
-| Conteúdo alterado ou sintético | **Sim**, se publicar a versão com narração de IA |
+| Conteúdo alterado ou sintético | **Sim** (narração gerada por IA) |
 | Thumbnail | `thumbnail-tipos.png` ("QUAL DELES ESTÁ NA SUA VIDA?") |
 | Tela final (últimos 20 s) | Vídeo 4 (Cérebro) + botão Inscrever-se |
 | Playlist | "Psicologia Sombria", como o 5º vídeo |
 
 ---
 
-## 6. Divulgação nas primeiras 48 horas
+## 7. Divulgação nas primeiras 48 horas
 
 1. **Shorts em série:** um Short por tipo (5 Shorts), um por dia, todos com "qual deles está na sua vida?" no fim. É o formato com mais cara de série do canal.
 2. **Comunidade:** enquete "Qual tipo é o pior? Encantador / Vítima / Controlador / Mártir / Camaleão".

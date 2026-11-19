@@ -133,6 +133,4 @@ npx remotion still src/index.ts ThumbCerebro out/thumbnail-cerebro.png
 
 ## Episódio 5 — "Os 5 tipos de manipulador"
 Roteiro em `src/episodios/tipos.ts` (rótulo "TIPO"). Animações novas: `triade`, `rastreador`, `recibo`, `mascaras`.
-Narração em `public/voz-tipos/` — **incompleta** (créditos do Higgsfield acabaram; só a fala 02 foi gerada).
-Para terminar: gerar as falas de `npx tsx scripts/falas.ts tipos` com a voz "Leo" (MiniMax), salvar como `NN.mp3`,
-rodar `python3 scripts/medir-voz.py tipos` e `npx tsx scripts/gerar-srt.ts tipos`, e renderizar `Tipos`.
+Narração completa em `public/voz-tipos/` (voz "Leo", MiniMax); legenda em `exportados/tipos-legendas-pt-BR.srt`.
