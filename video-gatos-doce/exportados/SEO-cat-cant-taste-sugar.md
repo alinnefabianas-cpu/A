@@ -79,4 +79,4 @@ Be honest 🐾 What does YOUR cat beg for when you're eating?
 ---
 
 ## 6. Short sugerido
-Trecho 0:58–1:02 + 0:46–0:58 não funciona bem cortado; o melhor Short é 0:00–0:29 (gancho + gene quebrado + "ERROR 404"). Título: **Your Cat Has Never Tasted Sugar 🐱 #cats #catfacts**
+Corte de 0:00 a 0:29 (gancho + gene quebrado + "ERROR 404"): funciona sozinho e termina com um fato forte. Título: **Your Cat Has Never Tasted Sugar 🐱 #cats #catfacts**
