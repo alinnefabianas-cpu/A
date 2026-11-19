@@ -1539,7 +1539,39 @@ const Mascaras: React.FC<P> = ({f}) => {
 	);
 };
 
+
+// ───────── episódio 6: frases ─────────
+
+// Balão de fala que digita, racha e vaza vermelho por dentro
+const Balao: React.FC<P> = ({f}) => {
+	const bx = CX;
+	const by = CY - 40;
+	const racha = prog(f, 40, 55);
+	const tremor = f > 40 && f < 48 ? (random('bt' + f) - 0.5) * 14 : 0;
+	const caminho = `M${bx - 420} ${by - 200} Q${bx - 420} ${by - 260} ${bx - 360} ${by - 260} L${bx + 360} ${by - 260} Q${bx + 420} ${by - 260} ${bx + 420} ${by - 200} L${bx + 420} ${by + 120} Q${bx + 420} ${by + 180} ${bx + 360} ${by + 180} L${bx - 120} ${by + 180} L${bx - 260} ${by + 300} L${bx - 230} ${by + 180} L${bx - 360} ${by + 180} Q${bx - 420} ${by + 180} ${bx - 420} ${by + 120} Z`;
+	return (
+		<Svg>
+			<circle cx={bx} cy={by} r={560} fill="url(#halo)" opacity={0.15 + 0.35 * racha} />
+			<g transform={`translate(${tremor} 0)`}>
+				<clipPath id="balaoClip">
+					<path d={caminho} />
+				</clipPath>
+				<path d={caminho} fill="#141110" stroke={COR.creme} strokeWidth={4} {...desenho(prog(f, 0, 25))} />
+				<g clipPath="url(#balaoClip)">
+					{[0, 1, 2].map((i) => (
+						<circle key={i} cx={bx - 80 + i * 80} cy={by - 40} r={22} fill={COR.creme} opacity={(1 - racha) * (0.3 + 0.7 * Math.abs(Math.sin(f / 7 - i)))} />
+					))}
+					<path d={`M${bx + 60} ${by - 260} L${bx + 10} ${by - 150} L${bx + 70} ${by - 60} L${bx - 10} ${by + 40} L${bx + 40} ${by + 180}`} fill="none" stroke={COR.vermelho} strokeWidth={6} filter="url(#brilho)" {...desenho(racha)} />
+					<rect x={bx - 420} y={by - 260} width={840} height={440} fill={COR.vermelho} opacity={0.18 * racha} />
+				</g>
+			</g>
+			<Rotulo x={CX} y={by + 380} t="O QUE ELE DIZ  ≠  O QUE ELE QUER DIZER" f={f} atraso={55} anchor="middle" cor={COR.vermelho} />
+		</Svg>
+	);
+};
+
 const MAPA: Record<Visual, React.FC<P>> = {
+	balao: Balao,
 	triade: Triade,
 	rastreador: Rastreador,
 	recibo: Recibo,

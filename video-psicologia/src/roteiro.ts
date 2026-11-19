@@ -51,7 +51,8 @@ export type Visual =
 	| 'triade'
 	| 'rastreador'
 	| 'recibo'
-	| 'mascaras';
+	| 'mascaras'
+	| 'balao';
 
 export type Som =
 	| 'boom'

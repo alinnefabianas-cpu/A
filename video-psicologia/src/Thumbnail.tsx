@@ -5,7 +5,7 @@ import {BUSTO} from './visuais/Visuais';
 
 // Thumbnail 1280x720: silhueta controlada por fios + frase curta de alto contraste
 type Linha = [string, string, number?];
-export type PropsThumb = {tag?: string; linhas?: Linha[]; figura?: 'marionete' | 'coroa' | 'gaiola' | 'cerebro' | 'mascaras'};
+export type PropsThumb = {tag?: string; linhas?: Linha[]; figura?: 'marionete' | 'coroa' | 'gaiola' | 'cerebro' | 'mascaras' | 'balao'};
 const PADRAO: Linha[] = [
 	['ELE', COR.creme],
 	['SABE', COR.vermelho, 150],
@@ -102,6 +102,18 @@ export const Thumbnail: React.FC<PropsThumb> = ({tag = '7 TÁTICAS', linhas = PA
 								<path d={red ? 'M-40 40 Q0 75 40 40' : 'M-35 50 L35 50'} fill="none" stroke={red ? COR.vermelho : '#3a3430'} strokeWidth={7} strokeLinecap="round" />
 							</g>
 						))}
+					</g>
+				)}
+				{figura === 'balao' && (
+					<g transform="translate(60 0)">
+						<path d={`M${hx - 300} ${hy - 300} L${hx + 40} ${hy - 300} Q${hx + 70} ${hy - 300} ${hx + 70} ${hy - 270} L${hx + 70} ${hy - 170} Q${hx + 70} ${hy - 140} ${hx + 40} ${hy - 140} L${hx - 40} ${hy - 140} L${hx - 10} ${hy - 90} L${hx - 110} ${hy - 140} L${hx - 300} ${hy - 140} Q${hx - 330} ${hy - 140} ${hx - 330} ${hy - 170} L${hx - 330} ${hy - 270} Q${hx - 330} ${hy - 300} ${hx - 300} ${hy - 300} Z`} fill="#e9e2d4" stroke={COR.creme} strokeWidth={3} />
+						<text x={hx - 130} y={hy - 230} textAnchor="middle" fontFamily={FONTE.texto} fontStyle="italic" fontWeight={700} fontSize={34} fill="#1a1716">
+							Você está
+						</text>
+						<text x={hx - 130} y={hy - 185} textAnchor="middle" fontFamily={FONTE.texto} fontStyle="italic" fontWeight={700} fontSize={34} fill="#1a1716">
+							exagerando.
+						</text>
+						<path d={`M${hx - 60} ${hy - 300} L${hx - 90} ${hy - 240} L${hx - 50} ${hy - 200} L${hx - 80} ${hy - 140}`} fill="none" stroke={COR.vermelho} strokeWidth={5} filter="url(#g)" />
 					</g>
 				)}
 				{/* olhos */}

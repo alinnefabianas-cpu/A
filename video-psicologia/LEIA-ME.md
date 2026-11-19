@@ -134,3 +134,11 @@ npx remotion still src/index.ts ThumbCerebro out/thumbnail-cerebro.png
 ## Episódio 5 — "Os 5 tipos de manipulador"
 Roteiro em `src/episodios/tipos.ts` (rótulo "TIPO"). Animações novas: `triade`, `rastreador`, `recibo`, `mascaras`.
 Narração completa em `public/voz-tipos/` (voz "Leo", MiniMax); legenda em `exportados/tipos-legendas-pt-BR.srt`.
+
+## Episódio 6 — "10 frases que só um manipulador diz"
+Roteiro em `src/episodios/frases.ts` (rótulo "FRASE", 10 itens). Animação nova: `balao`. Narração em `public/voz-frases/`.
+
+```bash
+npx remotion render src/index.ts Frases out/frases.mp4
+npx remotion still src/index.ts ThumbFrases out/thumbnail-frases.png
+```

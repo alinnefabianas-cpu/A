@@ -360,7 +360,7 @@ export const Citacao: React.FC<{texto: string; autor: string; f: number; dur: nu
 // ───────── Recapitulação das 7 táticas ─────────
 export const Lista: React.FC<{f: number; dur: number; marcas?: number[]}> = ({f, dur, marcas}) => {
 	const {nomes} = useEpisodio();
-	const longo = Math.max(...nomes.map((n) => n.length)) > 28;
+	const longo = Math.max(...nomes.map((n) => n.length)) > 28 || nomes.length > 7;
 	const vis = fadeIO(f, dur, 6, 14);
 	return (
 		<AbsoluteFill style={{opacity: vis, alignItems: 'center', justifyContent: 'center'}}>
