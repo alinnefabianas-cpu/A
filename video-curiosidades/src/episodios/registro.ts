@@ -14,6 +14,10 @@ import monaLisa from './mona-lisa/Episodio';
 import ketchup from './ketchup/Episodio';
 import bubbleWrap from './bubble-wrap/Episodio';
 import molassesFlood from './molasses-flood/Episodio';
+import carrotsOrange from './carrots-orange/Episodio';
+import eiffelGrows from './eiffel-grows/Episodio';
+import pisaLean from './pisa-lean/Episodio';
+import sharksTrees from './sharks-trees/Episodio';
 
 export const EPISODIOS: DefEpisodio[] = [
 	emuWar,
@@ -29,5 +33,9 @@ export const EPISODIOS: DefEpisodio[] = [
 	ketchup,
 	bubbleWrap,
 	molassesFlood,
+	carrotsOrange,
+	eiffelGrows,
+	pisaLean,
+	sharksTrees,
 	// AUTO-EPISODIOS (não apague esta linha)
 ];
