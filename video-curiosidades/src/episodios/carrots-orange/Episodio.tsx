@@ -169,7 +169,7 @@ const C2: React.FC<PropsCena> = ({dur, m}) => {
 const C3: React.FC<PropsCena> = ({dur, m}) => {
 	const f = useCurrentFrame();
 	const tHom = m('tribute'), tWil = m('william'), tHeroi = m('hero');
-	const kQ = usePop(tWil - 4, 11);
+	const kQ = usePop(2, 11);
 	return (
 		<>
 			<Camera de={[540, 900, 1.15]} para={[540, 900, 1.05]} dur={dur} soco={tHeroi}>
@@ -183,7 +183,7 @@ const C3: React.FC<PropsCena> = ({dur, m}) => {
 				{f >= tHom && <g transform={`translate(200, 1520) rotate(${-Math.sin(f / 4) * 8})`}><Cenoura s={0.9} /></g>}
 				<Placa x={540} y={1600} k={usePop(tWil + 6, 10)} txt="WILLIAM OF ORANGE" tam={70} />
 			</Camera>
-			<Sfx src="pop" em={tWil - 4} vol={0.4} />
+			<Sfx src="pop" em={2} vol={0.4} />
 			<Sfx src="ding" em={tHeroi} vol={0.4} />
 		</>
 	);
