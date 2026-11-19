@@ -13,6 +13,7 @@ import stopSign from './stop-sign/Episodio';
 import monaLisa from './mona-lisa/Episodio';
 import ketchup from './ketchup/Episodio';
 import bubbleWrap from './bubble-wrap/Episodio';
+import molassesFlood from './molasses-flood/Episodio';
 
 export const EPISODIOS: DefEpisodio[] = [
 	emuWar,
@@ -27,5 +28,6 @@ export const EPISODIOS: DefEpisodio[] = [
 	monaLisa,
 	ketchup,
 	bubbleWrap,
+	molassesFlood,
 	// AUTO-EPISODIOS (não apague esta linha)
 ];

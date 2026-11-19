@@ -24,7 +24,7 @@ Nunca repita um tema já marcado.
 - [ ] Why the Leaning Tower of Pisa leans (soft soil; started tilting during construction)
 - [x] 2026-11-14 · emu-war · The Great Emu War (feito à mão)
 - [x] 2026-11-14 · marathon-1904 · The craziest Olympic marathon ever (feito à mão)
-- [ ] The Great Molasses Flood (Boston 1919: a wave of molasses through the streets)
+- [x] 2026-11-19 · molasses-flood · The Great Molasses Flood (feito à mão)
 - [x] 2026-11-15 · dancing-plague · The Dancing Plague of 1518 (feito à mão)
 - [ ] Why bananas are curved (they grow up toward the sun: negative geotropism)
 - [ ] Why we have leap years (Earth's orbit is ~365.24 days)
