@@ -106,14 +106,14 @@ export const Intro2: Cena = ({b}) => {
 	return (
 		<g>
 			<Escrito x={260} y={240} t={tRe} texto="Every weird habit = a reason" tam={84} vel={1.6} />
-			<Escrito x={300} y={420} t={tSe} texto="7" tam={260} ancora="middle" cor={COR.vermelho} vel={1} />
-			<Circulo cx={300} cy={340} rx={130} ry={130} t={tSe + 6} />
-			<Escrito x={500} y={400} t={tSe + 4} texto="strange things cats do" tam={80} />
-			<Escrito x={500} y={520} t={tSc} texto="+ the science behind them" tam={80} marca={COR.marca} />
+			<Escrito x={300} y={500} t={tSe} texto="7" tam={240} ancora="middle" cor={COR.vermelho} vel={1} />
+			<Circulo cx={300} cy={425} rx={120} ry={120} t={tSe + 6} />
+			<Escrito x={480} y={430} t={tSe + 4} texto="strange things cats do" tam={80} />
+			<Escrito x={480} y={540} t={tSc} texto="+ the science behind them" tam={80} marca={COR.marca} />
 			{TITULOS.map((_, i) => (
 				<g key={i}>
-					<Traco d={`M ${560 + i * 160} 640 l 90 0 l 0 90 l -90 0 Z`} t={tSc + 8 + i * 3} dur={8} w={5} />
-					<Escrito x={605 + i * 160} y={705} t={tSc + 10 + i * 3} texto="?" tam={70} ancora="middle" cor={COR.grafite} />
+					<Traco d={`M ${560 + i * 160} 650 l 90 0 l 0 90 l -90 0 Z`} t={tSc + 8 + i * 3} dur={8} w={5} />
+					<Escrito x={605 + i * 160} y={715} t={tSc + 10 + i * 3} texto="?" tam={70} ancora="middle" cor={COR.grafite} />
 				</g>
 			))}
 		</g>
