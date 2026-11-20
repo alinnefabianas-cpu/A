@@ -17,6 +17,7 @@ export type Extra =
 	| {tipo: 'circulo'; w?: string; x: number; y: number; rx: number; ry: number}
 	| {tipo: 'seta'; w?: string; de: {x: number; y: number}; para: {x: number; y: number}; cor?: 'vermelho'}
 	| {tipo: 'janela'; w?: string; x: number; y: number}
+	| {tipo: 'geladeira'; w?: string; x: number; topo: number}
 	| {tipo: 'texto'; w?: string; x: number; y: number; txt: string; tam?: number; cor?: 'vermelho' | 'verde' | 'grafite'; marca?: boolean};
 
 export type Vis = {
@@ -179,7 +180,18 @@ export const VIS: Vis[] = [
 			{tipo: 'coracao', w: 'hug', x: 660, y: 430},
 		],
 	},
-	// 12 — CAP 2: orelhas
+	// 12 recap rabo
+	{
+		gato: {rabo: 'alto', muda: [{w: 'puffed', erizado: true, orelhas: 'tras'}, {w: 'low', erizado: false, orelhas: 'lado', rabo: 'entre'}, {w: 'swishing', rabo: 'chicote'}]},
+		textos: [
+			{w: 'recap', txt: 'tail recap:'},
+			{w: 'up', txt: 'up = hello', cor: 'verde'},
+			{w: 'puffed', txt: 'puffed = scared'},
+			{w: 'low', txt: 'low = nervous'},
+			{w: 'swishing', txt: 'swishing = STOP', cor: 'vermelho', marca: true},
+		],
+	},
+	// 13 — CAP 2: orelhas
 	{
 		abre: true,
 		gato: {orelhas: 'gira'},
@@ -189,7 +201,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'circulo', w: 'ears', x: ORELHAS.x, y: ORELHAS.y, rx: 130, ry: 70}],
 	},
-	// 13
+	// 14
 	{
 		gato: {orelhas: 'frente', rabo: 'enrolado'},
 		textos: [
@@ -200,7 +212,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'check', w: 'confident', x: 1620, y: 600}],
 	},
-	// 14
+	// 15
 	{
 		gato: {orelhas: 'gira'},
 		textos: [
@@ -213,7 +225,7 @@ export const VIS: Vis[] = [
 			{tipo: 'som', w: 'radars', x: 720, y: 520},
 		],
 	},
-	// 15
+	// 16
 	{
 		gato: {orelhas: 'lado', olhos: 'fenda', rabo: 'swish'},
 		textos: [
@@ -223,7 +235,7 @@ export const VIS: Vis[] = [
 			{w: 'moment', txt: 'back off!', cor: 'vermelho', marca: true},
 		],
 	},
-	// 16
+	// 17
 	{
 		gato: {orelhas: 'tras', olhos: 'dilatado', boca: 'chiado', bigodes: 'tras'},
 		textos: [
@@ -236,7 +248,7 @@ export const VIS: Vis[] = [
 			{tipo: 'xis', w: 'reach', x: 880, y: 690, s: 1.3},
 		],
 	},
-	// 17 — CAP 3: olhos
+	// 18 — CAP 3: olhos
 	{
 		abre: true,
 		gato: {olhos: 'normal', muda: [{w: 'emotion', olhos: 'dilatado'}]},
@@ -247,7 +259,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'circulo', w: 'pupils', x: OLHOS.x, y: OLHOS.y, rx: 95, ry: 45}],
 	},
-	// 18
+	// 19
 	{
 		gato: {olhos: 'dilatado'},
 		textos: [
@@ -258,7 +270,7 @@ export const VIS: Vis[] = [
 		],
 		postit: {w: 'rest', linhas: ['check the', 'whole body!'], x: 1450, y: 700},
 	},
-	// 19
+	// 20
 	{
 		gato: {olhos: 'fenda', orelhas: 'lado', rabo: 'swish'},
 		textos: [
@@ -267,7 +279,7 @@ export const VIS: Vis[] = [
 			{w: 'agree', txt: '(if ears + tail agree)', cor: 'grafite'},
 		],
 	},
-	// 20
+	// 21
 	{
 		gato: {olhos: 'encarando'},
 		textos: [
@@ -277,7 +289,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'pessoa', w: 'ignores', x: 1700, escala: 0.8}],
 	},
-	// 21
+	// 22
 	{
 		gato: {olhos: 'lento', rabo: 'enrolado'},
 		textos: [
@@ -287,7 +299,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'coracao', w: 'safe', x: 730, y: 450}],
 	},
-	// 22
+	// 23
 	{
 		gato: {olhos: 'lento', x: 470, escala: 0.9},
 		colX: 1100,
@@ -302,7 +314,17 @@ export const VIS: Vis[] = [
 			{tipo: 'check', w: 'works', x: 1360, y: 600},
 		],
 	},
-	// 23 — CAP 4: bigodes
+	// 24 olhos semiabertos
+	{
+		gato: {pose: 'dorme', x: 560},
+		textos: [
+			{w: 'half', txt: 'dozing near you'},
+			{w: 'closed', txt: 'eyes closed while you are there', tam: 54},
+			{w: 'guard', txt: '= guard down, feels safe', marca: true},
+		],
+		extras: [{tipo: 'pessoa', x: 1650, escala: 0.8}, {tipo: 'coracao', w: 'safe', x: 720, y: 640}],
+	},
+	// 25 — CAP 4: bigodes
 	{
 		abre: true,
 		gato: {bigodes: 'normal', muda: [{w: 'forward', bigodes: 'frente'}]},
@@ -312,7 +334,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'circulo', w: 'whiskers', x: 560, y: 650, rx: 150, ry: 45}],
 	},
-	// 24
+	// 26
 	{
 		gato: {bigodes: 'tras', orelhas: 'tras', olhos: 'dilatado'},
 		textos: [
@@ -321,7 +343,7 @@ export const VIS: Vis[] = [
 			{w: 'stop', txt: '= STOP sign', cor: 'vermelho', marca: true},
 		],
 	},
-	// 25 — CAP 5: corpo
+	// 27 — CAP 5: corpo
 	{
 		abre: true,
 		gato: {pose: 'pao'},
@@ -330,7 +352,7 @@ export const VIS: Vis[] = [
 			{w: 'calm', txt: 'comfortable & calm', marca: true},
 		],
 	},
-	// 26
+	// 28
 	{
 		gato: {pose: 'barriga', x: 600},
 		textos: [
@@ -339,7 +361,7 @@ export const VIS: Vis[] = [
 			{w: 'vulnerable', txt: 'most vulnerable spot'},
 		],
 	},
-	// 27
+	// 29
 	{
 		gato: {pose: 'barriga', x: 600},
 		textos: [
@@ -352,7 +374,7 @@ export const VIS: Vis[] = [
 			{tipo: 'xis', w: 'trap', x: 620, y: 580, s: 1.3},
 		],
 	},
-	// 28
+	// 30
 	{
 		gato: {pose: 'arcoAssustado', x: 580},
 		textos: [
@@ -362,7 +384,7 @@ export const VIS: Vis[] = [
 			{w: 'frightened', txt: '= frightened', cor: 'vermelho'},
 		],
 	},
-	// 29
+	// 31
 	{
 		gato: {pose: 'arco', x: 580},
 		textos: [
@@ -373,7 +395,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'check', w: 'stretch', x: 1500, y: 500}],
 	},
-	// 30
+	// 32
 	{
 		gato: {pose: 'agachado', x: 560},
 		textos: [
@@ -383,7 +405,7 @@ export const VIS: Vis[] = [
 			{w: 'difference', txt: 'check eyes + tail', marca: true},
 		],
 	},
-	// 31
+	// 33
 	{
 		gato: {pose: 'rebola', x: 520},
 		textos: [
@@ -393,7 +415,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'rato', w: 'pounce', x: 860, y: 840}],
 	},
-	// 32
+	// 34
 	{
 		gato: {pose: 'dorme', x: 560},
 		textos: [
@@ -406,7 +428,17 @@ export const VIS: Vis[] = [
 			{tipo: 'coracao', w: 'safe', x: 720, y: 640},
 		],
 	},
-	// 33 — CAP 6: sons
+	// 35 lugares altos
+	{
+		gato: {rabo: 'baixo', olhos: 'meio', x: 560, y: 470, escala: 0.75},
+		textos: [
+			{w: 'high', txt: 'cats love high places'},
+			{w: 'fridge', txt: 'top of the fridge!'},
+			{w: 'control', txt: 'watch everything = in control', marca: true, tam: 56},
+		],
+		extras: [{tipo: 'geladeira', x: 560, topo: 470}],
+	},
+	// 36 — CAP 6: sons
 	{
 		abre: true,
 		gato: {boca: 'aberta'},
@@ -416,7 +448,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'balao', w: 'meow', x: 800, y: 470, txt: 'meow!', cauda: {x: 650, y: 560}}],
 	},
-	// 34
+	// 37
 	{
 		gato: {boca: 'aberta'},
 		textos: [
@@ -429,7 +461,7 @@ export const VIS: Vis[] = [
 			{tipo: 'balao', w: 'long', x: 1300, y: 720, txt: 'MEEEOOOW', cauda: {x: 1100, y: 800}, largura: 380},
 		],
 	},
-	// 35
+	// 38
 	{
 		gato: {boca: 'w', rabo: 'alto'},
 		textos: [
@@ -440,7 +472,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'balao', w: 'trill', x: 800, y: 450, txt: 'mrrrp?', cauda: {x: 650, y: 560}}],
 	},
-	// 36
+	// 39
 	{
 		gato: {olhos: 'meio', rabo: 'enrolado'},
 		textos: [
@@ -450,7 +482,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'balao', w: 'purring', x: 800, y: 450, txt: 'prrrr~', cauda: {x: 650, y: 560}}],
 	},
-	// 37
+	// 40
 	{
 		gato: {olhos: 'meio', orelhas: 'lado', rabo: 'entre'},
 		textos: [
@@ -460,7 +492,7 @@ export const VIS: Vis[] = [
 		],
 		postit: {w: 'cuddle', linhas: ['vet,', 'not a cuddle'], x: 1450, y: 720, rot: -4},
 	},
-	// 38
+	// 41
 	{
 		gato: {bigodes: 'frente', boca: 'aberta'},
 		textos: [
@@ -469,7 +501,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'janela', w: 'birds', x: 1400, y: 700}],
 	},
-	// 39
+	// 42
 	{
 		gato: {boca: 'chiado', orelhas: 'tras', erizado: true, olhos: 'dilatado'},
 		textos: [
@@ -479,7 +511,7 @@ export const VIS: Vis[] = [
 			{w: 'space', txt: 'asking for space', marca: true},
 		],
 	},
-	// 40
+	// 43
 	{
 		gato: {boca: 'chiado', orelhas: 'tras', olhos: 'fenda'},
 		textos: [
@@ -488,7 +520,7 @@ export const VIS: Vis[] = [
 			{w: 'stop', txt: 'stop + give it room', marca: true},
 		],
 	},
-	// 41
+	// 44
 	{
 		gato: {boca: 'aberta', olhos: 'dilatado'},
 		textos: [
@@ -499,7 +531,17 @@ export const VIS: Vis[] = [
 			{w: 'vet', txt: 'new? see a vet', marca: true},
 		],
 	},
-	// 42 — CAP 7: amor
+	// 45 silêncio
+	{
+		gato: {rabo: 'entre', olhos: 'meio', orelhas: 'lado'},
+		textos: [
+			{w: 'silence', txt: 'silence is a signal too'},
+			{w: 'stops', txt: 'stops its usual sounds?'},
+			{w: 'hiding', txt: 'starts hiding?'},
+			{w: 'unwell', txt: 'might be stressed / unwell', cor: 'vermelho', marca: true},
+		],
+	},
+	// 46 — CAP 7: amor
 	{
 		abre: true,
 		gato: {olhos: 'lento', rabo: 'alto'},
@@ -509,7 +551,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'coracao', w: 'love', x: 730, y: 450}],
 	},
-	// 43
+	// 47
 	{
 		gato: {olhos: 'fechados', rot: 16, x: 600, escala: 0.85},
 		colX: 1100,
@@ -520,7 +562,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'pessoa', x: 820, escala: 1.1}],
 	},
-	// 44
+	// 48
 	{
 		gato: {amassar: true, olhos: 'meio'},
 		textos: [
@@ -529,7 +571,7 @@ export const VIS: Vis[] = [
 			{w: 'safe', txt: 'safe & happy', marca: true},
 		],
 	},
-	// 45
+	// 49
 	{
 		gato: {boca: 'lingua', olhos: 'meio'},
 		textos: [
@@ -538,7 +580,7 @@ export const VIS: Vis[] = [
 			{w: 'group', txt: "you're part of the group", marca: true},
 		],
 	},
-	// 46
+	// 50
 	{
 		gato: {pose: 'lado', virado: true, x: 600},
 		textos: [
@@ -547,7 +589,7 @@ export const VIS: Vis[] = [
 			{w: 'hello', txt: 'cat-style hello', marca: true},
 		],
 	},
-	// 47
+	// 51
 	{
 		gato: {pose: 'lado', x: 480},
 		colX: 1100,
@@ -558,7 +600,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'pessoa', x: 860, escala: 1}],
 	},
-	// 48
+	// 52
 	{
 		gato: {rabo: 'alto'},
 		textos: [
@@ -569,7 +611,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'rato', w: 'prey', x: 790, y: 840}],
 	},
-	// 49
+	// 53
 	{
 		gato: {olhos: 'lento', rabo: 'enrolado'},
 		textos: [
@@ -582,7 +624,18 @@ export const VIS: Vis[] = [
 			{tipo: 'coracao', w: 'trust', x: 400, y: 520, s: 0.7},
 		],
 	},
-	// 50 — CAP 8: o gato inteiro
+	// 54 sentar perto
+	{
+		gato: {pose: 'pao', x: 480, escala: 0.85},
+		colX: 1100,
+		textos: [
+			{w: 'near', txt: 'just sitting near you'},
+			{w: 'touching', txt: '(no touching needed)', cor: 'grafite'},
+			{w: 'choice', txt: '= a choice. A big deal.', marca: true},
+		],
+		extras: [{tipo: 'pessoa', x: 820, escala: 1}],
+	},
+	// 55 — CAP 8: o gato inteiro
 	{
 		abre: true,
 		gato: {rabo: 'alto'},
@@ -598,7 +651,7 @@ export const VIS: Vis[] = [
 			{tipo: 'circulo', w: 'body', x: 560, y: 760, rx: 120, ry: 90},
 		],
 	},
-	// 51
+	// 56
 	{
 		gato: {rabo: 'chicote', orelhas: 'lado'},
 		textos: [
@@ -609,7 +662,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'balao', w: 'purring', x: 800, y: 450, txt: 'prrr...', cauda: {x: 650, y: 560}}],
 	},
-	// 52
+	// 57
 	{
 		gato: {olhos: 'meio', muda: [{w: 'biting', boca: 'chiado', orelhas: 'tras', olhos: 'fenda'}]},
 		textos: [
@@ -620,7 +673,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'mao', x: 380, y: 590, rot: 18, acariciar: true, ate: 'biting'}],
 	},
-	// 53
+	// 58
 	{
 		gato: {olhos: 'meio', muda: [{w: 'twitching', rabo: 'swish'}, {w: 'ripples', pele: true}, {w: 'sideways', orelhas: 'lado'}]},
 		textos: [
@@ -631,7 +684,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'mao', x: 380, y: 590, rot: 18, acariciar: true}],
 	},
-	// 54
+	// 59
 	{
 		gato: {rabo: 'alto', olhos: 'meio'},
 		textos: [
@@ -641,7 +694,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'check', w: 'never', x: 1700, y: 500}],
 	},
-	// 55 — CAP 9: falar gatês
+	// 60 — CAP 9: falar gatês
 	{
 		abre: true,
 		gato: {bigodes: 'frente', x: 500},
@@ -653,7 +706,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'mao', w: 'knuckle', x: 830, y: 660, rot: 180}],
 	},
-	// 56
+	// 61
 	{
 		gato: {olhos: 'fechados', rabo: 'alto'},
 		textos: [
@@ -670,7 +723,7 @@ export const VIS: Vis[] = [
 			{tipo: 'circulo', w: 'ears', x: 620, y: 570, rx: 32, ry: 28},
 		],
 	},
-	// 57
+	// 62
 	{
 		gato: {rabo: 'gancho'},
 		textos: [
@@ -680,7 +733,7 @@ export const VIS: Vis[] = [
 			{w: 'choice', txt: 'give them the choice', cor: 'verde', marca: true},
 		],
 	},
-	// 58
+	// 63
 	{
 		gato: {olhos: 'lento', x: 480},
 		colX: 1100,
@@ -695,7 +748,18 @@ export const VIS: Vis[] = [
 			{tipo: 'coracao', w: 'back', x: 650, y: 420},
 		],
 	},
-	// 59 — recapitulação
+	// 64 cada gato é diferente
+	{
+		gatos: [{pose: 'pao', x: 420, escala: 0.65}, {rabo: 'alto', x: 760, escala: 0.75, w: 'cuddles'}, {pose: 'dorme', x: 1500, escala: 0.6, w: 'next'}],
+		colX: 1060,
+		textos: [
+			{w: 'different', txt: 'every cat is different'},
+			{w: 'cuddles', txt: 'some love cuddles'},
+			{w: 'next', txt: 'some just sit next to you'},
+			{w: 'respect', txt: 'learn its language. respect it.', marca: true, tam: 56},
+		],
+	},
+	// 65 — recapitulação
 	{
 		textos: [
 			{w: 'tail', txt: 'tail', x: 320, y: 360},
@@ -709,7 +773,7 @@ export const VIS: Vis[] = [
 		gato: {olhos: 'lento', rabo: 'alto', x: 1550},
 		extras: [{tipo: 'texto', x: 260, y: 215, txt: 'Recap', tam: 86, marca: true}],
 	},
-	// 60 — CTA
+	// 66 — CTA
 	{
 		gato: {olhos: 'lento', x: 1560, w: 'blink'},
 		textos: [

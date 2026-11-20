@@ -110,6 +110,15 @@ const ExtraEl: React.FC<{b: Bloco; e: Extra}> = ({b, e}) => {
 			return <Seta de={e.de} para={e.para} t={t} curva={30} cor={e.cor ? COR[e.cor] : COR.tinta} />;
 		case 'janela':
 			return <Janela x={e.x} y={e.y} t={t} />;
+		case 'geladeira':
+			return (
+				<g>
+					<rect x={e.x - 150} y={e.topo} width={300} height={BASE - e.topo} rx={14} fill="#fffdf6" stroke={COR.tinta} strokeWidth={7} />
+					<line x1={e.x - 150} y1={e.topo + 140} x2={e.x + 150} y2={e.topo + 140} stroke={COR.tinta} strokeWidth={7} />
+					<line x1={e.x + 110} y1={e.topo + 40} x2={e.x + 110} y2={e.topo + 100} stroke={COR.tinta} strokeWidth={9} strokeLinecap="round" />
+					<line x1={e.x + 110} y1={e.topo + 180} x2={e.x + 110} y2={e.topo + 260} stroke={COR.tinta} strokeWidth={9} strokeLinecap="round" />
+				</g>
+			);
 		case 'texto':
 			return <Escrito x={e.x} y={e.y} t={t} texto={e.txt} tam={e.tam ?? 60} cor={corDe(e.cor)} marca={e.marca ? COR.marca : undefined} vel={1.6} />;
 		default:
@@ -125,13 +134,13 @@ const Generica: Cena = ({b}) => {
 	return (
 		<g>
 			<Cabecalho cap={b.cap} novo={!!v.abre} />
-			{(v.extras ?? []).filter((e) => e.tipo === 'pessoa').map((e, i) => <ExtraEl key={`p${i}`} b={b} e={e} />)}
+			{(v.extras ?? []).filter((e) => e.tipo === 'pessoa' || e.tipo === 'geladeira').map((e, i) => <ExtraEl key={`p${i}`} b={b} e={e} />)}
 			{gatos.map((g, i) => (
 				<Gato key={i} b={b} g={g} />
 			))}
 			{v.textos && <Textos b={b} itens={v.textos} colX={v.colX ?? (temGato ? 1000 : 300)} />}
 			{v.postit && <PostIt x={v.postit.x ?? 1450} y={v.postit.y ?? 700} t={quando(b, v.postit.w)} linhas={v.postit.linhas} rot={v.postit.rot ?? -4} w={380} />}
-			{(v.extras ?? []).filter((e) => e.tipo !== 'pessoa').map((e, i) => <ExtraEl key={i} b={b} e={e} />)}
+			{(v.extras ?? []).filter((e) => e.tipo !== 'pessoa' && e.tipo !== 'geladeira').map((e, i) => <ExtraEl key={i} b={b} e={e} />)}
 		</g>
 	);
 };
