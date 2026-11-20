@@ -200,7 +200,7 @@ def main():
         if abs(s["start"] - t) > 0.01:
             log(f"WARNING timeline gap/overlap before {s['id']}: expected {t:.2f}, got {s['start']}")
         t = s["start"] + s["dur"]
-    total = t
+    total = cfg.get("total_seconds", t)
 
     parts = []
     if args.picture:
@@ -228,14 +228,17 @@ def main():
         picture = tmp / "picture.mp4"
         concat(parts, picture, tmp)
 
-    srt = ep / "subtitles" / f"{cfg['cut']}.en.srt"
-    write_srt(cfg, srt)
+    if cfg.get("srt_file"):
+        srt = ep / cfg["srt_file"]
+    else:
+        srt = ep / "subtitles" / f"{cfg['cut']}.en.srt"
+        write_srt(cfg, srt)
 
     mix = cfg["mix"]
     vo = cfg["voiceover"]
     off_ms = int(vo["offset"] * 1000)
-    music = ep / "music" / "music_poc.wav"
-    sfx = ep / "sound_effects" / "sfx_poc.wav"
+    music = ep / cfg.get("music_file", "music/music_poc.wav")
+    sfx = ep / cfg.get("sfx_file", "sound_effects/sfx_poc.wav")
     final = ep / (args.out or cfg["output"]["file"])
     final.parent.mkdir(parents=True, exist_ok=True)
     fc = (

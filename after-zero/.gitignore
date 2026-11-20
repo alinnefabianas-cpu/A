@@ -6,3 +6,5 @@ project/*/renders/*.mp4
 project/*/music/*.wav
 project/*/sound_effects/*.wav
 __pycache__/
+project/*/voiceover/full_vo.wav
+project/*/voiceover/full/*.wav

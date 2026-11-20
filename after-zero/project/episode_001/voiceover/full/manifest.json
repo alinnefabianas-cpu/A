@@ -1,0 +1,750 @@
+{
+ "0.2": {
+  "file": "voiceover/full/n_559657c3ad19.wav",
+  "dur": 6.732
+ },
+ "0.3": {
+  "file": "voiceover/full/n_5d53ff134554.wav",
+  "dur": 3.709
+ },
+ "0.4": {
+  "file": "voiceover/full/n_a2b521306463.wav",
+  "dur": 3.389
+ },
+ "0.5": {
+  "file": "voiceover/full/n_40fffbda2aaf.wav",
+  "dur": 10.3
+ },
+ "0.6": {
+  "file": "voiceover/full/n_6b84589088f3.wav",
+  "dur": 1.948
+ },
+ "0.7": {
+  "file": "voiceover/full/n_79d8ab5de98a.wav",
+  "dur": 3.315
+ },
+ "0.8": {
+  "file": "voiceover/full/n_f7373b90a7e0.wav",
+  "dur": 2.15
+ },
+ "0.9": {
+  "file": "voiceover/full/n_4932f149a5e0.wav",
+  "dur": 2.116
+ },
+ "0.10": {
+  "file": "voiceover/full/n_9889a190fa14.wav",
+  "dur": 4.554
+ },
+ "0.11": {
+  "file": "voiceover/full/n_3993745b71f8.wav",
+  "dur": 2.41
+ },
+ "0.12": {
+  "file": "voiceover/full/n_cb620a7929b5.wav",
+  "dur": 4.087
+ },
+ "1.0": {
+  "file": "voiceover/full/n_87086e39579c.wav",
+  "dur": 9.209
+ },
+ "1.1": {
+  "file": "voiceover/full/n_d0124fec3daa.wav",
+  "dur": 11.832
+ },
+ "1.2": {
+  "file": "voiceover/full/n_9142f196e736.wav",
+  "dur": 6.668
+ },
+ "1.3": {
+  "file": "voiceover/full/n_b1cf6af6a48b.wav",
+  "dur": 2.421
+ },
+ "1.4": {
+  "file": "voiceover/full/noah_282399f45319.wav",
+  "dur": 0.659
+ },
+ "1.5": {
+  "file": "voiceover/full/n_91bef5357b68.wav",
+  "dur": 5.838
+ },
+ "1.6": {
+  "file": "voiceover/full/n_038d46a837e7.wav",
+  "dur": 8.131
+ },
+ "1.7": {
+  "file": "voiceover/full/n_3ecf71b2c317.wav",
+  "dur": 3.003
+ },
+ "1.8": {
+  "file": "voiceover/full/n_6d0a9f8b9069.wav",
+  "dur": 11.813
+ },
+ "1.9": {
+  "file": "voiceover/full/n_1b6dac6bbeb9.wav",
+  "dur": 7.225
+ },
+ "1.10": {
+  "file": "voiceover/full/n_a506bd6d705d.wav",
+  "dur": 4.566
+ },
+ "1.11": {
+  "file": "voiceover/full/noah_ff1f07955282.wav",
+  "dur": 1.626
+ },
+ "1.12": {
+  "file": "voiceover/full/n_6201fce28cca.wav",
+  "dur": 10.367
+ },
+ "1.13": {
+  "file": "voiceover/full/n_19993c57a05e.wav",
+  "dur": 6.666
+ },
+ "1.14": {
+  "file": "voiceover/full/n_c29e8a17fd57.wav",
+  "dur": 6.957
+ },
+ "1.15": {
+  "file": "voiceover/full/n_7bba16d99b74.wav",
+  "dur": 7.991
+ },
+ "1.16": {
+  "file": "voiceover/full/n_f4f3c53c2634.wav",
+  "dur": 6.529
+ },
+ "1.17": {
+  "file": "voiceover/full/n_869638d69ba6.wav",
+  "dur": 4.91
+ },
+ "1.18": {
+  "file": "voiceover/full/n_04e0071ec4ce.wav",
+  "dur": 10.904
+ },
+ "1.19": {
+  "file": "voiceover/full/n_1ded9b5cd285.wav",
+  "dur": 5.909
+ },
+ "1.20": {
+  "file": "voiceover/full/noah_92aa78aaab2f.wav",
+  "dur": 1.213
+ },
+ "2.0": {
+  "file": "voiceover/full/n_873da08ac32c.wav",
+  "dur": 4.828
+ },
+ "2.1": {
+  "file": "voiceover/full/n_67a44a5272de.wav",
+  "dur": 6.723
+ },
+ "2.2": {
+  "file": "voiceover/full/n_25a74b74119c.wav",
+  "dur": 4.746
+ },
+ "2.3": {
+  "file": "voiceover/full/n_de9aa1abd75e.wav",
+  "dur": 7.756
+ },
+ "2.4": {
+  "file": "voiceover/full/n_65215bd6ac17.wav",
+  "dur": 12.523
+ },
+ "2.5": {
+  "file": "voiceover/full/n_b59bb463e791.wav",
+  "dur": 8.497
+ },
+ "2.6": {
+  "file": "voiceover/full/noah_855f683a3022.wav",
+  "dur": 4.248
+ },
+ "2.7": {
+  "file": "voiceover/full/n_ee561a76e590.wav",
+  "dur": 7.776
+ },
+ "2.8": {
+  "file": "voiceover/full/n_ab52b49fa3bd.wav",
+  "dur": 9.397
+ },
+ "2.9": {
+  "file": "voiceover/full/n_8ed8062e4bf7.wav",
+  "dur": 15.996
+ },
+ "2.10": {
+  "file": "voiceover/full/n_eacbdb686ebf.wav",
+  "dur": 9.441
+ },
+ "2.11": {
+  "file": "voiceover/full/n_76ea25b9af12.wav",
+  "dur": 2.7
+ },
+ "2.12": {
+  "file": "voiceover/full/n_3ae7a6f885da.wav",
+  "dur": 1.876
+ },
+ "2.13": {
+  "file": "voiceover/full/n_c48789ad7fe9.wav",
+  "dur": 1.87
+ },
+ "2.14": {
+  "file": "voiceover/full/n_f75a228862dc.wav",
+  "dur": 6.244
+ },
+ "2.15": {
+  "file": "voiceover/full/n_729a1195380c.wav",
+  "dur": 4.823
+ },
+ "3.0": {
+  "file": "voiceover/full/n_5339d7f91930.wav",
+  "dur": 2.23
+ },
+ "3.1": {
+  "file": "voiceover/full/n_a28a91cb8740.wav",
+  "dur": 7.187
+ },
+ "3.2": {
+  "file": "voiceover/full/n_7f79c6540c95.wav",
+  "dur": 1.447
+ },
+ "3.3": {
+  "file": "voiceover/full/n_362cb1f40754.wav",
+  "dur": 5.245
+ },
+ "3.4": {
+  "file": "voiceover/full/noah_04d9c351c2aa.wav",
+  "dur": 5.459
+ },
+ "3.5": {
+  "file": "voiceover/full/n_034b859c2978.wav",
+  "dur": 8.227
+ },
+ "3.6": {
+  "file": "voiceover/full/n_09ac5a11a074.wav",
+  "dur": 2.254
+ },
+ "3.7": {
+  "file": "voiceover/full/n_827a608ac179.wav",
+  "dur": 9.123
+ },
+ "3.9": {
+  "file": "voiceover/full/n_b4d274cddc79.wav",
+  "dur": 1.305
+ },
+ "3.10": {
+  "file": "voiceover/full/n_cfb916e5475d.wav",
+  "dur": 2.777
+ },
+ "3.11": {
+  "file": "voiceover/full/n_e462bc898219.wav",
+  "dur": 6.094
+ },
+ "3.12": {
+  "file": "voiceover/full/n_eef29d78e0bd.wav",
+  "dur": 7.582
+ },
+ "3.13": {
+  "file": "voiceover/full/n_aaf1dd4eaf3f.wav",
+  "dur": 4.848
+ },
+ "4.0": {
+  "file": "voiceover/full/n_913212d4a19f.wav",
+  "dur": 1.617
+ },
+ "4.1": {
+  "file": "voiceover/full/n_bce47e2b9916.wav",
+  "dur": 1.154
+ },
+ "4.2": {
+  "file": "voiceover/full/n_077a5e151ef5.wav",
+  "dur": 1.248
+ },
+ "4.3": {
+  "file": "voiceover/full/n_1cf4130f9de0.wav",
+  "dur": 6.994
+ },
+ "4.4": {
+  "file": "voiceover/full/noah_25720a652d01.wav",
+  "dur": 12.445
+ },
+ "4.5": {
+  "file": "voiceover/full/n_c751b62aa9e2.wav",
+  "dur": 5.415
+ },
+ "4.6": {
+  "file": "voiceover/full/n_91458965dad2.wav",
+  "dur": 3.4
+ },
+ "4.7": {
+  "file": "voiceover/full/n_998db3255b1a.wav",
+  "dur": 12.409
+ },
+ "4.8": {
+  "file": "voiceover/full/n_57c3253eee1a.wav",
+  "dur": 9.172
+ },
+ "4.9": {
+  "file": "voiceover/full/n_f180fb2f1f90.wav",
+  "dur": 7.253
+ },
+ "4.10": {
+  "file": "voiceover/full/n_24080e6cbbf2.wav",
+  "dur": 5.937
+ },
+ "4.11": {
+  "file": "voiceover/full/n_87b0b177a756.wav",
+  "dur": 2.252
+ },
+ "4.12": {
+  "file": "voiceover/full/n_9da7c2cd657a.wav",
+  "dur": 1.981
+ },
+ "4.13": {
+  "file": "voiceover/full/n_fadf9a15ce55.wav",
+  "dur": 14.207
+ },
+ "4.14": {
+  "file": "voiceover/full/noah_1741ac1d47aa.wav",
+  "dur": 10.887
+ },
+ "4.15": {
+  "file": "voiceover/full/n_c4facc10bb86.wav",
+  "dur": 8.087
+ },
+ "4.16": {
+  "file": "voiceover/full/noah_f4dfb18a160a.wav",
+  "dur": 6.301
+ },
+ "4.17": {
+  "file": "voiceover/full/n_056966847005.wav",
+  "dur": 8.2
+ },
+ "5.0": {
+  "file": "voiceover/full/n_2f792a7560aa.wav",
+  "dur": 6.429
+ },
+ "5.1": {
+  "file": "voiceover/full/n_a479628aafa0.wav",
+  "dur": 7.456
+ },
+ "5.2": {
+  "file": "voiceover/full/n_f0335d00f031.wav",
+  "dur": 8.98
+ },
+ "5.3": {
+  "file": "voiceover/full/n_7c984d4fb9d8.wav",
+  "dur": 8.363
+ },
+ "5.5": {
+  "file": "voiceover/full/n_71410f60221a.wav",
+  "dur": 3.994
+ },
+ "5.6": {
+  "file": "voiceover/full/n_47de8c34bedf.wav",
+  "dur": 4.164
+ },
+ "5.7": {
+  "file": "voiceover/full/radio_56db9ae6ab9c.wav",
+  "dur": 2.456
+ },
+ "5.8": {
+  "file": "voiceover/full/n_85281c3de1f4.wav",
+  "dur": 1.299
+ },
+ "5.9": {
+  "file": "voiceover/full/noah_17350838a30b.wav",
+  "dur": 2.862
+ },
+ "5.10": {
+  "file": "voiceover/full/radio_d7060a057699.wav",
+  "dur": 2.668
+ },
+ "5.11": {
+  "file": "voiceover/full/n_7bdd44fbb956.wav",
+  "dur": 7.934
+ },
+ "5.12": {
+  "file": "voiceover/full/n_e96879bc02d8.wav",
+  "dur": 7.585
+ },
+ "5.13": {
+  "file": "voiceover/full/noah_62949e6f6973.wav",
+  "dur": 3.045
+ },
+ "5.15": {
+  "file": "voiceover/full/radio_1341c87faddc.wav",
+  "dur": 2.875
+ },
+ "5.17": {
+  "file": "voiceover/full/radio_f107215b9cd6.wav",
+  "dur": 0.973
+ },
+ "5.18": {
+  "file": "voiceover/full/n_1537f03aee54.wav",
+  "dur": 2.177
+ },
+ "5.19": {
+  "file": "voiceover/full/n_c9037766d5cf.wav",
+  "dur": 10.415
+ },
+ "6.0": {
+  "file": "voiceover/full/n_97c95f45f507.wav",
+  "dur": 11.184
+ },
+ "6.1": {
+  "file": "voiceover/full/n_835702a07b8d.wav",
+  "dur": 8.105
+ },
+ "6.2": {
+  "file": "voiceover/full/n_3ff2b8fd94c1.wav",
+  "dur": 5.588
+ },
+ "6.3": {
+  "file": "voiceover/full/n_81fa557976e3.wav",
+  "dur": 6.674
+ },
+ "6.4": {
+  "file": "voiceover/full/n_4a0f1d63eb23.wav",
+  "dur": 7.936
+ },
+ "6.5": {
+  "file": "voiceover/full/n_538124a72ba7.wav",
+  "dur": 6.677
+ },
+ "6.6": {
+  "file": "voiceover/full/n_f0af0cb0e92f.wav",
+  "dur": 8.091
+ },
+ "6.7": {
+  "file": "voiceover/full/n_33a68af26709.wav",
+  "dur": 6.177
+ },
+ "6.8": {
+  "file": "voiceover/full/noah_7fbf147cf9d7.wav",
+  "dur": 11.222
+ },
+ "6.9": {
+  "file": "voiceover/full/n_ef3165d69de8.wav",
+  "dur": 9.37
+ },
+ "6.10": {
+  "file": "voiceover/full/n_9d2ba767b252.wav",
+  "dur": 5.533
+ },
+ "6.11": {
+  "file": "voiceover/full/n_1fccad4e670f.wav",
+  "dur": 3.078
+ },
+ "6.12": {
+  "file": "voiceover/full/n_81b532f468bc.wav",
+  "dur": 8.601
+ },
+ "6.13": {
+  "file": "voiceover/full/noah_163d9cd1095f.wav",
+  "dur": 8.232
+ },
+ "6.14": {
+  "file": "voiceover/full/n_689c69b7cc17.wav",
+  "dur": 5.47
+ },
+ "6.15": {
+  "file": "voiceover/full/n_8ebac3276f42.wav",
+  "dur": 7.876
+ },
+ "6.16": {
+  "file": "voiceover/full/n_ba08733fc85d.wav",
+  "dur": 4.127
+ },
+ "6.17": {
+  "file": "voiceover/full/n_c26a8719040d.wav",
+  "dur": 2.568
+ },
+ "7.0": {
+  "file": "voiceover/full/n_e83052b60188.wav",
+  "dur": 7.842
+ },
+ "7.1": {
+  "file": "voiceover/full/n_b286894ae8eb.wav",
+  "dur": 6.602
+ },
+ "7.2": {
+  "file": "voiceover/full/noah_57506f1662ac.wav",
+  "dur": 2.72
+ },
+ "7.3": {
+  "file": "voiceover/full/n_f42962708486.wav",
+  "dur": 4.862
+ },
+ "7.4": {
+  "file": "voiceover/full/n_5f404b568e6b.wav",
+  "dur": 10.952
+ },
+ "7.5": {
+  "file": "voiceover/full/n_0ae508232b11.wav",
+  "dur": 6.843
+ },
+ "7.6": {
+  "file": "voiceover/full/n_7b4d964ab25f.wav",
+  "dur": 2.289
+ },
+ "7.7": {
+  "file": "voiceover/full/carter_b549b31e831d.wav",
+  "dur": 2.638
+ },
+ "7.8": {
+  "file": "voiceover/full/n_319dfff2a259.wav",
+  "dur": 7.361
+ },
+ "7.9": {
+  "file": "voiceover/full/carter_baa4e219534c.wav",
+  "dur": 7.346
+ },
+ "7.10": {
+  "file": "voiceover/full/n_81c440606a53.wav",
+  "dur": 3.793
+ },
+ "7.11": {
+  "file": "voiceover/full/carter_e7454a025e0e.wav",
+  "dur": 5.122
+ },
+ "7.12": {
+  "file": "voiceover/full/n_e9428da9e49e.wav",
+  "dur": 2.588
+ },
+ "7.13": {
+  "file": "voiceover/full/carter_9c5e87ab4052.wav",
+  "dur": 1.837
+ },
+ "7.14": {
+  "file": "voiceover/full/n_2fe7dc113255.wav",
+  "dur": 5.284
+ },
+ "8.0": {
+  "file": "voiceover/full/n_595ba65ae5c0.wav",
+  "dur": 2.86
+ },
+ "8.1": {
+  "file": "voiceover/full/n_2c235f61099a.wav",
+  "dur": 10.814
+ },
+ "8.2": {
+  "file": "voiceover/full/n_600dda7b68ae.wav",
+  "dur": 7.309
+ },
+ "8.3": {
+  "file": "voiceover/full/n_92cb56a67889.wav",
+  "dur": 11.747
+ },
+ "8.4": {
+  "file": "voiceover/full/n_f92dc03d20ce.wav",
+  "dur": 9.809
+ },
+ "8.5": {
+  "file": "voiceover/full/n_5f0e21b73c2d.wav",
+  "dur": 2.416
+ },
+ "8.6": {
+  "file": "voiceover/full/n_4dfd02d2192a.wav",
+  "dur": 8.594
+ },
+ "8.7": {
+  "file": "voiceover/full/n_6e60ce597146.wav",
+  "dur": 6.402
+ },
+ "8.8": {
+  "file": "voiceover/full/noah_542665bcb1c1.wav",
+  "dur": 3.761
+ },
+ "8.9": {
+  "file": "voiceover/full/n_6fde10a7cbeb.wav",
+  "dur": 5.461
+ },
+ "8.10": {
+  "file": "voiceover/full/carter_6a3b96258807.wav",
+  "dur": 4.731
+ },
+ "8.11": {
+  "file": "voiceover/full/n_939f7e861fe3.wav",
+  "dur": 2.06
+ },
+ "8.12": {
+  "file": "voiceover/full/carter_91e44b8d93cf.wav",
+  "dur": 2.677
+ },
+ "8.13": {
+  "file": "voiceover/full/n_5c1b19d500e1.wav",
+  "dur": 1.377
+ },
+ "8.14": {
+  "file": "voiceover/full/carter_cc988689162d.wav",
+  "dur": 1.361
+ },
+ "8.15": {
+  "file": "voiceover/full/n_6f1e5daeddef.wav",
+  "dur": 2.09
+ },
+ "8.16": {
+  "file": "voiceover/full/n_1bdd5d6f8775.wav",
+  "dur": 4.023
+ },
+ "8.17": {
+  "file": "voiceover/full/n_61aa5cade79c.wav",
+  "dur": 2.133
+ },
+ "8.18": {
+  "file": "voiceover/full/n_20c4516e0814.wav",
+  "dur": 9.492
+ },
+ "9.0": {
+  "file": "voiceover/full/n_5c3f67db5383.wav",
+  "dur": 2.007
+ },
+ "9.1": {
+  "file": "voiceover/full/n_07842340d066.wav",
+  "dur": 7.108
+ },
+ "9.2": {
+  "file": "voiceover/full/n_ba7ee94595d6.wav",
+  "dur": 3.493
+ },
+ "9.3": {
+  "file": "voiceover/full/sis_39f744f3701a.wav",
+  "dur": 0.673
+ },
+ "9.4": {
+  "file": "voiceover/full/n_b9773388c182.wav",
+  "dur": 1.048
+ },
+ "9.5": {
+  "file": "voiceover/full/noah_9378a4cfe8bc.wav",
+  "dur": 0.884
+ },
+ "9.6": {
+  "file": "voiceover/full/sis_ecd11b5e27cb.wav",
+  "dur": 1.641
+ },
+ "9.7": {
+  "file": "voiceover/full/n_557d9e313b9d.wav",
+  "dur": 4.793
+ },
+ "9.8": {
+  "file": "voiceover/full/n_1aff089500bb.wav",
+  "dur": 4.453
+ },
+ "9.9": {
+  "file": "voiceover/full/sis_766d99df835e.wav",
+  "dur": 1.494
+ },
+ "9.10": {
+  "file": "voiceover/full/noah_0d6af73b0b57.wav",
+  "dur": 2.684
+ },
+ "9.12": {
+  "file": "voiceover/full/sis_23e2cb70eb8d.wav",
+  "dur": 0.932
+ },
+ "9.13": {
+  "file": "voiceover/full/n_56abf93ff899.wav",
+  "dur": 5.547
+ },
+ "9.14": {
+  "file": "voiceover/full/sis_8fa65ec8c240.wav",
+  "dur": 1.77
+ },
+ "9.15": {
+  "file": "voiceover/full/n_b53fda9b786f.wav",
+  "dur": 2.227
+ },
+ "10.0": {
+  "file": "voiceover/full/n_60332a92d386.wav",
+  "dur": 2.787
+ },
+ "10.1": {
+  "file": "voiceover/full/n_21af9b014bec.wav",
+  "dur": 12.602
+ },
+ "10.2": {
+  "file": "voiceover/full/n_3fd91f749a6c.wav",
+  "dur": 4.09
+ },
+ "10.3": {
+  "file": "voiceover/full/n_5a7e8d225d84.wav",
+  "dur": 5.253
+ },
+ "10.4": {
+  "file": "voiceover/full/n_1d69b5ab7f37.wav",
+  "dur": 3.077
+ },
+ "10.5": {
+  "file": "voiceover/full/n_94d6467e9e2f.wav",
+  "dur": 2.776
+ },
+ "10.6": {
+  "file": "voiceover/full/n_05b94e145be9.wav",
+  "dur": 2.778
+ },
+ "10.7": {
+  "file": "voiceover/full/n_b53e44cdecfd.wav",
+  "dur": 1.994
+ },
+ "10.8": {
+  "file": "voiceover/full/n_84022c0aed76.wav",
+  "dur": 2.749
+ },
+ "10.9": {
+  "file": "voiceover/full/n_dc593c9f9c07.wav",
+  "dur": 3.523
+ },
+ "10.10": {
+  "file": "voiceover/full/n_bae949fa291b.wav",
+  "dur": 9.383
+ },
+ "10.11": {
+  "file": "voiceover/full/n_1d2911deca66.wav",
+  "dur": 5.133
+ },
+ "10.13": {
+  "file": "voiceover/full/radio_452997b34ecd.wav",
+  "dur": 1.489
+ },
+ "11.1": {
+  "file": "voiceover/full/n_0ef00c20968c.wav",
+  "dur": 4.798
+ },
+ "11.2": {
+  "file": "voiceover/full/n_66416fd8fba3.wav",
+  "dur": 6.686
+ },
+ "11.3": {
+  "file": "voiceover/full/n_952a4ca5cb74.wav",
+  "dur": 9.555
+ },
+ "11.4": {
+  "file": "voiceover/full/n_6d56dacec6e0.wav",
+  "dur": 3.633
+ },
+ "11.5": {
+  "file": "voiceover/full/n_202b03f150bb.wav",
+  "dur": 8.72
+ },
+ "11.6": {
+  "file": "voiceover/full/n_8306774e9104.wav",
+  "dur": 2.117
+ },
+ "11.7": {
+  "file": "voiceover/full/n_4a7746268032.wav",
+  "dur": 7.929
+ },
+ "11.8": {
+  "file": "voiceover/full/n_fdaac4c536ab.wav",
+  "dur": 7.181
+ },
+ "11.9": {
+  "file": "voiceover/full/n_8b6ac8a4e30c.wav",
+  "dur": 6.319
+ },
+ "11.11": {
+  "file": "voiceover/full/n_081e8b4b4392.wav",
+  "dur": 8.427
+ },
+ "11.12": {
+  "file": "voiceover/full/n_a56c84cf154e.wav",
+  "dur": 4.593
+ }
+}

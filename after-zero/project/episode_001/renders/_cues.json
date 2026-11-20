@@ -1,0 +1,2237 @@
+{
+"total": 1355.1039999999994,
+"shots": [
+{
+"start": 0.0,
+"dur": 4.6,
+"visual": "city",
+"p": {
+"time": "dawn",
+"dur": 4.6,
+"sfx": "city"
+},
+"speaker": "-",
+"scene": 0
+},
+{
+"start": 4.6,
+"dur": 2.6,
+"visual": "clock",
+"p": {
+"dur": 2.6,
+"sfx": "silence"
+},
+"speaker": "-",
+"scene": 0
+},
+{
+"start": 7.199999999999999,
+"dur": 7.982,
+"visual": "bedroom",
+"p": {
+"noah": "lying",
+"wake": true
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 15.181999999999999,
+"dur": 4.959,
+"visual": "phone",
+"p": {
+"screen": "lock"
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 20.141,
+"dur": 4.639,
+"visual": "hallway",
+"p": {},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 24.779999999999998,
+"dur": 11.55,
+"visual": "bedroom",
+"p": {
+"noah": "sitting",
+"call": true
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 36.33,
+"dur": 3.1980000000000004,
+"visual": "livingWalk",
+"p": {},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 39.528,
+"dur": 4.565,
+"visual": "windowBack",
+"p": {
+"time": "dawn"
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 44.092999999999996,
+"dur": 3.4000000000000004,
+"visual": "street",
+"p": {
+"time": "dawn"
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 47.492999999999995,
+"dur": 3.3660000000000005,
+"visual": "trafficLight",
+"p": {},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 50.858999999999995,
+"dur": 5.804,
+"visual": "aerial",
+"p": {
+"time": "day",
+"impact": 0.75
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 56.663,
+"dur": 3.66,
+"visual": "profile",
+"p": {
+"time": "dawn"
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 60.32299999999999,
+"dur": 9.837,
+"visual": "title",
+"p": {
+"tail": 4.5
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 70.16,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 1,
+"title": "SOMETHING IS WRONG"
+},
+"speaker": "-",
+"scene": 1
+},
+{
+"start": 74.16,
+"dur": 10.459,
+"visual": "city",
+"p": {
+"time": "day",
+"seed": 2
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 84.619,
+"dur": 13.082,
+"visual": "windowBack",
+"p": {
+"time": "day"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 97.701,
+"dur": 7.918,
+"visual": "bedroom",
+"p": {
+"noah": "sitting"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 105.619,
+"dur": 3.6710000000000003,
+"visual": "profile",
+"p": {
+"time": "day"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 109.29,
+"dur": 1.909,
+"visual": "windowBack",
+"p": {
+"time": "day",
+"echo": true
+},
+"speaker": "NOAH",
+"scene": 1
+},
+{
+"start": 111.19900000000001,
+"dur": 7.088,
+"visual": "aerial",
+"p": {
+"time": "day",
+"seed": 7
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 118.287,
+"dur": 9.381,
+"visual": "phone",
+"p": {
+"screen": "msg"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 127.668,
+"dur": 4.253,
+"visual": "phone",
+"p": {
+"screen": "msg",
+"zoom": true
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 131.921,
+"dur": 13.063,
+"visual": "profile",
+"p": {
+"time": "day",
+"seed": 4
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 144.98399999999998,
+"dur": 8.475,
+"visual": "bedroom",
+"p": {
+"noah": "sitting"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 153.45899999999997,
+"dur": 5.816,
+"visual": "phone",
+"p": {
+"screen": "calls"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 159.27499999999998,
+"dur": 2.8760000000000003,
+"visual": "bedroom",
+"p": {
+"noah": "sitting",
+"call": true
+},
+"speaker": "NOAH",
+"scene": 1
+},
+{
+"start": 162.15099999999998,
+"dur": 11.617,
+"visual": "phone",
+"p": {
+"screen": "social"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 173.76799999999997,
+"dur": 7.916,
+"visual": "phone",
+"p": {
+"screen": "social",
+"end": true
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 181.68399999999997,
+"dur": 8.207,
+"visual": "profile",
+"p": {
+"time": "day",
+"seed": 2
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 189.89099999999996,
+"dur": 9.241,
+"visual": "hallway",
+"p": {
+"seed": 2
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 199.13199999999995,
+"dur": 7.779,
+"visual": "stairs",
+"p": {},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 206.91099999999994,
+"dur": 6.16,
+"visual": "street",
+"p": {
+"time": "day",
+"seed": 3
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 213.07099999999994,
+"dur": 12.154,
+"visual": "street",
+"p": {
+"time": "day",
+"seed": 4
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 225.22499999999994,
+"dur": 7.159,
+"visual": "noahStreet",
+"p": {
+"time": "day"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 232.38399999999993,
+"dur": 2.463,
+"visual": "profile",
+"p": {
+"time": "day",
+"outfit": "out"
+},
+"speaker": "NOAH",
+"scene": 1
+},
+{
+"start": 234.84699999999992,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 2,
+"title": "THE EMPTY CITY"
+},
+"speaker": "-",
+"scene": 2
+},
+{
+"start": 238.84699999999992,
+"dur": 6.078,
+"visual": "noahStreet",
+"p": {
+"time": "day",
+"seed": 5
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 244.92499999999993,
+"dur": 7.973,
+"visual": "streetWide",
+"p": {
+"time": "day"
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 252.89799999999994,
+"dur": 5.996,
+"visual": "trafficLight",
+"p": {
+"cycle": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 258.89399999999995,
+"dur": 9.006,
+"visual": "supermarket",
+"p": {},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 267.9,
+"dur": 13.773,
+"visual": "supermarket",
+"p": {
+"cart": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 281.673,
+"dur": 9.747,
+"visual": "hospital",
+"p": {},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 291.42,
+"dur": 5.498,
+"visual": "hospital",
+"p": {
+"noah": true
+},
+"speaker": "NOAH",
+"scene": 2
+},
+{
+"start": 296.918,
+"dur": 9.026,
+"visual": "subway",
+"p": {},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 305.944,
+"dur": 10.647,
+"visual": "police",
+"p": {},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 316.591,
+"dur": 17.246000000000002,
+"visual": "street",
+"p": {
+"time": "day",
+"seed": 6
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 333.837,
+"dur": 10.691,
+"visual": "aerial",
+"p": {
+"time": "day",
+"seed": 3
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 344.52799999999996,
+"dur": 3.95,
+"visual": "city",
+"p": {
+"time": "day",
+"seed": 4
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 348.47799999999995,
+"dur": 3.1260000000000003,
+"visual": "profile",
+"p": {
+"time": "day",
+"outfit": "out",
+"seed": 3
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 351.6039999999999,
+"dur": 3.12,
+"visual": "streetWide",
+"p": {
+"time": "day",
+"seed": 2,
+"tiny": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 354.72399999999993,
+"dur": 7.494,
+"visual": "noahStreet",
+"p": {
+"time": "dusk"
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 362.21799999999996,
+"dur": 6.073,
+"visual": "windowBack",
+"p": {
+"time": "dusk"
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 368.29099999999994,
+"dur": 3.5,
+"visual": "city",
+"p": {
+"time": "dusk",
+"dur": 3.5,
+"seed": 5
+},
+"speaker": "-",
+"scene": 2
+},
+{
+"start": 371.79099999999994,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 3,
+"title": "THE FIRST NIGHT"
+},
+"speaker": "-",
+"scene": 3
+},
+{
+"start": 375.79099999999994,
+"dur": 3.4800000000000004,
+"visual": "bedroom",
+"p": {
+"noah": "sitting",
+"time": "night"
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 379.27099999999996,
+"dur": 8.437000000000001,
+"visual": "phone",
+"p": {
+"screen": "calls",
+"night": true
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 387.70799999999997,
+"dur": 2.697,
+"visual": "profile",
+"p": {
+"time": "night"
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 390.405,
+"dur": 6.495,
+"visual": "tableSit",
+"p": {},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 396.9,
+"dur": 6.709,
+"visual": "tableSit",
+"p": {
+"seed": 2
+},
+"speaker": "NOAH",
+"scene": 3
+},
+{
+"start": 403.609,
+"dur": 9.477,
+"visual": "tableSit",
+"p": {
+"seed": 3
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 413.08599999999996,
+"dur": 3.5040000000000004,
+"visual": "tv",
+"p": {
+"state": "on"
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 416.59,
+"dur": 10.373,
+"visual": "tv",
+"p": {
+"state": "broadcast"
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 426.96299999999997,
+"dur": 2.5,
+"visual": "tv",
+"p": {
+"state": "static",
+"dur": 2.5,
+"sfx": "static"
+},
+"speaker": "-",
+"scene": 3
+},
+{
+"start": 429.46299999999997,
+"dur": 2.5549999999999997,
+"visual": "tv",
+"p": {
+"state": "static"
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 432.018,
+"dur": 4.027,
+"visual": "profile",
+"p": {
+"time": "tv"
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 436.04499999999996,
+"dur": 7.344,
+"visual": "windowNight",
+"p": {
+"phase": "dimming"
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 443.38899999999995,
+"dur": 8.832,
+"visual": "windowNight",
+"p": {
+"phase": "zoomout"
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 452.22099999999995,
+"dur": 6.098,
+"visual": "windowNight",
+"p": {
+"phase": "hold"
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 458.31899999999996,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 4,
+"title": "THE NEW REALITY"
+},
+"speaker": "-",
+"scene": 4
+},
+{
+"start": 462.31899999999996,
+"dur": 2.867,
+"visual": "tally",
+"p": {
+"n": 3
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 465.186,
+"dur": 2.404,
+"visual": "tally",
+"p": {
+"n": 5
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 467.59,
+"dur": 2.498,
+"visual": "tally",
+"p": {
+"n": 7
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 470.08799999999997,
+"dur": 8.244,
+"visual": "phone",
+"p": {
+"screen": "memo"
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 478.332,
+"dur": 13.695,
+"visual": "tableSit",
+"p": {
+"time": "day",
+"phone": true
+},
+"speaker": "NOAH",
+"scene": 4
+},
+{
+"start": 492.027,
+"dur": 6.665,
+"visual": "city",
+"p": {
+"time": "day",
+"seed": 6
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 498.692,
+"dur": 4.65,
+"visual": "noahStreet",
+"p": {
+"time": "day",
+"seed": 6
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 503.342,
+"dur": 13.659,
+"visual": "supermarket",
+"p": {
+"noah": true
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 517.001,
+"dur": 10.422,
+"visual": "streetWide",
+"p": {
+"time": "day",
+"seed": 4,
+"tiny": true
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 527.423,
+"dur": 8.503,
+"visual": "street",
+"p": {
+"time": "rain",
+"seed": 8
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 535.926,
+"dur": 7.187,
+"visual": "tableSit",
+"p": {
+"time": "day",
+"seed": 4
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 543.113,
+"dur": 3.502,
+"visual": "rooftop",
+"p": {},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 546.615,
+"dur": 3.231,
+"visual": "rooftop",
+"p": {
+"seed": 2
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 549.846,
+"dur": 15.457,
+"visual": "campfire",
+"p": {
+"stars": true,
+"roof": true
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 565.303,
+"dur": 12.137,
+"visual": "rooftop",
+"p": {
+"seed": 4,
+"time": "dusk"
+},
+"speaker": "NOAH",
+"scene": 4
+},
+{
+"start": 577.44,
+"dur": 9.337,
+"visual": "profile",
+"p": {
+"time": "dusk"
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 586.777,
+"dur": 7.551,
+"visual": "tableSit",
+"p": {
+"time": "day",
+"phone": true,
+"seed": 5
+},
+"speaker": "NOAH",
+"scene": 4
+},
+{
+"start": 594.3280000000001,
+"dur": 9.45,
+"visual": "rooftop",
+"p": {
+"seed": 3,
+"time": "dusk"
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 603.7780000000001,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 5,
+"title": "THE STRANGE SIGNAL"
+},
+"speaker": "-",
+"scene": 5
+},
+{
+"start": 607.7780000000001,
+"dur": 7.679,
+"visual": "noahStreet",
+"p": {
+"time": "day",
+"seed": 7
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 615.4570000000001,
+"dur": 8.706000000000001,
+"visual": "electronics",
+"p": {},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 624.1630000000001,
+"dur": 10.23,
+"visual": "electronics",
+"p": {
+"seed": 2
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 634.3930000000001,
+"dur": 9.613,
+"visual": "radioClose",
+"p": {
+"state": "search"
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 644.0060000000001,
+"dur": 3.0,
+"visual": "radioClose",
+"p": {
+"state": "search",
+"dur": 3.0,
+"sfx": "static"
+},
+"speaker": "-",
+"scene": 5
+},
+{
+"start": 647.0060000000001,
+"dur": 5.244,
+"visual": "radioClose",
+"p": {
+"state": "search"
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 652.2500000000001,
+"dur": 5.414,
+"visual": "radioClose",
+"p": {
+"state": "led"
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 657.6640000000001,
+"dur": 3.7060000000000004,
+"visual": "radioClose",
+"p": {
+"state": "voice"
+},
+"speaker": "RADIO",
+"scene": 5
+},
+{
+"start": 661.3700000000001,
+"dur": 2.549,
+"visual": "profile",
+"p": {
+"time": "store",
+"outfit": "out"
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 663.9190000000001,
+"dur": 4.112,
+"visual": "radioClose",
+"p": {
+"state": "led"
+},
+"speaker": "NOAH",
+"scene": 5
+},
+{
+"start": 668.0310000000001,
+"dur": 3.918,
+"visual": "radioClose",
+"p": {
+"state": "voice"
+},
+"speaker": "RADIO",
+"scene": 5
+},
+{
+"start": 671.9490000000001,
+"dur": 9.184000000000001,
+"visual": "electronics",
+"p": {
+"seed": 3,
+"noah": true
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 681.133,
+"dur": 8.835,
+"visual": "radioClose",
+"p": {
+"state": "dead"
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 689.9680000000001,
+"dur": 4.295,
+"visual": "radioClose",
+"p": {
+"state": "dead"
+},
+"speaker": "NOAH",
+"scene": 5
+},
+{
+"start": 694.263,
+"dur": 2.6,
+"visual": "radioClose",
+"p": {
+"state": "search",
+"dur": 2.6,
+"sfx": "static"
+},
+"speaker": "-",
+"scene": 5
+},
+{
+"start": 696.863,
+"dur": 4.125,
+"visual": "radioClose",
+"p": {
+"state": "voice"
+},
+"speaker": "RADIO",
+"scene": 5
+},
+{
+"start": 700.988,
+"dur": 1.4,
+"visual": "radioClose",
+"p": {
+"state": "voice",
+"dur": 1.4,
+"sfx": "static"
+},
+"speaker": "-",
+"scene": 5
+},
+{
+"start": 702.388,
+"dur": 2.223,
+"visual": "radioClose",
+"p": {
+"state": "voice"
+},
+"speaker": "RADIO",
+"scene": 5
+},
+{
+"start": 704.611,
+"dur": 3.4270000000000005,
+"visual": "radioClose",
+"p": {
+"state": "dead"
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 708.038,
+"dur": 11.665,
+"visual": "profile",
+"p": {
+"time": "store",
+"outfit": "out",
+"seed": 2
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 719.703,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 6,
+"title": "THE JOURNEY"
+},
+"speaker": "-",
+"scene": 6
+},
+{
+"start": 723.703,
+"dur": 12.434,
+"visual": "map",
+"p": {},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 736.137,
+"dur": 9.355,
+"visual": "map",
+"p": {
+"route": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 745.492,
+"dur": 6.838,
+"visual": "profile",
+"p": {
+"time": "day",
+"outfit": "out",
+"seed": 4
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 752.3299999999999,
+"dur": 7.924,
+"visual": "journey",
+"p": {
+"stage": "cityEdge"
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 760.2539999999999,
+"dur": 9.186,
+"visual": "journey",
+"p": {
+"stage": "cityEdge",
+"seed": 2
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 769.4399999999999,
+"dur": 7.927,
+"visual": "journey",
+"p": {
+"stage": "highway"
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 777.367,
+"dur": 9.341,
+"visual": "journey",
+"p": {
+"stage": "fields"
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 786.708,
+"dur": 7.427,
+"visual": "journey",
+"p": {
+"stage": "fields",
+"seed": 2,
+"birds": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 794.135,
+"dur": 12.472,
+"visual": "campfire",
+"p": {},
+"speaker": "NOAH",
+"scene": 6
+},
+{
+"start": 806.607,
+"dur": 10.62,
+"visual": "campfire",
+"p": {
+"stars": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 817.227,
+"dur": 6.783,
+"visual": "journey",
+"p": {
+"stage": "forest"
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 824.01,
+"dur": 4.328,
+"visual": "journey",
+"p": {
+"stage": "forest",
+"seed": 2
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 828.338,
+"dur": 9.851,
+"visual": "journey",
+"p": {
+"stage": "forest",
+"time": "rain",
+"seed": 3
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 838.189,
+"dur": 9.482,
+"visual": "campfire",
+"p": {
+"seed": 2
+},
+"speaker": "NOAH",
+"scene": 6
+},
+{
+"start": 847.6709999999999,
+"dur": 6.72,
+"visual": "journey",
+"p": {
+"stage": "fields",
+"seed": 3
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 854.391,
+"dur": 9.126000000000001,
+"visual": "journey",
+"p": {
+"stage": "mountain"
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 863.5169999999999,
+"dur": 5.377,
+"visual": "journey",
+"p": {
+"stage": "mountain",
+"seed": 2
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 868.8939999999999,
+"dur": 3.8180000000000005,
+"visual": "journey",
+"p": {
+"stage": "mountain",
+"fog": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 872.7119999999999,
+"dur": 3.5,
+"visual": "obsExt",
+"p": {
+"time": "dusk",
+"dur": 3.5,
+"reveal": true
+},
+"speaker": "-",
+"scene": 6
+},
+{
+"start": 876.2119999999999,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 7,
+"title": "THE OBSERVATORY"
+},
+"speaker": "-",
+"scene": 7
+},
+{
+"start": 880.2119999999999,
+"dur": 9.092,
+"visual": "obsExt",
+"p": {
+"time": "dusk"
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 889.3039999999999,
+"dur": 7.852,
+"visual": "obsExt",
+"p": {
+"time": "dusk",
+"light": true,
+"noah": true
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 897.1559999999998,
+"dur": 3.9700000000000006,
+"visual": "obsInt",
+"p": {
+"noah": true
+},
+"speaker": "NOAH",
+"scene": 7
+},
+{
+"start": 901.1259999999999,
+"dur": 6.112,
+"visual": "obsInt",
+"p": {
+"seed": 2
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 907.2379999999998,
+"dur": 12.202,
+"visual": "obsInt",
+"p": {
+"seed": 3,
+"noah": true
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 919.4399999999998,
+"dur": 8.093,
+"visual": "monitor",
+"p": {
+"mode": "play"
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 927.5329999999998,
+"dur": 3.5390000000000006,
+"visual": "monitor",
+"p": {
+"mode": "play",
+"press": true
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 931.0719999999998,
+"dur": 3.888,
+"visual": "monitor",
+"p": {
+"mode": "carter"
+},
+"speaker": "CARTER",
+"scene": 7
+},
+{
+"start": 934.9599999999998,
+"dur": 8.611,
+"visual": "monitor",
+"p": {
+"mode": "carter",
+"seed": 2
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 943.5709999999998,
+"dur": 8.596,
+"visual": "monitor",
+"p": {
+"mode": "carter",
+"close": true
+},
+"speaker": "CARTER",
+"scene": 7
+},
+{
+"start": 952.1669999999998,
+"dur": 5.043,
+"visual": "monitor",
+"p": {
+"mode": "carter",
+"close": true,
+"seed": 2
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 957.2099999999998,
+"dur": 6.372,
+"visual": "monitor",
+"p": {
+"mode": "carter"
+},
+"speaker": "CARTER",
+"scene": 7
+},
+{
+"start": 963.5819999999998,
+"dur": 3.838,
+"visual": "profile",
+"p": {
+"time": "monitor",
+"outfit": "out"
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 967.4199999999997,
+"dur": 3.0869999999999997,
+"visual": "monitor",
+"p": {
+"mode": "carter",
+"close": true,
+"glitch": true
+},
+"speaker": "CARTER",
+"scene": 7
+},
+{
+"start": 970.5069999999997,
+"dur": 6.534,
+"visual": "monitor",
+"p": {
+"mode": "glitch"
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 977.0409999999997,
+"dur": 2.2,
+"visual": "black",
+"p": {
+"dur": 2.2
+},
+"speaker": "-",
+"scene": 7
+},
+{
+"start": 979.2409999999998,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 8,
+"title": "THE DISCOVERY"
+},
+"speaker": "-",
+"scene": 8
+},
+{
+"start": 983.2409999999998,
+"dur": 4.11,
+"visual": "obsInt",
+"p": {
+"seed": 4,
+"noah": true
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 987.3509999999998,
+"dur": 12.064,
+"visual": "pinboard",
+"p": {},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 999.4149999999997,
+"dur": 8.559000000000001,
+"visual": "pinboard",
+"p": {
+"note": true
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 1007.9739999999997,
+"dur": 12.997,
+"visual": "dataScreen",
+"p": {
+"kind": "spike"
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 1020.9709999999997,
+"dur": 11.059,
+"visual": "dataScreen",
+"p": {
+"kind": "world"
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 1032.0299999999997,
+"dur": 3.6660000000000004,
+"visual": "profile",
+"p": {
+"time": "monitor",
+"outfit": "out",
+"seed": 2
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 1035.6959999999997,
+"dur": 9.844,
+"visual": "dataScreen",
+"p": {
+"kind": "wave"
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 1045.5399999999997,
+"dur": 7.652,
+"visual": "dataScreen",
+"p": {
+"kind": "text",
+"text": "FIRST DETECTION: T-MINUS 11 DAYS"
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 1053.1919999999998,
+"dur": 5.011,
+"visual": "obsInt",
+"p": {
+"noah": true,
+"seed": 5
+},
+"speaker": "NOAH",
+"scene": 8
+},
+{
+"start": 1058.2029999999997,
+"dur": 6.711,
+"visual": "monitor",
+"p": {
+"mode": "play",
+"seed": 2
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 1064.9139999999998,
+"dur": 5.981,
+"visual": "monitor",
+"p": {
+"mode": "carter",
+"seed": 3
+},
+"speaker": "CARTER",
+"scene": 8
+},
+{
+"start": 1070.8949999999998,
+"dur": 3.3100000000000005,
+"visual": "monitor",
+"p": {
+"mode": "carter",
+"close": true,
+"seed": 3
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 1074.2049999999997,
+"dur": 3.9270000000000005,
+"visual": "monitor",
+"p": {
+"mode": "carter",
+"close": true
+},
+"speaker": "CARTER",
+"scene": 8
+},
+{
+"start": 1078.1319999999996,
+"dur": 2.627,
+"visual": "monitor",
+"p": {
+"mode": "carter",
+"close": true,
+"seed": 4
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 1080.7589999999996,
+"dur": 2.6109999999999998,
+"visual": "monitor",
+"p": {
+"mode": "carter",
+"close": true,
+"impact": 0.2
+},
+"speaker": "CARTER",
+"scene": 8
+},
+{
+"start": 1083.3699999999997,
+"dur": 3.34,
+"visual": "obsInt",
+"p": {
+"noah": true,
+"seed": 6
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 1086.7099999999996,
+"dur": 5.273,
+"visual": "dataScreen",
+"p": {
+"kind": "text",
+"text": "SIGNAL SOURCE: UNKNOWN"
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 1091.9829999999995,
+"dur": 3.383,
+"visual": "dataScreen",
+"p": {
+"kind": "text",
+"text": "SIGNAL SOURCE: UNKNOWN",
+"seed": 2
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 1095.3659999999995,
+"dur": 10.742,
+"visual": "obsExt",
+"p": {
+"time": "night",
+"light": true
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 1106.1079999999995,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 9,
+"title": "THE FINAL MESSAGE"
+},
+"speaker": "-",
+"scene": 9
+},
+{
+"start": 1110.1079999999995,
+"dur": 3.2570000000000006,
+"visual": "obsExt",
+"p": {
+"time": "night",
+"light": true,
+"seed": 2
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 1113.3649999999996,
+"dur": 8.358,
+"visual": "obsInt",
+"p": {
+"flicker": true,
+"noah": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 1121.7229999999995,
+"dur": 4.743,
+"visual": "radioClose",
+"p": {
+"state": "led"
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 1126.4659999999994,
+"dur": 1.923,
+"visual": "radioClose",
+"p": {
+"state": "voice"
+},
+"speaker": "SIS",
+"scene": 9
+},
+{
+"start": 1128.3889999999994,
+"dur": 2.298,
+"visual": "profile",
+"p": {
+"time": "monitor",
+"outfit": "out",
+"seed": 5
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 1130.6869999999994,
+"dur": 2.1340000000000003,
+"visual": "profile",
+"p": {
+"time": "monitor",
+"outfit": "out",
+"seed": 6
+},
+"speaker": "NOAH",
+"scene": 9
+},
+{
+"start": 1132.8209999999995,
+"dur": 2.891,
+"visual": "radioClose",
+"p": {
+"state": "voice"
+},
+"speaker": "SIS",
+"scene": 9
+},
+{
+"start": 1135.7119999999995,
+"dur": 6.043,
+"visual": "profile",
+"p": {
+"time": "monitor",
+"outfit": "out",
+"seed": 7
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 1141.7549999999994,
+"dur": 5.703,
+"visual": "radioClose",
+"p": {
+"state": "led",
+"seed": 2
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 1147.4579999999994,
+"dur": 2.7439999999999998,
+"visual": "radioClose",
+"p": {
+"state": "voice"
+},
+"speaker": "SIS",
+"scene": 9
+},
+{
+"start": 1150.2019999999993,
+"dur": 3.934,
+"visual": "radioClose",
+"p": {
+"state": "led"
+},
+"speaker": "NOAH",
+"scene": 9
+},
+{
+"start": 1154.1359999999993,
+"dur": 2.6,
+"visual": "radioClose",
+"p": {
+"state": "led",
+"dur": 2.6
+},
+"speaker": "-",
+"scene": 9
+},
+{
+"start": 1156.7359999999992,
+"dur": 2.1820000000000004,
+"visual": "radioClose",
+"p": {
+"state": "voice"
+},
+"speaker": "SIS",
+"scene": 9
+},
+{
+"start": 1158.9179999999992,
+"dur": 6.797,
+"visual": "obsWindow",
+"p": {},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 1165.7149999999992,
+"dur": 3.0200000000000005,
+"visual": "skyRing",
+"p": {
+"phase": "start"
+},
+"speaker": "SIS",
+"scene": 9
+},
+{
+"start": 1168.7349999999992,
+"dur": 3.4770000000000003,
+"visual": "skyRing",
+"p": {
+"phase": "start",
+"seed": 2
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 1172.2119999999993,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 10,
+"title": "THE TWIST"
+},
+"speaker": "-",
+"scene": 10
+},
+{
+"start": 1176.2119999999993,
+"dur": 4.037,
+"visual": "obsExt",
+"p": {
+"time": "night",
+"ring": true
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1180.2489999999993,
+"dur": 13.852,
+"visual": "skyRing",
+"p": {
+"phase": "form"
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1194.1009999999994,
+"dur": 5.34,
+"visual": "skyRing",
+"p": {
+"phase": "full",
+"noah": true
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1199.4409999999993,
+"dur": 6.503,
+"visual": "screensAll",
+"p": {
+"text": ""
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1205.9439999999993,
+"dur": 4.327,
+"visual": "screensAll",
+"p": {
+"text": "HUMANITY: TEMPORARILY DISCONNECTED"
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1210.2709999999993,
+"dur": 4.026,
+"visual": "dataScreen",
+"p": {
+"kind": "text",
+"text": "HUMANITY: TEMPORARILY DISCONNECTED"
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1214.2969999999993,
+"dur": 4.0280000000000005,
+"visual": "dataScreen",
+"p": {
+"kind": "text",
+"text": "HUMANITY: TEMPORARILY DISCONNECTED",
+"text2": "RESTORATION: PENDING"
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1218.3249999999994,
+"dur": 3.2439999999999998,
+"visual": "dataScreen",
+"p": {
+"kind": "text",
+"text": "HUMANITY: TEMPORARILY DISCONNECTED",
+"text2": "RESTORATION: PENDING",
+"seed": 2
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1221.5689999999993,
+"dur": 3.9990000000000006,
+"visual": "profile",
+"p": {
+"time": "monitor",
+"outfit": "out",
+"seed": 8
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1225.5679999999993,
+"dur": 4.773000000000001,
+"visual": "profile",
+"p": {
+"time": "monitor",
+"outfit": "out",
+"smile": true
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1230.3409999999992,
+"dur": 10.633,
+"visual": "skyRing",
+"p": {
+"phase": "full",
+"seed": 2
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1240.9739999999993,
+"dur": 6.383,
+"visual": "obsExt",
+"p": {
+"time": "night",
+"ring": true,
+"blackout": true
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1247.3569999999993,
+"dur": 2.0,
+"visual": "black",
+"p": {
+"dur": 2.0
+},
+"speaker": "-",
+"scene": 10
+},
+{
+"start": 1249.3569999999993,
+"dur": 2.739,
+"visual": "black",
+"p": {
+"led": true,
+"impact": 0.9
+},
+"speaker": "RADIO",
+"scene": 10
+},
+{
+"start": 1252.0959999999993,
+"dur": 2.8,
+"visual": "black",
+"p": {
+"dur": 2.8
+},
+"speaker": "-",
+"scene": 10
+},
+{
+"start": 1254.8959999999993,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 11,
+"title": "THE NEXT MORNING"
+},
+"speaker": "-",
+"scene": 11
+},
+{
+"start": 1258.8959999999993,
+"dur": 3.5,
+"visual": "sunriseEnding",
+"p": {
+"dur": 3.5
+},
+"speaker": "-",
+"scene": 11
+},
+{
+"start": 1262.3959999999993,
+"dur": 6.048,
+"visual": "sunriseEnding",
+"p": {
+"seed": 2
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1268.4439999999993,
+"dur": 7.936,
+"visual": "city",
+"p": {
+"time": "dawn",
+"seed": 9
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1276.3799999999992,
+"dur": 10.805,
+"visual": "streetWide",
+"p": {
+"time": "dawn"
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1287.1849999999993,
+"dur": 4.883,
+"visual": "journey",
+"p": {
+"stage": "mountain",
+"time": "dawn",
+"seed": 3
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1292.0679999999993,
+"dur": 9.97,
+"visual": "sunriseEnding",
+"p": {
+"seed": 3
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1302.0379999999993,
+"dur": 3.367,
+"visual": "profile",
+"p": {
+"time": "dawn",
+"outfit": "out",
+"seed": 9
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1305.4049999999993,
+"dur": 9.179,
+"visual": "sunriseEnding",
+"p": {
+"seed": 5
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1314.5839999999994,
+"dur": 8.431000000000001,
+"visual": "sunriseEnding",
+"p": {
+"seed": 4
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1323.0149999999994,
+"dur": 7.569,
+"visual": "aerial",
+"p": {
+"time": "dawn"
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1330.5839999999994,
+"dur": 5.0,
+"visual": "endCard",
+"p": {
+"dur": 5.0
+},
+"speaker": "-",
+"scene": 11
+},
+{
+"start": 1335.5839999999994,
+"dur": 9.677,
+"visual": "endCard",
+"p": {
+"question": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1345.2609999999993,
+"dur": 9.843,
+"visual": "endCard",
+"p": {
+"question": true,
+"tail": 4.0
+},
+"speaker": "N",
+"scene": 11
+}
+]
+}

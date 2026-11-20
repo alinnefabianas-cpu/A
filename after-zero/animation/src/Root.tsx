@@ -3,6 +3,7 @@ import {AbsoluteFill, Composition, Sequence} from 'remotion';
 import {Letterbox} from './lib';
 import * as S from './scenes';
 import {f, FPS, SHOTS, TOTAL_SECONDS} from './timeline';
+import {EPISODE, EpisodeFull} from './Episode';
 
 const TITLE = 'WHAT IF YOU WERE THE LAST HUMAN ON EARTH?';
 
@@ -32,6 +33,7 @@ const Single: React.FC<{id: string}> = ({id}) => {
 
 export const Root: React.FC = () => (
   <>
+    <Composition id="Ep001Full" component={EpisodeFull} durationInFrames={EPISODE.totalFrames} fps={EPISODE.fps} width={1920} height={1080} />
     <Composition id="Ep001Scene01" component={Episode} durationInFrames={f(TOTAL_SECONDS)} fps={FPS} width={1920} height={1080} />
     {SHOTS.map((s) => (
       <Composition key={s.id} id={`Shot-${s.id}`} component={() => <Single id={s.id} />}

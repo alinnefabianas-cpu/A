@@ -5,7 +5,32 @@
 Cinematic stylized-3D story channel (English). This folder holds the production
 system and episode assets. Source of truth: *AFTER ZERO – Project Brief & Pilot Episode*.
 
-## v2 — 100% free pipeline (current)
+## Full pilot (current) — 22.6 min, 212 shots, 0 credits
+
+| Step | Tool | Output |
+|---|---|---|
+| Script (12 chapters, beats = shots) | `project/episode_001/script/episode_001_full.py` | — |
+| Voices (free, local neural TTS) | `tools/tts_kokoro.py` (Kokoro-82M, Apache-2.0) | `voiceover/full/*.wav` |
+| Timeline, voice track, subtitles | `tools/build_episode.py` | `animation/src/episode.json`, `voiceover/full_vo.wav`, `subtitles/episode_001_full.en.srt`, `storyboard/episode_001_full_shotlist.md` |
+| Score + SFX (synthesized) | `tools/audio_full.py` | `music/music_full.wav`, `sound_effects/sfx_full.wav` |
+| Animation (36 code-drawn sets) | Remotion `Ep001Full` in `animation/src/sets/` | `animation/out/full_picture.mp4` |
+| Mix + export | `tools/assemble.py config/episode_001_full.json --picture …` | `renders/after_zero_ep001_full.mp4` |
+
+Voices: narrator `bm_george`, Noah `am_michael`, Dr. Carter `bf_emma` (monitor EQ),
+sister `af_heart` and unknown radio voice `am_fenrir` (walkie-talkie FX).
+
+```bash
+PY=<venv with kokoro>/bin/python
+$PY tools/tts_kokoro.py project/episode_001/script/episode_001_full.py   # only new/changed lines are synthesized
+$PY tools/build_episode.py project/episode_001/script/episode_001_full.py
+python3 tools/audio_full.py project/episode_001
+cd animation && npx remotion render src/index.ts Ep001Full out/full_picture.mp4 --muted --browser-executable=<chrome-headless-shell>
+cd .. && python3 tools/assemble.py config/episode_001_full.json --picture animation/out/full_picture.mp4
+```
+To change a line: edit the script, re-run the first three commands and the render.
+`node animation/stills.mjs <shot numbers>` renders review stills of individual shots.
+
+## v2 — 100% free pipeline (Scene 01 test)
 
 No paid image/video generation. Every shot is drawn and animated in code with
 **Remotion** (React + SVG) in `animation/`: layered parallax skylines, fog, god
