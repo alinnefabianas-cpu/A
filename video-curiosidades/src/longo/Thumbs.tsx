@@ -5,6 +5,7 @@ import {Emu} from '../episodios/emu-war/arte';
 import {Painel} from '../elevador/cenarios';
 import {MELACO, MELACO_CLARO} from '../episodios/molasses-flood/arte';
 import {Tubarao} from '../episodios/sharks-trees/Episodio';
+import {PoteMel} from '../episodios/honey-spoils/Episodio';
 
 const TW = 1280, TH = 720;
 
@@ -121,6 +122,29 @@ export const ThumbFake: React.FC = () => (
 		<g transform="translate(260, 630) rotate(-5)">
 			<rect x={-170} y={-50} width={340} height={100} rx={20} fill="#000" />
 			<text x={0} y={22} textAnchor="middle" fontFamily="Nunito" fontWeight={900} fontSize={58} fill="#5aff7a">100% TRUE</text>
+		</g>
+	</svg>
+);
+
+// Vídeo longo 3 — "STILL EDIBLE?!": pirâmide, pote de mel brilhando, explorador chocado
+export const ThumbMel: React.FC = () => (
+	<svg viewBox={`0 0 ${TW} ${TH}`} width={TW} height={TH}>
+		<Explosao c1="#ffc93a" c2="#a8560a" cx={380} cy={380} />
+		<path d="M-60 720 L330 260 L720 720Z" fill="#d9b277" stroke={CONTORNO} strokeWidth={8} />
+		{[0, 1, 2, 3, 4].map((i) => <line key={i} x1={330 - (i + 1) * 70} y1={260 + (i + 1) * 82} x2={330 + (i + 1) * 70} y2={260 + (i + 1) * 82} stroke="#a8854a" strokeWidth={6} />)}
+		<circle cx={380} cy={430} r={250} fill="#fff6c0" opacity={0.35} />
+		<Recorte>
+			<g transform="translate(380, 470) scale(0.95) rotate(-6)"><PoteMel /></g>
+		</Recorte>
+		<Recorte>
+			<Personagem x={1010} y={1130} escala={1.0} roupa="fazendeiro" cor="#c9a26a" cabelo="#4a3326" expressao="assustado" olhar={-1} fase={1} bracoD={150} bracoE={150} cotoveloD={-30} cotoveloE={-30} />
+		</Recorte>
+		<Titulo x={1250} y={140} t="STILL" tam={120} cor="#fff" rot={-3} ancora="end" />
+		<g transform="rotate(-3 1030 270)"><rect x={760} y={190} width={500} height={150} rx={18} fill="#ff1f1f" stroke="#000" strokeWidth={10} /></g>
+		<Titulo x={1236} y={312} t="EDIBLE?!" tam={124} cor="#ffe600" rot={-3} ancora="end" />
+		<g transform="translate(330, 660) rotate(-4)">
+			<rect x={-210} y={-50} width={420} height={100} rx={20} fill="#000" />
+			<text x={0} y={18} textAnchor="middle" fontFamily="Nunito" fontWeight={900} fontSize={48} fill="#ffd23f">1000s OF YEARS</text>
 		</g>
 	</svg>
 );

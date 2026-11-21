@@ -25,7 +25,13 @@
     "render:cenoura": "remotion render src/index.ts CarrotsOrange exportados/carrots-were-purple-EN.mp4",
     "render:eiffel": "remotion render src/index.ts EiffelGrows exportados/eiffel-tower-grows-EN.mp4",
     "render:pisa": "remotion render src/index.ts PisaLean exportados/leaning-tower-pisa-EN.mp4",
-    "render:tubarao": "remotion render src/index.ts SharksTrees exportados/sharks-older-than-trees-EN.mp4"
+    "render:tubarao": "remotion render src/index.ts SharksTrees exportados/sharks-older-than-trees-EN.mp4",
+    "render:jeans": "remotion render src/index.ts JeansPocket exportados/jeans-tiny-pocket-EN.mp4",
+    "render:caneta": "remotion render src/index.ts PenCapHole exportados/pen-cap-hole-EN.mp4",
+    "render:golfe": "remotion render src/index.ts GolfDimples exportados/golf-ball-dimples-EN.mp4",
+    "render:flamingo": "remotion render src/index.ts FlamingosPink exportados/flamingos-not-born-pink-EN.mp4",
+    "render:dedos": "remotion render src/index.ts FingersWrinkle exportados/fingers-wrinkle-water-EN.mp4",
+    "render:mel": "remotion render src/index.ts HoneySpoils exportados/honey-never-spoils-EN.mp4"
   },
   "dependencies": {
     "@fontsource/nunito": "^5.2.8",

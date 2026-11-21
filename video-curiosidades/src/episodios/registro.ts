@@ -18,6 +18,12 @@ import carrotsOrange from './carrots-orange/Episodio';
 import eiffelGrows from './eiffel-grows/Episodio';
 import pisaLean from './pisa-lean/Episodio';
 import sharksTrees from './sharks-trees/Episodio';
+import jeansPocket from './jeans-pocket/Episodio';
+import penCapHole from './pen-cap-hole/Episodio';
+import golfDimples from './golf-dimples/Episodio';
+import flamingosPink from './flamingos-pink/Episodio';
+import fingersWrinkle from './fingers-wrinkle/Episodio';
+import honeySpoils from './honey-spoils/Episodio';
 
 export const EPISODIOS: DefEpisodio[] = [
 	emuWar,
@@ -37,5 +43,11 @@ export const EPISODIOS: DefEpisodio[] = [
 	eiffelGrows,
 	pisaLean,
 	sharksTrees,
+	jeansPocket,
+	penCapHole,
+	golfDimples,
+	flamingosPink,
+	fingersWrinkle,
+	honeySpoils,
 	// AUTO-EPISODIOS (não apague esta linha)
 ];
