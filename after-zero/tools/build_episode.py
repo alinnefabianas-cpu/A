@@ -138,7 +138,7 @@ def main():
 
     for si, sc in enumerate(S):
         if si > 0:
-            title = CH[si] if si < len(CH) - 1 else "THE NEXT MORNING"
+            title = CH[si]
             add("chapter", {"num": si, "title": title}, CHAPTER_DUR, scene=si)
         for bi, (spk, text, visual, p) in enumerate(sc):
             p = dict(p)
@@ -171,7 +171,7 @@ def main():
         a = read_any(path)
         if spk in ("RADIO", "SIS"):
             a = radio_fx(a)
-        elif spk == "CARTER":
+        elif spk in ("CARTER", "WALTER"):
             a = monitor_fx(a)
         elif spk == "NOAH":
             a = a * 0.95
@@ -194,9 +194,9 @@ def main():
     srt.write_text("\n".join(f"{i}\n{srt_time(a)} --> {srt_time(b)}\n{txt}\n" for i, (a, b, txt) in enumerate(fixed, 1)))
 
     # ---------- timeline for Remotion + cues
-    (ROOT / "animation" / "src" / "episode.json").write_text(json.dumps({"fps": FPS, "totalFrames": frame, "shots": shots}))
+    (ROOT / "animation" / "src" / "episodes" / f"{epname}.json").write_text(json.dumps({"fps": FPS, "totalFrames": frame, "shots": shots}))
     (ep / "renders").mkdir(exist_ok=True)
-    (ep / "renders" / "_cues.json").write_text(json.dumps({"total": total, "shots": cues}, indent=0))
+    (ep / "renders" / "_cues.json").write_text(json.dumps({"total": total, "shots": cues, "moods": mod.get("MOOD_MAP")}, indent=0))
     (ep / "storyboard" / f"{epname}_full_shotlist.md").write_text(
         f"# {epname} — full shot list ({total/60:.1f} min, {len(shots)} shots)\n\n| # | TC | dur | set | line |\n|---|---|---|---|---|\n" + "\n".join(md) + "\n")
     print(f"timeline: {len(shots)} shots, {total/60:.2f} min ({frame} frames), {len(subs)} subtitle cues")

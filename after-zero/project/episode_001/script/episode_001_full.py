@@ -12,7 +12,7 @@ visual: name of a set in animation/src/sets/*.tsx; params customise it.
 CHAPTERS = [
     "THE FIRST MORNING", "SOMETHING IS WRONG", "THE EMPTY CITY", "THE FIRST NIGHT",
     "THE NEW REALITY", "THE STRANGE SIGNAL", "THE JOURNEY", "THE OBSERVATORY",
-    "THE DISCOVERY", "THE FINAL MESSAGE", "THE TWIST", "AFTER ZERO",
+    "THE DISCOVERY", "THE FINAL MESSAGE", "THE TWIST", "THE NEXT MORNING",
 ]
 
 S = []  # list of scenes, each a list of beats

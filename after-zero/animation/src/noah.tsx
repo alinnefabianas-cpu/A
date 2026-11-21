@@ -28,8 +28,8 @@ const pol = (x: number, y: number, len: number, deg: number) => {
 };
 
 /* ---------------------------------------------------------------- profile */
-export const NoahProfile: React.FC<{blink?: number; rim?: string; rimOpacity?: number; look?: number; outfit?: 'home' | 'out'; smile?: number; talk?: number}> = ({
-  blink = 0, rim = C.amber, rimOpacity = 0.9, look = 0, outfit = 'home', smile = 0, talk = 0,
+export const NoahProfile: React.FC<{blink?: number; rim?: string; rimOpacity?: number; look?: number; outfit?: 'home' | 'out'; smile?: number; talk?: number; beard?: number}> = ({
+  blink = 0, rim = C.amber, rimOpacity = 0.9, look = 0, outfit = 'home', smile = 0, talk = 0, beard = 0,
 }) => {
   const face =
     'M 132 250 C 130 160 200 88 320 82 C 400 80 446 140 452 230 L 462 282 C 452 292 450 300 456 316 L 472 338 C 488 356 502 370 498 380 C 490 390 474 390 468 394 C 476 404 480 410 472 418 C 466 424 470 432 474 440 C 476 456 468 474 456 486 C 440 500 412 506 372 508 C 340 510 318 498 300 484 L 160 400 C 140 360 132 310 132 250 Z';
@@ -52,6 +52,8 @@ export const NoahProfile: React.FC<{blink?: number; rim?: string; rimOpacity?: n
       {/* jaw shade + stubble */}
 
       {/* back-of-head shade */}
+      {beard > 0 && <path d="M 300 470 C 330 440 360 420 400 418 C 430 420 450 418 462 440 C 470 460 466 480 452 494 C 420 516 370 520 330 506 C 318 498 306 486 300 470 Z" fill={N.hair} opacity={0.25 + beard * 0.7} />}
+      {beard > 0.5 && <path d="M 440 404 C 452 400 466 402 476 408" stroke={N.hair} strokeWidth={6 + beard * 4} fill="none" opacity={beard} strokeLinecap="round" />}
       {/* ear */}
       <ellipse cx={268} cy={322} rx={24} ry={38} fill={N.skin} />
       <path d="M 262 300 C 280 304 284 336 266 346" stroke={N.skinShade} strokeWidth={6} fill="none" strokeLinecap="round" />

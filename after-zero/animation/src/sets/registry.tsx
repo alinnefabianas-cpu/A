@@ -4,8 +4,9 @@ import {SetProps} from './common';
 import * as E from './exteriors';
 import * as I from './interiors';
 import * as O from './observatory';
+import * as B from './bunker';
 
-const wrap = (C: React.FC<any>): React.FC<SetProps> => ({dur}) => <C dur={dur} title="WHAT IF YOU WERE THE LAST HUMAN ON EARTH?" />;
+const wrap = (C: React.FC<any>): React.FC<SetProps> => ({dur, p}) => <C dur={dur} title={p?.title ?? 'WHAT IF YOU WERE THE LAST HUMAN ON EARTH?'} />;
 
 export const SETS: Record<string, React.FC<SetProps>> = {
   city: E.City, windowBack: E.WindowBack, street: E.Street, noahStreet: E.NoahStreet, streetWide: E.StreetWide,
@@ -16,5 +17,9 @@ export const SETS: Record<string, React.FC<SetProps>> = {
   tally: I.Tally, map: I.MapSet,
   profile: O.Profile, aerial: O.Aerial, obsInt: O.ObsInt, monitor: O.Monitor, dataScreen: O.DataScreen,
   pinboard: O.Pinboard, screensAll: O.ScreensAll, black: O.Black, chapter: O.Chapter, endCard: O.EndCard,
+  bunkerEntrance: B.BunkerEntrance, bunkerStairs: B.BunkerStairs, corridor: B.Corridor, rubble: B.Rubble, generator: B.Generator,
+  storage: B.Storage, waterTank: B.WaterTank, airFilter: B.AirFilter, bunk: B.Bunk, desk: B.Desk, journal: B.Journal,
+  tallyWall: B.TallyWall, watch: B.Watch, ventShaft: B.VentShaft, blastDoor: B.BlastDoor, blueprint: B.Blueprint, tunnel: B.Tunnel,
+  breakthrough: B.Breakthrough, surfaceDawn: B.SurfaceDawn, rescue: B.Rescue, phoneCall: B.PhoneCall,
   clock: wrap(S.S02), hallway: wrap(S.S05), livingWalk: wrap(S.S07), trafficLight: wrap(S.S10), title: wrap(S.S13),
 };

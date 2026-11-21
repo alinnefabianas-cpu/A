@@ -3,8 +3,9 @@ import {AbsoluteFill, Composition, Sequence} from 'remotion';
 import {Letterbox} from './lib';
 import * as S from './scenes';
 import {f, FPS, SHOTS, TOTAL_SECONDS} from './timeline';
-import {EPISODE, EpisodeFull} from './Episode';
+import {EPISODES, EpisodeFull} from './Episode';
 import {Thumbnail} from './Thumbnail';
+import {Thumbnail2} from './Thumbnail2';
 import {Banner, ProfileA, ProfileB, ProfileC, ProfilePic} from './Branding';
 
 const TITLE = 'WHAT IF YOU WERE THE LAST HUMAN ON EARTH?';
@@ -40,9 +41,13 @@ export const Root: React.FC = () => (
     <Composition id="ProfileB" component={ProfileB} durationInFrames={1} fps={30} width={800} height={800} />
     <Composition id="ProfileC" component={ProfileC} durationInFrames={1} fps={30} width={800} height={800} />
     <Composition id="Banner" component={Banner} durationInFrames={1} fps={30} width={2560} height={1440} />
+    <Composition id="Ep2Thumb1" component={() => <Thumbnail2 variant={1} />} durationInFrames={1} fps={30} width={1920} height={1080} />
+    <Composition id="Ep2Thumb2" component={() => <Thumbnail2 variant={2} />} durationInFrames={1} fps={30} width={1920} height={1080} />
     <Composition id="Thumb1" component={() => <Thumbnail variant={1} />} durationInFrames={1} fps={30} width={1920} height={1080} />
     <Composition id="Thumb2" component={() => <Thumbnail variant={2} />} durationInFrames={1} fps={30} width={1920} height={1080} />
-    <Composition id="Ep001Full" component={EpisodeFull} durationInFrames={EPISODE.totalFrames} fps={EPISODE.fps} width={1920} height={1080} />
+    {Object.entries(EPISODES).map(([id, e]) => (
+      <Composition key={id} id={id} component={() => <EpisodeFull id={id} />} durationInFrames={Math.max(1, e.totalFrames)} fps={e.fps} width={1920} height={1080} />
+    ))}
     <Composition id="Ep001Scene01" component={Episode} durationInFrames={f(TOTAL_SECONDS)} fps={FPS} width={1920} height={1080} />
     {SHOTS.map((s) => (
       <Composition key={s.id} id={`Shot-${s.id}`} component={() => <Single id={s.id} />}

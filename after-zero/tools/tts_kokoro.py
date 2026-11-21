@@ -22,6 +22,8 @@ VOICES = {
     "CARTER": ("b", "bf_emma", 1.0),    # Dr. Elena Carter
     "SIS": ("a", "af_heart", 0.92),     # Noah's sister (through the radio)
     "RADIO": ("a", "am_fenrir", 0.88),  # unknown voice (through the radio)
+    "WALTER": ("b", "bm_lewis", 0.88),   # Walter Hale, 1962 station officer (journal)
+    "RESCUER": ("a", "am_eric", 1.0),    # forestry worker
 }
 
 

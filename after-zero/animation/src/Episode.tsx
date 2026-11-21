@@ -2,24 +2,34 @@ import React from 'react';
 import {AbsoluteFill, Sequence} from 'remotion';
 import {Letterbox} from './lib';
 import {SETS} from './sets/registry';
-import episode from './episode.json';
+import ep1 from './episodes/episode_001.json';
+import ep2 from './episodes/episode_002.json';
 
 type Shot = {from: number; dur: number; visual: string; p: Record<string, any>; talk?: {from: number; to: number; speaker: string} | null};
+export type EpisodeData = {fps: number; totalFrames: number; shots: Shot[]};
 
-export const EPISODE = episode as {fps: number; totalFrames: number; shots: Shot[]};
+export const EPISODES: Record<string, EpisodeData> = {
+  Ep001Full: ep1 as EpisodeData,
+  Ep002Full: ep2 as EpisodeData,
+};
+/** kept for stills.mjs / older code */
+export const EPISODE = EPISODES.Ep001Full;
 
-export const EpisodeFull: React.FC<{only?: number[]}> = ({only}) => (
-  <AbsoluteFill style={{background: '#000'}}>
-    {EPISODE.shots.map((s, i) => {
-      if (only && !only.includes(i)) return null;
-      const Comp = SETS[s.visual];
-      if (!Comp) throw new Error(`unknown visual ${s.visual}`);
-      return (
-        <Sequence key={i} from={s.from} durationInFrames={s.dur} name={`${i}:${s.visual}`}>
-          <Comp dur={s.dur} p={s.p} talk={s.talk} />
-        </Sequence>
-      );
-    })}
-    <Letterbox h={60} />
-  </AbsoluteFill>
-);
+export const EpisodeFull: React.FC<{id?: string; only?: number[]}> = ({id = 'Ep001Full', only}) => {
+  const data = EPISODES[id];
+  return (
+    <AbsoluteFill style={{background: '#000'}}>
+      {data.shots.map((s, i) => {
+        if (only && !only.includes(i)) return null;
+        const Comp = SETS[s.visual];
+        if (!Comp) throw new Error(`unknown visual ${s.visual}`);
+        return (
+          <Sequence key={i} from={s.from} durationInFrames={s.dur} name={`${i}:${s.visual}`}>
+            <Comp dur={s.dur} p={s.p} talk={s.talk} />
+          </Sequence>
+        );
+      })}
+      <Letterbox h={60} />
+    </AbsoluteFill>
+  );
+};

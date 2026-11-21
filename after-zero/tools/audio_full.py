@@ -218,6 +218,60 @@ def build(ep):
         elif v == "phone" and p.get("screen") == "calls":
             place(sfx, beep(440, 1.0, 0.03), t0 + 0.2)
             place(sfx, beep(480, 0.2, 0.06), t0 + 1.6)
+        # ---- episode 002 (bunker) sets
+        if v in ("corridor", "rubble", "storage", "bunk", "desk", "journal", "tallyWall", "blastDoor", "waterTank", "ventShaft", "tunnel", "bunkerStairs"):
+            place(sfx, fade(A.fast_lowpass(noise(d), 160) * 0.05 + hum(d, 50, 0.006)), t0)   # underground room tone
+            k = 0.4 + rng.random()
+            while k < d:   # water drips
+                place(sfx, beep(1400 + rng.random() * 600, 0.03, 0.05), t0 + k)
+                k += 1.5 + rng.random() * 2.5
+        if v in ("generator",) or (v == "corridor" and p.get("light") == "on"):
+            st = p.get("state", "running")
+            if st in ("running", "failing") or v == "corridor":
+                g = (hum(d, 30, 0.12) + A.fast_lowpass(noise(d), 300) * 0.12) * (0.4 if v == "corridor" else 1.0)
+                if st == "failing":
+                    g *= np.clip(1.2 - np.arange(len(g)) / len(g) * 2.2, 0, 1).astype(np.float32)
+                place(sfx, fade(g.astype(np.float32)), t0)
+            if p.get("noah") and st == "off":
+                k = 0.5
+                while k < d - 0.5:
+                    place(sfx, A.bandpass(noise(0.35), 300, 3000) * 0.08, t0 + k)
+                    k += 1.3
+        if v == "corridor" and (p.get("quake") or p.get("rumble")):
+            q = p.get("quake", 0.3)
+            place(sfx, (A.fast_lowpass(noise(d), 90) * 0.9 * q * env(n, 0.5, 0.8)).astype(np.float32), t0)
+        if v == "rubble" and p.get("falling"):
+            place(sfx, A.impact(4.0).astype(np.float32), t0 + 0.1)
+            place(sfx, (A.bandpass(noise(d), 200, 3000) * 0.3 * env(n, 0.05, d * 0.7)).astype(np.float32), t0)
+        if v == "airFilter":
+            t_ = np.arange(n) / SR
+            place(sfx, fade((A.bandpass(noise(d), 300, 2500) * 0.12 * (0.6 + 0.4 * np.sin(2 * np.pi * 0.8 * t_))).astype(np.float32)), t0)
+        if v == "tunnel" and p.get("noah", True) and p.get("progress", 0) > 0:
+            k = 0.3
+            while k < d - 0.2:
+                place(sfx, (A.fast_lowpass(noise(0.12), 900) * np.exp(-np.arange(int(0.12 * SR)) / SR * 30) * 0.5).astype(np.float32), t0 + k)
+                k += 0.95
+            if p.get("cavein"):
+                place(sfx, A.impact(4.0).astype(np.float32), t0 + d * 0.3)
+        if v == "blastDoor" and (p.get("turning") or p.get("open")):
+            place(sfx, (A.bandpass(noise(min(d, 3.0)), 400, 1800) * 0.15).astype(np.float32), t0 + 0.4)
+        if v == "ventShaft":
+            place(sfx, fade(A.wind(d, 0.12).astype(np.float32)), t0)
+        if v in ("surfaceDawn", "rescue", "bunkerEntrance"):
+            place(sfx, fade(A.wind(d, 0.1).astype(np.float32)), t0)
+            if v != "bunkerEntrance" or p.get("time") == "day":
+                place(sfx, A.bird_chirps(d, count=int(d * 2.5)).astype(np.float32), t0)
+        if v == "breakthrough":
+            place(sfx, shimmer(d, 0.03), t0)
+            if p.get("phase") == "crack":
+                place(sfx, A.bandpass(noise(0.4), 300, 3000) * 0.2, t0 + d * 0.6)
+        if v == "watch":
+            k = 0.2
+            while k < d:
+                place(sfx, beep(4000, 0.01, 0.05), t0 + k)
+                k += 1.0
+        if v == "phoneCall":
+            place(sfx, fade(hum(d, 120, 0.01)), t0)
         if p.get("impact"):
             place(sfx, A.impact().astype(np.float32), t0 + d * p["impact"])
         if v == "skyRing":
@@ -235,8 +289,9 @@ def build(ep):
     # silence the score during the blackout beats of the twist
     black = [(s["start"], s["start"] + s["dur"]) for s in shots if s["visual"] == "black"]
 
+    mood_map = cues.get("moods")
     for sc, (a, b) in sorted(scene_spans.items()):
-        m = MOODS.get(sc, MOODS[0])
+        m = MOODS.get(mood_map[sc] if mood_map else sc, MOODS[0])
         seg = 6.0
         t = a
         i = 0

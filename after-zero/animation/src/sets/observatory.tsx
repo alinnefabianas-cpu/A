@@ -5,7 +5,7 @@ import {NoahProfile, NoahStandBack} from '../noah';
 import {camFor, mouth, SetProps, SKY} from './common';
 
 /* ------------------------------------------------------------ profile */
-const PROFILE_BG: Record<string, {sky: [number, string][]; win: string; city: string; rim: string; glow: string}> = {
+const PROFILE_BG: Record<string, {sky: [number, string][]; win: string; city: string; rim: string; glow: string; wall?: boolean}> = {
   dawn: {sky: [[0, '#121b21'], [0.5, '#25363c'], [1, '#3b4a4a']], win: '#d9a46a', city: '#8a6a4f', rim: C.amber, glow: C.gold},
   day: {sky: [[0, '#1c262b'], [1, '#34444a']], win: '#c9d3cc', city: '#7d8f8f', rim: '#e8e2d0', glow: '#f2f0e4'},
   dusk: {sky: [[0, '#14151c'], [1, '#2e2a33']], win: '#d98a55', city: '#6b4a40', rim: '#e2914f', glow: '#e2914f'},
@@ -13,6 +13,10 @@ const PROFILE_BG: Record<string, {sky: [number, string][]; win: string; city: st
   tv: {sky: [[0, '#05080b'], [1, '#0b1216']], win: '#0e161b', city: '#05080a', rim: '#bcd4e6', glow: '#bcd4e6'},
   monitor: {sky: [[0, '#060a0d'], [1, '#0d1519']], win: '#0b1a20', city: '#06090b', rim: '#7fd0e0', glow: '#7fd0e0'},
   store: {sky: [[0, '#07090b'], [1, '#101417']], win: '#1a1416', city: '#0a0c0e', rim: '#ff6a50', glow: '#ff4a3a'},
+  bunker: {sky: [[0, '#14110e'], [1, '#26221c']], win: '#3a3228', city: '#2a241e', rim: '#f2c27d', glow: '#f2c27d', wall: true},
+  flash: {sky: [[0, '#050607'], [1, '#0d1012']], win: '#1a1e20', city: '#0d1012', rim: '#dfe8ec', glow: '#dfe8ec', wall: true},
+  dark: {sky: [[0, '#020303'], [1, '#060708']], win: '#08090a', city: '#050606', rim: '#9fb0b8', glow: '#9fb0b8', wall: true},
+  surface: {sky: [[0, '#6a8486'], [1, '#d2925a']], win: '#ffd59a', city: '#2c4a3a', rim: '#fff1d6', glow: '#ffd59a'},
 };
 
 export const Profile: React.FC<SetProps> = ({dur, p, talk}) => {
@@ -33,12 +37,13 @@ export const Profile: React.FC<SetProps> = ({dur, p, talk}) => {
           <g opacity={0.9} filter="url(#pfb)">
             <defs><filter id="pfb"><feGaussianBlur stdDeviation="10" /></filter></defs>
             <rect x={1050} y={0} width={900} height={H} fill={bg.win} />
-            <Skyline seed={88 + seed} baseY={1000} minH={200} maxH={700} color={bg.city} minW={60} maxW={140} x0={1050} x1={2000} />
+            {bg.wall ? <>{Array.from({length: 6}, (_, i) => <rect key={i} x={1050} y={i * 190} width={900} height={8} fill={bg.city} />)}</>
+              : <Skyline seed={88 + seed} baseY={1000} minH={200} maxH={700} color={bg.city} minW={60} maxW={140} x0={1050} x1={2000} />}
           </g>
           <Glow id="pfg" cx={1500} cy={400} r={900} color={bg.glow} opacity={0.35 * flick} />
           <rect x={1030} y={0} width={30} height={H} fill="#0e1418" />
           <g transform={`translate(600 ${150 + breath}) scale(1.25)`}>
-            <NoahProfile blink={blink} look={look} outfit={p.outfit ?? 'home'} smile={smile} rim={bg.rim} rimOpacity={0.9 * flick} talk={mouth(frame, talk, 'NOAH')} />
+            <NoahProfile blink={blink} look={look} outfit={p.outfit ?? 'home'} smile={smile} rim={bg.rim} rimOpacity={0.9 * flick} talk={mouth(frame, talk, 'NOAH')} beard={p.beard ?? 0} />
           </g>
           <polygon points="1100,0 1180,0 980,1080 900,1080" fill="#fff" opacity={0.04} />
         </Svg>
@@ -378,7 +383,7 @@ export const EndCard: React.FC<SetProps> = ({dur, p}) => {
         <div style={{width: 300, height: 4, background: C.amber, margin: '24px 0 28px'}} />
         <div style={{color: C.ice, fontSize: 30, letterSpacing: 8, fontWeight: 300, opacity: p.question ? 1 : t(20, 40)}}>WHEN EVERYTHING ENDS, THE STORY BEGINS.</div>
         {p.question && <div style={{color: C.amber, fontSize: 54, fontWeight: 700, marginTop: 90, opacity: t(0, 20), textAlign: 'center', lineHeight: 1.3}}>
-          What would <i>you</i> do<br />if you were the last human on Earth?</div>}
+          {p.q ? <span dangerouslySetInnerHTML={{__html: p.q}} /> : <>What would <i>you</i> do<br />if you were the last human on Earth?</>}</div>}
       </AbsoluteFill>
       <div style={{position: 'absolute', bottom: 90, width: '100%', textAlign: 'center', color: '#8f9692', fontFamily: 'Inter', fontSize: 24}}>
         A fictional story. Any resemblance to real events is coincidental.</div>

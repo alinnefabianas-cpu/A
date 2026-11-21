@@ -1,0 +1,1957 @@
+{
+"total": 1328.881,
+"shots": [
+{
+"start": 0.0,
+"dur": 2.0,
+"visual": "black",
+"p": {
+"dur": 2.0
+},
+"speaker": "-",
+"scene": 0
+},
+{
+"start": 2.0,
+"dur": 3.0,
+"visual": "watch",
+"p": {
+"text": "DAY 1",
+"sub": "--:--",
+"dur": 3.0
+},
+"speaker": "-",
+"scene": 0
+},
+{
+"start": 5.0,
+"dur": 5.691,
+"visual": "corridor",
+"p": {
+"light": "flash",
+"noah": true
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 10.690999999999999,
+"dur": 2.91,
+"visual": "tallyWall",
+"p": {
+"n": 100,
+"reveal": true
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 13.600999999999999,
+"dur": 6.399,
+"visual": "profile",
+"p": {
+"time": "flash",
+"outfit": "out"
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 20.0,
+"dur": 8.503,
+"visual": "storage",
+"p": {
+"level": 0.9
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 28.503,
+"dur": 4.0760000000000005,
+"visual": "bunk",
+"p": {
+"light": "lamp"
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 32.579,
+"dur": 14.035,
+"visual": "title",
+"p": {
+"title": "100 DAYS TRAPPED INSIDE AN UNDERGROUND BUNKER",
+"tail": 4.5
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 46.614000000000004,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 1,
+"title": "THE SURVEY"
+},
+"speaker": "-",
+"scene": 1
+},
+{
+"start": 50.614000000000004,
+"dur": 3.904,
+"visual": "city",
+"p": {
+"time": "day",
+"seed": 11
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 54.518,
+"dur": 12.329,
+"visual": "profile",
+"p": {
+"time": "day",
+"outfit": "out",
+"seed": 2
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 66.84700000000001,
+"dur": 12.868,
+"visual": "blueprint",
+"p": {},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 79.715,
+"dur": 11.644,
+"visual": "bunkerEntrance",
+"p": {
+"time": "day"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 91.35900000000001,
+"dur": 8.162,
+"visual": "bunkerEntrance",
+"p": {
+"time": "day",
+"seed": 2,
+"noah": true
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 99.52100000000002,
+"dur": 4.896,
+"visual": "profile",
+"p": {
+"time": "day",
+"outfit": "out",
+"seed": 3
+},
+"speaker": "NOAH",
+"scene": 1
+},
+{
+"start": 104.41700000000002,
+"dur": 6.39,
+"visual": "bunkerEntrance",
+"p": {
+"time": "day",
+"seed": 3,
+"noah": true,
+"door": true
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 110.80700000000002,
+"dur": 8.972000000000001,
+"visual": "bunkerStairs",
+"p": {},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 119.77900000000002,
+"dur": 13.966,
+"visual": "corridor",
+"p": {
+"light": "flash",
+"noah": true,
+"seed": 2
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 133.74500000000003,
+"dur": 6.59,
+"visual": "corridor",
+"p": {
+"light": "flash",
+"seed": 3
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 140.33500000000004,
+"dur": 8.154,
+"visual": "profile",
+"p": {
+"time": "flash",
+"outfit": "out",
+"talkie": true
+},
+"speaker": "NOAH",
+"scene": 1
+},
+{
+"start": 148.48900000000003,
+"dur": 6.363,
+"visual": "corridor",
+"p": {
+"light": "flash",
+"noah": true,
+"seed": 4,
+"rumble": true
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 154.85200000000003,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 2,
+"title": "THE COLLAPSE"
+},
+"speaker": "-",
+"scene": 2
+},
+{
+"start": 158.85200000000003,
+"dur": 9.129,
+"visual": "corridor",
+"p": {
+"light": "flash",
+"quake": 0.4
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 167.98100000000002,
+"dur": 3.731,
+"visual": "corridor",
+"p": {
+"light": "flash",
+"quake": 1.0,
+"impact": 0.1
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 171.71200000000002,
+"dur": 9.94,
+"visual": "rubble",
+"p": {
+"falling": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 181.65200000000002,
+"dur": 2.354,
+"visual": "corridor",
+"p": {
+"light": "flash",
+"quake": 0.8,
+"noah": true
+},
+"speaker": "NOAH",
+"scene": 2
+},
+{
+"start": 184.00600000000003,
+"dur": 7.566,
+"visual": "rubble",
+"p": {
+"dust": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 191.57200000000003,
+"dur": 10.208,
+"visual": "rubble",
+"p": {},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 201.78000000000003,
+"dur": 3.0,
+"visual": "rubble",
+"p": {
+"dur": 3.0
+},
+"speaker": "-",
+"scene": 2
+},
+{
+"start": 204.78000000000003,
+"dur": 5.614,
+"visual": "rubble",
+"p": {
+"noah": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 210.39400000000003,
+"dur": 3.944,
+"visual": "rubble",
+"p": {
+"noah": true,
+"seed": 2
+},
+"speaker": "NOAH",
+"scene": 2
+},
+{
+"start": 214.33800000000002,
+"dur": 10.626,
+"visual": "profile",
+"p": {
+"time": "flash",
+"outfit": "out",
+"seed": 2
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 224.96400000000003,
+"dur": 11.27,
+"visual": "city",
+"p": {
+"time": "dusk",
+"seed": 12
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 236.23400000000004,
+"dur": 2.734,
+"visual": "city",
+"p": {
+"time": "dusk",
+"seed": 12
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 238.96800000000005,
+"dur": 8.335,
+"visual": "bunkerEntrance",
+"p": {
+"time": "dusk",
+"collapsed": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 247.30300000000005,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 3,
+"title": "INVENTORY"
+},
+"speaker": "-",
+"scene": 3
+},
+{
+"start": 251.30300000000005,
+"dur": 9.315,
+"visual": "profile",
+"p": {
+"time": "flash",
+"outfit": "out",
+"seed": 3
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 260.61800000000005,
+"dur": 6.575,
+"visual": "corridor",
+"p": {
+"light": "flash",
+"noah": true,
+"seed": 5
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 267.19300000000004,
+"dur": 8.272,
+"visual": "profile",
+"p": {
+"time": "flash",
+"outfit": "out",
+"seed": 4
+},
+"speaker": "NOAH",
+"scene": 3
+},
+{
+"start": 275.46500000000003,
+"dur": 11.402,
+"visual": "generator",
+"p": {
+"state": "off"
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 286.867,
+"dur": 7.917,
+"visual": "generator",
+"p": {
+"state": "off",
+"noah": true
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 294.784,
+"dur": 5.079,
+"visual": "generator",
+"p": {
+"state": "running",
+"noah": true
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 299.863,
+"dur": 3.0,
+"visual": "corridor",
+"p": {
+"light": "on",
+"dur": 3.0,
+"lightsOn": true
+},
+"speaker": "-",
+"scene": 3
+},
+{
+"start": 302.863,
+"dur": 6.4,
+"visual": "corridor",
+"p": {
+"light": "on",
+"seed": 6
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 309.263,
+"dur": 10.954,
+"visual": "storage",
+"p": {
+"level": 1.0
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 320.217,
+"dur": 12.34,
+"visual": "waterTank",
+"p": {
+"level": 0.55
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 332.55699999999996,
+"dur": 11.35,
+"visual": "airFilter",
+"p": {
+"noah": true
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 343.907,
+"dur": 10.841,
+"visual": "desk",
+"p": {
+"book": "report"
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 354.748,
+"dur": 7.057,
+"visual": "storage",
+"p": {
+"level": 1.0,
+"seed": 2
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 361.805,
+"dur": 5.577,
+"visual": "profile",
+"p": {
+"time": "bunker",
+"outfit": "out"
+},
+"speaker": "NOAH",
+"scene": 3
+},
+{
+"start": 367.382,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 4,
+"title": "THE FIRST WEEK"
+},
+"speaker": "-",
+"scene": 4
+},
+{
+"start": 371.382,
+"dur": 5.627,
+"visual": "tallyWall",
+"p": {
+"n": 1
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 377.009,
+"dur": 4.8709999999999996,
+"visual": "tallyWall",
+"p": {
+"n": 2
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 381.88,
+"dur": 7.934,
+"visual": "radioClose",
+"p": {
+"state": "search"
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 389.814,
+"dur": 2.9880000000000004,
+"visual": "radioClose",
+"p": {
+"state": "search",
+"seed": 2
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 392.802,
+"dur": 9.73,
+"visual": "ventShaft",
+"p": {},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 402.53200000000004,
+"dur": 5.931,
+"visual": "ventShaft",
+"p": {
+"noah": true
+},
+"speaker": "NOAH",
+"scene": 4
+},
+{
+"start": 408.463,
+"dur": 8.736,
+"visual": "ventShaft",
+"p": {
+"seed": 2
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 417.199,
+"dur": 9.195,
+"visual": "bunk",
+"p": {
+"light": "lamp",
+"noah": true
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 426.394,
+"dur": 8.914,
+"visual": "bunkerEntrance",
+"p": {
+"time": "day",
+"collapsed": true,
+"seed": 4
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 435.308,
+"dur": 7.323,
+"visual": "city",
+"p": {
+"time": "rain",
+"seed": 13
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 442.631,
+"dur": 10.137,
+"visual": "ventShaft",
+"p": {
+"seed": 3,
+"noah": true
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 452.768,
+"dur": 4.046,
+"visual": "rubble",
+"p": {
+"noah": true,
+"seed": 3
+},
+"speaker": "NOAH",
+"scene": 4
+},
+{
+"start": 456.81399999999996,
+"dur": 14.639,
+"visual": "corridor",
+"p": {
+"light": "flash",
+"noah": true,
+"seed": 8
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 471.453,
+"dur": 9.9,
+"visual": "tallyWall",
+"p": {
+"n": 7
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 481.35299999999995,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 5,
+"title": "WITHOUT THE SUN"
+},
+"speaker": "-",
+"scene": 5
+},
+{
+"start": 485.35299999999995,
+"dur": 5.76,
+"visual": "corridor",
+"p": {
+"light": "dark",
+"flashOn": true
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 491.11299999999994,
+"dur": 13.132,
+"visual": "generator",
+"p": {
+"state": "running",
+"noah": true,
+"seed": 2
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 504.24499999999995,
+"dur": 5.505,
+"visual": "watch",
+"p": {
+"text": "DAY 12",
+"sub": "AM? PM?"
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 509.74999999999994,
+"dur": 9.736,
+"visual": "bunk",
+"p": {
+"light": "dark",
+"noah": true
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 519.486,
+"dur": 14.325,
+"visual": "watch",
+"p": {
+"text": "DAY 15",
+"sub": "??:??",
+"drift": true
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 533.811,
+"dur": 5.878,
+"visual": "profile",
+"p": {
+"time": "dark",
+"outfit": "out",
+"beard": 0.3
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 539.6890000000001,
+"dur": 12.119,
+"visual": "desk",
+"p": {
+"book": "noah",
+"noah": true
+},
+"speaker": "NOAH",
+"scene": 5
+},
+{
+"start": 551.8080000000001,
+"dur": 9.275,
+"visual": "airFilter",
+"p": {
+"noah": true,
+"seed": 2
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 561.0830000000001,
+"dur": 10.204,
+"visual": "corridor",
+"p": {
+"light": "dark",
+"flashOn": true,
+"seed": 2
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 571.287,
+"dur": 8.559000000000001,
+"visual": "profile",
+"p": {
+"time": "dark",
+"outfit": "out",
+"beard": 0.35,
+"seed": 2
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 579.846,
+"dur": 5.262,
+"visual": "corridor",
+"p": {
+"light": "dark",
+"flashOn": true,
+"seed": 3
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 585.108,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 6,
+"title": "WALTER'S JOURNAL"
+},
+"speaker": "-",
+"scene": 6
+},
+{
+"start": 589.108,
+"dur": 9.062000000000001,
+"visual": "desk",
+"p": {
+"book": "box"
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 598.17,
+"dur": 8.135,
+"visual": "journal",
+"p": {
+"page": "cover"
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 606.305,
+"dur": 5.302,
+"visual": "journal",
+"p": {
+"page": "p1"
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 611.607,
+"dur": 16.785,
+"visual": "journal",
+"p": {
+"page": "p1",
+"seed": 2
+},
+"speaker": "WALTER",
+"scene": 6
+},
+{
+"start": 628.3919999999999,
+"dur": 11.133,
+"visual": "blueprint",
+"p": {
+"seed": 2
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 639.525,
+"dur": 8.364,
+"visual": "desk",
+"p": {
+"book": "walter",
+"noah": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 647.889,
+"dur": 11.495,
+"visual": "journal",
+"p": {
+"page": "p2"
+},
+"speaker": "WALTER",
+"scene": 6
+},
+{
+"start": 659.384,
+"dur": 2.7729999999999997,
+"visual": "profile",
+"p": {
+"time": "bunker",
+"outfit": "out",
+"beard": 0.45
+},
+"speaker": "NOAH",
+"scene": 6
+},
+{
+"start": 662.157,
+"dur": 9.502,
+"visual": "journal",
+"p": {
+"page": "p3"
+},
+"speaker": "WALTER",
+"scene": 6
+},
+{
+"start": 671.659,
+"dur": 7.317,
+"visual": "profile",
+"p": {
+"time": "bunker",
+"outfit": "out",
+"beard": 0.45,
+"smile": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 678.976,
+"dur": 13.149,
+"visual": "journal",
+"p": {
+"page": "p3",
+"seed": 2
+},
+"speaker": "WALTER",
+"scene": 6
+},
+{
+"start": 692.125,
+"dur": 6.389,
+"visual": "bunk",
+"p": {
+"light": "lamp",
+"seed": 3
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 698.514,
+"dur": 8.523,
+"visual": "desk",
+"p": {
+"book": "walter",
+"noah": true,
+"seed": 2
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 707.037,
+"dur": 5.184,
+"visual": "bunk",
+"p": {
+"light": "lamp",
+"noah": true,
+"seed": 2
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 712.221,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 7,
+"title": "THE BREAKING POINT"
+},
+"speaker": "-",
+"scene": 7
+},
+{
+"start": 716.221,
+"dur": 3.958,
+"visual": "generator",
+"p": {
+"state": "failing"
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 720.179,
+"dur": 2.4,
+"visual": "black",
+"p": {
+"dur": 2.4
+},
+"speaker": "-",
+"scene": 7
+},
+{
+"start": 722.579,
+"dur": 6.319,
+"visual": "corridor",
+"p": {
+"light": "dark",
+"flashOn": true,
+"seed": 4
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 728.8979999999999,
+"dur": 12.224,
+"visual": "generator",
+"p": {
+"state": "off",
+"noah": true,
+"leak": true
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 741.122,
+"dur": 9.641,
+"visual": "desk",
+"p": {
+"book": "report",
+"seed": 2
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 750.7629999999999,
+"dur": 10.145,
+"visual": "generator",
+"p": {
+"state": "off",
+"noah": true,
+"seed": 3
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 760.9079999999999,
+"dur": 3.0540000000000003,
+"visual": "generator",
+"p": {
+"state": "off",
+"noah": true,
+"seed": 4
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 763.9619999999999,
+"dur": 2.157,
+"visual": "profile",
+"p": {
+"time": "flash",
+"outfit": "out",
+"beard": 0.55
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 766.1189999999999,
+"dur": 6.368,
+"visual": "generator",
+"p": {
+"state": "off",
+"noah": true,
+"seed": 5
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 772.487,
+"dur": 5.37,
+"visual": "profile",
+"p": {
+"time": "flash",
+"outfit": "out",
+"beard": 0.55,
+"seed": 2
+},
+"speaker": "NOAH",
+"scene": 7
+},
+{
+"start": 777.857,
+"dur": 6.88,
+"visual": "bunk",
+"p": {
+"light": "dark",
+"noah": true,
+"seed": 2
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 784.737,
+"dur": 10.053,
+"visual": "profile",
+"p": {
+"time": "dark",
+"outfit": "out",
+"beard": 0.55,
+"seed": 3
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 794.79,
+"dur": 8.015,
+"visual": "generator",
+"p": {
+"state": "off",
+"noah": true,
+"seed": 6
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 802.805,
+"dur": 2.641,
+"visual": "generator",
+"p": {
+"state": "running",
+"noah": true,
+"seed": 7
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 805.4459999999999,
+"dur": 2.6,
+"visual": "corridor",
+"p": {
+"light": "on",
+"dur": 2.6,
+"lightsOn": true,
+"seed": 7
+},
+"speaker": "-",
+"scene": 7
+},
+{
+"start": 808.0459999999999,
+"dur": 8.064,
+"visual": "profile",
+"p": {
+"time": "bunker",
+"outfit": "out",
+"beard": 0.55,
+"smile": true,
+"seed": 4
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 816.1099999999999,
+"dur": 10.65,
+"visual": "waterTank",
+"p": {
+"level": 0.3
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 826.7599999999999,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 8,
+"title": "LEVEL TWO"
+},
+"speaker": "-",
+"scene": 8
+},
+{
+"start": 830.7599999999999,
+"dur": 9.733,
+"visual": "blastDoor",
+"p": {},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 840.4929999999998,
+"dur": 4.25,
+"visual": "blastDoor",
+"p": {
+"seed": 2
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 844.7429999999998,
+"dur": 4.564,
+"visual": "journal",
+"p": {
+"page": "p4"
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 849.3069999999998,
+"dur": 13.732,
+"visual": "journal",
+"p": {
+"page": "p4",
+"seed": 2
+},
+"speaker": "WALTER",
+"scene": 8
+},
+{
+"start": 863.0389999999998,
+"dur": 5.196,
+"visual": "profile",
+"p": {
+"time": "bunker",
+"outfit": "out",
+"beard": 0.6
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 868.2349999999998,
+"dur": 9.576,
+"visual": "blastDoor",
+"p": {
+"noah": true,
+"turning": true
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 877.8109999999998,
+"dur": 5.862,
+"visual": "blastDoor",
+"p": {
+"open": true
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 883.6729999999998,
+"dur": 9.448,
+"visual": "blueprint",
+"p": {
+"route": true
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 893.1209999999998,
+"dur": 13.255,
+"visual": "blueprint",
+"p": {
+"route": true,
+"seed": 2
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 906.3759999999997,
+"dur": 5.449,
+"visual": "tunnel",
+"p": {
+"progress": 0,
+"noah": false
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 911.8249999999997,
+"dur": 12.194,
+"visual": "tunnel",
+"p": {
+"progress": 0,
+"blocked": true
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 924.0189999999997,
+"dur": 5.178,
+"visual": "profile",
+"p": {
+"time": "flash",
+"outfit": "out",
+"beard": 0.6,
+"seed": 5
+},
+"speaker": "NOAH",
+"scene": 8
+},
+{
+"start": 929.1969999999997,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 9,
+"title": "THE TUNNEL"
+},
+"speaker": "-",
+"scene": 9
+},
+{
+"start": 933.1969999999997,
+"dur": 9.984,
+"visual": "storage",
+"p": {
+"level": 0.5,
+"tools": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 943.1809999999997,
+"dur": 3.1850000000000005,
+"visual": "storage",
+"p": {
+"level": 0.5,
+"tools": true,
+"seed": 2
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 946.3659999999996,
+"dur": 3.035,
+"visual": "tunnel",
+"p": {
+"progress": 0.05,
+"noah": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 949.4009999999996,
+"dur": 11.105,
+"visual": "tunnel",
+"p": {
+"progress": 0.15,
+"noah": true,
+"seed": 2
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 960.5059999999996,
+"dur": 13.033,
+"visual": "tunnel",
+"p": {
+"progress": 0.25,
+"noah": true,
+"seed": 3
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 973.5389999999996,
+"dur": 9.69,
+"visual": "tallyWall",
+"p": {
+"n": 71
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 983.2289999999997,
+"dur": 11.918,
+"visual": "desk",
+"p": {
+"book": "noah",
+"noah": true,
+"seed": 3
+},
+"speaker": "NOAH",
+"scene": 9
+},
+{
+"start": 995.1469999999997,
+"dur": 9.251,
+"visual": "profile",
+"p": {
+"time": "flash",
+"outfit": "out",
+"beard": 0.85,
+"seed": 6
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 1004.3979999999997,
+"dur": 9.622,
+"visual": "waterTank",
+"p": {
+"level": 0.15,
+"seed": 2
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 1014.0199999999996,
+"dur": 9.115,
+"visual": "tunnel",
+"p": {
+"progress": 0.55,
+"noah": true,
+"cavein": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 1023.1349999999996,
+"dur": 7.966,
+"visual": "tunnel",
+"p": {
+"progress": 0.55,
+"noah": true,
+"seed": 4
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 1031.1009999999997,
+"dur": 5.077,
+"visual": "tunnel",
+"p": {
+"progress": 0.8,
+"noah": true,
+"seed": 5
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 1036.1779999999997,
+"dur": 12.264,
+"visual": "desk",
+"p": {
+"book": "noah",
+"noah": true,
+"seed": 5
+},
+"speaker": "NOAH",
+"scene": 9
+},
+{
+"start": 1048.4419999999996,
+"dur": 8.621,
+"visual": "generator",
+"p": {
+"state": "failing",
+"seed": 8
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 1057.0629999999996,
+"dur": 6.279,
+"visual": "tunnel",
+"p": {
+"progress": 0.85,
+"noah": true,
+"dark": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 1063.3419999999996,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 10,
+"title": "DAY NINETY-NINE"
+},
+"speaker": "-",
+"scene": 10
+},
+{
+"start": 1067.3419999999996,
+"dur": 6.722,
+"visual": "journal",
+"p": {
+"page": "p5"
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1074.0639999999996,
+"dur": 13.1,
+"visual": "journal",
+"p": {
+"page": "p5",
+"seed": 2
+},
+"speaker": "WALTER",
+"scene": 10
+},
+{
+"start": 1087.1639999999995,
+"dur": 12.188,
+"visual": "journal",
+"p": {
+"page": "p5",
+"seed": 3
+},
+"speaker": "WALTER",
+"scene": 10
+},
+{
+"start": 1099.3519999999996,
+"dur": 5.173,
+"visual": "profile",
+"p": {
+"time": "dark",
+"outfit": "out",
+"beard": 0.9
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1104.5249999999996,
+"dur": 9.871,
+"visual": "desk",
+"p": {
+"book": "walter",
+"noah": true,
+"seed": 4
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1114.3959999999997,
+"dur": 10.152,
+"visual": "journal",
+"p": {
+"page": "back"
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1124.5479999999998,
+"dur": 4.179,
+"visual": "journal",
+"p": {
+"page": "back",
+"seed": 2
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1128.7269999999999,
+"dur": 10.617,
+"visual": "tunnel",
+"p": {
+"progress": 0.94,
+"noah": true,
+"dark": true,
+"seed": 2
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1139.3439999999998,
+"dur": 3.534,
+"visual": "profile",
+"p": {
+"time": "dark",
+"outfit": "out",
+"beard": 0.9,
+"seed": 2
+},
+"speaker": "NOAH",
+"scene": 10
+},
+{
+"start": 1142.878,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 11,
+"title": "DAY ONE HUNDRED"
+},
+"speaker": "-",
+"scene": 11
+},
+{
+"start": 1146.878,
+"dur": 5.899,
+"visual": "black",
+"p": {
+"dur": 0
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1152.7769999999998,
+"dur": 3.8790000000000004,
+"visual": "tunnel",
+"p": {
+"progress": 0.97,
+"noah": true,
+"dark": true,
+"seed": 3
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1156.6559999999997,
+"dur": 10.578,
+"visual": "tunnel",
+"p": {
+"progress": 0.98,
+"noah": true,
+"dark": true,
+"seed": 4
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1167.2339999999997,
+"dur": 6.535,
+"visual": "breakthrough",
+"p": {
+"phase": "crack"
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1173.7689999999998,
+"dur": 4.104,
+"visual": "breakthrough",
+"p": {
+"phase": "beam"
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1177.8729999999998,
+"dur": 6.248,
+"visual": "breakthrough",
+"p": {
+"phase": "beam",
+"seed": 2
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1184.1209999999999,
+"dur": 3.5,
+"visual": "breakthrough",
+"p": {
+"phase": "open",
+"dur": 3.5
+},
+"speaker": "-",
+"scene": 11
+},
+{
+"start": 1187.6209999999999,
+"dur": 9.978,
+"visual": "surfaceDawn",
+"p": {
+"emerge": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1197.599,
+"dur": 10.243,
+"visual": "surfaceDawn",
+"p": {
+"seed": 2
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1207.8419999999999,
+"dur": 7.378,
+"visual": "surfaceDawn",
+"p": {
+"lying": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1215.2199999999998,
+"dur": 3.798,
+"visual": "profile",
+"p": {
+"time": "surface",
+"outfit": "out",
+"beard": 1.0,
+"smile": true
+},
+"speaker": "NOAH",
+"scene": 11
+},
+{
+"start": 1219.0179999999998,
+"dur": 11.672,
+"visual": "rescue",
+"p": {},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1230.6899999999998,
+"dur": 3.3680000000000003,
+"visual": "rescue",
+"p": {
+"seed": 2
+},
+"speaker": "RESCUER",
+"scene": 11
+},
+{
+"start": 1234.0579999999998,
+"dur": 3.747,
+"visual": "rescue",
+"p": {
+"seed": 3
+},
+"speaker": "NOAH",
+"scene": 11
+},
+{
+"start": 1237.8049999999998,
+"dur": 8.046000000000001,
+"visual": "phoneCall",
+"p": {},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1245.8509999999999,
+"dur": 3.7270000000000003,
+"visual": "phoneCall",
+"p": {
+"seed": 2
+},
+"speaker": "SIS",
+"scene": 11
+},
+{
+"start": 1249.578,
+"dur": 3.436,
+"visual": "profile",
+"p": {
+"time": "day",
+"outfit": "out",
+"beard": 1.0,
+"smile": true,
+"seed": 2
+},
+"speaker": "NOAH",
+"scene": 11
+},
+{
+"start": 1253.014,
+"dur": 14.544,
+"visual": "city",
+"p": {
+"time": "day",
+"seed": 14
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1267.558,
+"dur": 10.48,
+"visual": "profile",
+"p": {
+"time": "day",
+"outfit": "out",
+"beard": 1.0,
+"seed": 3
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1278.038,
+"dur": 16.326,
+"visual": "journal",
+"p": {
+"page": "final"
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1294.364,
+"dur": 3.6660000000000004,
+"visual": "journal",
+"p": {
+"page": "final",
+"seed": 2
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1298.03,
+"dur": 6.098,
+"visual": "surfaceDawn",
+"p": {
+"seed": 3
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1304.128,
+"dur": 5.0,
+"visual": "endCard",
+"p": {
+"dur": 5.0
+},
+"speaker": "-",
+"scene": 11
+},
+{
+"start": 1309.128,
+"dur": 10.601,
+"visual": "endCard",
+"p": {
+"question": true,
+"q": "Could <i>you</i> survive<br />100 days underground?"
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1319.729,
+"dur": 9.152000000000001,
+"visual": "endCard",
+"p": {
+"question": true,
+"q": "Could <i>you</i> survive<br />100 days underground?",
+"tail": 4.0
+},
+"speaker": "N",
+"scene": 11
+}
+],
+"moods": [
+3,
+1,
+5,
+7,
+2,
+3,
+9,
+8,
+7,
+6,
+5,
+11
+]
+}
