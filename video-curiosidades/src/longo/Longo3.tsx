@@ -121,7 +121,7 @@ const Intro: React.FC<{d: number}> = ({d}) => {
 					{titulo > 0 && (
 						<g transform={`translate(${W / 2}, ${H / 2 - 20}) scale(${titulo})`}>
 							<rect x={-560} y={-210} width={1120} height={380} rx={40} fill="rgba(13,20,64,0.85)" stroke={AMARELO} strokeWidth={10} />
-							<Texto x={0} y={-90} t="6 EVERYDAY MYSTERIES" tam={104} cor={AMARELO} />
+							<Texto x={0} y={-90} t="6 EVERYDAY MYSTERIES" tam={86} cor={AMARELO} />
 							<Texto x={0} y={30} t="FINALLY EXPLAINED" tam={96} />
 							<Texto x={0} y={120} t="you see them every day" tam={54} cor="#9fd3ff" contorno={6} />
 						</g>
