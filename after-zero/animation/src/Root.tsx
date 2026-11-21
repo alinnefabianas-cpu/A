@@ -4,6 +4,7 @@ import {Letterbox} from './lib';
 import * as S from './scenes';
 import {f, FPS, SHOTS, TOTAL_SECONDS} from './timeline';
 import {EPISODE, EpisodeFull} from './Episode';
+import {Thumbnail} from './Thumbnail';
 
 const TITLE = 'WHAT IF YOU WERE THE LAST HUMAN ON EARTH?';
 
@@ -33,6 +34,8 @@ const Single: React.FC<{id: string}> = ({id}) => {
 
 export const Root: React.FC = () => (
   <>
+    <Composition id="Thumb1" component={() => <Thumbnail variant={1} />} durationInFrames={1} fps={30} width={1920} height={1080} />
+    <Composition id="Thumb2" component={() => <Thumbnail variant={2} />} durationInFrames={1} fps={30} width={1920} height={1080} />
     <Composition id="Ep001Full" component={EpisodeFull} durationInFrames={EPISODE.totalFrames} fps={EPISODE.fps} width={1920} height={1080} />
     <Composition id="Ep001Scene01" component={Episode} durationInFrames={f(TOTAL_SECONDS)} fps={FPS} width={1920} height={1080} />
     {SHOTS.map((s) => (
