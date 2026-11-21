@@ -148,7 +148,7 @@ def main():
             info = manifest[f"{si}.{bi}"]
             d = info["dur"]
             dur = LEAD + d + TAIL + p.get("tail", 0.0)
-            on_screen = {"CARTER": "monitor", "NOAH": "profile"}.get(spk)
+            on_screen = {"CARTER": "monitor", "NOAH": "profile", "INGRID": "ingrid"}.get(spk)
             talk = None
             if on_screen == visual:
                 talk = {"from": int(LEAD * FPS), "to": int((LEAD + d) * FPS), "speaker": spk}
@@ -169,7 +169,7 @@ def main():
     vo = np.zeros(int((total + 1) * SR), dtype=np.float32)
     for start, path, spk in vo_events:
         a = read_any(path)
-        if spk in ("RADIO", "SIS"):
+        if spk in ("RADIO", "SIS", "BASE", "HELI"):
             a = radio_fx(a)
         elif spk in ("CARTER", "WALTER"):
             a = monitor_fx(a)

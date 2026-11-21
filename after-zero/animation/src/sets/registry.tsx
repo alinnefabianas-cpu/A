@@ -5,6 +5,7 @@ import * as E from './exteriors';
 import * as I from './interiors';
 import * as O from './observatory';
 import * as B from './bunker';
+import * as A from './arctic';
 
 const wrap = (C: React.FC<any>): React.FC<SetProps> => ({dur, p}) => <C dur={dur} title={p?.title ?? 'WHAT IF YOU WERE THE LAST HUMAN ON EARTH?'} />;
 
@@ -21,5 +22,9 @@ export const SETS: Record<string, React.FC<SetProps>> = {
   storage: B.Storage, waterTank: B.WaterTank, airFilter: B.AirFilter, bunk: B.Bunk, desk: B.Desk, journal: B.Journal,
   tallyWall: B.TallyWall, watch: B.Watch, ventShaft: B.VentShaft, blastDoor: B.BlastDoor, blueprint: B.Blueprint, tunnel: B.Tunnel,
   breakthrough: B.Breakthrough, surfaceDawn: B.SurfaceDawn, rescue: B.Rescue, phoneCall: B.PhoneCall,
+  planeSky: A.PlaneSky, planeInterior: A.PlaneInterior, ingrid: A.Ingrid, crash: A.Crash, wreck: A.Wreck, thermo: A.Thermo,
+  cabinNight: A.CabinNight, snowWall: A.SnowWall, iceVista: A.IceVista, aurora: A.Aurora, iceCrack: A.IceCrack, iceMap: A.IceMap,
+  bear: A.Bear, flare: A.Flare, iceWalk: A.IceWalk, iceRidge: A.IceRidge, station: A.Station, stationInt: A.StationInt,
+  heli: A.Heli, heliInt: A.HeliInt, heliView: A.HeliView,
   clock: wrap(S.S02), hallway: wrap(S.S05), livingWalk: wrap(S.S07), trafficLight: wrap(S.S10), title: wrap(S.S13),
 };

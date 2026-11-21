@@ -1,0 +1,1727 @@
+{
+"total": 1310.0660000000005,
+"shots": [
+{
+"start": 0.0,
+"dur": 4.0,
+"visual": "iceWalk",
+"p": {
+"time": "storm",
+"dur": 4.0
+},
+"speaker": "-",
+"scene": 0
+},
+{
+"start": 4.0,
+"dur": 7.05,
+"visual": "iceWalk",
+"p": {
+"time": "storm",
+"seed": 2
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 11.05,
+"dur": 7.978,
+"visual": "thermo",
+"p": {
+"temp": -41
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 19.028,
+"dur": 6.852,
+"visual": "iceCrack",
+"p": {
+"time": "twilight",
+"calm": true
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 25.88,
+"dur": 5.345,
+"visual": "iceMap",
+"p": {
+"route": false
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 31.224999999999998,
+"dur": 13.672,
+"visual": "title",
+"p": {
+"title": "WHAT HAPPENS IF YOU ARE STRANDED IN THE ARCTIC?",
+"tail": 4.5
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 44.897,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 1,
+"title": "THE FLIGHT"
+},
+"speaker": "-",
+"scene": 1
+},
+{
+"start": 48.897,
+"dur": 4.76,
+"visual": "planeSky",
+"p": {
+"time": "day"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 53.657,
+"dur": 16.262,
+"visual": "profile",
+"p": {
+"time": "arctic",
+"outfit": "out"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 69.919,
+"dur": 11.693,
+"visual": "planeInterior",
+"p": {},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 81.612,
+"dur": 15.609,
+"visual": "planeSky",
+"p": {
+"time": "day",
+"seed": 3
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 97.22099999999999,
+"dur": 15.937,
+"visual": "ingrid",
+"p": {
+"mode": "cockpit"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 113.15799999999999,
+"dur": 2.958,
+"visual": "ingrid",
+"p": {
+"mode": "cockpit",
+"seed": 2
+},
+"speaker": "INGRID",
+"scene": 1
+},
+{
+"start": 116.11599999999999,
+"dur": 2.2969999999999997,
+"visual": "profile",
+"p": {
+"time": "plane",
+"outfit": "parka"
+},
+"speaker": "NOAH",
+"scene": 1
+},
+{
+"start": 118.41299999999998,
+"dur": 8.019,
+"visual": "ingrid",
+"p": {
+"mode": "cockpit",
+"seed": 3
+},
+"speaker": "INGRID",
+"scene": 1
+},
+{
+"start": 126.43199999999999,
+"dur": 10.577,
+"visual": "ingrid",
+"p": {
+"mode": "cockpit",
+"seed": 4
+},
+"speaker": "INGRID",
+"scene": 1
+},
+{
+"start": 137.009,
+"dur": 10.265,
+"visual": "planeSky",
+"p": {
+"time": "day",
+"seed": 2,
+"ice": true
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 147.274,
+"dur": 9.748,
+"visual": "planeInterior",
+"p": {
+"seed": 2,
+"noah": true
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 157.022,
+"dur": 6.308,
+"visual": "ingrid",
+"p": {
+"mode": "cockpit",
+"worried": true
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 163.32999999999998,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 2,
+"title": "THE STORM"
+},
+"speaker": "-",
+"scene": 2
+},
+{
+"start": 167.32999999999998,
+"dur": 9.781,
+"visual": "planeSky",
+"p": {
+"time": "storm"
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 177.111,
+"dur": 4.389,
+"visual": "ingrid",
+"p": {
+"mode": "cockpit",
+"worried": true,
+"shake": 0.4
+},
+"speaker": "INGRID",
+"scene": 2
+},
+{
+"start": 181.5,
+"dur": 9.108,
+"visual": "planeInterior",
+"p": {
+"shake": 0.8,
+"noah": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 190.608,
+"dur": 5.85,
+"visual": "planeSky",
+"p": {
+"time": "storm",
+"seed": 2,
+"shake": 0.6
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 196.458,
+"dur": 9.432,
+"visual": "ingrid",
+"p": {
+"mode": "cockpit",
+"worried": true,
+"shake": 0.8,
+"seed": 2
+},
+"speaker": "INGRID",
+"scene": 2
+},
+{
+"start": 205.89,
+"dur": 4.056,
+"visual": "radioClose",
+"p": {
+"state": "search"
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 209.946,
+"dur": 6.198,
+"visual": "ingrid",
+"p": {
+"mode": "cockpit",
+"worried": true,
+"shake": 0.6,
+"seed": 3
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 216.144,
+"dur": 2.8449999999999998,
+"visual": "planeInterior",
+"p": {
+"shake": 1.0,
+"noah": true,
+"seed": 2
+},
+"speaker": "INGRID",
+"scene": 2
+},
+{
+"start": 218.989,
+"dur": 4.0,
+"visual": "crash",
+"p": {
+"dur": 4.0
+},
+"speaker": "-",
+"scene": 2
+},
+{
+"start": 222.989,
+"dur": 2.0,
+"visual": "black",
+"p": {
+"dur": 2.0
+},
+"speaker": "-",
+"scene": 2
+},
+{
+"start": 224.989,
+"dur": 8.797,
+"visual": "wreck",
+"p": {
+"time": "storm",
+"inside": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 233.786,
+"dur": 12.141,
+"visual": "wreck",
+"p": {
+"time": "storm"
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 245.927,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 3,
+"title": "MINUS FORTY"
+},
+"speaker": "-",
+"scene": 3
+},
+{
+"start": 249.927,
+"dur": 10.719,
+"visual": "thermo",
+"p": {
+"temp": -38
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 260.646,
+"dur": 14.569,
+"visual": "profile",
+"p": {
+"time": "storm",
+"outfit": "parka",
+"frost": 0.4
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 275.21500000000003,
+"dur": 9.581,
+"visual": "wreck",
+"p": {
+"time": "storm",
+"seed": 2
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 284.79600000000005,
+"dur": 17.882,
+"visual": "thermo",
+"p": {
+"temp": -38,
+"body": true
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 302.67800000000005,
+"dur": 7.317,
+"visual": "ingrid",
+"p": {
+"mode": "cabin",
+"hurt": true
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 309.99500000000006,
+"dur": 8.743,
+"visual": "ingrid",
+"p": {
+"mode": "cabin",
+"hurt": true,
+"seed": 2
+},
+"speaker": "INGRID",
+"scene": 3
+},
+{
+"start": 318.73800000000006,
+"dur": 13.489,
+"visual": "cabinNight",
+"p": {
+"stove": true
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 332.22700000000003,
+"dur": 9.152000000000001,
+"visual": "cabinNight",
+"p": {
+"stove": true,
+"seed": 2,
+"close": true
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 341.379,
+"dur": 11.171,
+"visual": "wreck",
+"p": {
+"time": "storm",
+"seed": 3,
+"light": true
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 352.55,
+"dur": 15.239,
+"visual": "profile",
+"p": {
+"time": "stove",
+"outfit": "parka",
+"frost": 0.1
+},
+"speaker": "NOAH",
+"scene": 3
+},
+{
+"start": 367.789,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 4,
+"title": "THE PILOT"
+},
+"speaker": "-",
+"scene": 4
+},
+{
+"start": 371.789,
+"dur": 5.894,
+"visual": "cabinNight",
+"p": {
+"stove": true,
+"seed": 3,
+"ingrid": true
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 377.683,
+"dur": 11.696,
+"visual": "ingrid",
+"p": {
+"mode": "cabin",
+"hurt": true,
+"seed": 3
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 389.379,
+"dur": 2.503,
+"visual": "profile",
+"p": {
+"time": "stove",
+"outfit": "parka"
+},
+"speaker": "NOAH",
+"scene": 4
+},
+{
+"start": 391.882,
+"dur": 5.326,
+"visual": "ingrid",
+"p": {
+"mode": "cabin",
+"hurt": true,
+"seed": 4,
+"smile": true
+},
+"speaker": "INGRID",
+"scene": 4
+},
+{
+"start": 397.208,
+"dur": 13.259,
+"visual": "radioClose",
+"p": {
+"state": "dead"
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 410.46700000000004,
+"dur": 11.489,
+"visual": "cabinNight",
+"p": {
+"stove": true,
+"seed": 4
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 421.956,
+"dur": 13.423,
+"visual": "cabinNight",
+"p": {
+"stove": true,
+"pot": true
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 435.379,
+"dur": 9.305,
+"visual": "ingrid",
+"p": {
+"mode": "cabin",
+"seed": 5
+},
+"speaker": "INGRID",
+"scene": 4
+},
+{
+"start": 444.684,
+"dur": 5.468,
+"visual": "ingrid",
+"p": {
+"mode": "cabin",
+"seed": 6,
+"smile": true
+},
+"speaker": "INGRID",
+"scene": 4
+},
+{
+"start": 450.15200000000004,
+"dur": 9.52,
+"visual": "profile",
+"p": {
+"time": "stove",
+"outfit": "parka",
+"frost": 0.15,
+"seed": 2
+},
+"speaker": "NOAH",
+"scene": 4
+},
+{
+"start": 459.672,
+"dur": 4.519,
+"visual": "ingrid",
+"p": {
+"mode": "cabin",
+"seed": 7,
+"smile": true
+},
+"speaker": "INGRID",
+"scene": 4
+},
+{
+"start": 464.19100000000003,
+"dur": 15.201,
+"visual": "snowWall",
+"p": {},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 479.39200000000005,
+"dur": 10.705,
+"visual": "cabinNight",
+"p": {
+"stove": true,
+"seed": 5,
+"ingrid": true
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 490.09700000000004,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 5,
+"title": "THE LONG TWILIGHT"
+},
+"speaker": "-",
+"scene": 5
+},
+{
+"start": 494.09700000000004,
+"dur": 7.162,
+"visual": "iceVista",
+"p": {
+"time": "twilight"
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 501.259,
+"dur": 13.616,
+"visual": "iceVista",
+"p": {
+"time": "twilight",
+"seed": 2,
+"sunLow": true
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 514.875,
+"dur": 8.143,
+"visual": "iceVista",
+"p": {
+"time": "night",
+"seed": 3
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 523.018,
+"dur": 11.008,
+"visual": "profile",
+"p": {
+"time": "stove",
+"outfit": "parka",
+"frost": 0.2
+},
+"speaker": "NOAH",
+"scene": 5
+},
+{
+"start": 534.0260000000001,
+"dur": 17.135,
+"visual": "cabinNight",
+"p": {
+"stove": true,
+"seed": 9,
+"ingrid": true
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 551.1610000000001,
+"dur": 4.001,
+"visual": "aurora",
+"p": {},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 555.162,
+"dur": 9.358,
+"visual": "aurora",
+"p": {
+"seed": 2,
+"noah": true
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 564.52,
+"dur": 7.055,
+"visual": "ingrid",
+"p": {
+"mode": "aurora"
+},
+"speaker": "INGRID",
+"scene": 5
+},
+{
+"start": 571.5749999999999,
+"dur": 2.399,
+"visual": "profile",
+"p": {
+"time": "aurora",
+"outfit": "parka"
+},
+"speaker": "NOAH",
+"scene": 5
+},
+{
+"start": 573.9739999999999,
+"dur": 3.7810000000000006,
+"visual": "ingrid",
+"p": {
+"mode": "aurora",
+"seed": 2,
+"smile": true
+},
+"speaker": "INGRID",
+"scene": 5
+},
+{
+"start": 577.7549999999999,
+"dur": 15.582,
+"visual": "ingrid",
+"p": {
+"mode": "aurora",
+"seed": 3
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 593.3369999999999,
+"dur": 9.381,
+"visual": "ingrid",
+"p": {
+"mode": "aurora",
+"seed": 4
+},
+"speaker": "INGRID",
+"scene": 5
+},
+{
+"start": 602.7179999999998,
+"dur": 10.528,
+"visual": "aurora",
+"p": {
+"seed": 3,
+"noah": true,
+"wide": true
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 613.2459999999999,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 6,
+"title": "THE ICE MOVES"
+},
+"speaker": "-",
+"scene": 6
+},
+{
+"start": 617.2459999999999,
+"dur": 9.131,
+"visual": "iceCrack",
+"p": {
+"time": "twilight"
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 626.3769999999998,
+"dur": 8.205,
+"visual": "iceCrack",
+"p": {
+"time": "twilight",
+"seed": 2,
+"open": 0.3
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 634.5819999999999,
+"dur": 9.897,
+"visual": "iceCrack",
+"p": {
+"time": "twilight",
+"seed": 3,
+"open": 0.7
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 644.4789999999999,
+"dur": 7.53,
+"visual": "ingrid",
+"p": {
+"mode": "cabin",
+"worried": true
+},
+"speaker": "INGRID",
+"scene": 6
+},
+{
+"start": 652.0089999999999,
+"dur": 11.698,
+"visual": "iceMap",
+"p": {
+"route": false,
+"drift": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 663.7069999999999,
+"dur": 8.725,
+"visual": "cabinNight",
+"p": {
+"stove": false,
+"seed": 6
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 672.4319999999999,
+"dur": 14.204,
+"visual": "snowWall",
+"p": {
+"seed": 2
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 686.6359999999999,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 7,
+"title": "THE VISITOR"
+},
+"speaker": "-",
+"scene": 7
+},
+{
+"start": 690.6359999999999,
+"dur": 3.893,
+"visual": "iceVista",
+"p": {
+"time": "twilight",
+"seed": 4
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 694.5289999999999,
+"dur": 9.989,
+"visual": "bear",
+"p": {
+"dist": "far"
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 704.5179999999999,
+"dur": 7.959,
+"visual": "bear",
+"p": {
+"dist": "mid"
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 712.4769999999999,
+"dur": 5.377,
+"visual": "ingrid",
+"p": {
+"mode": "cabin",
+"worried": true,
+"seed": 2
+},
+"speaker": "INGRID",
+"scene": 7
+},
+{
+"start": 717.8539999999998,
+"dur": 14.464,
+"visual": "bear",
+"p": {
+"dist": "close"
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 732.3179999999999,
+"dur": 3.0,
+"visual": "bear",
+"p": {
+"dist": "close",
+"dur": 3.0,
+"seed": 2
+},
+"speaker": "-",
+"scene": 7
+},
+{
+"start": 735.3179999999999,
+"dur": 8.953000000000001,
+"visual": "flare",
+"p": {},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 744.2709999999998,
+"dur": 12.379,
+"visual": "bear",
+"p": {
+"dist": "leaving"
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 756.6499999999999,
+"dur": 4.219,
+"visual": "profile",
+"p": {
+"time": "flare",
+"outfit": "parka",
+"frost": 0.3
+},
+"speaker": "NOAH",
+"scene": 7
+},
+{
+"start": 760.8689999999999,
+"dur": 3.2030000000000003,
+"visual": "ingrid",
+"p": {
+"mode": "cabin",
+"smile": true,
+"seed": 3
+},
+"speaker": "INGRID",
+"scene": 7
+},
+{
+"start": 764.0719999999999,
+"dur": 7.15,
+"visual": "cabinNight",
+"p": {
+"stove": true,
+"seed": 7
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 771.2219999999999,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 8,
+"title": "THE DECISION"
+},
+"speaker": "-",
+"scene": 8
+},
+{
+"start": 775.2219999999999,
+"dur": 8.601,
+"visual": "iceMap",
+"p": {
+"route": false,
+"station": true
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 783.8229999999999,
+"dur": 9.679,
+"visual": "ingrid",
+"p": {
+"mode": "cabin",
+"seed": 6
+},
+"speaker": "INGRID",
+"scene": 8
+},
+{
+"start": 793.5019999999998,
+"dur": 10.336,
+"visual": "profile",
+"p": {
+"time": "stove",
+"outfit": "parka",
+"frost": 0.3,
+"seed": 2
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 803.8379999999999,
+"dur": 6.128,
+"visual": "profile",
+"p": {
+"time": "stove",
+"outfit": "parka",
+"frost": 0.3,
+"seed": 3
+},
+"speaker": "NOAH",
+"scene": 8
+},
+{
+"start": 809.9659999999999,
+"dur": 9.708,
+"visual": "ingrid",
+"p": {
+"mode": "cabin",
+"seed": 7
+},
+"speaker": "INGRID",
+"scene": 8
+},
+{
+"start": 819.6739999999999,
+"dur": 10.963,
+"visual": "cabinNight",
+"p": {
+"stove": true,
+"seed": 8,
+"ingrid": true
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 830.6369999999998,
+"dur": 11.779,
+"visual": "ingrid",
+"p": {
+"mode": "cabin",
+"seed": 8
+},
+"speaker": "INGRID",
+"scene": 8
+},
+{
+"start": 842.4159999999998,
+"dur": 7.532,
+"visual": "iceWalk",
+"p": {
+"time": "twilight",
+"start": true
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 849.9479999999999,
+"dur": 7.901,
+"visual": "wreck",
+"p": {
+"time": "twilight",
+"far": true
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 857.8489999999998,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 9,
+"title": "THE WALK"
+},
+"speaker": "-",
+"scene": 9
+},
+{
+"start": 861.8489999999998,
+"dur": 13.101,
+"visual": "iceWalk",
+"p": {
+"time": "twilight",
+"seed": 2
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 874.9499999999998,
+"dur": 3.266,
+"visual": "iceWalk",
+"p": {
+"time": "storm",
+"seed": 3
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 878.2159999999998,
+"dur": 13.522,
+"visual": "iceWalk",
+"p": {
+"time": "storm",
+"seed": 4,
+"whiteout": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 891.7379999999998,
+"dur": 12.726,
+"visual": "thermo",
+"p": {
+"temp": -44,
+"wind": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 904.4639999999998,
+"dur": 5.371,
+"visual": "profile",
+"p": {
+"time": "storm",
+"outfit": "parka",
+"frost": 0.6
+},
+"speaker": "NOAH",
+"scene": 9
+},
+{
+"start": 909.8349999999998,
+"dur": 11.736,
+"visual": "iceRidge",
+"p": {},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 921.5709999999998,
+"dur": 16.567999999999998,
+"visual": "iceWalk",
+"p": {
+"time": "twilight",
+"seed": 8,
+"fox": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 938.1389999999998,
+"dur": 7.316,
+"visual": "profile",
+"p": {
+"time": "storm",
+"outfit": "parka",
+"frost": 0.5,
+"seed": 4
+},
+"speaker": "NOAH",
+"scene": 9
+},
+{
+"start": 945.4549999999998,
+"dur": 5.809,
+"visual": "iceCrack",
+"p": {
+"time": "storm",
+"open": 0.4,
+"seed": 5
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 951.2639999999998,
+"dur": 14.173,
+"visual": "profile",
+"p": {
+"time": "storm",
+"outfit": "parka",
+"frost": 0.6,
+"seed": 3
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 965.4369999999998,
+"dur": 18.787,
+"visual": "iceWalk",
+"p": {
+"time": "storm",
+"seed": 7,
+"slow": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 984.2239999999998,
+"dur": 15.402,
+"visual": "iceWalk",
+"p": {
+"time": "storm",
+"seed": 5,
+"slow": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 999.6259999999999,
+"dur": 6.03,
+"visual": "profile",
+"p": {
+"time": "storm",
+"outfit": "parka",
+"frost": 0.7,
+"seed": 2
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 1005.6559999999998,
+"dur": 4.719,
+"visual": "iceWalk",
+"p": {
+"time": "storm",
+"seed": 6,
+"slow": true
+},
+"speaker": "NOAH",
+"scene": 9
+},
+{
+"start": 1010.3749999999999,
+"dur": 10.385,
+"visual": "aurora",
+"p": {
+"seed": 4,
+"walker": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 1020.7599999999999,
+"dur": 9.3,
+"visual": "station",
+"p": {
+"time": "night",
+"far": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 1030.06,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 10,
+"title": "THE STATION"
+},
+"speaker": "-",
+"scene": 10
+},
+{
+"start": 1034.06,
+"dur": 8.303,
+"visual": "station",
+"p": {
+"time": "night"
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1042.363,
+"dur": 8.828000000000001,
+"visual": "station",
+"p": {
+"time": "night",
+"door": true
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1051.191,
+"dur": 10.898,
+"visual": "stationInt",
+"p": {},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1062.089,
+"dur": 5.864,
+"visual": "radioClose",
+"p": {
+"state": "led"
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1067.953,
+"dur": 8.024000000000001,
+"visual": "radioClose",
+"p": {
+"state": "led",
+"seed": 2
+},
+"speaker": "NOAH",
+"scene": 10
+},
+{
+"start": 1075.9769999999999,
+"dur": 3.0,
+"visual": "radioClose",
+"p": {
+"state": "search",
+"dur": 3.0
+},
+"speaker": "-",
+"scene": 10
+},
+{
+"start": 1078.9769999999999,
+"dur": 6.784,
+"visual": "radioClose",
+"p": {
+"state": "voice"
+},
+"speaker": "BASE",
+"scene": 10
+},
+{
+"start": 1085.761,
+"dur": 6.725,
+"visual": "profile",
+"p": {
+"time": "station",
+"outfit": "parka",
+"frost": 0.6
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1092.4859999999999,
+"dur": 10.867,
+"visual": "stationInt",
+"p": {
+"noah": true
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1103.3529999999998,
+"dur": 9.461,
+"visual": "radioClose",
+"p": {
+"state": "voice",
+"seed": 2
+},
+"speaker": "BASE",
+"scene": 10
+},
+{
+"start": 1112.8139999999999,
+"dur": 6.165,
+"visual": "stationInt",
+"p": {
+"noah": true,
+"seed": 2
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1118.9789999999998,
+"dur": 13.465,
+"visual": "stationInt",
+"p": {
+"noah": true,
+"seed": 3
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1132.4439999999997,
+"dur": 9.776,
+"visual": "iceMap",
+"p": {
+"route": true
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1142.2199999999998,
+"dur": 12.019,
+"visual": "profile",
+"p": {
+"time": "station",
+"outfit": "parka",
+"frost": 0.5,
+"seed": 2
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1154.2389999999998,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 11,
+"title": "THE RESCUE"
+},
+"speaker": "-",
+"scene": 11
+},
+{
+"start": 1158.2389999999998,
+"dur": 7.708,
+"visual": "heli",
+"p": {
+"time": "night"
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1165.947,
+"dur": 3.88,
+"visual": "profile",
+"p": {
+"time": "heli",
+"outfit": "parka",
+"frost": 0.5
+},
+"speaker": "NOAH",
+"scene": 11
+},
+{
+"start": 1169.827,
+"dur": 5.382,
+"visual": "heliInt",
+"p": {},
+"speaker": "HELI",
+"scene": 11
+},
+{
+"start": 1175.209,
+"dur": 7.718,
+"visual": "heliView",
+"p": {
+"open": 0.8
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1182.9270000000001,
+"dur": 12.05,
+"visual": "heliView",
+"p": {
+"open": 0.9,
+"flare": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1194.977,
+"dur": 9.299,
+"visual": "ingrid",
+"p": {
+"mode": "ice",
+"flareLit": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1204.276,
+"dur": 2.556,
+"visual": "ingrid",
+"p": {
+"mode": "ice",
+"smile": true,
+"seed": 2
+},
+"speaker": "INGRID",
+"scene": 11
+},
+{
+"start": 1206.832,
+"dur": 3.016,
+"visual": "profile",
+"p": {
+"time": "heli",
+"outfit": "parka",
+"frost": 0.4,
+"smile": true,
+"seed": 2
+},
+"speaker": "NOAH",
+"scene": 11
+},
+{
+"start": 1209.8480000000002,
+"dur": 2.9059999999999997,
+"visual": "ingrid",
+"p": {
+"mode": "ice",
+"smile": true,
+"seed": 3
+},
+"speaker": "INGRID",
+"scene": 11
+},
+{
+"start": 1212.7540000000001,
+"dur": 8.844000000000001,
+"visual": "city",
+"p": {
+"time": "day",
+"seed": 15
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1221.5980000000002,
+"dur": 5.26,
+"visual": "profile",
+"p": {
+"time": "day",
+"outfit": "out",
+"seed": 5
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1226.8580000000002,
+"dur": 8.949,
+"visual": "ingrid",
+"p": {
+"mode": "cabin",
+"smile": true,
+"seed": 8
+},
+"speaker": "INGRID",
+"scene": 11
+},
+{
+"start": 1235.8070000000002,
+"dur": 14.016,
+"visual": "phoneCall",
+"p": {},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1249.8230000000003,
+"dur": 9.826,
+"visual": "iceCrack",
+"p": {
+"time": "night",
+"open": 1.0,
+"seed": 4
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1259.6490000000003,
+"dur": 8.755,
+"visual": "profile",
+"p": {
+"time": "day",
+"outfit": "out",
+"seed": 4
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1268.4040000000005,
+"dur": 9.691,
+"visual": "aurora",
+"p": {
+"seed": 5,
+"wide": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1278.0950000000005,
+"dur": 9.215,
+"visual": "iceVista",
+"p": {
+"time": "twilight",
+"seed": 5,
+"sunLow": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1287.3100000000004,
+"dur": 5.0,
+"visual": "endCard",
+"p": {
+"dur": 5.0
+},
+"speaker": "-",
+"scene": 11
+},
+{
+"start": 1292.3100000000004,
+"dur": 8.604000000000001,
+"visual": "endCard",
+"p": {
+"question": true,
+"q": "Would <i>you</i> have<br />made the walk?"
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1300.9140000000004,
+"dur": 9.152000000000001,
+"visual": "endCard",
+"p": {
+"question": true,
+"q": "Would <i>you</i> have<br />made the walk?",
+"tail": 4.0
+},
+"speaker": "N",
+"scene": 11
+}
+],
+"moods": [
+3,
+6,
+5,
+7,
+1,
+2,
+8,
+5,
+9,
+6,
+10,
+11
+]
+}

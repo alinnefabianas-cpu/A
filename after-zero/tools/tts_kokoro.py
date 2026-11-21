@@ -24,6 +24,9 @@ VOICES = {
     "RADIO": ("a", "am_fenrir", 0.88),  # unknown voice (through the radio)
     "WALTER": ("b", "bm_lewis", 0.88),   # Walter Hale, 1962 station officer (journal)
     "RESCUER": ("a", "am_eric", 1.0),    # forestry worker
+    "INGRID": ("b", "bf_isabella", 0.92),  # Ingrid Halvorsen, bush pilot (ep 3)
+    "BASE": ("a", "am_adam", 1.0),       # Nordhavn station radio
+    "HELI": ("a", "am_eric", 1.0),       # rescue helicopter pilot (radio)
 }
 
 

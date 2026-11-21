@@ -1,0 +1,29 @@
+{
+  "episode": "episode_003",
+  "title": "WHAT HAPPENS IF YOU ARE STRANDED IN THE ARCTIC?",
+  "cut": "full",
+  "description": "Episode 3, code-animated (Remotion), Kokoro TTS voices, synthesized score.",
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "file": "renders/after_zero_ep003_full.mp4"
+  },
+  "voiceover": {
+    "file": "voiceover/full_vo.wav",
+    "offset": 0,
+    "gain_db": 0
+  },
+  "music_file": "music/music_full.wav",
+  "sfx_file": "sound_effects/sfx_full.wav",
+  "srt_file": "subtitles/episode_003_full.en.srt",
+  "total_seconds": 1310.067,
+  "shots": [],
+  "subtitles": [],
+  "mix": {
+    "vo_db": 0,
+    "music_db": -15,
+    "sfx_db": -9,
+    "duck": true
+  }
+}

@@ -272,6 +272,52 @@ def build(ep):
                 k += 1.0
         if v == "phoneCall":
             place(sfx, fade(hum(d, 120, 0.01)), t0)
+        # ---- episode 003 (arctic) sets
+        arctic_out = ("iceWalk", "iceVista", "iceCrack", "wreck", "snowWall", "bear", "iceRidge", "station", "aurora", "flare", "heli")
+        if v in arctic_out:
+            storm = p.get("time") == "storm" or v == "iceRidge"
+            if storm:
+                b = A.bandpass(noise(d), 200, 5000) * 0.45
+                t_ = np.arange(n) / SR
+                b *= (0.7 + 0.3 * np.sin(2 * np.pi * 0.13 * t_) * np.sin(2 * np.pi * 0.31 * t_)).astype(np.float32)
+                place(sfx, fade(b.astype(np.float32)), t0)
+            else:
+                place(sfx, fade(A.wind(d, 0.12 if v != "aurora" else 0.05).astype(np.float32)), t0)
+            if v in ("iceWalk", "iceRidge", "snowWall"):
+                k = 0.2
+                while k < d - 0.2:   # crunching snow steps
+                    place(sfx, (A.bandpass(noise(0.14), 1500, 7000) * np.exp(-np.arange(int(0.14 * SR)) / SR * 25) * 0.18).astype(np.float32), t0 + k)
+                    k += 0.6 if not p.get("slow") else 0.9
+        if v == "iceCrack" and not p.get("calm"):
+            place(sfx, A.impact(4.0).astype(np.float32) * 0.9, t0 + 0.15)
+            place(sfx, (A.bandpass(noise(1.2), 80, 1500) * 0.4 * env(int(1.2 * SR), 0.01, 1.0)).astype(np.float32), t0 + 0.1)
+        if v == "iceCrack" and p.get("calm"):
+            for k in (1.0, 2.6):
+                place(sfx, (A.fast_lowpass(noise(1.5), 120) * 0.25 * env(int(1.5 * SR), 0.3, 1.0)).astype(np.float32), t0 + k)
+        if v in ("planeSky", "planeInterior", "ingrid") and (v != "ingrid" or p.get("mode") == "cockpit"):
+            t_ = np.arange(n) / SR
+            eng = (np.sin(2 * np.pi * 82 * t_) * 0.5 + np.sin(2 * np.pi * 164 * t_) * 0.25) * 0.12 + A.fast_lowpass(noise(d), 400) * 0.1
+            place(sfx, fade(eng.astype(np.float32)), t0)
+            if p.get("time") == "storm" or p.get("shake"):
+                place(sfx, fade((A.bandpass(noise(d), 200, 4000) * 0.3).astype(np.float32)), t0)
+        if v == "crash":
+            place(sfx, (A.bandpass(noise(d), 100, 3000) * 0.5 * env(n, 0.3, 0.2)).astype(np.float32), t0)
+            place(sfx, A.impact(4.0).astype(np.float32), t0 + d * 0.72)
+        if v in ("cabinNight",) or (v == "ingrid" and p.get("mode") == "cabin"):
+            if p.get("stove", True):
+                place(sfx, fade((A.bandpass(noise(d), 300, 2500) * 0.05).astype(np.float32)), t0)   # stove hiss
+            place(sfx, fade(A.wind(d, 0.05).astype(np.float32)), t0)
+        if v == "flare":
+            place(sfx, A.impact(2.0).astype(np.float32) * 0.6, t0 + 0.3)
+            place(sfx, (A.bandpass(noise(d - 0.4), 1000, 8000) * 0.2 * env(int((d - 0.4) * SR), 0.05, 1.0)).astype(np.float32), t0 + 0.4)
+        if v in ("heli", "heliInt", "heliView"):
+            t_ = np.arange(n) / SR
+            chop = (A.fast_lowpass(noise(d), 250) * (0.5 + 0.5 * (np.sin(2 * np.pi * 5.5 * t_) > 0.6))).astype(np.float32) * 0.5
+            place(sfx, fade(chop), t0)
+        if v == "thermo":
+            place(sfx, fade(A.wind(d, 0.1).astype(np.float32)), t0)
+        if v == "bear" and p.get("dist") == "close":
+            place(sfx, (A.fast_lowpass(noise(d), 180) * 0.2 * env(n, 0.5, 0.5)).astype(np.float32), t0)
         if p.get("impact"):
             place(sfx, A.impact().astype(np.float32), t0 + d * p["impact"])
         if v == "skyRing":

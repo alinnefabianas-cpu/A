@@ -16,6 +16,14 @@ const PROFILE_BG: Record<string, {sky: [number, string][]; win: string; city: st
   bunker: {sky: [[0, '#14110e'], [1, '#26221c']], win: '#3a3228', city: '#2a241e', rim: '#f2c27d', glow: '#f2c27d', wall: true},
   flash: {sky: [[0, '#050607'], [1, '#0d1012']], win: '#1a1e20', city: '#0d1012', rim: '#dfe8ec', glow: '#dfe8ec', wall: true},
   dark: {sky: [[0, '#020303'], [1, '#060708']], win: '#08090a', city: '#050606', rim: '#9fb0b8', glow: '#9fb0b8', wall: true},
+  arctic: {sky: [[0, '#5d8396'], [1, '#a9c3cc']], win: '#e8f0f2', city: '#b8ccd4', rim: '#ffffff', glow: '#fff6e0', wall: true},
+  plane: {sky: [[0, '#2a3033'], [1, '#3a4246']], win: '#dce8ec', city: '#b8ccd4', rim: '#ffffff', glow: '#e8f4ff', wall: true},
+  storm: {sky: [[0, '#8a98a0'], [1, '#c8d0d2']], win: '#eef2f4', city: '#d8e0e2', rim: '#ffffff', glow: '#ffffff', wall: true},
+  stove: {sky: [[0, '#0c0a08'], [1, '#1a1410']], win: '#2a1e14', city: '#1a1410', rim: '#f29a4a', glow: '#f29a4a', wall: true},
+  aurora: {sky: [[0, '#02050a'], [1, '#08121c']], win: '#0a2a1e', city: '#06120e', rim: '#5af0a0', glow: '#3ad08a', wall: true},
+  flare: {sky: [[0, '#140806'], [1, '#2a100c']], win: '#3a1410', city: '#2a0e0a', rim: '#ff6a50', glow: '#ff4a3a', wall: true},
+  station: {sky: [[0, '#0e1620'], [1, '#1c2630']], win: '#1c2630', city: '#141c22', rim: '#dfe8ec', glow: '#cfe6f2', wall: true},
+  heli: {sky: [[0, '#05080a'], [1, '#0c1014']], win: '#0a1820', city: '#06090b', rim: '#9fe0ff', glow: '#9fe0ff', wall: true},
   surface: {sky: [[0, '#6a8486'], [1, '#d2925a']], win: '#ffd59a', city: '#2c4a3a', rim: '#fff1d6', glow: '#ffd59a'},
 };
 
@@ -43,7 +51,7 @@ export const Profile: React.FC<SetProps> = ({dur, p, talk}) => {
           <Glow id="pfg" cx={1500} cy={400} r={900} color={bg.glow} opacity={0.35 * flick} />
           <rect x={1030} y={0} width={30} height={H} fill="#0e1418" />
           <g transform={`translate(600 ${150 + breath}) scale(1.25)`}>
-            <NoahProfile blink={blink} look={look} outfit={p.outfit ?? 'home'} smile={smile} rim={bg.rim} rimOpacity={0.9 * flick} talk={mouth(frame, talk, 'NOAH')} beard={p.beard ?? 0} />
+            <NoahProfile blink={blink} look={look} outfit={p.outfit ?? 'home'} smile={smile} rim={bg.rim} rimOpacity={0.9 * flick} talk={mouth(frame, talk, 'NOAH')} beard={p.beard ?? 0} frost={p.frost ?? 0} />
           </g>
           <polygon points="1100,0 1180,0 980,1080 900,1080" fill="#fff" opacity={0.04} />
         </Svg>
