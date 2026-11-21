@@ -103,25 +103,28 @@ export type Bloco = Trecho & {
 };
 
 /** Divide a fala entre as palavras pelo tamanho (pontuação ganha pausa). */
-/** Casa as palavras do texto com os tempos reais da voz (pelo texto normalizado). */
+/** Casa as palavras do texto com os tempos reais da voz, letra por letra
+ *  (funciona mesmo quando a voz junta várias palavras num só trecho, como "In 2007"). */
 const alinhar = (texto: string, ts: {t: string; ini: number; fim: number}[]): Palavra[] | null => {
-	const ps = texto.split(/\s+/);
-	let j = 0;
+	// cada letra normalizada da voz ganha um tempo (interpolado dentro do trecho)
+	const letras: number[] = [];
+	let fluxo = '';
+	for (const tk of ts) {
+		const n = norm(tk.t);
+		for (let i = 0; i < n.length; i++) {
+			fluxo += n[i];
+			letras.push(tk.ini + ((tk.fim - tk.ini) * (i + 0.5)) / n.length);
+		}
+	}
 	const out: Palavra[] = [];
-	for (const txt of ps) {
+	let pos = 0;
+	for (const txt of texto.split(/\s+/)) {
 		const alvo = norm(txt);
 		if (!alvo) continue;
-		let acc = '';
-		let ini = -1;
-		let fim = 0;
-		while (j < ts.length && acc.length < alvo.length) {
-			if (ini < 0) ini = ts[j].ini;
-			acc += norm(ts[j].t);
-			fim = ts[j].fim;
-			j++;
-		}
-		if (ini < 0 || acc !== alvo) return null;
-		out.push({txt, ini: Math.round(ini * FPS), fim: Math.round(fim * FPS)});
+		const achou = fluxo.indexOf(alvo, pos);
+		if (achou < 0 || achou - pos > 12) return null;
+		out.push({txt, ini: Math.round(letras[achou] * FPS), fim: Math.round(letras[achou + alvo.length - 1] * FPS)});
+		pos = achou + alvo.length;
 	}
 	return out;
 };
