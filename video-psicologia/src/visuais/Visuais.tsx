@@ -1570,7 +1570,126 @@ const Balao: React.FC<P> = ({f}) => {
 	);
 };
 
+
+// ───────── episódio 7: família ─────────
+
+// Casa à noite: janelas acesas, uma vermelha pulsando
+const Casa: React.FC<P> = ({f}) => {
+	const x0 = CX - 360;
+	const base = CY + 300;
+	const janelas = [
+		[x0 + 90, CY - 20], [x0 + 300, CY - 20], [x0 + 510, CY - 20],
+		[x0 + 90, CY + 150], [x0 + 510, CY + 150],
+	];
+	return (
+		<Svg>
+			<rect x={0} y={base} width={W} height={2} fill={COR.creme} opacity={0.15} />
+			{Array.from({length: 30}).map((_, i) => (
+				<circle key={i} cx={random('ex' + i) * W} cy={random('ey' + i) * (CY - 200)} r={1 + random('er' + i) * 2} fill="#f3e9d6" opacity={0.2 + 0.4 * Math.abs(Math.sin(f / 20 + i))} />
+			))}
+			<path d={`M${x0 - 40} ${CY - 140} L${CX} ${CY - 400} L${x0 + 760} ${CY - 140} Z`} fill="#0d0b0b" stroke={COR.creme} strokeWidth={4} {...desenho(prog(f, 0, 30))} />
+			<rect x={x0} y={CY - 140} width={720} height={440} fill="#0d0b0b" stroke={COR.creme} strokeWidth={4} {...desenho(prog(f, 5, 35))} />
+			<rect x={x0 + 300} y={CY + 130} width={120} height={170} fill="#050404" stroke={COR.cinza} strokeWidth={3} />
+			{janelas.map(([x, y], i) => {
+				const red = i === 2;
+				const acesa = prog(f, 15 + i * 6, 25 + i * 6);
+				return (
+					<g key={i} opacity={acesa}>
+						<rect x={x} y={y} width={120} height={100} fill={red ? COR.vermelho : '#ffcf8a'} opacity={red ? 0.6 + 0.3 * Math.sin(f / 6) : 0.55} filter={red ? 'url(#brilhoForte)' : 'url(#brilho)'} />
+						<line x1={x + 60} y1={y} x2={x + 60} y2={y + 100} stroke="#0d0b0b" strokeWidth={6} />
+						<line x1={x} y1={y + 50} x2={x + 120} y2={y + 50} stroke="#0d0b0b" strokeWidth={6} />
+						{red && (
+							<g transform={`translate(${x + 30} ${y + 100}) scale(0.28) translate(-100 -260)`}>
+								<path d={BUSTO} fill="#050404" />
+							</g>
+						)}
+					</g>
+				);
+			})}
+		</Svg>
+	);
+};
+
+// Árvore genealógica: nós ligados de cima para baixo, um ramo vermelho que passa de geração em geração
+const Arvore: React.FC<P> = ({f}) => {
+	const niveis = [
+		[CX - 300, CX + 300],
+		[CX - 520, CX - 180, CX + 180, CX + 520],
+		[CX - 640, CX - 400, CX - 60, CX + 300, CX + 600],
+	];
+	const ys = [CY - 300, CY, CY + 300];
+	const vermelhos = new Set(['0-0', '1-1', '2-2']);
+	const linhas: React.ReactNode[] = [];
+	niveis.slice(1).forEach((nivel, n) => {
+		nivel.forEach((x, i) => {
+			const pai = niveis[n][Math.min(niveis[n].length - 1, Math.floor((i * niveis[n].length) / nivel.length))];
+			const red = vermelhos.has(`${n}-${niveis[n].indexOf(pai)}`) && vermelhos.has(`${n + 1}-${i}`);
+			linhas.push(
+				<path key={`${n}-${i}`} d={`M${pai} ${ys[n] + 50} C${pai} ${ys[n] + 150} ${x} ${ys[n + 1] - 150} ${x} ${ys[n + 1] - 50}`} fill="none" stroke={red ? COR.vermelho : COR.creme} strokeOpacity={red ? 1 : 0.35} strokeWidth={red ? 4 : 2} filter={red ? 'url(#brilho)' : undefined} {...desenho(prog(f, 15 + n * 20, 40 + n * 20))} />,
+			);
+		});
+	});
+	return (
+		<Svg>
+			{linhas}
+			{niveis.map((nivel, n) =>
+				nivel.map((x, i) => {
+					const red = vermelhos.has(`${n}-${i}`);
+					return (
+						<g key={`${n}-${i}`} opacity={prog(f, n * 20, 15 + n * 20)} transform={`translate(${x} ${ys[n] + 45}) scale(0.42) translate(-100 -260)`}>
+							<path d={BUSTO} fill={red ? '#2a0a0d' : '#0d0b0b'} stroke={red ? COR.vermelho : COR.creme} strokeWidth={5} filter={red ? 'url(#brilho)' : undefined} />
+						</g>
+					);
+				}),
+			)}
+			<Rotulo x={CX + 700} y={ys[0]} t="GERAÇÃO 1" f={f} atraso={10} anchor="end" />
+			<Rotulo x={CX + 700} y={ys[2] - 60} t="VOCÊ" f={f} atraso={60} anchor="end" cor={COR.vermelho} />
+		</Svg>
+	);
+};
+
+// Fardo: uma criança pequena carregando uma pedra enorme, adultos de costas
+const Fardo: React.FC<P> = ({f}) => {
+	const balanco = Math.sin(f / 14) * 3;
+	const cx = CX;
+	const chao = CY + 330;
+	return (
+		<Svg>
+			<rect x={0} y={chao} width={W} height={2} fill={COR.creme} opacity={0.15} />
+			{[-1, 1].map((lado) => (
+				<g key={lado} transform={`translate(${cx + lado * 520} ${chao - 330}) scale(1.6) translate(-100 -140)`} opacity={0.55 * prog(f, 0, 20)}>
+					<path d={BUSTO} fill="#070606" stroke={COR.escuro} strokeWidth={2} />
+				</g>
+			))}
+			<g transform={`rotate(${balanco} ${cx} ${chao})`}>
+				<g transform={`translate(${cx} ${chao})`} opacity={prog(f, 5, 25)}>
+					<circle cx={0} cy={-150} r={24} fill="#060505" stroke={COR.creme} strokeWidth={2} />
+					<path d="M-28 -122 L28 -122 L36 -30 L18 -30 L14 0 L-14 0 L-18 -30 L-36 -30 Z" fill="#060505" stroke={COR.creme} strokeWidth={2} />
+					<line x1={-30} y1={-110} x2={-90} y2={-200} stroke={COR.creme} strokeWidth={6} strokeLinecap="round" />
+					<line x1={30} y1={-110} x2={90} y2={-200} stroke={COR.creme} strokeWidth={6} strokeLinecap="round" />
+				</g>
+				<path
+					d={`M${cx - 230} ${chao - 210} C${cx - 260} ${chao - 400} ${cx - 120} ${chao - 520} ${cx + 20} ${chao - 510} C${cx + 190} ${chao - 500} ${cx + 270} ${chao - 380} ${cx + 230} ${chao - 230} C${cx + 200} ${chao - 190} ${cx - 190} ${chao - 180} ${cx - 230} ${chao - 210} Z`}
+					fill="#3a3734"
+					stroke={COR.vermelho}
+					strokeWidth={3}
+					opacity={prog(f, 15, 35)}
+					filter="url(#brilho)"
+				/>
+				{['CULPA', 'BRIGAS', 'SEGREDOS', 'CUIDAR DE TODOS'].map((t, i) => (
+					<text key={t} x={cx + (i % 2 ? 60 : -60)} y={chao - 420 + i * 55} textAnchor="middle" fontFamily={FONTE.ui} fontWeight={600} fontSize={26} letterSpacing={4} fill={COR.creme} opacity={0.8 * prog(f, 30 + i * 8, 40 + i * 8)}>
+						{t}
+					</text>
+				))}
+			</g>
+		</Svg>
+	);
+};
+
 const MAPA: Record<Visual, React.FC<P>> = {
+	casa: Casa,
+	arvore: Arvore,
+	fardo: Fardo,
 	balao: Balao,
 	triade: Triade,
 	rastreador: Rastreador,

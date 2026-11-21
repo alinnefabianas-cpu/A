@@ -52,7 +52,10 @@ export type Visual =
 	| 'rastreador'
 	| 'recibo'
 	| 'mascaras'
-	| 'balao';
+	| 'balao'
+	| 'casa'
+	| 'arvore'
+	| 'fardo';
 
 export type Som =
 	| 'boom'

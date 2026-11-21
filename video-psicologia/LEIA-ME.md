@@ -142,3 +142,13 @@ Roteiro em `src/episodios/frases.ts` (rótulo "FRASE", 10 itens). Animação nov
 npx remotion render src/index.ts Frases out/frases.mp4
 npx remotion still src/index.ts ThumbFrases out/thumbnail-frases.png
 ```
+
+## Episódio 7 (longo, 7:10) — "Quando o manipulador é da sua família"
+Roteiro em `src/episodios/familia.ts` (rótulo "DINÂMICA", 7 dinâmicas + bloco "como se proteger").
+Animações novas: `casa`, `arvore`, `fardo`. Narração em `public/voz-familia/`.
+Frases longas no estilo "grande" agora diminuem a fonte sozinhas para não cortar nas bordas.
+
+```bash
+npx remotion render src/index.ts Familia out/familia.mp4
+npx remotion still src/index.ts ThumbFamilia out/thumbnail-familia.png
+```

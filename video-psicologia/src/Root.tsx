@@ -8,12 +8,13 @@ import {CONFIG_LIBERDADE, DURACAO_LIBERDADE, LINHA_LIBERDADE} from './episodios/
 import {CONFIG_CEREBRO, DURACAO_CEREBRO, LINHA_CEREBRO} from './episodios/cerebro';
 import {CONFIG_TIPOS, DURACAO_TIPOS, LINHA_TIPOS} from './episodios/tipos';
 import {CONFIG_FRASES, DURACAO_FRASES, LINHA_FRASES} from './episodios/frases';
+import {CONFIG_FAMILIA, DURACAO_FAMILIA, LINHA_FAMILIA} from './episodios/familia';
 import {COR} from './tema';
 import {DURACAO_REELS, Reels} from './reels/Reels';
 import {DURACAO_REELS2, Reels2} from './reels/Reels2';
 import {Apresentacao, DURACAO_APRESENTACAO} from './reels/Apresentacao';
 
-const ComFontes: React.FC<{short?: boolean; thumb?: boolean; ep?: 'narcisista' | 'liberdade' | 'cerebro' | 'tipos' | 'frases'; reels?: boolean; reels2?: boolean; gabi?: boolean}> = ({short, thumb, ep, reels, reels2, gabi}) => {
+const ComFontes: React.FC<{short?: boolean; thumb?: boolean; ep?: 'narcisista' | 'liberdade' | 'cerebro' | 'tipos' | 'frases' | 'familia'; reels?: boolean; reels2?: boolean; gabi?: boolean}> = ({short, thumb, ep, reels, reels2, gabi}) => {
 	const [handle] = useState(() => delayRender('Carregando fontes'));
 	useEffect(() => {
 		const fontes = ['700 40px Cinzel', '900 40px Cinzel', '400 40px "Playfair Display"', 'italic 400 40px "Playfair Display"', '700 40px "Playfair Display"', 'italic 700 40px "Playfair Display"', '600 20px Inter', '400 20px Inter', '800 20px Inter', '900 20px Inter'];
@@ -87,7 +88,21 @@ const ComFontes: React.FC<{short?: boolean; thumb?: boolean; ep?: 'narcisista' |
 				]}
 			/>
 		);
+	if (thumb && ep === 'familia')
+		return (
+			<Thumbnail
+				tag="7 DINÂMICAS DE FAMÍLIA TÓXICA"
+				figura="casa"
+				linhas={[
+					['E SE O', COR.creme],
+					['PERIGO', COR.creme],
+					['FOR A SUA', COR.creme],
+					['FAMÍLIA?', COR.vermelho, 124],
+				]}
+			/>
+		);
 	if (thumb) return <Thumbnail />;
+	if (ep === 'familia') return <Video linha={LINHA_FAMILIA} episodio={CONFIG_FAMILIA} />;
 	if (ep === 'frases') return <Video linha={LINHA_FRASES} episodio={CONFIG_FRASES} />;
 	if (ep === 'tipos') return <Video linha={LINHA_TIPOS} episodio={CONFIG_TIPOS} />;
 	if (ep === 'cerebro') return <Video linha={LINHA_CEREBRO} episodio={CONFIG_CEREBRO} />;
@@ -111,6 +126,8 @@ export const Root: React.FC = () => (
 		<Composition id="ThumbTipos" component={ComFontes} defaultProps={{ep: 'tipos', thumb: true}} durationInFrames={1} fps={FPS} width={1280} height={720} />
 		<Composition id="Frases" component={ComFontes} defaultProps={{ep: 'frases'}} durationInFrames={DURACAO_FRASES} fps={FPS} width={LARGURA} height={ALTURA} />
 		<Composition id="ThumbFrases" component={ComFontes} defaultProps={{ep: 'frases', thumb: true}} durationInFrames={1} fps={FPS} width={1280} height={720} />
+		<Composition id="Familia" component={ComFontes} defaultProps={{ep: 'familia'}} durationInFrames={DURACAO_FAMILIA} fps={FPS} width={LARGURA} height={ALTURA} />
+		<Composition id="ThumbFamilia" component={ComFontes} defaultProps={{ep: 'familia', thumb: true}} durationInFrames={1} fps={FPS} width={1280} height={720} />
 		<Composition id="ReelsEditora" component={ComFontes} defaultProps={{reels: true}} durationInFrames={DURACAO_REELS} fps={FPS} width={1080} height={1920} />
 		<Composition id="ReelsServicos" component={ComFontes} defaultProps={{reels2: true}} durationInFrames={DURACAO_REELS2} fps={FPS} width={1080} height={1920} />
 		<Composition id="ApresentacaoGabi" component={ComFontes} defaultProps={{gabi: true}} durationInFrames={DURACAO_APRESENTACAO} fps={FPS} width={1080} height={1920} />

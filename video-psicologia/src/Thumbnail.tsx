@@ -5,7 +5,7 @@ import {BUSTO} from './visuais/Visuais';
 
 // Thumbnail 1280x720: silhueta controlada por fios + frase curta de alto contraste
 type Linha = [string, string, number?];
-export type PropsThumb = {tag?: string; linhas?: Linha[]; figura?: 'marionete' | 'coroa' | 'gaiola' | 'cerebro' | 'mascaras' | 'balao'};
+export type PropsThumb = {tag?: string; linhas?: Linha[]; figura?: 'marionete' | 'coroa' | 'gaiola' | 'cerebro' | 'mascaras' | 'balao' | 'casa'};
 const PADRAO: Linha[] = [
 	['ELE', COR.creme],
 	['SABE', COR.vermelho, 150],
@@ -53,6 +53,15 @@ export const Thumbnail: React.FC<PropsThumb> = ({tag = '7 TÁTICAS', linhas = PA
 					</g>
 				)}
 				{figura === 'gaiola' && <circle cx={hx + 380} cy={hy} r={330} fill="#fff1d6" opacity={0.22} filter="url(#g)" />}
+				{figura === 'casa' && (
+					<g opacity={0.9}>
+						<path d={`M${hx - 330} ${hy - 95} L${hx} ${hy - 290} L${hx + 330} ${hy - 95}`} fill="none" stroke={COR.creme} strokeWidth={6} strokeLinejoin="round" />
+						<line x1={hx - 290} y1={hy - 122} x2={hx - 290} y2={720} stroke={COR.creme} strokeWidth={6} />
+						<line x1={hx + 290} y1={hy - 122} x2={hx + 290} y2={720} stroke={COR.creme} strokeWidth={6} />
+						<rect x={hx + 170} y={hy - 70} width={90} height={80} fill={COR.vermelho} opacity={0.75} filter="url(#g)" />
+						<rect x={hx - 260} y={hy - 70} width={90} height={80} fill="#ffcf8a" opacity={0.45} />
+					</g>
+				)}
 				{/* silhueta */}
 				<g transform={`translate(${hx} ${hy}) scale(${s}) translate(-100 -75)`}>
 					<path d={BUSTO} fill="#030202" stroke={figura === "gaiola" ? COR.creme : figura === "cerebro" ? COR.cinza : COR.vermelho} strokeWidth={1.4} filter="url(#g)" />

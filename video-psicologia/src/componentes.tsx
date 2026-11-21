@@ -141,7 +141,7 @@ export const TextoCinetico: React.FC<{texto: string; destaque?: string[]; estilo
 	let fonte: React.CSSProperties;
 	if (estilo === 'grande') {
 		pos = {top: 0, bottom: 0};
-		fonte = {fontFamily: FONTE.titulo, fontWeight: 700, fontSize: vertical ? 92 : 104, letterSpacing: 6, textTransform: 'uppercase', lineHeight: 1.15, gap: '0 34px'};
+		fonte = {fontFamily: FONTE.titulo, fontWeight: 700, fontSize: vertical ? 92 : texto.length > 70 ? 78 : texto.length > 52 ? 88 : 104, letterSpacing: texto.length > 52 ? 3 : 6, textTransform: 'uppercase', lineHeight: 1.15, gap: '0 34px'};
 	} else if (estilo === 'fala') {
 		pos = {top: 0, bottom: 0};
 		fonte = {fontFamily: FONTE.texto, fontStyle: 'italic', fontSize: vertical ? 88 : 96, lineHeight: 1.2, gap: '0 26px'};

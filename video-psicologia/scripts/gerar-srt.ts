@@ -6,12 +6,15 @@ import {LINHA_LIBERDADE, PASSOS, FALA_TITULO} from '../src/episodios/liberdade';
 import * as CER from '../src/episodios/cerebro';
 import * as TIP from '../src/episodios/tipos';
 import * as FRA from '../src/episodios/frases';
+import * as FAM from '../src/episodios/familia';
 
 // Uso: npx tsx scripts/gerar-srt.ts [narcisista|taticas]
 const ep = process.argv[2] || 'narcisista';
 const [linha, nomes, op, saida] =
 	ep === 'taticas'
 		? [LINHA_DO_TEMPO, TATICAS, {rotulo: 'Tática', titulo: 'Sete táticas de manipulação… que você nem percebe.'}, 'exportados/7-taticas-legendas-pt-BR.srt']
+		: ep === 'familia'
+			? [FAM.LINHA_FAMILIA, FAM.DINAMICAS, {rotulo: 'Dinâmica', titulo: FAM.FALA_TITULO}, 'exportados/familia-legendas-pt-BR.srt']
 		: ep === 'frases'
 			? [FRA.LINHA_FRASES, FRA.FRASES, {rotulo: 'Frase', titulo: FRA.FALA_TITULO}, 'exportados/frases-legendas-pt-BR.srt']
 		: ep === 'tipos'
