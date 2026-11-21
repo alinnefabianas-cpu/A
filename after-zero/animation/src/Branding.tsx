@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {C, Glow, lerp, Rays, Skyline} from './lib';
-import {NoahStandBack} from './noah';
+import {NoahProfile, NoahStandBack} from './noah';
 
 /* ------------------------------------------------ profile picture 800x800 */
 export const ProfilePic: React.FC = () => {
@@ -90,3 +90,63 @@ export const Banner: React.FC = () => {
     </AbsoluteFill>
   );
 };
+
+/* ---------------- alternative profile pictures (800x800, circle-safe) */
+
+/** A: Noah's profile, rim-lit by the sunrise */
+export const ProfileA: React.FC = () => (
+  <AbsoluteFill style={{background: C.midnight}}>
+    <svg width={800} height={800} viewBox="0 0 800 800">
+      <defs>
+        <radialGradient id="pa-bg" cx="0.78" cy="0.42" r="0.8">
+          <stop offset="0" stopColor="#ffd59a" />
+          <stop offset="0.18" stopColor="#d58b49" />
+          <stop offset="0.5" stopColor="#263C40" />
+          <stop offset="1" stopColor="#101820" />
+        </radialGradient>
+      </defs>
+      <rect width={800} height={800} fill="url(#pa-bg)" />
+      <g transform="translate(70 70) scale(1.18)"><NoahProfile outfit="out" rim="#ffd59a" rimOpacity={1} look={0.6} /></g>
+    </svg>
+  </AbsoluteFill>
+);
+
+/** B: typographic "AZ" monogram with the sunrise line */
+export const ProfileB: React.FC = () => (
+  <AbsoluteFill style={{background: C.midnight, justifyContent: 'center', alignItems: 'center'}}>
+    <svg width={800} height={800} viewBox="0 0 800 800" style={{position: 'absolute'}}>
+      <Glow id="pb-g" cx={400} cy={470} r={380} color={C.amber} opacity={0.35} />
+      <circle cx={400} cy={470} r={70} fill="#ffd59a" />
+      <rect x={0} y={470} width={800} height={330} fill={C.midnight} />
+      <rect x={170} y={468} width={460} height={8} fill={C.amber} />
+    </svg>
+    <div style={{position: 'relative', fontFamily: 'Inter Display, Inter', fontWeight: 900, fontSize: 300, color: '#f4f1ea', letterSpacing: -14, marginTop: -150,
+      textShadow: '0 10px 40px rgba(0,0,0,0.6)'}}>A<span style={{color: C.amber}}>0</span></div>
+    <div style={{position: 'absolute', top: 520, fontFamily: 'Inter Display, Inter', fontWeight: 700, fontSize: 52, letterSpacing: 16, color: '#d5d2c7', paddingLeft: 16}}>AFTER ZERO</div>
+  </AbsoluteFill>
+);
+
+/** C: minimal scene — sun on the horizon of an empty city, Noah alone */
+export const ProfileC: React.FC = () => (
+  <AbsoluteFill style={{background: '#000'}}>
+    <svg width={800} height={800} viewBox="0 0 800 800">
+      <defs>
+        <linearGradient id="pc-sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#0d151c" />
+          <stop offset="0.4" stopColor="#263C40" />
+          <stop offset="0.58" stopColor="#d58b49" />
+          <stop offset="0.66" stopColor="#ffd59a" />
+          <stop offset="1" stopColor="#ffd59a" />
+        </linearGradient>
+      </defs>
+      <rect width={800} height={800} fill="url(#pc-sky)" />
+      <Glow id="pc-g" cx={400} cy={430} r={440} color="#fff1d6" opacity={0.9} />
+      <circle cx={400} cy={430} r={100} fill="#fff8ea" />
+      <Skyline seed={33} baseY={540} minH={30} maxH={90} color="#1a252b" minW={24} maxW={60} x0={-20} x1={820} spires={0.5}
+        edge={{color: C.amber, opacity: 0.7, side: 'left'}} />
+      <rect x={0} y={536} width={800} height={300} fill="#101820" />
+      <path d="M 390 538 L 410 538 L 520 800 L 280 800 Z" fill="#ffcf8a" opacity={0.25} />
+      <g transform="translate(400 690) scale(0.42)"><NoahStandBack /></g>
+    </svg>
+  </AbsoluteFill>
+);

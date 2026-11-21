@@ -5,7 +5,7 @@ import * as S from './scenes';
 import {f, FPS, SHOTS, TOTAL_SECONDS} from './timeline';
 import {EPISODE, EpisodeFull} from './Episode';
 import {Thumbnail} from './Thumbnail';
-import {Banner, ProfilePic} from './Branding';
+import {Banner, ProfileA, ProfileB, ProfileC, ProfilePic} from './Branding';
 
 const TITLE = 'WHAT IF YOU WERE THE LAST HUMAN ON EARTH?';
 
@@ -36,6 +36,9 @@ const Single: React.FC<{id: string}> = ({id}) => {
 export const Root: React.FC = () => (
   <>
     <Composition id="ProfilePic" component={ProfilePic} durationInFrames={1} fps={30} width={800} height={800} />
+    <Composition id="ProfileA" component={ProfileA} durationInFrames={1} fps={30} width={800} height={800} />
+    <Composition id="ProfileB" component={ProfileB} durationInFrames={1} fps={30} width={800} height={800} />
+    <Composition id="ProfileC" component={ProfileC} durationInFrames={1} fps={30} width={800} height={800} />
     <Composition id="Banner" component={Banner} durationInFrames={1} fps={30} width={2560} height={1440} />
     <Composition id="Thumb1" component={() => <Thumbnail variant={1} />} durationInFrames={1} fps={30} width={1920} height={1080} />
     <Composition id="Thumb2" component={() => <Thumbnail variant={2} />} durationInFrames={1} fps={30} width={1920} height={1080} />
