@@ -24,6 +24,7 @@ import golfDimples from './golf-dimples/Episodio';
 import flamingosPink from './flamingos-pink/Episodio';
 import fingersWrinkle from './fingers-wrinkle/Episodio';
 import honeySpoils from './honey-spoils/Episodio';
+import violetJessop from './violet-jessop/Episodio';
 
 export const EPISODIOS: DefEpisodio[] = [
 	emuWar,
@@ -49,5 +50,6 @@ export const EPISODIOS: DefEpisodio[] = [
 	flamingosPink,
 	fingersWrinkle,
 	honeySpoils,
+	violetJessop,
 	// AUTO-EPISODIOS (não apague esta linha)
 ];
