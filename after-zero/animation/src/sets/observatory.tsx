@@ -24,6 +24,12 @@ const PROFILE_BG: Record<string, {sky: [number, string][]; win: string; city: st
   flare: {sky: [[0, '#140806'], [1, '#2a100c']], win: '#3a1410', city: '#2a0e0a', rim: '#ff6a50', glow: '#ff4a3a', wall: true},
   station: {sky: [[0, '#0e1620'], [1, '#1c2630']], win: '#1c2630', city: '#141c22', rim: '#dfe8ec', glow: '#cfe6f2', wall: true},
   heli: {sky: [[0, '#05080a'], [1, '#0c1014']], win: '#0a1820', city: '#06090b', rim: '#9fe0ff', glow: '#9fe0ff', wall: true},
+  river: {sky: [[0, '#6aa0b0'], [1, '#b8d0c8']], win: '#8a6a44', city: '#265a2a', rim: '#fff6d0', glow: '#fff6d0'},
+  jungle: {sky: [[0, '#163a1a'], [1, '#265a2a']], win: '#3f7a3e', city: '#163a1a', rim: '#e8f0a0', glow: '#d8f080', wall: true},
+  jungleNight: {sky: [[0, '#020604'], [1, '#06120a']], win: '#0a1a10', city: '#030806', rim: '#a0d0a0', glow: '#80c080', wall: true},
+  canopy: {sky: [[0, '#6aa0b0'], [1, '#e0e8d8']], win: '#6a9a5a', city: '#3f7a3e', rim: '#ffffff', glow: '#fff6e0'},
+  fever: {sky: [[0, '#2a0e08'], [1, '#4a1a10']], win: '#6a2a14', city: '#3a1408', rim: '#ff8a50', glow: '#ff6a30', wall: true},
+  village: {sky: [[0, '#1a2030'], [1, '#5a4050']], win: '#e8a050', city: '#3a442a', rim: '#f0a050', glow: '#f0a050'},
   surface: {sky: [[0, '#6a8486'], [1, '#d2925a']], win: '#ffd59a', city: '#2c4a3a', rim: '#fff1d6', glow: '#ffd59a'},
 };
 

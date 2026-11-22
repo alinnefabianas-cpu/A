@@ -5,6 +5,7 @@ import {SETS} from './sets/registry';
 import ep1 from './episodes/episode_001.json';
 import ep2 from './episodes/episode_002.json';
 import ep3 from './episodes/episode_003.json';
+import ep4 from './episodes/episode_004.json';
 
 type Shot = {from: number; dur: number; visual: string; p: Record<string, any>; talk?: {from: number; to: number; speaker: string} | null};
 export type EpisodeData = {fps: number; totalFrames: number; shots: Shot[]};
@@ -13,6 +14,7 @@ export const EPISODES: Record<string, EpisodeData> = {
   Ep001Full: ep1 as EpisodeData,
   Ep002Full: ep2 as EpisodeData,
   Ep003Full: ep3 as EpisodeData,
+  Ep004Full: ep4 as EpisodeData,
 };
 /** kept for stills.mjs / older code */
 export const EPISODE = EPISODES.Ep001Full;

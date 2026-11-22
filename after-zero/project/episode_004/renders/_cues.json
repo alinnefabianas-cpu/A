@@ -1,0 +1,1500 @@
+{
+"total": 1278.5960000000002,
+"shots": [
+{
+"start": 0.0,
+"dur": 4.0,
+"visual": "jungle",
+"p": {
+"time": "dawn",
+"dur": 4.0,
+"fog": true
+},
+"speaker": "-",
+"scene": 0
+},
+{
+"start": 4.0,
+"dur": 8.957,
+"visual": "canopy",
+"p": {
+"time": "day"
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 12.957,
+"dur": 3.8040000000000003,
+"visual": "jungle",
+"p": {
+"time": "day",
+"noah": true,
+"dense": true
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 16.761000000000003,
+"dur": 14.59,
+"visual": "jungle",
+"p": {
+"time": "dusk",
+"seed": 2,
+"noah": true
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 31.351000000000003,
+"dur": 12.843,
+"visual": "title",
+"p": {
+"title": "WHAT IF YOU GOT LOST IN THE AMAZON?",
+"tail": 4.5
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 44.194,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 1,
+"title": "THE RIVER"
+},
+"speaker": "-",
+"scene": 1
+},
+{
+"start": 48.194,
+"dur": 5.335,
+"visual": "city",
+"p": {
+"time": "day",
+"seed": 16
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 53.529,
+"dur": 12.575,
+"visual": "riverBoat",
+"p": {
+"time": "day"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 66.104,
+"dur": 12.666,
+"visual": "riverBoat",
+"p": {
+"time": "day",
+"seed": 2,
+"wide": true
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 78.77,
+"dur": 12.248,
+"visual": "tomas",
+"p": {
+"mode": "boat"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 91.018,
+"dur": 10.368,
+"visual": "tomas",
+"p": {
+"mode": "boat",
+"seed": 2
+},
+"speaker": "TOMAS",
+"scene": 1
+},
+{
+"start": 101.386,
+"dur": 3.091,
+"visual": "profile",
+"p": {
+"time": "river",
+"outfit": "trek"
+},
+"speaker": "NOAH",
+"scene": 1
+},
+{
+"start": 104.47699999999999,
+"dur": 4.7860000000000005,
+"visual": "tomas",
+"p": {
+"mode": "boat",
+"seed": 3,
+"smile": true
+},
+"speaker": "TOMAS",
+"scene": 1
+},
+{
+"start": 109.26299999999999,
+"dur": 18.531,
+"visual": "camp",
+"p": {
+"time": "dusk"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 127.79399999999998,
+"dur": 13.832,
+"visual": "camp",
+"p": {
+"time": "dusk",
+"seed": 2
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 141.62599999999998,
+"dur": 13.653,
+"visual": "campNight",
+"p": {
+"camp": true
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 155.27899999999997,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 2,
+"title": "ONE PHOTOGRAPH"
+},
+"speaker": "-",
+"scene": 2
+},
+{
+"start": 159.27899999999997,
+"dur": 11.855,
+"visual": "jungle",
+"p": {
+"time": "day",
+"seed": 3,
+"noah": true,
+"trail": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 171.13399999999996,
+"dur": 8.411,
+"visual": "jungle",
+"p": {
+"time": "day",
+"seed": 4,
+"trail": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 179.54499999999996,
+"dur": 8.538,
+"visual": "macaw",
+"p": {},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 188.08299999999997,
+"dur": 9.989,
+"visual": "kapok",
+"p": {
+"birds": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 198.07199999999997,
+"dur": 4.541,
+"visual": "profile",
+"p": {
+"time": "jungle",
+"outfit": "trek"
+},
+"speaker": "NOAH",
+"scene": 2
+},
+{
+"start": 202.61299999999997,
+"dur": 11.15,
+"visual": "kapok",
+"p": {
+"birds": true,
+"noah": true,
+"seed": 2
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 213.76299999999998,
+"dur": 4.102,
+"visual": "jungle",
+"p": {
+"time": "day",
+"seed": 5,
+"noah": true,
+"dense": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 217.86499999999998,
+"dur": 2.8970000000000002,
+"visual": "jungle",
+"p": {
+"time": "day",
+"seed": 6,
+"noah": true,
+"dense": true
+},
+"speaker": "NOAH",
+"scene": 2
+},
+{
+"start": 220.76199999999997,
+"dur": 12.57,
+"visual": "jungle",
+"p": {
+"time": "day",
+"seed": 7,
+"dense": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 233.33199999999997,
+"dur": 13.518,
+"visual": "gps",
+"p": {},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 246.84999999999997,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 3,
+"title": "THE STORM"
+},
+"speaker": "-",
+"scene": 3
+},
+{
+"start": 250.84999999999997,
+"dur": 3.686,
+"visual": "jungle",
+"p": {
+"time": "storm",
+"seed": 2
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 254.53599999999997,
+"dur": 10.078,
+"visual": "jungle",
+"p": {
+"time": "storm",
+"seed": 3,
+"noah": true
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 264.614,
+"dur": 10.435,
+"visual": "jungle",
+"p": {
+"time": "storm",
+"seed": 4,
+"flood": true
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 275.049,
+"dur": 17.494,
+"visual": "jungle",
+"p": {
+"time": "storm",
+"seed": 6,
+"treefall": true
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 292.543,
+"dur": 10.382,
+"visual": "jungle",
+"p": {
+"time": "storm",
+"seed": 5,
+"noah": true,
+"run": true
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 302.925,
+"dur": 7.77,
+"visual": "jungle",
+"p": {
+"time": "dusk",
+"seed": 3,
+"noah": true
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 310.695,
+"dur": 12.417,
+"visual": "tomas",
+"p": {
+"mode": "night",
+"worried": true
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 323.11199999999997,
+"dur": 13.776,
+"visual": "camp",
+"p": {
+"time": "dusk",
+"seed": 3
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 336.888,
+"dur": 14.659,
+"visual": "phoneCall",
+"p": {
+"seed": 2
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 351.54699999999997,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 4,
+"title": "THE FIRST NIGHT"
+},
+"speaker": "-",
+"scene": 4
+},
+{
+"start": 355.54699999999997,
+"dur": 8.019,
+"visual": "jungle",
+"p": {
+"time": "night",
+"seed": 2
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 363.566,
+"dur": 11.911,
+"visual": "shelter",
+"p": {
+"building": true
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 375.477,
+"dur": 15.464,
+"visual": "shelter",
+"p": {
+"seed": 2
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 390.941,
+"dur": 3.904,
+"visual": "campNight",
+"p": {
+"seed": 2
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 394.84499999999997,
+"dur": 12.686,
+"visual": "campNight",
+"p": {
+"seed": 3,
+"eyes": true
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 407.53099999999995,
+"dur": 5.2459999999999996,
+"visual": "profile",
+"p": {
+"time": "jungleNight",
+"outfit": "trek"
+},
+"speaker": "NOAH",
+"scene": 4
+},
+{
+"start": 412.77699999999993,
+"dur": 4.696000000000001,
+"visual": "campNight",
+"p": {
+"seed": 4,
+"fireflies": true
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 417.47299999999996,
+"dur": 12.963,
+"visual": "campNight",
+"p": {
+"seed": 5,
+"fireflies": true,
+"fungus": true
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 430.436,
+"dur": 10.825,
+"visual": "shelter",
+"p": {
+"seed": 3,
+"night": true
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 441.26099999999997,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 5,
+"title": "WATER"
+},
+"speaker": "-",
+"scene": 5
+},
+{
+"start": 445.26099999999997,
+"dur": 10.096,
+"visual": "jungle",
+"p": {
+"time": "day",
+"seed": 8
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 455.35699999999997,
+"dur": 12.204,
+"visual": "waterLeaf",
+"p": {},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 467.561,
+"dur": 11.666,
+"visual": "waterLeaf",
+"p": {
+"seed": 2,
+"drip": true
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 479.227,
+"dur": 14.914,
+"visual": "vine",
+"p": {},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 494.14099999999996,
+"dur": 7.903,
+"visual": "profile",
+"p": {
+"time": "jungle",
+"outfit": "trek",
+"seed": 2
+},
+"speaker": "NOAH",
+"scene": 5
+},
+{
+"start": 502.044,
+"dur": 13.048,
+"visual": "monkeys",
+"p": {
+"time": "day"
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 515.092,
+"dur": 11.724,
+"visual": "jungle",
+"p": {
+"time": "day",
+"seed": 9,
+"fruit": true,
+"noah": true
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 526.816,
+"dur": 5.736,
+"visual": "jungle",
+"p": {
+"time": "day",
+"seed": 10,
+"noah": true,
+"dense": true
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 532.552,
+"dur": 17.822,
+"visual": "canopy",
+"p": {
+"time": "day",
+"seed": 5
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 550.374,
+"dur": 15.73,
+"visual": "profile",
+"p": {
+"time": "jungle",
+"outfit": "trek",
+"seed": 4
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 566.104,
+"dur": 15.21,
+"visual": "shelter",
+"p": {
+"seed": 4,
+"building": true
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 581.3140000000001,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 6,
+"title": "THE CIRCLE"
+},
+"speaker": "-",
+"scene": 6
+},
+{
+"start": 585.3140000000001,
+"dur": 14.714,
+"visual": "treeMark",
+"p": {
+"day": 1
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 600.0280000000001,
+"dur": 8.627,
+"visual": "kapok",
+"p": {
+"seed": 3,
+"noah": true,
+"rest": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 608.6550000000001,
+"dur": 8.362,
+"visual": "treeMark",
+"p": {
+"day": 1,
+"found": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 617.017,
+"dur": 3.0,
+"visual": "treeMark",
+"p": {
+"day": 1,
+"found": true,
+"dur": 3.0,
+"seed": 2
+},
+"speaker": "-",
+"scene": 6
+},
+{
+"start": 620.017,
+"dur": 7.5,
+"visual": "profile",
+"p": {
+"time": "jungle",
+"outfit": "trek",
+"seed": 3
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 627.517,
+"dur": 18.505,
+"visual": "circlePath",
+"p": {},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 646.022,
+"dur": 3.7890000000000006,
+"visual": "jungle",
+"p": {
+"time": "day",
+"seed": 11,
+"noah": true,
+"dense": true
+},
+"speaker": "NOAH",
+"scene": 6
+},
+{
+"start": 649.811,
+"dur": 5.539,
+"visual": "kapok",
+"p": {
+"seed": 4,
+"noah": true,
+"rest": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 655.35,
+"dur": 9.283,
+"visual": "profile",
+"p": {
+"time": "jungle",
+"outfit": "trek",
+"seed": 5
+},
+"speaker": "NOAH",
+"scene": 6
+},
+{
+"start": 664.633,
+"dur": 12.149,
+"visual": "tomas",
+"p": {
+"mode": "boat",
+"seed": 4
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 676.782,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 7,
+"title": "ABOVE THE TREES"
+},
+"speaker": "-",
+"scene": 7
+},
+{
+"start": 680.782,
+"dur": 9.418,
+"visual": "kapok",
+"p": {
+"seed": 5,
+"climb": true
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 690.2,
+"dur": 10.259,
+"visual": "kapok",
+"p": {
+"seed": 6,
+"climb": true,
+"noah": true
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 700.4590000000001,
+"dur": 9.256,
+"visual": "kapok",
+"p": {
+"seed": 7,
+"climb": true,
+"noah": true,
+"high": true
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 709.715,
+"dur": 6.502,
+"visual": "canopy",
+"p": {
+"time": "day",
+"noah": true,
+"reveal": true
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 716.217,
+"dur": 9.526,
+"visual": "canopy",
+"p": {
+"time": "day",
+"seed": 2,
+"noah": true
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 725.7429999999999,
+"dur": 7.725,
+"visual": "canopy",
+"p": {
+"time": "day",
+"seed": 3,
+"noah": true,
+"river": true
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 733.468,
+"dur": 2.74,
+"visual": "profile",
+"p": {
+"time": "canopy",
+"outfit": "trek",
+"smile": true
+},
+"speaker": "NOAH",
+"scene": 7
+},
+{
+"start": 736.208,
+"dur": 14.891,
+"visual": "jungle",
+"p": {
+"time": "day",
+"seed": 12,
+"noah": true,
+"trail": true
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 751.0989999999999,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 8,
+"title": "THE FLOODED FOREST"
+},
+"speaker": "-",
+"scene": 8
+},
+{
+"start": 755.0989999999999,
+"dur": 7.257,
+"visual": "jungle",
+"p": {
+"time": "day",
+"seed": 13,
+"noah": true
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 762.3559999999999,
+"dur": 12.173,
+"visual": "igapo",
+"p": {
+"time": "day"
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 774.5289999999999,
+"dur": 16.233999999999998,
+"visual": "igapo",
+"p": {
+"time": "day",
+"seed": 2,
+"noah": true
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 790.7629999999999,
+"dur": 8.535,
+"visual": "igapo",
+"p": {
+"time": "day",
+"seed": 3,
+"wading": true
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 799.2979999999999,
+"dur": 17.259,
+"visual": "igapo",
+"p": {
+"time": "day",
+"seed": 4,
+"wading": true,
+"fish": true
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 816.5569999999999,
+"dur": 9.091000000000001,
+"visual": "caiman",
+"p": {},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 825.6479999999999,
+"dur": 7.904,
+"visual": "caiman",
+"p": {
+"seed": 2,
+"close": true
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 833.5519999999999,
+"dur": 11.744,
+"visual": "igapo",
+"p": {
+"time": "night",
+"seed": 5,
+"perch": true
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 845.2959999999999,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 9,
+"title": "THE RAFT"
+},
+"speaker": "-",
+"scene": 9
+},
+{
+"start": 849.2959999999999,
+"dur": 6.631,
+"visual": "igapo",
+"p": {
+"time": "day",
+"seed": 6
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 855.9269999999999,
+"dur": 13.196,
+"visual": "raft",
+"p": {
+"building": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 869.1229999999999,
+"dur": 9.283,
+"visual": "raft",
+"p": {
+"building": true,
+"seed": 2
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 878.406,
+"dur": 8.741,
+"visual": "profile",
+"p": {
+"time": "river",
+"outfit": "trek",
+"seed": 2
+},
+"speaker": "NOAH",
+"scene": 9
+},
+{
+"start": 887.1469999999999,
+"dur": 8.274000000000001,
+"visual": "raft",
+"p": {
+"floating": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 895.4209999999999,
+"dur": 14.478,
+"visual": "igapo",
+"p": {
+"time": "night",
+"seed": 7,
+"perch": false
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 909.8989999999999,
+"dur": 9.91,
+"visual": "riverWide",
+"p": {
+"time": "day",
+"raft": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 919.8089999999999,
+"dur": 6.239,
+"visual": "riverWide",
+"p": {
+"time": "dusk",
+"raft": true,
+"seed": 2
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 926.0479999999999,
+"dur": 18.18,
+"visual": "riverWide",
+"p": {
+"time": "night",
+"raft": true,
+"seed": 6
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 944.2279999999998,
+"dur": 13.476,
+"visual": "riverWide",
+"p": {
+"time": "storm",
+"raft": true,
+"seed": 7
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 957.7039999999998,
+"dur": 13.449,
+"visual": "riverWide",
+"p": {
+"time": "dawn",
+"raft": true,
+"dolphins": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 971.1529999999998,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 10,
+"title": "THE FEVER"
+},
+"speaker": "-",
+"scene": 10
+},
+{
+"start": 975.1529999999998,
+"dur": 5.226999999999999,
+"visual": "profile",
+"p": {
+"time": "fever",
+"outfit": "trek"
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 980.3799999999998,
+"dur": 12.392,
+"visual": "fever",
+"p": {
+"seed": 1
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 992.7719999999998,
+"dur": 9.762,
+"visual": "fever",
+"p": {
+"seed": 2,
+"strong": true
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1002.5339999999999,
+"dur": 11.576,
+"visual": "profile",
+"p": {
+"time": "fever",
+"outfit": "trek",
+"seed": 2
+},
+"speaker": "NOAH",
+"scene": 10
+},
+{
+"start": 1014.1099999999999,
+"dur": 13.255,
+"visual": "fever",
+"p": {
+"seed": 3
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1027.365,
+"dur": 14.595,
+"visual": "riverWide",
+"p": {
+"time": "day",
+"raft": true,
+"lying": true,
+"seed": 3
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1041.96,
+"dur": 5.288,
+"visual": "tomas",
+"p": {
+"mode": "boat",
+"worried": true,
+"seed": 5
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1047.248,
+"dur": 18.759,
+"visual": "riverBoat",
+"p": {
+"time": "dawn",
+"seed": 3,
+"searching": true
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1066.007,
+"dur": 5.132,
+"visual": "tomas",
+"p": {
+"mode": "boat",
+"worried": true,
+"seed": 6
+},
+"speaker": "TOMAS",
+"scene": 10
+},
+{
+"start": 1071.1390000000001,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 11,
+"title": "THE CANOE"
+},
+"speaker": "-",
+"scene": 11
+},
+{
+"start": 1075.1390000000001,
+"dur": 10.944,
+"visual": "rosaCanoe",
+"p": {
+"time": "dawn"
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1086.083,
+"dur": 10.895,
+"visual": "riverWide",
+"p": {
+"time": "dawn",
+"raft": true,
+"lying": true,
+"seed": 4,
+"canoe": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1096.978,
+"dur": 4.819999999999999,
+"visual": "rosa",
+"p": {
+"mode": "canoe"
+},
+"speaker": "ROSA",
+"scene": 11
+},
+{
+"start": 1101.798,
+"dur": 10.055,
+"visual": "rosa",
+"p": {
+"mode": "canoe",
+"seed": 2
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1111.853,
+"dur": 11.37,
+"visual": "rosa",
+"p": {
+"mode": "canoe",
+"seed": 3
+},
+"speaker": "ROSA",
+"scene": 11
+},
+{
+"start": 1123.223,
+"dur": 11.125,
+"visual": "village",
+"p": {
+"time": "dawn"
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1134.348,
+"dur": 15.536,
+"visual": "rosaCanoe",
+"p": {
+"time": "dawn",
+"seed": 2
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1149.884,
+"dur": 12.367,
+"visual": "village",
+"p": {
+"time": "day",
+"seed": 2,
+"inside": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1162.251,
+"dur": 17.865,
+"visual": "village",
+"p": {
+"time": "day",
+"seed": 4
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1180.116,
+"dur": 6.44,
+"visual": "riverBoat",
+"p": {
+"time": "dusk",
+"seed": 4,
+"racing": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1186.556,
+"dur": 3.2490000000000006,
+"visual": "tomas",
+"p": {
+"mode": "village",
+"smile": true
+},
+"speaker": "TOMAS",
+"scene": 11
+},
+{
+"start": 1189.805,
+"dur": 3.6740000000000004,
+"visual": "profile",
+"p": {
+"time": "village",
+"outfit": "trek",
+"smile": true
+},
+"speaker": "NOAH",
+"scene": 11
+},
+{
+"start": 1193.479,
+"dur": 3.928,
+"visual": "tomas",
+"p": {
+"mode": "village",
+"smile": true,
+"seed": 2
+},
+"speaker": "TOMAS",
+"scene": 11
+},
+{
+"start": 1197.4070000000002,
+"dur": 14.267,
+"visual": "city",
+"p": {
+"time": "day",
+"seed": 17
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1211.6740000000002,
+"dur": 10.867,
+"visual": "phoneCall",
+"p": {},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1222.5410000000002,
+"dur": 17.726,
+"visual": "riverWide",
+"p": {
+"time": "dusk",
+"seed": 5
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1240.2670000000003,
+"dur": 8.838000000000001,
+"visual": "canopy",
+"p": {
+"time": "dusk",
+"seed": 4
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1249.1050000000002,
+"dur": 5.6,
+"visual": "village",
+"p": {
+"time": "dusk",
+"seed": 3
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1254.7050000000002,
+"dur": 5.0,
+"visual": "endCard",
+"p": {
+"dur": 5.0
+},
+"speaker": "-",
+"scene": 11
+},
+{
+"start": 1259.7050000000002,
+"dur": 9.739,
+"visual": "endCard",
+"p": {
+"question": true,
+"q": "Would <i>you</i> stay put,<br />or follow the water?"
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1269.4440000000002,
+"dur": 9.152000000000001,
+"visual": "endCard",
+"p": {
+"question": true,
+"q": "Would <i>you</i> stay put,<br />or follow the water?",
+"tail": 4.0
+},
+"speaker": "N",
+"scene": 11
+}
+],
+"moods": [
+3,
+6,
+1,
+5,
+8,
+2,
+7,
+6,
+9,
+6,
+5,
+11
+]
+}

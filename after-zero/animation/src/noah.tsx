@@ -14,7 +14,7 @@ export const N = {
   pants: '#24272c',
   sock: '#1b1d21',
   jacket: C.forest,
-  pack: '#5d6165',
+  pack: '#3c4246',
   eye: '#3a2618',
 };
 
@@ -28,7 +28,7 @@ const pol = (x: number, y: number, len: number, deg: number) => {
 };
 
 /* ---------------------------------------------------------------- profile */
-export const NoahProfile: React.FC<{blink?: number; rim?: string; rimOpacity?: number; look?: number; outfit?: 'home' | 'out' | 'parka'; smile?: number; talk?: number; beard?: number; frost?: number}> = ({
+export const NoahProfile: React.FC<{blink?: number; rim?: string; rimOpacity?: number; look?: number; outfit?: 'home' | 'out' | 'parka' | 'trek'; smile?: number; talk?: number; beard?: number; frost?: number}> = ({
   blink = 0, rim = C.amber, rimOpacity = 0.9, look = 0, outfit = 'home', smile = 0, talk = 0, beard = 0, frost = 0,
 }) => {
   const face =
@@ -98,7 +98,7 @@ export const NoahProfile: React.FC<{blink?: number; rim?: string; rimOpacity?: n
 };
 
 /* ------------------------------------------------------------- back view */
-export const NoahBack: React.FC<{armRaise?: number; lean?: number; outfit?: 'home' | 'out' | 'parka'}> = ({armRaise = 1, lean = 0, outfit = 'home'}) => {
+export const NoahBack: React.FC<{armRaise?: number; lean?: number; outfit?: 'home' | 'out' | 'parka' | 'trek'}> = ({armRaise = 1, lean = 0, outfit = 'home'}) => {
   const top = (outfit === 'out' || outfit === 'parka') ? N.jacket : N.shirt;
   const topShade = (outfit === 'out' || outfit === 'parka') ? '#1b2c30' : N.shirtShade;
   const [ex, ey] = [-300 - 20 * armRaise, -470 - 120 * armRaise];
@@ -115,7 +115,7 @@ export const NoahBack: React.FC<{armRaise?: number; lean?: number; outfit?: 'hom
       {/* torso */}
       <path d="M -300 0 C -300 -200 -290 -360 -200 -410 C -120 -450 120 -450 200 -410 C 290 -360 300 -200 300 0 Z" fill={top} />
       <path d="M 40 -430 C 160 -420 260 -380 290 -260 C 300 -170 300 -80 300 0 L 120 0 C 160 -120 170 -300 40 -430 Z" fill={topShade} opacity={0.8} />
-      {(outfit === 'out' || outfit === 'parka') && <>
+      {(outfit !== 'home') && <>
         <rect x={-190} y={-330} width={380} height={360} rx={70} fill={N.pack} />
         <rect x={-120} y={-150} width={240} height={130} rx={30} fill="#4b4f53" />
         <path d="M -150 -420 L -170 -320 M 150 -420 L 170 -320" stroke="#3f4347" strokeWidth={30} strokeLinecap="round" />
@@ -140,10 +140,10 @@ export const NoahBack: React.FC<{armRaise?: number; lean?: number; outfit?: 'hom
 };
 
 /* ------------------------------------------------------------ walking */
-export const NoahWalk: React.FC<{phase: number; rim?: string; outfit?: 'home' | 'out' | 'parka'}> = ({phase, rim = C.gold, outfit = 'home'}) => {
+export const NoahWalk: React.FC<{phase: number; rim?: string; outfit?: 'home' | 'out' | 'parka' | 'trek'}> = ({phase, rim = C.gold, outfit = 'home'}) => {
   const top = (outfit === 'out' || outfit === 'parka') ? N.jacket : N.shirt;
   const topShade = (outfit === 'out' || outfit === 'parka') ? '#1b2c30' : N.shirtShade;
-  const foot = (outfit === 'out' || outfit === 'parka') ? '#4a3324' : N.sock;
+  const foot = (outfit !== 'home') ? '#4a3324' : N.sock;
   const s = Math.sin(phase);
   const hip = [0, -200] as const;
   const legA = 24 * s, legB = -24 * s;
@@ -163,7 +163,7 @@ export const NoahWalk: React.FC<{phase: number; rim?: string; outfit?: 'home' | 
       <ellipse cx={footB[0] + 12} cy={footB[1] + 4} rx={26} ry={11} fill="#111" />
       {limb(sh[0], sh[1], elB[0], elB[1], 28, N.skinShade)}
       {limb(elB[0], elB[1], haB[0], haB[1], 24, N.skinShade)}
-      {(outfit === 'out' || outfit === 'parka') && <rect x={-96} y={-372 + bob} width={64} height={150} rx={18} fill={N.pack} />}
+      {(outfit !== 'home') && <rect x={-96} y={-372 + bob} width={64} height={150} rx={18} fill={N.pack} />}
       {/* torso */}
       <path d={`M -44 -190 L -40 ${-380 + bob} C -20 ${-404 + bob} 40 ${-404 + bob} 56 ${-376 + bob} L 50 -190 Z`} fill={N.shirt} />
       <path d={`M 20 ${-398 + bob} C 44 ${-396 + bob} 56 ${-386 + bob} 56 ${-376 + bob} L 50 -190 L 26 -190 Z`} fill={N.shirtShade} />
@@ -193,7 +193,7 @@ export const NoahWalk: React.FC<{phase: number; rim?: string; outfit?: 'home' | 
 };
 
 /* ------------------------------------------------------- sitting w/ phone */
-export const NoahSitting: React.FC<{breath?: number; head?: number; outfit?: 'home' | 'out' | 'parka'; phone?: boolean}> = ({breath = 0, head = 0, outfit = 'home', phone = true}) => {
+export const NoahSitting: React.FC<{breath?: number; head?: number; outfit?: 'home' | 'out' | 'parka' | 'trek'; phone?: boolean}> = ({breath = 0, head = 0, outfit = 'home', phone = true}) => {
   const b = breath * 4;
   const top = (outfit === 'out' || outfit === 'parka') ? N.jacket : N.shirt;
   const topShade = (outfit === 'out' || outfit === 'parka') ? '#1b2c30' : N.shirtShade;
@@ -280,7 +280,7 @@ export const ChairWithGear: React.FC = () => (
 );
 
 /* ------------------------------------------- full body, back view (small) */
-export const NoahStandBack: React.FC<{outfit?: 'home' | 'out' | 'parka'}> = ({outfit = 'out'}) => (
+export const NoahStandBack: React.FC<{outfit?: 'home' | 'out' | 'parka' | 'trek'}> = ({outfit = 'out'}) => (
   <g>
     {limb(-26, -190, -30, -10, 40, N.pants)}
     {limb(26, -190, 30, -10, 40, N.pants)}
@@ -289,7 +289,7 @@ export const NoahStandBack: React.FC<{outfit?: 'home' | 'out' | 'parka'}> = ({ou
     {limb(-60, -370, -74, -210, 26, (outfit === 'out' || outfit === 'parka') ? N.jacket : N.shirt)}
     {limb(60, -370, 74, -210, 26, (outfit === 'out' || outfit === 'parka') ? N.jacket : N.shirt)}
     <path d="M -64 -180 L -66 -360 C -40 -392 40 -392 66 -360 L 64 -180 Z" fill={(outfit === 'out' || outfit === 'parka') ? N.jacket : N.shirt} />
-    {(outfit === 'out' || outfit === 'parka') && <rect x={-48} y={-360} width={96} height={130} rx={22} fill={N.pack} />}
+    {(outfit !== 'home') && <rect x={-48} y={-360} width={96} height={130} rx={22} fill={N.pack} />}
     <rect x={-14} y={-410} width={28} height={30} fill={N.skinShade} />
     <ellipse cx={0} cy={-448} rx={42} ry={48} fill={N.skinShade} />
     <path d="M -46 -430 C -56 -480 -30 -506 0 -504 C 36 -506 56 -478 46 -432 C 30 -420 -30 -420 -46 -430 Z" fill={N.hair} />

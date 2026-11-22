@@ -6,6 +6,7 @@ import * as I from './interiors';
 import * as O from './observatory';
 import * as B from './bunker';
 import * as A from './arctic';
+import * as J from './jungle';
 
 const wrap = (C: React.FC<any>): React.FC<SetProps> => ({dur, p}) => <C dur={dur} title={p?.title ?? 'WHAT IF YOU WERE THE LAST HUMAN ON EARTH?'} />;
 
@@ -26,5 +27,9 @@ export const SETS: Record<string, React.FC<SetProps>> = {
   cabinNight: A.CabinNight, snowWall: A.SnowWall, iceVista: A.IceVista, aurora: A.Aurora, iceCrack: A.IceCrack, iceMap: A.IceMap,
   bear: A.Bear, flare: A.Flare, iceWalk: A.IceWalk, iceRidge: A.IceRidge, station: A.Station, stationInt: A.StationInt,
   heli: A.Heli, heliInt: A.HeliInt, heliView: A.HeliView,
+  jungle: J.Jungle, canopy: J.Canopy, riverBoat: J.RiverBoat, tomas: J.Tomas, rosa: J.Rosa, camp: J.Camp, campNight: J.CampNight,
+  macaw: J.MacawSet, kapok: J.Kapok, gps: J.Gps, shelter: J.Shelter, waterLeaf: J.WaterLeaf, vine: J.Vine, monkeys: J.Monkeys,
+  treeMark: J.TreeMark, circlePath: J.CirclePath, igapo: J.Igapo, caiman: J.Caiman, raft: J.Raft, riverWide: J.RiverWide,
+  fever: J.Fever, rosaCanoe: J.RosaCanoe, village: J.Village,
   clock: wrap(S.S02), hallway: wrap(S.S05), livingWalk: wrap(S.S07), trafficLight: wrap(S.S10), title: wrap(S.S13),
 };

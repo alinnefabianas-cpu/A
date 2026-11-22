@@ -1,0 +1,29 @@
+{
+  "episode": "episode_004",
+  "title": "WHAT IF YOU GOT LOST IN THE AMAZON?",
+  "cut": "full",
+  "description": "Episode 4, code-animated (Remotion), Kokoro TTS voices, synthesized score.",
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "file": "renders/after_zero_ep004_full.mp4"
+  },
+  "voiceover": {
+    "file": "voiceover/full_vo.wav",
+    "offset": 0,
+    "gain_db": 0
+  },
+  "music_file": "music/music_full.wav",
+  "sfx_file": "sound_effects/sfx_full.wav",
+  "srt_file": "subtitles/episode_004_full.en.srt",
+  "total_seconds": 1278.6,
+  "shots": [],
+  "subtitles": [],
+  "mix": {
+    "vo_db": 0,
+    "music_db": -15,
+    "sfx_db": -9,
+    "duck": true
+  }
+}

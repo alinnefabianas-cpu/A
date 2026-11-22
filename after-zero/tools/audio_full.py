@@ -318,6 +318,55 @@ def build(ep):
             place(sfx, fade(A.wind(d, 0.1).astype(np.float32)), t0)
         if v == "bear" and p.get("dist") == "close":
             place(sfx, (A.fast_lowpass(noise(d), 180) * 0.2 * env(n, 0.5, 0.5)).astype(np.float32), t0)
+        # ---- episode 004 (amazon) sets
+        jungle_vis = ("jungle", "kapok", "macaw", "monkeys", "shelter", "vine", "waterLeaf", "treeMark", "camp", "canopy", "igapo", "raft", "gps")
+        if v in jungle_vis or (v in ("tomas", "rosa") and p.get("mode") in ("night", "village")):
+            tt = p.get("time", "day")
+            if tt == "storm" or v == "waterLeaf":
+                place(sfx, fade(rain(d, 0.45 if tt == "storm" else 0.2)), t0)
+                if tt == "storm":
+                    for k in np.arange(0.8, d, 3.5 + rng.random() * 2):
+                        place(sfx, A.impact(3.5).astype(np.float32) * 0.5, t0 + k)
+            else:
+                t_ = np.arange(n) / SR
+                bug = A.bandpass(noise(d), 4000, 9000) * 0.05 * (0.6 + 0.4 * np.sin(2 * np.pi * 7 * t_))
+                place(sfx, fade(bug.astype(np.float32)), t0)
+                place(sfx, A.bird_chirps(d, count=int(d * 1.5)).astype(np.float32) * 0.8, t0)
+            if p.get("treefall"):
+                place(sfx, A.impact(4.0).astype(np.float32), t0 + d * 0.43)
+                place(sfx, (A.bandpass(noise(1.6), 300, 4000) * 0.4 * env(int(1.6 * SR), 0.1, 1.2)).astype(np.float32), t0 + d * 0.25)
+        if v in ("campNight", "caiman") or (v == "shelter" and p.get("night")) or (v == "igapo" and p.get("time") == "night") or (v == "riverWide" and p.get("time") == "night"):
+            t_ = np.arange(n) / SR
+            frogs = sum(np.sin(2 * np.pi * f * t_) * (np.sin(2 * np.pi * r_ * t_) > 0.7) for f, r_ in ((900, 3.1), (1400, 4.7), (620, 2.3))) * 0.025
+            crick = A.bandpass(noise(d), 4500, 8000) * 0.05 * (np.sin(2 * np.pi * 18 * t_) > 0)
+            place(sfx, fade((frogs + crick).astype(np.float32)), t0)
+        if v in ("riverBoat",) or (v == "tomas" and p.get("mode") == "boat"):
+            t_ = np.arange(n) / SR
+            mot = (np.sin(2 * np.pi * 55 * t_) * 0.4 + np.sin(2 * np.pi * 110 * t_) * 0.2) * 0.1 + A.fast_lowpass(noise(d), 600) * 0.08
+            place(sfx, fade(mot.astype(np.float32) * (1.6 if p.get("racing") else 1.0)), t0)
+        if v in ("riverWide", "raft", "rosaCanoe", "village", "igapo", "riverBoat") or (v == "rosa"):
+            place(sfx, fade((A.bandpass(noise(d), 150, 1200) * 0.06).astype(np.float32)), t0)   # water
+            if v == "riverWide" and p.get("time") == "storm":
+                place(sfx, fade(rain(d, 0.4)), t0)
+            if v == "riverWide" and p.get("time") == "dawn":
+                t_ = np.arange(int(3.0 * SR)) / SR
+                howl = (A.fast_lowpass(noise(3.0), 400) * (0.5 + 0.5 * np.sin(2 * np.pi * 0.6 * t_)) * 0.5 * env(len(t_), 0.4, 1.0)).astype(np.float32)
+                place(sfx, howl, t0 + 0.5)
+        if v == "monkeys":
+            t_ = np.arange(int(2.5 * SR)) / SR
+            place(sfx, (A.fast_lowpass(noise(2.5), 500) * (0.5 + 0.5 * np.sin(2 * np.pi * 0.8 * t_)) * 0.4 * env(len(t_), 0.3, 0.8)).astype(np.float32), t0 + 0.6)
+        if v in ("macaw", "kapok") and (v == "macaw" or p.get("birds")):
+            for k in (0.4, 1.4, 2.6):
+                tt_ = np.arange(int(0.35 * SR)) / SR
+                cry = np.sign(np.sin(2 * np.pi * (900 + 400 * np.sin(2 * np.pi * 6 * tt_)) * tt_)) * env(len(tt_), 0.01, 0.2) * 0.05
+                place(sfx, A.bandpass(cry.astype(np.float32), 600, 4000), t0 + k)
+        if v == "vine":
+            place(sfx, (A.bandpass(noise(0.2), 1500, 6000) * 0.25).astype(np.float32), t0 + d * 0.35)
+            place(sfx, fade((A.bandpass(noise(d * 0.6), 800, 5000) * 0.08).astype(np.float32)), t0 + d * 0.38)
+        if v == "fever":
+            t_ = np.arange(n) / SR
+            place(sfx, fade((np.sin(2 * np.pi * 220 * t_ + 3 * np.sin(2 * np.pi * 0.3 * t_)) * 0.03 + A.fast_lowpass(noise(d), 200) * 0.08).astype(np.float32)), t0)
+            place(sfx, A.heartbeat_pulse(d, 96).astype(np.float32) * 0.5, t0)
         if p.get("impact"):
             place(sfx, A.impact().astype(np.float32), t0 + d * p["impact"])
         if v == "skyRing":

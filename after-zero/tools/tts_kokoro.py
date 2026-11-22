@@ -27,6 +27,8 @@ VOICES = {
     "INGRID": ("b", "bf_isabella", 0.92),  # Ingrid Halvorsen, bush pilot (ep 3)
     "BASE": ("a", "am_adam", 1.0),       # Nordhavn station radio
     "HELI": ("a", "am_eric", 1.0),       # rescue helicopter pilot (radio)
+    "TOMAS": ("a", "am_liam", 0.95),     # Tomás, river guide (ep 4)
+    "ROSA": ("a", "af_sarah", 0.9),      # Rosa, riverside fisherwoman (ep 4)
 }
 
 
