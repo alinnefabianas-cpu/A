@@ -173,7 +173,7 @@ const Stars2: React.FC = () => {
 };
 
 /* ------------------------------------------------- monitor + Dr. Carter */
-const Carter: React.FC<{talk: number; blink: number}> = ({talk, blink}) => (
+export const Carter: React.FC<{talk: number; blink: number}> = ({talk, blink}) => (
   <g>
     <path d="M -230 330 C -220 200 -120 150 0 150 C 120 150 220 200 230 330 Z" fill="#e8e6e0" />
     <path d="M -60 150 L 0 250 L 60 150 Z" fill="#5a6f78" />
@@ -318,8 +318,8 @@ export const Pinboard: React.FC<SetProps> = ({dur, p}) => {
           })}
           <g transform="translate(1180 640) rotate(3)">
             <rect x={0} y={0} width={480} height={260} fill="#e8e0c8" />
-            <text x={30} y={70} fill="#2a2a2a" fontFamily="Liberation Serif" fontStyle="italic" fontSize={34}>The pattern is not natural.</text>
-            <text x={30} y={140} fill="#2a2a2a" fontFamily="Liberation Serif" fontStyle="italic" fontSize={34}>Someone is counting down.</text>
+            <text x={30} y={70} fill="#2a2a2a" fontFamily="Liberation Serif" fontStyle="italic" fontSize={34}>{(p.lines ?? ['The pattern is not natural.'])[0]}</text>
+            <text x={30} y={140} fill="#2a2a2a" fontFamily="Liberation Serif" fontStyle="italic" fontSize={34}>{(p.lines ?? ['', 'Someone is counting down.'])[1]}</text>
             {[0, 1, 2].map((k) => <line key={k} x1={30} y1={156 + k * 10} x2={30 + 420 * interpolate(frame, [30 + k * 10, 50 + k * 10], [0, 1], clamp)} y2={156 + k * 10} stroke="#c0553f" strokeWidth={3} />)}
             <text x={30} y={220} fill="#6b3b35" fontFamily="Liberation Serif" fontSize={24}>— E.C.</text>
           </g>

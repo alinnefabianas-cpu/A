@@ -148,7 +148,7 @@ def main():
             info = manifest[f"{si}.{bi}"]
             d = info["dur"]
             dur = LEAD + d + TAIL + p.get("tail", 0.0)
-            on_screen = {"CARTER": "monitor", "NOAH": "profile", "INGRID": "ingrid", "TOMAS": "tomas", "ROSA": "rosa"}.get(spk)
+            on_screen = {"CARTER": "monitor", "NOAH": "profile", "INGRID": "ingrid", "TOMAS": "tomas", "ROSA": "rosa", "MIA": "sister"}.get(spk)
             talk = None
             if on_screen == visual:
                 talk = {"from": int(LEAD * FPS), "to": int((LEAD + d) * FPS), "speaker": spk}

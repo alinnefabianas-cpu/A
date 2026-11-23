@@ -23,6 +23,7 @@ export const City: React.FC<SetProps> = ({dur, p}) => {
   const seed = p.seed ?? 1;
   const tone = TONES[t];
   const pr = useProgress(dur);
+  const frame = useCurrentFrame();
   const sunY = t === 'day' ? lerp(260, 230, pr) : t === 'dusk' ? lerp(470, 540, pr) : lerp(520, 455, pr);
   const night = t === 'night';
   return (
@@ -73,6 +74,13 @@ export const City: React.FC<SetProps> = ({dur, p}) => {
               {night && <Glow id={`lamp${i}`} cx={x + 40 + tt * 70} cy={y - hgt + 10} r={60 + tt * 120} color="#f2c27d" opacity={0.35} />}</g>;
           })}
           {!night && <Birds x={600} y={360} count={t === 'dawn' && seed === 9 ? 18 : 11} vx={2.4} vy={-0.5} scale={1.1} seed={seed} />}
+          {p.traffic && [0, 1, 2, 3, 4].map((i) => {
+            const k = ((frame / 90 + i / 5) % 1);
+            const y = 800 + k * k * 280, s2 = 0.2 + k * 1.2;
+            return <g key={`tr${i}`}><CarSide x={lerp(930, 600, k)} y={y} s={s2} color={['#8a3a2a', '#2a4a6a', '#c9a04a', '#5a7a8a', '#3a3a3a'][i]} glint={tone.edge} />
+              {[0.3, 0.7].includes(Math.round(k * 10) / 10) ? null : null}</g>;
+          })}
+          {p.traffic && [0, 1, 2, 3].map((i) => <g key={`ped${i}`} transform={`translate(${(200 + i * 460 + frame * (i % 2 ? 1.2 : -1.2) + 2000) % 2000} ${900 + (i % 2) * 40}) scale(0.35)`}><rect x={-30} y={-380} width={60} height={200} rx={20} fill={['#8a3a2a', '#2a4a6a', '#c9a04a', '#4a6a4a'][i]} /><circle cx={0} cy={-430} r={40} fill="#c88d69" /><rect x={-26} y={-190} width={22} height={190} fill="#2a2a30" /><rect x={4} y={-190} width={22} height={190} fill="#2a2a30" /></g>)}
           {t === 'rain' && <Rain />}
         </Svg>
       </Camera>
@@ -412,15 +420,17 @@ export const Campfire: React.FC<SetProps> = ({dur, p}) => {
           <Sky id="cf" stops={SKY.night} />
           <Stars count={p.stars ? 520 : 280} maxY={760} />
           {p.stars && <path d="M -100 520 C 400 300 1200 160 2100 60" stroke="#c9d4e0" strokeWidth={140} opacity={0.06} fill="none" />}
-          <polygon points={`0,780 300,640 700,720 1100,600 1500,700 1920,620 1920,${H} 0,${H}`} fill="#0b1216" />
-          <rect x={0} y={860} width={W} height={220} fill="#0e1714" />
-          <Glow id="cfg" cx={960} cy={880} r={520 * fl(1)} color="#f29a4a" opacity={0.55} />
-          <g transform="translate(960 900)">
+          {p.roof ? <><Skyline seed={404} baseY={860} minH={80} maxH={360} color="#070c10" minW={60} maxW={140} windows={{color: '#f2c27d', prob: 0.05, opacity: 0.7}} />
+            <rect x={0} y={860} width={W} height={220} fill="#101418" /><rect x={0} y={850} width={W} height={14} fill="#1c2228" /></>
+            : <><polygon points={`0,780 300,640 700,720 1100,600 1500,700 1920,620 1920,${H} 0,${H}`} fill="#0b1216" />
+          <rect x={0} y={860} width={W} height={220} fill="#0e1714" /></>}
+          {!p.roof && <Glow id="cfg" cx={960} cy={880} r={520 * fl(1)} color="#f29a4a" opacity={0.55} />}
+          {!p.roof && <g transform="translate(960 900)">
             <path d="M -60 10 L 60 -10 M -60 -10 L 60 10" stroke="#3a2418" strokeWidth={14} strokeLinecap="round" />
             {[0, 1, 2].map((i) => <path key={i} d={`M ${-30 + i * 30} 0 C ${-50 + i * 30} ${-40 * fl(i)} ${-10 + i * 30} ${-70 * fl(i + 2)} ${-20 + i * 30} ${-110 * fl(i)} C ${10 + i * 30} ${-70 * fl(i + 1)} ${20 + i * 30} -30 ${-30 + i * 30 + 40} 0 Z`} fill={i === 1 ? '#ffd27a' : '#f08a3a'} opacity={0.95} />)}
-          </g>
+          </g>}
           <g transform="translate(700 900) scale(1.2)"><NoahSitting outfit="out" phone={false} breath={(Math.sin(frame / 26) + 1) / 2} head={p.stars ? 1 : 0.5} /></g>
-          <rect x={1160} y={850} width={80} height={60} rx={14} fill="#3e4245" />
+          {!p.roof && <rect x={1160} y={850} width={80} height={60} rx={14} fill="#3e4245" />}
         </Svg>
       </Camera>
     </AbsoluteFill>

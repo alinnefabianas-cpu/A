@@ -213,6 +213,12 @@ export const Phone: React.FC<SetProps> = ({dur, p}) => {
                   <Post y={230} who="theo" time="10:02 PM" txt="tomorrow is a big day" col="#6b3b35" />
                   {p.end && <text x={0} y={440} textAnchor="middle" fill="#93a3ab" fontFamily="Inter" fontSize={22}>No new posts since 8:17 AM</text>}
                 </g>}
+                {scr === 'dateJump' && <>
+                  <text x={0} y={-180} textAnchor="middle" fill="#e9eef1" fontFamily="Inter Display" fontWeight={300} fontSize={110}>8:17</text>
+                  <text x={0} y={-110} textAnchor="middle" fill={frame % 20 < 10 ? '#ff7a5a' : '#9fb1b8'} fontFamily="Inter" fontSize={30}>{frame < 40 ? 'Tuesday, Oct 3' : 'Tuesday, Oct 24'}</text>
+                  <Toast at={50} y={-40} title="Date & time updated" sub="+21 days · network time" icon="#78969A" />
+                  <Toast at={80} y={74} title="247 missed notifications" sub="Messages, News, Mail" icon="#c0553f" />
+                </>}
                 {scr === 'memo' && <>
                   <text x={0} y={-220} textAnchor="middle" fill="#e9eef1" fontFamily="Inter" fontWeight={600} fontSize={34}>Voice Memos</text>
                   {['Day 1', 'Day 2', 'Day 3', 'Day 5', 'Day 7'].map((d, i) => (
@@ -287,6 +293,13 @@ export const TV: React.FC<SetProps> = ({dur, p}) => {
                 <rect x={920} y={540} width={560} height={40} fill="#0e161b" />
                 <text x={1480 - ((frame * 4) % 1200)} y={568} fill="#f2b66d" fontFamily="Inter" fontSize={20}>BROADCAST INTERRUPTED · 08:17 · SIGNAL LOST · BROADCAST INTERRUPTED</text>
                 {frame % 40 < 3 && <rect x={920} y={260 + (frame * 37) % 300} width={560} height={14} fill="#fff" opacity={0.3} />}
+              </>}
+              {st === 'news' && <>
+                <rect x={920} y={260} width={560} height={320} fill="#1a2a3a" />
+                <rect x={920} y={260} width={180} height={50} fill="#c0392b" /><text x={1010} y={294} textAnchor="middle" fill="#fff" fontFamily="Inter" fontWeight={800} fontSize={26}>LIVE</text>
+                <circle cx={1200} cy={420} r={60} fill="#d4a088" /><path d="M 1120 580 C 1120 500 1280 500 1280 580 Z" fill="#2a3a5a" />
+                <rect x={920} y={500} width={560} height={80} fill="#0e161b" />
+                <text x={940} y={550} fill="#f2b66d" fontFamily="Inter" fontWeight={700} fontSize={22}>{p.text ?? ''}</text>
               </>}
               {st === 'static' && Array.from({length: 900}, (_, i) => <rect key={i} x={920 + r() * 560} y={260 + r() * 320} width={2 + r() * 8} height={2 + r() * 3} fill={r() > 0.5 ? '#e6eef2' : '#5a6468'} />)}
             </g>

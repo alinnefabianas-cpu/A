@@ -167,13 +167,13 @@ export const RiverBoat: React.FC<SetProps> = ({dur, p}) => {
 };
 
 /* ---------------------------------------------------------- portraits: Tomás and Rosa */
-type Face = {skin: string; hair: string; hat?: 'bucket' | null; shirt: string; female?: boolean; grey?: boolean};
-const Person: React.FC<{f: Face; talk: number; blink: number; worried?: boolean; smile?: boolean}> = ({f, talk, blink, worried, smile}) => (
+export type Face = {skin: string; hair: string; hat?: 'bucket' | null; shirt: string; female?: boolean; grey?: boolean; young?: boolean};
+export const Person: React.FC<{f: Face; talk: number; blink: number; worried?: boolean; smile?: boolean}> = ({f, talk, blink, worried, smile}) => (
   <g>
     <path d="M -260 360 C -250 220 -140 170 0 170 C 140 170 250 220 260 360 Z" fill={f.shirt} />
     {f.female ? <path d="M -30 170 C -10 210 10 210 30 170" stroke="#ffffff" strokeOpacity={0.5} strokeWidth={6} fill="none" />
       : <path d="M -60 170 L 0 240 L 60 170" stroke="#000" strokeOpacity={0.2} strokeWidth={8} fill="none" />}
-    {f.female && Array.from({length: 10}, (_, i) => <circle key={i} cx={-200 + (i * 47) % 400} cy={240 + (i % 3) * 40} r={12} fill="#e8a040" opacity={0.7} />)}
+    {f.female && !f.young && Array.from({length: 10}, (_, i) => <circle key={i} cx={-200 + (i * 47) % 400} cy={240 + (i % 3) * 40} r={12} fill="#e8a040" opacity={0.7} />)}
     <path d="M -36 150 L -36 100 L 36 100 L 36 150 Z" fill={f.skin} filter="brightness(0.9)" />
     {/* hair back */}
     {f.female && <ellipse cx={0} cy={-70} rx={130} ry={110} fill={f.hair} />}
@@ -188,7 +188,7 @@ const Person: React.FC<{f: Face; talk: number; blink: number; worried?: boolean;
       <ellipse cx={-50} cy={0} rx={14} ry={smile ? 6 : 9} fill="#f1ece4" /><circle cx={-48} cy={0} r={6.5} fill="#2a1a10" />
       <ellipse cx={50} cy={0} rx={14} ry={smile ? 6 : 9} fill="#f1ece4" /><circle cx={52} cy={0} r={6.5} fill="#2a1a10" />
     </g>
-    {(f.female || f.grey) && <path d="M -84 0 l -16 -6 M -84 10 l -16 2 M 84 0 l 16 -6 M 84 10 l 16 2" stroke="#000" strokeOpacity={0.25} strokeWidth={3} />}
+    {(f.female || f.grey) && !f.young && <path d="M -84 0 l -16 -6 M -84 10 l -16 2 M 84 0 l 16 -6 M 84 10 l 16 2" stroke="#000" strokeOpacity={0.25} strokeWidth={3} />}
     <path d="M -6 4 L -16 44 L 8 46" stroke="#000" strokeOpacity={0.25} strokeWidth={4} fill="none" />
     {!f.female && <path d="M -96 30 C -90 120 -40 138 0 138 C 40 138 90 120 96 30 C 80 100 40 116 0 116 C -40 116 -80 100 -96 30 Z" fill={f.hair} opacity={0.22} />}
     {talk > 0.05 ? <ellipse cx={0} cy={74} rx={22} ry={3 + talk * 12} fill="#4a1a14" />

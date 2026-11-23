@@ -1,0 +1,1616 @@
+{
+"total": 1236.8729999999998,
+"shots": [
+{
+"start": 0.0,
+"dur": 2.6,
+"visual": "clock",
+"p": {
+"dur": 2.6
+},
+"speaker": "-",
+"scene": 0
+},
+{
+"start": 2.6,
+"dur": 7.93,
+"visual": "streetWide",
+"p": {
+"time": "dawn",
+"tiny": true
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 10.53,
+"dur": 3.925,
+"visual": "profile",
+"p": {
+"time": "dawn",
+"outfit": "out"
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 14.454999999999998,
+"dur": 12.778,
+"visual": "obsExt",
+"p": {
+"time": "dusk",
+"light": true
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 27.232999999999997,
+"dur": 3.0869999999999997,
+"visual": "monitor",
+"p": {
+"mode": "carter",
+"close": true
+},
+"speaker": "CARTER",
+"scene": 0
+},
+{
+"start": 30.319999999999997,
+"dur": 12.589,
+"visual": "skyRing",
+"p": {
+"phase": "full",
+"noah": true
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 42.909,
+"dur": 5.793,
+"visual": "dataScreen",
+"p": {
+"kind": "text",
+"text": "HUMANITY: TEMPORARILY DISCONNECTED",
+"text2": "RESTORATION: PENDING",
+"seed": 2
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 48.702,
+"dur": 2.74,
+"visual": "black",
+"p": {
+"led": true
+},
+"speaker": "RADIO",
+"scene": 0
+},
+{
+"start": 51.442,
+"dur": 8.196000000000002,
+"visual": "title",
+"p": {
+"title": "THE LAST HUMAN ON EARTH: PHASE TWO",
+"tail": 4.5
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 59.638000000000005,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 1,
+"title": "PHASE TWO"
+},
+"speaker": "-",
+"scene": 1
+},
+{
+"start": 63.638000000000005,
+"dur": 10.023,
+"visual": "obsInt",
+"p": {
+"noah": true,
+"seed": 7
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 73.661,
+"dur": 6.868,
+"visual": "profile",
+"p": {
+"time": "monitor",
+"outfit": "out",
+"seed": 11
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 80.529,
+"dur": 10.898,
+"visual": "screensAll",
+"p": {
+"text": "",
+"seed": 2
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 91.42699999999999,
+"dur": 4.237,
+"visual": "countdown",
+"p": {
+"from": "23:59:41"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 95.66399999999999,
+"dur": 5.701,
+"visual": "profile",
+"p": {
+"time": "monitor",
+"outfit": "out",
+"seed": 12
+},
+"speaker": "NOAH",
+"scene": 1
+},
+{
+"start": 101.36499999999998,
+"dur": 12.355,
+"visual": "profile",
+"p": {
+"time": "monitor",
+"outfit": "out",
+"seed": 22
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 113.71999999999998,
+"dur": 10.566,
+"visual": "obsExt",
+"p": {
+"time": "day"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 124.28599999999999,
+"dur": 11.329,
+"visual": "iceVista",
+"p": {
+"time": "twilight",
+"seed": 6
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 135.61499999999998,
+"dur": 7.791,
+"visual": "obsInt",
+"p": {
+"noah": true,
+"seed": 8
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 143.40599999999998,
+"dur": 15.029,
+"visual": "pinboard",
+"p": {
+"note": true,
+"seed": 2,
+"lines": [
+"It's not taking them.",
+"It's hiding them."
+]
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 158.43499999999997,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 2,
+"title": "THE LAST FILE"
+},
+"speaker": "-",
+"scene": 2
+},
+{
+"start": 162.43499999999997,
+"dur": 10.916,
+"visual": "dataScreen",
+"p": {
+"kind": "text",
+"text": "FOLDER: FOR THE ONE WHO STAYS"
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 173.35099999999997,
+"dur": 6.426,
+"visual": "dataScreen",
+"p": {
+"kind": "text",
+"text": "HINT: WHAT DID THE SIGNAL SAY FIRST?",
+"seed": 2
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 179.77699999999996,
+"dur": 11.604,
+"visual": "radioClose",
+"p": {
+"state": "voice",
+"seed": 3
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 191.38099999999997,
+"dur": 11.603,
+"visual": "dataScreen",
+"p": {
+"kind": "text",
+"text": "ACCESS DENIED",
+"seed": 5
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 202.98399999999998,
+"dur": 3.439,
+"visual": "radioClose",
+"p": {
+"state": "voice",
+"seed": 4
+},
+"speaker": "RADIO",
+"scene": 2
+},
+{
+"start": 206.42299999999997,
+"dur": 5.714,
+"visual": "keyboard",
+"p": {
+"text": "IS ANYONE RECEIVING"
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 212.13699999999997,
+"dur": 2.8390000000000004,
+"visual": "dataScreen",
+"p": {
+"kind": "text",
+"text": "ACCESS GRANTED",
+"seed": 3
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 214.97599999999997,
+"dur": 9.081000000000001,
+"visual": "monitor",
+"p": {
+"mode": "play",
+"seed": 3
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 224.05699999999996,
+"dur": 9.566,
+"visual": "monitor",
+"p": {
+"mode": "carter",
+"seed": 5
+},
+"speaker": "CARTER",
+"scene": 2
+},
+{
+"start": 233.62299999999996,
+"dur": 10.978,
+"visual": "monitor",
+"p": {
+"mode": "carter",
+"close": true,
+"seed": 5
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 244.60099999999997,
+"dur": 10.528,
+"visual": "monitor",
+"p": {
+"mode": "carter",
+"seed": 9
+},
+"speaker": "CARTER",
+"scene": 2
+},
+{
+"start": 255.12899999999996,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 3,
+"title": "THE WARNING"
+},
+"speaker": "-",
+"scene": 3
+},
+{
+"start": 259.12899999999996,
+"dur": 7.688,
+"visual": "monitor",
+"p": {
+"mode": "carter",
+"seed": 6
+},
+"speaker": "CARTER",
+"scene": 3
+},
+{
+"start": 266.81699999999995,
+"dur": 16.496,
+"visual": "earthCore",
+"p": {},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 283.31299999999993,
+"dur": 14.595,
+"visual": "monitor",
+"p": {
+"mode": "carter",
+"close": true,
+"seed": 6
+},
+"speaker": "CARTER",
+"scene": 3
+},
+{
+"start": 297.90799999999996,
+"dur": 6.273,
+"visual": "profile",
+"p": {
+"time": "monitor",
+"outfit": "out",
+"seed": 13
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 304.181,
+"dur": 17.303,
+"visual": "solarStorm",
+"p": {
+"phase": "start",
+"seed": 3
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 321.484,
+"dur": 11.657,
+"visual": "monitor",
+"p": {
+"mode": "carter",
+"seed": 7
+},
+"speaker": "CARTER",
+"scene": 3
+},
+{
+"start": 333.14099999999996,
+"dur": 9.967,
+"visual": "earthOrbit",
+"p": {
+"ring": false
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 343.10799999999995,
+"dur": 10.299,
+"visual": "monitor",
+"p": {
+"mode": "carter",
+"seed": 8
+},
+"speaker": "CARTER",
+"scene": 3
+},
+{
+"start": 353.4069999999999,
+"dur": 9.01,
+"visual": "monitor",
+"p": {
+"mode": "carter",
+"close": true,
+"seed": 7
+},
+"speaker": "CARTER",
+"scene": 3
+},
+{
+"start": 362.4169999999999,
+"dur": 2.933,
+"visual": "monitor",
+"p": {
+"mode": "glitch",
+"seed": 2
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 365.3499999999999,
+"dur": 9.858,
+"visual": "countdown",
+"p": {
+"from": "21:12:08",
+"seed": 2
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 375.2079999999999,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 4,
+"title": "THE STORM"
+},
+"speaker": "-",
+"scene": 4
+},
+{
+"start": 379.2079999999999,
+"dur": 14.516,
+"visual": "blastDoor",
+"p": {
+"seed": 3
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 393.72399999999993,
+"dur": 8.530000000000001,
+"visual": "corridor",
+"p": {
+"light": "on",
+"seed": 9,
+"noah": true
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 402.2539999999999,
+"dur": 10.665,
+"visual": "profile",
+"p": {
+"time": "bunker",
+"outfit": "out",
+"seed": 2
+},
+"speaker": "NOAH",
+"scene": 4
+},
+{
+"start": 412.9189999999999,
+"dur": 15.357,
+"visual": "sunriseEnding",
+"p": {
+"seed": 6
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 428.27599999999995,
+"dur": 17.155,
+"visual": "desk",
+"p": {
+"book": "noah",
+"noah": true,
+"seed": 6
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 445.4309999999999,
+"dur": 7.173,
+"visual": "obsExt",
+"p": {
+"time": "day",
+"seed": 3
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 452.6039999999999,
+"dur": 11.702,
+"visual": "solarStorm",
+"p": {
+"phase": "start"
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 464.3059999999999,
+"dur": 15.146,
+"visual": "solarStorm",
+"p": {
+"phase": "aurora"
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 479.45199999999994,
+"dur": 8.823,
+"visual": "solarStorm",
+"p": {
+"phase": "sparks"
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 488.2749999999999,
+"dur": 7.743,
+"visual": "blastDoor",
+"p": {
+"seed": 4,
+"noah": true,
+"turning": true
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 496.0179999999999,
+"dur": 2.4,
+"visual": "black",
+"p": {
+"dur": 2.4
+},
+"speaker": "-",
+"scene": 4
+},
+{
+"start": 498.4179999999999,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 5,
+"title": "THE SHIELD"
+},
+"speaker": "-",
+"scene": 5
+},
+{
+"start": 502.4179999999999,
+"dur": 9.364,
+"visual": "earthOrbit",
+"p": {
+"ring": true,
+"flare": true
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 511.78199999999987,
+"dur": 11.929,
+"visual": "earthOrbit",
+"p": {
+"ring": true,
+"flare": true,
+"seed": 2
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 523.7109999999999,
+"dur": 13.075,
+"visual": "earthOrbit",
+"p": {
+"ring": true,
+"cocoon": true
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 536.786,
+"dur": 7.054,
+"visual": "earthOrbit",
+"p": {
+"ring": true,
+"cocoon": true,
+"flare": true,
+"seed": 3
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 543.8399999999999,
+"dur": 10.631,
+"visual": "corridor",
+"p": {
+"light": "dark",
+"flashOn": true,
+"rumble": true,
+"seed": 10
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 554.4709999999999,
+"dur": 12.919,
+"visual": "profile",
+"p": {
+"time": "dark",
+"outfit": "out",
+"seed": 3
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 567.3899999999999,
+"dur": 14.703,
+"visual": "earthOrbit",
+"p": {
+"ring": true,
+"cocoon": true,
+"seed": 5
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 582.0929999999998,
+"dur": 4.524,
+"visual": "corridor",
+"p": {
+"light": "dark",
+"flashOn": true,
+"seed": 11
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 586.6169999999998,
+"dur": 3.0,
+"visual": "black",
+"p": {
+"dur": 3.0
+},
+"speaker": "-",
+"scene": 5
+},
+{
+"start": 589.6169999999998,
+"dur": 12.389,
+"visual": "obsExt",
+"p": {
+"time": "day",
+"seed": 4,
+"noah": true
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 602.0059999999999,
+"dur": 6.362,
+"visual": "dataScreen",
+"p": {
+"kind": "text",
+"text": "THREAT: PASSED",
+"text2": "RESTORATION: TOMORROW 08:17"
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 608.3679999999998,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 6,
+"title": "THE RETURN"
+},
+"speaker": "-",
+"scene": 6
+},
+{
+"start": 612.3679999999998,
+"dur": 11.755,
+"visual": "noahStreet",
+"p": {
+"time": "dusk",
+"seed": 8
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 624.1229999999998,
+"dur": 22.271,
+"visual": "city",
+"p": {
+"time": "night",
+"seed": 21
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 646.3939999999998,
+"dur": 8.894,
+"visual": "streetWide",
+"p": {
+"time": "dawn",
+"seed": 3
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 655.2879999999998,
+"dur": 3.699,
+"visual": "clock",
+"p": {
+"dur": 0
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 658.9869999999997,
+"dur": 13.113,
+"visual": "profile",
+"p": {
+"time": "dawn",
+"outfit": "out",
+"seed": 23
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 672.0999999999997,
+"dur": 7.111,
+"visual": "crowd",
+"p": {
+"phase": "shimmer"
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 679.2109999999997,
+"dur": 3.92,
+"visual": "crowd",
+"p": {
+"phase": "appear"
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 683.1309999999996,
+"dur": 3.0,
+"visual": "crowd",
+"p": {
+"phase": "full",
+"dur": 3.0
+},
+"speaker": "-",
+"scene": 6
+},
+{
+"start": 686.1309999999996,
+"dur": 14.419,
+"visual": "crowd",
+"p": {
+"phase": "full",
+"seed": 2
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 700.5499999999996,
+"dur": 12.383,
+"visual": "city",
+"p": {
+"time": "day",
+"seed": 18,
+"traffic": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 712.9329999999997,
+"dur": 10.386,
+"visual": "crowd",
+"p": {
+"phase": "full",
+"seed": 3,
+"noah": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 723.3189999999996,
+"dur": 3.096,
+"visual": "profile",
+"p": {
+"time": "day",
+"outfit": "out",
+"seed": 14,
+"smile": true
+},
+"speaker": "NOAH",
+"scene": 6
+},
+{
+"start": 726.4149999999996,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 7,
+"title": "ONE SECOND"
+},
+"speaker": "-",
+"scene": 7
+},
+{
+"start": 730.4149999999996,
+"dur": 6.149,
+"visual": "crowd",
+"p": {
+"phase": "full",
+"seed": 4
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 736.5639999999996,
+"dur": 13.43,
+"visual": "tv",
+"p": {
+"state": "news",
+"text": "WORLDWIDE 1-SECOND BLACKOUT AT 8:17"
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 749.9939999999996,
+"dur": 13.894,
+"visual": "phone",
+"p": {
+"screen": "dateJump"
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 763.8879999999996,
+"dur": 10.724,
+"visual": "street",
+"p": {
+"time": "day",
+"seed": 9
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 774.6119999999996,
+"dur": 14.606,
+"visual": "bedroom",
+"p": {
+"noah": "sitting",
+"seed": 5
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 789.2179999999996,
+"dur": 14.448,
+"visual": "profile",
+"p": {
+"time": "day",
+"outfit": "out",
+"seed": 15
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 803.6659999999996,
+"dur": 10.919,
+"visual": "phone",
+"p": {
+"screen": "calls",
+"seed": 2
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 814.5849999999996,
+"dur": 7.293,
+"visual": "profile",
+"p": {
+"time": "day",
+"outfit": "out",
+"seed": 16
+},
+"speaker": "NOAH",
+"scene": 7
+},
+{
+"start": 821.8779999999996,
+"dur": 7.9,
+"visual": "windowBack",
+"p": {
+"time": "dusk"
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 829.7779999999996,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 8,
+"title": "MIA"
+},
+"speaker": "-",
+"scene": 8
+},
+{
+"start": 833.7779999999996,
+"dur": 4.914,
+"visual": "noahStreet",
+"p": {
+"time": "day",
+"seed": 9
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 838.6919999999996,
+"dur": 10.834,
+"visual": "door",
+"p": {},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 849.5259999999995,
+"dur": 8.294,
+"visual": "sister",
+"p": {
+"mode": "door"
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 857.8199999999995,
+"dur": 5.691,
+"visual": "sister",
+"p": {
+"mode": "door",
+"seed": 2
+},
+"speaker": "MIA",
+"scene": 8
+},
+{
+"start": 863.5109999999995,
+"dur": 6.241,
+"visual": "hug",
+"p": {},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 869.7519999999995,
+"dur": 11.13,
+"visual": "desk",
+"p": {
+"book": "noah",
+"seed": 7
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 880.8819999999995,
+"dur": 8.697000000000001,
+"visual": "sister",
+"p": {
+"mode": "kitchen",
+"seed": 7
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 889.5789999999995,
+"dur": 9.628,
+"visual": "sister",
+"p": {
+"mode": "kitchen"
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 899.2069999999995,
+"dur": 6.483,
+"visual": "sister",
+"p": {
+"mode": "kitchen",
+"smile": true,
+"seed": 2
+},
+"speaker": "MIA",
+"scene": 8
+},
+{
+"start": 905.6899999999995,
+"dur": 4.832,
+"visual": "profile",
+"p": {
+"time": "day",
+"outfit": "out",
+"seed": 17,
+"smile": true
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 910.5219999999995,
+"dur": 4.562,
+"visual": "sister",
+"p": {
+"mode": "kitchen",
+"seed": 3
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 915.0839999999995,
+"dur": 12.672,
+"visual": "sister",
+"p": {
+"mode": "kitchen",
+"seed": 4
+},
+"speaker": "MIA",
+"scene": 8
+},
+{
+"start": 927.7559999999995,
+"dur": 5.971,
+"visual": "sister",
+"p": {
+"mode": "kitchen",
+"seed": 5,
+"smile": true
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 933.7269999999995,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 9,
+"title": "DR. CARTER"
+},
+"speaker": "-",
+"scene": 9
+},
+{
+"start": 937.7269999999995,
+"dur": 4.603000000000001,
+"visual": "journey",
+"p": {
+"stage": "mountain",
+"seed": 4
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 942.3299999999995,
+"dur": 14.8,
+"visual": "obsExt",
+"p": {
+"time": "day",
+"seed": 5
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 957.1299999999994,
+"dur": 10.82,
+"visual": "carterRoom",
+"p": {},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 967.9499999999995,
+"dur": 3.6660000000000004,
+"visual": "carterRoom",
+"p": {
+"seed": 2
+},
+"speaker": "CARTER",
+"scene": 9
+},
+{
+"start": 971.6159999999995,
+"dur": 6.038,
+"visual": "profile",
+"p": {
+"time": "monitor",
+"outfit": "out",
+"seed": 14
+},
+"speaker": "NOAH",
+"scene": 9
+},
+{
+"start": 977.6539999999995,
+"dur": 8.927,
+"visual": "dataScreen",
+"p": {
+"kind": "text",
+"text": "FOLDER: FOR THE ONE WHO STAYS",
+"seed": 2
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 986.5809999999996,
+"dur": 10.235,
+"visual": "carterRoom",
+"p": {
+"watching": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 996.8159999999996,
+"dur": 7.19,
+"visual": "carterRoom",
+"p": {
+"seed": 3
+},
+"speaker": "CARTER",
+"scene": 9
+},
+{
+"start": 1004.0059999999996,
+"dur": 3.075,
+"visual": "profile",
+"p": {
+"time": "monitor",
+"outfit": "out",
+"seed": 15
+},
+"speaker": "NOAH",
+"scene": 9
+},
+{
+"start": 1007.0809999999997,
+"dur": 12.413,
+"visual": "carterRoom",
+"p": {
+"seed": 4
+},
+"speaker": "CARTER",
+"scene": 9
+},
+{
+"start": 1019.4939999999997,
+"dur": 16.554,
+"visual": "earthOrbit",
+"p": {
+"ring": true,
+"cocoon": true,
+"seed": 4
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 1036.0479999999998,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 10,
+"title": "THE OBSERVER"
+},
+"speaker": "-",
+"scene": 10
+},
+{
+"start": 1040.0479999999998,
+"dur": 8.558,
+"visual": "profile",
+"p": {
+"time": "monitor",
+"outfit": "out",
+"seed": 18
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1048.6059999999998,
+"dur": 10.828,
+"visual": "radioClose",
+"p": {
+"state": "search",
+"seed": 5
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1059.4339999999997,
+"dur": 3.0,
+"visual": "radioClose",
+"p": {
+"state": "search",
+"dur": 3.0,
+"seed": 6
+},
+"speaker": "-",
+"scene": 10
+},
+{
+"start": 1062.4339999999997,
+"dur": 12.276,
+"visual": "radioClose",
+"p": {
+"state": "voice",
+"seed": 7
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1074.7099999999998,
+"dur": 2.509,
+"visual": "radioClose",
+"p": {
+"state": "voice",
+"seed": 8
+},
+"speaker": "RADIO",
+"scene": 10
+},
+{
+"start": 1077.2189999999998,
+"dur": 3.412,
+"visual": "profile",
+"p": {
+"time": "monitor",
+"outfit": "out",
+"seed": 19
+},
+"speaker": "NOAH",
+"scene": 10
+},
+{
+"start": 1080.6309999999999,
+"dur": 8.706000000000001,
+"visual": "radioClose",
+"p": {
+"state": "voice",
+"seed": 9
+},
+"speaker": "RADIO",
+"scene": 10
+},
+{
+"start": 1089.3369999999998,
+"dur": 2.4539999999999997,
+"visual": "profile",
+"p": {
+"time": "monitor",
+"outfit": "out",
+"seed": 24
+},
+"speaker": "NOAH",
+"scene": 10
+},
+{
+"start": 1091.7909999999997,
+"dur": 7.779,
+"visual": "radioClose",
+"p": {
+"state": "voice",
+"seed": 10
+},
+"speaker": "RADIO",
+"scene": 10
+},
+{
+"start": 1099.5699999999997,
+"dur": 13.88,
+"visual": "aerial",
+"p": {
+"time": "dawn",
+"seed": 5
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1113.4499999999998,
+"dur": 3.4960000000000004,
+"visual": "profile",
+"p": {
+"time": "monitor",
+"outfit": "out",
+"seed": 20,
+"smile": true
+},
+"speaker": "NOAH",
+"scene": 10
+},
+{
+"start": 1116.946,
+"dur": 8.002,
+"visual": "dataScreen",
+"p": {
+"kind": "text",
+"text": "OBSERVER STATUS: COMPLETE",
+"seed": 4
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1124.9479999999999,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 11,
+"title": "AFTER ZERO"
+},
+"speaker": "-",
+"scene": 11
+},
+{
+"start": 1128.9479999999999,
+"dur": 10.794,
+"visual": "city",
+"p": {
+"time": "dusk",
+"seed": 19
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1139.742,
+"dur": 6.617,
+"visual": "sister",
+"p": {
+"mode": "kitchen",
+"smile": true,
+"seed": 6
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1146.359,
+"dur": 14.697,
+"visual": "obsExt",
+"p": {
+"time": "dusk",
+"seed": 6,
+"light": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1161.0559999999998,
+"dur": 3.037,
+"visual": "solarStorm",
+"p": {
+"phase": "aurora",
+"seed": 2,
+"calm": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1164.0929999999998,
+"dur": 15.343,
+"visual": "campfire",
+"p": {
+"stars": true,
+"roof": true,
+"seed": 3
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1179.436,
+"dur": 9.112,
+"visual": "streetWide",
+"p": {
+"time": "dawn",
+"seed": 5,
+"tiny": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1188.548,
+"dur": 14.649,
+"visual": "city",
+"p": {
+"time": "dawn",
+"seed": 20,
+"traffic": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1203.197,
+"dur": 4.473,
+"visual": "profile",
+"p": {
+"time": "dawn",
+"outfit": "out",
+"seed": 21,
+"smile": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1207.6699999999998,
+"dur": 4.893,
+"visual": "aerial",
+"p": {
+"time": "dawn",
+"seed": 6
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1212.5629999999999,
+"dur": 5.0,
+"visual": "endCard",
+"p": {
+"dur": 5.0
+},
+"speaker": "-",
+"scene": 11
+},
+{
+"start": 1217.5629999999999,
+"dur": 10.158,
+"visual": "endCard",
+"p": {
+"question": true,
+"q": "If the world came back tomorrow,<br />would <i>you</i> tell anyone?"
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1227.7209999999998,
+"dur": 9.152000000000001,
+"visual": "endCard",
+"p": {
+"question": true,
+"q": "If the world came back tomorrow,<br />would <i>you</i> tell anyone?",
+"tail": 4.0
+},
+"speaker": "N",
+"scene": 11
+}
+],
+"moods": [
+3,
+7,
+8,
+5,
+5,
+10,
+11,
+2,
+9,
+8,
+7,
+11
+]
+}

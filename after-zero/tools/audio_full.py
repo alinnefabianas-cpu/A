@@ -367,6 +367,47 @@ def build(ep):
             t_ = np.arange(n) / SR
             place(sfx, fade((np.sin(2 * np.pi * 220 * t_ + 3 * np.sin(2 * np.pi * 0.3 * t_)) * 0.03 + A.fast_lowpass(noise(d), 200) * 0.08).astype(np.float32)), t0)
             place(sfx, A.heartbeat_pulse(d, 96).astype(np.float32) * 0.5, t0)
+        # ---- episode 005 (phase two) sets
+        if v == "countdown":
+            k = 0.1
+            while k < d:
+                place(sfx, beep(1200, 0.02, 0.06), t0 + k)
+                k += 1.0
+        if v == "keyboard":
+            k = 0.1
+            for _ in range(len(p.get("text", ""))):
+                place(sfx, (A.bandpass(noise(0.03), 2000, 7000) * 0.2).astype(np.float32), t0 + k)
+                k += 4 / 30
+        if v == "earthCore":
+            t_ = np.arange(n) / SR
+            place(sfx, fade((np.sin(2 * np.pi * 40 * t_) * (0.6 + 0.4 * np.sin(2 * np.pi * 0.6 * t_)) * 0.2).astype(np.float32)), t0)
+        if v == "earthOrbit":
+            place(sfx, fade((A.fast_lowpass(noise(d), 120) * 0.25).astype(np.float32)), t0)
+            if p.get("cocoon"):
+                place(sfx, shimmer(d, 0.03), t0)
+        if v == "solarStorm" and not p.get("calm"):
+            t_ = np.arange(n) / SR
+            hum_ = (np.sin(2 * np.pi * 60 * t_) * 0.1 * np.linspace(0.3, 1.0, n)).astype(np.float32)
+            place(sfx, fade(hum_), t0)
+            if p.get("phase") == "sparks":
+                place(sfx, glitch(d, 0.25), t0)
+        if v == "crowd" and p.get("phase") in ("appear", "full"):
+            start = d * 0.35 if p.get("phase") == "appear" else 0
+            dd = d - start
+            murmur = (A.bandpass(noise(dd), 250, 2500) * 0.18 + A.fast_lowpass(noise(dd), 180) * 0.15).astype(np.float32)
+            place(sfx, murmur * env(int(dd * SR), 0.05, 0.3), t0 + start)
+            if p.get("phase") == "appear":
+                place(sfx, A.impact(2.0).astype(np.float32) * 0.5, t0 + start)
+        if v == "crowd" and p.get("phase") == "shimmer":
+            place(sfx, shimmer(d, 0.04), t0)
+        if v == "city" and p.get("traffic"):
+            place(sfx, fade(A.city_ambience(d).astype(np.float32) * 1.4), t0)
+            place(sfx, beep(420, 0.4, 0.04), t0 + d * 0.4)
+        if v == "door":
+            for k in (d * 0.7, d * 0.7 + 0.25, d * 0.7 + 0.5):
+                place(sfx, (A.fast_lowpass(noise(0.08), 600) * np.exp(-np.arange(int(0.08 * SR)) / SR * 40) * 0.6).astype(np.float32), t0 + k)
+        if v in ("sister", "hug", "carterRoom"):
+            place(sfx, fade(A.room_tone(d).astype(np.float32) * 2), t0)
         if p.get("impact"):
             place(sfx, A.impact().astype(np.float32), t0 + d * p["impact"])
         if v == "skyRing":

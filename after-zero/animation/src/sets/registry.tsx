@@ -7,6 +7,7 @@ import * as O from './observatory';
 import * as B from './bunker';
 import * as A from './arctic';
 import * as J from './jungle';
+import * as Q from './sequel';
 
 const wrap = (C: React.FC<any>): React.FC<SetProps> => ({dur, p}) => <C dur={dur} title={p?.title ?? 'WHAT IF YOU WERE THE LAST HUMAN ON EARTH?'} />;
 
@@ -31,5 +32,7 @@ export const SETS: Record<string, React.FC<SetProps>> = {
   macaw: J.MacawSet, kapok: J.Kapok, gps: J.Gps, shelter: J.Shelter, waterLeaf: J.WaterLeaf, vine: J.Vine, monkeys: J.Monkeys,
   treeMark: J.TreeMark, circlePath: J.CirclePath, igapo: J.Igapo, caiman: J.Caiman, raft: J.Raft, riverWide: J.RiverWide,
   fever: J.Fever, rosaCanoe: J.RosaCanoe, village: J.Village,
+  countdown: Q.Countdown, keyboard: Q.Keyboard, earthCore: Q.EarthCore, earthOrbit: Q.EarthOrbit, solarStorm: Q.SolarStorm,
+  crowd: Q.Crowd, door: Q.Door, sister: Q.Sister, hug: Q.Hug, carterRoom: Q.CarterRoom,
   clock: wrap(S.S02), hallway: wrap(S.S05), livingWalk: wrap(S.S07), trafficLight: wrap(S.S10), title: wrap(S.S13),
 };

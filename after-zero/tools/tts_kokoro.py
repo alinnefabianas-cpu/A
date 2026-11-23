@@ -29,6 +29,7 @@ VOICES = {
     "HELI": ("a", "am_eric", 1.0),       # rescue helicopter pilot (radio)
     "TOMAS": ("a", "am_liam", 0.95),     # Tomás, river guide (ep 4)
     "ROSA": ("a", "af_sarah", 0.9),      # Rosa, riverside fisherwoman (ep 4)
+    "MIA": ("a", "af_heart", 0.95),      # Noah's sister, in person (ep 5)
 }
 
 
