@@ -85,7 +85,7 @@ export const VIS: Vis[] = [
 			{tipo: 'verdade', w: 'true', x: 1450, y: 650},
 		],
 	},
-	// 3 — MITO 1
+	// 3
 	{
 		abre: true,
 		gato: {x: 420, escala: 0.9},
@@ -135,7 +135,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'verdade', x: MITO.x, y: MITO.y}, {tipo: 'leite', w: 'special', x: 1300, y: 840, s: 0.7}],
 	},
-	// 8 — MITO 2
+	// 8
 	{
 		abre: true,
 		gato: {olhos: 'dilatado'},
@@ -186,7 +186,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'texto', w: 'six', x: 1350, y: 760, txt: '9? 7? 6?', tam: 90, cor: 'vermelho'}],
 	},
-	// 13 — MITO 3
+	// 13
 	{
 		abre: true,
 		gato: {olhos: 'meio', rabo: 'enrolado'},
@@ -227,7 +227,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'onda', w: 'frequencies', x: 690, y: 620, largura: 220}],
 	},
-	// 17 — MITO 4
+	// 17
 	{
 		abre: true,
 		gato: {orelhas: 'lado', olhos: 'fenda'},
@@ -279,7 +279,19 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'balao', w: 'meow', x: 800, y: 450, txt: 'meow!', cauda: {x: 650, y: 560}}, {tipo: 'coracao', w: 'made', x: 400, y: 520, s: 0.8}],
 	},
-	// 22 — MITO 5
+	// 22
+	{
+		gato: {rabo: 'alto', olhos: 'lento'},
+		textos: [
+			{w: 'greets', txt: 'greets you at the door'},
+			{w: 'clothes', txt: 'sleeps on your clothes'},
+			{w: 'gift', txt: 'brings you gifts'},
+			{w: 'love', txt: '= love, cat style', marca: true},
+		],
+		extras: [{tipo: 'coracao', w: 'love', x: 740, y: 450}],
+	},
+
+	// 23
 	{
 		abre: true,
 		gato: {olhos: 'normal'},
@@ -290,7 +302,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'carimbo', w: 'myth', x: MITO.x, y: MITO.y}, {tipo: 'lua', w: 'nocturnal', x: 1650, y: 720}],
 	},
-	// 23
+	// 24
 	{
 		gato: {pose: 'correndo', x: 560},
 		textos: [
@@ -300,7 +312,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'verdade', x: MITO.x, y: MITO.y}],
 	},
-	// 24
+	// 25
 	{
 		gato: {x: 480, olhos: 'dilatado'},
 		colX: 1100,
@@ -311,7 +323,18 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'varinha', w: 'play', x: 760, y: 840}],
 	},
-	// 25 — MITO 6
+	// 26
+	{
+		gato: {boca: 'lingua'},
+		textos: [
+			{w: 'meal', txt: 'meal after play'},
+			{w: 'hunt', txt: 'hunt -> eat'},
+			{w: 'groom', txt: '-> groom -> sleep', marca: true},
+		],
+		extras: [{tipo: 'tigela', w: 'meal', x: 1550, y: 840, s: 0.7}],
+	},
+
+	// 27
 	{
 		abre: true,
 		textos: [
@@ -321,7 +344,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'carimbo', w: 'myth', x: MITO.x, y: MITO.y}, {tipo: 'olho', x: 560, y: 580}],
 	},
-	// 26
+	// 28
 	{
 		gato: {olhos: 'dilatado', bigodes: 'frente'},
 		textos: [
@@ -332,7 +355,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'verdade', w: 'total', x: MITO.x, y: MITO.y}],
 	},
-	// 27
+	// 29
 	{
 		gato: {olhos: 'meio', x: 460, escala: 0.85},
 		colX: 1150,
@@ -343,7 +366,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'verdade', x: MITO.x, y: MITO.y}, {tipo: 'caixaAreia', w: 'litter', x: 860, y: 840, s: 0.7}],
 	},
-	// 28
+	// 30
 	{
 		textos: [
 			{w: 'glow', txt: 'eyes glow', x: 1050, y: 400},
@@ -352,7 +375,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'olho', x: 560, y: 580, brilho: 'glow'}],
 	},
-	// 29 — MITO 7
+	// 31
 	{
 		abre: true,
 		gato: {orelhas: 'tras', olhos: 'fenda'},
@@ -363,7 +386,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'carimbo', w: 'myth', x: MITO.x, y: MITO.y}],
 	},
-	// 30
+	// 32
 	{
 		gato: {boca: 'lingua'},
 		textos: [
@@ -374,7 +397,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'verdade', w: 'love', x: MITO.x, y: MITO.y}, {tipo: 'torneira', w: 'tap', x: 1640, y: 880, s: 0.8}],
 	},
-	// 31
+	// 33
 	{
 		gato: {orelhas: 'lado'},
 		textos: [
@@ -383,7 +406,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'verdade', x: MITO.x, y: MITO.y}],
 	},
-	// 32
+	// 34
 	{
 		gato: {olhos: 'meio', x: 420, escala: 0.8},
 		textos: [
@@ -393,7 +416,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'banheira', w: 'bathe', x: 1300, y: 840, s: 0.8}],
 	},
-	// 33 — MITO 8
+	// 35
 	{
 		abre: true,
 		gato: {rabo: 'alto'},
@@ -404,7 +427,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'carimbo', w: 'myth', x: MITO.x, y: MITO.y}, {tipo: 'verdade', w: 'actually', x: MITO.x, y: MITO.y + 160}],
 	},
-	// 34
+	// 36
 	{
 		gato: {x: 470, bigodes: 'frente'},
 		colX: 1100,
@@ -416,7 +439,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'mao', w: 'treats', x: 830, y: 660, rot: 180}],
 	},
-	// 35
+	// 37
 	{
 		gato: {orelhas: 'gira', x: 470, escala: 0.9},
 		colX: 1100,
@@ -430,7 +453,7 @@ export const VIS: Vis[] = [
 			{tipo: 'balao', w: 'names', x: 920, y: 380, txt: 'Luna!', cauda: {x: 830, y: 460}},
 		],
 	},
-	// 36
+	// 38
 	{
 		gato: {rabo: 'gancho'},
 		textos: [
@@ -440,7 +463,7 @@ export const VIS: Vis[] = [
 			{w: 'short', txt: 'short, fun sessions'},
 		],
 	},
-	// 37
+	// 39
 	{
 		gato: {olhos: 'meio'},
 		textos: [
@@ -450,7 +473,20 @@ export const VIS: Vis[] = [
 			{w: 'stressful', txt: 'less stress!', cor: 'verde', marca: true},
 		],
 	},
-	// 38 — MITO 9
+	// 40
+	{
+		gato: {x: 470, orelhas: 'frente'},
+		colX: 1100,
+		textos: [
+			{w: 'easy', txt: 'start easy:'},
+			{w: 'shake', txt: 'shake the treat bag...'},
+			{w: 'treat', txt: '...reward when it comes'},
+			{w: 'quickly', txt: 'learned in no time', marca: true},
+		],
+		extras: [{tipo: 'mao', w: 'shake', x: 830, y: 660, rot: 180}],
+	},
+
+	// 41
 	{
 		abre: true,
 		gato: {pelagem: 'preto'},
@@ -460,7 +496,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'carimbo', w: 'myth', x: MITO.x, y: MITO.y}, {tipo: 'chapeu', w: 'witchcraft', x: 1550, y: 760, s: 0.7}],
 	},
-	// 39
+	// 42
 	{
 		gato: {pelagem: 'preto', olhos: 'lento'},
 		textos: [
@@ -471,7 +507,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'verdade', w: 'opposite', x: MITO.x, y: MITO.y}],
 	},
-	// 40
+	// 43
 	{
 		gato: {pelagem: 'preto', olhos: 'lento', rabo: 'alto'},
 		textos: [
@@ -481,7 +517,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'verdade', x: MITO.x, y: MITO.y}, {tipo: 'coracao', w: 'love', x: 740, y: 450}],
 	},
-	// 41
+	// 44
 	{
 		gato: {pelagem: 'preto', x: 480},
 		colX: 1100,
@@ -493,7 +529,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'coracao', w: 'chance', x: 660, y: 450}],
 	},
-	// 42 — MITO 10
+	// 45
 	{
 		abre: true,
 		gato: {olhos: 'meio'},
@@ -503,7 +539,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'carimbo', w: 'myth', x: MITO.x, y: MITO.y}],
 	},
-	// 43
+	// 46
 	{
 		gato: {olhos: 'meio', escala: 1.25},
 		textos: [
@@ -514,7 +550,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'verdade', w: 'bored', x: MITO.x, y: MITO.y}, {tipo: 'balanca', w: 'overweight', x: 1550, y: 860, s: 0.8, peso: 'oops'}],
 	},
-	// 44
+	// 47
 	{
 		gato: {x: 470, olhos: 'dilatado'},
 		colX: 1100,
@@ -525,7 +561,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'varinha', w: 'ten', x: 760, y: 840}],
 	},
-	// 45
+	// 48
 	{
 		gato: {pose: 'agachado', x: 480},
 		colX: 1100,
@@ -536,7 +572,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'rato', w: 'prey', x: 840, y: 840}, {tipo: 'arranhador', w: 'climb', x: 1720, y: 860, s: 0.8}],
 	},
-	// 46
+	// 49
 	{
 		gato: {x: 470, bigodes: 'frente'},
 		colX: 1100,
@@ -547,7 +583,19 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'tigela', w: 'puzzle', x: 850, y: 840, s: 0.7}],
 	},
-	// 47 — MITO 11
+	// 50
+	{
+		gato: {x: 560, escala: 0.62},
+		textos: [
+			{w: 'cardboard', txt: 'a cardboard box'},
+			{w: 'paper', txt: 'a paper bag'},
+			{w: 'adventure', txt: '= a new adventure'},
+			{w: 'expensive', txt: "fun doesn't have to cost much", marca: true, tam: 56},
+		],
+		extras: [{tipo: 'fresta', w: 'cardboard', x: 560, y: 840}],
+	},
+
+	// 51
 	{
 		abre: true,
 		gato: {olhos: 'meio'},
@@ -558,7 +606,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'carimbo', w: 'myth', x: MITO.x, y: MITO.y}],
 	},
-	// 48
+	// 52
 	{
 		gato: {olhos: 'normal'},
 		textos: [
@@ -569,7 +617,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'verdade', w: 'feces', x: MITO.x, y: MITO.y}],
 	},
-	// 49
+	// 53
 	{
 		textos: [
 			{w: 'precautions', txt: 'simple precautions:', x: 1050, y: 400},
@@ -578,7 +626,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'verdade', x: MITO.x, y: MITO.y}, {tipo: 'caixaAreia', x: 520, y: 840, luvas: true}],
 	},
-	// 50
+	// 54
 	{
 		gato: {rabo: 'alto', x: 470},
 		colX: 1100,
@@ -590,7 +638,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'pessoa', x: 800, escala: 1}, {tipo: 'coracao', w: 'give', x: 640, y: 420}],
 	},
-	// 51 — MITO 12
+	// 55
 	{
 		abre: true,
 		gato: {x: 400, escala: 0.75},
@@ -602,7 +650,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'carimbo', w: 'myth', x: MITO.x, y: MITO.y}, {tipo: 'lata', w: 'tuna', x: 760, y: 840}],
 	},
-	// 52
+	// 56
 	{
 		textos: [
 			{w: 'balanced', txt: 'not a balanced diet', x: 1050, y: 440},
@@ -614,7 +662,7 @@ export const VIS: Vis[] = [
 			{tipo: 'xis', w: 'balanced', x: 560, y: 600, s: 1.6},
 		],
 	},
-	// 53
+	// 57
 	{
 		gato: {boca: 'lingua'},
 		textos: [
@@ -624,7 +672,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'verdade', x: MITO.x, y: MITO.y}],
 	},
-	// 54
+	// 58
 	{
 		gato: {orelhas: 'lado'},
 		textos: [
@@ -635,7 +683,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'lirio', w: 'lilies', x: 1650, y: 860, s: 0.8}],
 	},
-	// 55 — BÔNUS
+	// 59
 	{
 		abre: true,
 		gatos: [{x: 420, escala: 0.65}, {x: 720, escala: 0.65, w: 'groups', rabo: 'alto'}],
@@ -646,7 +694,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'carimbo', w: 'myth', x: MITO.x, y: MITO.y}],
 	},
-	// 56
+	// 60
 	{
 		gatos: [{x: 360, escala: 0.6}, {x: 600, escala: 0.6, pelagem: 'selvagem'}, {x: 830, escala: 0.38, w: 'kittens'}],
 		colX: 1100,
@@ -658,7 +706,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'verdade', w: 'colonies', x: MITO.x, y: MITO.y}],
 	},
-	// 57
+	// 61
 	{
 		gato: {olhos: 'lento'},
 		textos: [
@@ -669,7 +717,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'texto', x: 260, y: 215, txt: 'Recap', tam: 86, marca: true}],
 	},
-	// 58
+	// 62
 	{
 		gato: {pelagem: 'preto', olhos: 'lento'},
 		textos: [
@@ -680,7 +728,7 @@ export const VIS: Vis[] = [
 		],
 		extras: [{tipo: 'texto', x: 260, y: 215, txt: 'Recap', tam: 86, marca: true}],
 	},
-	// 59
+	// 63
 	{
 		gato: {olhos: 'lento', x: 1560},
 		textos: [
