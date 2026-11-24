@@ -30,6 +30,10 @@ const PROFILE_BG: Record<string, {sky: [number, string][]; win: string; city: st
   canopy: {sky: [[0, '#6aa0b0'], [1, '#e0e8d8']], win: '#6a9a5a', city: '#3f7a3e', rim: '#ffffff', glow: '#fff6e0'},
   fever: {sky: [[0, '#2a0e08'], [1, '#4a1a10']], win: '#6a2a14', city: '#3a1408', rim: '#ff8a50', glow: '#ff6a30', wall: true},
   village: {sky: [[0, '#1a2030'], [1, '#5a4050']], win: '#e8a050', city: '#3a442a', rim: '#f0a050', glow: '#f0a050'},
+  raft: {sky: [[0, '#e0703a'], [1, '#c85a2a']], win: '#7ab8e0', city: '#1a6aa0', rim: '#fff6e0', glow: '#fff6e0', wall: true},
+  boatNight: {sky: [[0, '#01030a'], [1, '#06101e']], win: '#0a1828', city: '#06121e', rim: '#cfe0f0', glow: '#f2c27d'},
+  biolum: {sky: [[0, '#01030a'], [1, '#02080c']], win: '#04201e', city: '#010608', rim: '#5af0e0', glow: '#5af0e0', wall: true},
+  lagoon: {sky: [[0, '#2a6ab0'], [1, '#d0ecf8']], win: '#30c0c8', city: '#2a8a3a', rim: '#ffffff', glow: '#fff6e0'},
   surface: {sky: [[0, '#6a8486'], [1, '#d2925a']], win: '#ffd59a', city: '#2c4a3a', rim: '#fff1d6', glow: '#ffd59a'},
 };
 

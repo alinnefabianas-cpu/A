@@ -408,6 +408,55 @@ def build(ep):
                 place(sfx, (A.fast_lowpass(noise(0.08), 600) * np.exp(-np.arange(int(0.08 * SR)) / SR * 40) * 0.6).astype(np.float32), t0 + k)
         if v in ("sister", "hug", "carterRoom"):
             place(sfx, fade(A.room_tone(d).astype(np.float32) * 2), t0)
+        # ---- episode 006 (ocean) sets
+        sea_vis = ("ocean", "liferaft", "raftInside", "solarStill", "rainCatch", "freighter", "flareSea", "mirror", "flyingFish", "biolum",
+                   "albatross", "sailRaft", "yacht", "sinking", "container", "sky", "lagoonWater", "atoll", "reef", "stormSea", "inventory", "sun")
+        if v in sea_vis or (v == "leon" and p.get("mode") == "night"):
+            t_ = np.arange(n) / SR
+            tt = p.get("time", "day")
+            storm = tt == "storm" or v == "stormSea"
+            waves = A.fast_lowpass(noise(d), 500 if not storm else 900) * (0.55 + 0.45 * np.sin(2 * np.pi * (0.12 if not storm else 0.2) * t_)) * (0.18 if not storm else 0.45)
+            if v == "raftInside" and not storm:
+                waves *= 0.6
+            place(sfx, fade(waves.astype(np.float32)), t0)
+            if storm:
+                place(sfx, fade(A.wind(d, 0.35).astype(np.float32)), t0)
+                place(sfx, fade(rain(d, 0.3)), t0)
+            if tt == "rain" or v == "rainCatch":
+                place(sfx, fade(rain(d, 0.4)), t0)
+            if v in ("yacht", "sinking"):
+                for k in np.arange(0.5, d, 2.7):
+                    place(sfx, (A.bandpass(noise(0.3), 200, 900) * 0.08 * env(int(0.3 * SR), 0.1, 0.15)).astype(np.float32), t0 + k)   # creak
+        if v == "container" and p.get("phase") == "hit":
+            place(sfx, A.impact(4.0).astype(np.float32), t0)
+            place(sfx, (A.bandpass(noise(1.2), 300, 3000) * 0.4 * env(int(1.2 * SR), 0.01, 1.0)).astype(np.float32), t0)
+        if v == "yachtCabin" and p.get("flooding"):
+            place(sfx, fade((A.bandpass(noise(d), 200, 3000) * 0.35).astype(np.float32)), t0)
+            for k in np.arange(0.2, d, 1.0):
+                place(sfx, beep(880, 0.25, 0.05), t0 + k)
+        if v == "sinking" and p.get("phase") == "raft":
+            place(sfx, (A.bandpass(noise(1.5), 500, 6000) * 0.4 * env(int(1.5 * SR), 0.02, 1.2)).astype(np.float32), t0 + d * 0.3)
+        if v == "flareSea":
+            place(sfx, (A.bandpass(noise(2.0), 800, 6000) * 0.3 * env(int(2.0 * SR), 0.02, 1.5)).astype(np.float32), t0 + 0.1)
+        if v == "freighter":
+            t_ = np.arange(n) / SR
+            place(sfx, fade((np.sin(2 * np.pi * 38 * t_) * 0.08 + A.fast_lowpass(noise(d), 90) * 0.12).astype(np.float32)), t0)
+        if v in ("underwater", "underwaterDark"):
+            place(sfx, fade((A.fast_lowpass(noise(d), 250) * 0.3).astype(np.float32)), t0)
+            for k in np.arange(0.3, d, 0.7):
+                place(sfx, beep(300 + rng.random() * 300, 0.06, 0.03), t0 + k)
+        if v == "albatross" or v == "sky":
+            for k in (0.6, 2.2):
+                tt_ = np.arange(int(0.5 * SR)) / SR
+                call = np.sin(2 * np.pi * (700 + 200 * np.sin(2 * np.pi * 3 * tt_)) * tt_) * env(len(tt_), 0.05, 0.3) * 0.04
+                place(sfx, call.astype(np.float32), t0 + k)
+        if v == "reef":
+            for k in np.arange(0.3, d, 1.8):
+                place(sfx, (A.bandpass(noise(1.4), 200, 5000) * 0.35 * env(int(1.4 * SR), 0.05, 1.2)).astype(np.float32), t0 + k)
+        if v in ("atoll", "lagoonWater") or (v == "hana" and p.get("mode") == "beach"):
+            place(sfx, A.bird_chirps(d, count=int(d * 1.5)).astype(np.float32), t0)
+        if v == "biolum":
+            place(sfx, shimmer(d, 0.02), t0)
         if p.get("impact"):
             place(sfx, A.impact().astype(np.float32), t0 + d * p["impact"])
         if v == "skyRing":

@@ -1,0 +1,1395 @@
+{
+"total": 1251.448,
+"shots": [
+{
+"start": 0.0,
+"dur": 4.0,
+"visual": "ocean",
+"p": {
+"time": "day",
+"dur": 4.0,
+"raft": true,
+"far": true
+},
+"speaker": "-",
+"scene": 0
+},
+{
+"start": 4.0,
+"dur": 8.979000000000001,
+"visual": "ocean",
+"p": {
+"time": "day",
+"seed": 2,
+"aerial": true
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 12.979000000000001,
+"dur": 10.327,
+"visual": "liferaft",
+"p": {
+"time": "day",
+"seed": 1
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 23.306,
+"dur": 11.076,
+"visual": "ocean",
+"p": {
+"time": "dusk",
+"seed": 3,
+"raft": true
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 34.382000000000005,
+"dur": 11.273,
+"visual": "title",
+"p": {
+"title": "WHAT IF YOU WERE LOST AT SEA?",
+"tail": 4.5
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 45.655,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 1,
+"title": "THE CROSSING"
+},
+"speaker": "-",
+"scene": 1
+},
+{
+"start": 49.655,
+"dur": 8.367,
+"visual": "city",
+"p": {
+"time": "day",
+"seed": 22
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 58.022000000000006,
+"dur": 3.058,
+"visual": "profile",
+"p": {
+"time": "day",
+"outfit": "out",
+"seed": 25,
+"smile": true
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 61.080000000000005,
+"dur": 16.861,
+"visual": "leon",
+"p": {
+"mode": "dock"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 77.941,
+"dur": 8.541,
+"visual": "leon",
+"p": {
+"mode": "dock",
+"smile": true,
+"seed": 2
+},
+"speaker": "LEON",
+"scene": 1
+},
+{
+"start": 86.482,
+"dur": 9.723,
+"visual": "yacht",
+"p": {
+"time": "day"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 96.205,
+"dur": 12.947,
+"visual": "yacht",
+"p": {
+"time": "dusk",
+"seed": 2,
+"dolphins": true
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 109.152,
+"dur": 9.201,
+"visual": "leon",
+"p": {
+"mode": "night",
+"seed": 3
+},
+"speaker": "LEON",
+"scene": 1
+},
+{
+"start": 118.35300000000001,
+"dur": 18.789,
+"visual": "yachtCabin",
+"p": {},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 137.142,
+"dur": 3.904,
+"visual": "profile",
+"p": {
+"time": "boatNight",
+"outfit": "trek"
+},
+"speaker": "NOAH",
+"scene": 1
+},
+{
+"start": 141.046,
+"dur": 4.845,
+"visual": "leon",
+"p": {
+"mode": "night",
+"seed": 4,
+"smile": true
+},
+"speaker": "LEON",
+"scene": 1
+},
+{
+"start": 145.891,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 2,
+"title": "THE CONTAINER"
+},
+"speaker": "-",
+"scene": 2
+},
+{
+"start": 149.891,
+"dur": 9.435,
+"visual": "yacht",
+"p": {
+"time": "night",
+"seed": 3
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 159.326,
+"dur": 6.533,
+"visual": "ocean",
+"p": {
+"time": "night",
+"seed": 4,
+"yachtFar": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 165.85899999999998,
+"dur": 15.374,
+"visual": "container",
+"p": {
+"phase": "drift"
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 181.23299999999998,
+"dur": 2.0,
+"visual": "container",
+"p": {
+"phase": "hit",
+"dur": 2.0
+},
+"speaker": "-",
+"scene": 2
+},
+{
+"start": 183.23299999999998,
+"dur": 12.162,
+"visual": "yachtCabin",
+"p": {
+"flooding": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 195.39499999999998,
+"dur": 3.8290000000000006,
+"visual": "leon",
+"p": {
+"mode": "night",
+"worried": true,
+"seed": 5
+},
+"speaker": "LEON",
+"scene": 2
+},
+{
+"start": 199.224,
+"dur": 11.552,
+"visual": "sinking",
+"p": {
+"phase": "raft"
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 210.77599999999998,
+"dur": 10.576,
+"visual": "sinking",
+"p": {
+"phase": "sink"
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 221.35199999999998,
+"dur": 14.802,
+"visual": "sinking",
+"p": {
+"phase": "apart"
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 236.15399999999997,
+"dur": 3.1180000000000003,
+"visual": "raftInside",
+"p": {
+"time": "night",
+"shout": true
+},
+"speaker": "NOAH",
+"scene": 2
+},
+{
+"start": 239.27199999999996,
+"dur": 10.361,
+"visual": "ocean",
+"p": {
+"time": "night",
+"seed": 5,
+"raft": true,
+"light": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 249.63299999999995,
+"dur": 5.639,
+"visual": "ocean",
+"p": {
+"time": "night",
+"seed": 6,
+"raft": true,
+"aerial": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 255.27199999999996,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 3,
+"title": "THE RAFT"
+},
+"speaker": "-",
+"scene": 3
+},
+{
+"start": 259.27199999999993,
+"dur": 8.913,
+"visual": "raftInside",
+"p": {
+"time": "dawn"
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 268.18499999999995,
+"dur": 20.459,
+"visual": "inventory",
+"p": {},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 288.64399999999995,
+"dur": 8.976,
+"visual": "profile",
+"p": {
+"time": "raft",
+"outfit": "trek"
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 297.61999999999995,
+"dur": 11.106,
+"visual": "profile",
+"p": {
+"time": "raft",
+"outfit": "trek",
+"seed": 2
+},
+"speaker": "NOAH",
+"scene": 3
+},
+{
+"start": 308.72599999999994,
+"dur": 15.428,
+"visual": "liferaft",
+"p": {
+"time": "day",
+"seed": 2
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 324.15399999999994,
+"dur": 10.719,
+"visual": "raftInside",
+"p": {
+"time": "day",
+"seed": 2
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 334.87299999999993,
+"dur": 15.627,
+"visual": "ocean",
+"p": {
+"time": "night",
+"seed": 14,
+"raft": true
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 350.49999999999994,
+"dur": 9.55,
+"visual": "ocean",
+"p": {
+"time": "day",
+"seed": 7,
+"raft": true
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 360.04999999999995,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 4,
+"title": "WATER"
+},
+"speaker": "-",
+"scene": 4
+},
+{
+"start": 364.04999999999995,
+"dur": 9.683,
+"visual": "sun",
+"p": {},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 373.73299999999995,
+"dur": 15.228,
+"visual": "ocean",
+"p": {
+"time": "day",
+"seed": 8,
+"close": true
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 388.96099999999996,
+"dur": 12.055,
+"visual": "profile",
+"p": {
+"time": "raft",
+"outfit": "trek",
+"seed": 3,
+"dry": true
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 401.01599999999996,
+"dur": 10.899,
+"visual": "inventory",
+"p": {
+"seed": 2
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 411.91499999999996,
+"dur": 18.468,
+"visual": "solarStill",
+"p": {},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 430.383,
+"dur": 6.336,
+"visual": "solarStill",
+"p": {
+"seed": 2,
+"drip": true
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 436.719,
+"dur": 4.065,
+"visual": "liferaft",
+"p": {
+"time": "rain",
+"seed": 3
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 440.784,
+"dur": 14.846,
+"visual": "rainCatch",
+"p": {},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 455.63,
+"dur": 7.975,
+"visual": "profile",
+"p": {
+"time": "raft",
+"outfit": "trek",
+"seed": 4,
+"smile": true
+},
+"speaker": "NOAH",
+"scene": 4
+},
+{
+"start": 463.605,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 5,
+"title": "THE SHIP"
+},
+"speaker": "-",
+"scene": 5
+},
+{
+"start": 467.605,
+"dur": 8.46,
+"visual": "raftInside",
+"p": {
+"time": "dawn",
+"seed": 2
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 476.065,
+"dur": 9.621,
+"visual": "freighter",
+"p": {
+"dist": "far"
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 485.686,
+"dur": 2.9450000000000003,
+"visual": "liferaft",
+"p": {
+"time": "dawn",
+"seed": 4,
+"waving": true
+},
+"speaker": "NOAH",
+"scene": 5
+},
+{
+"start": 488.631,
+"dur": 11.323,
+"visual": "flareSea",
+"p": {},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 499.95399999999995,
+"dur": 8.73,
+"visual": "mirror",
+"p": {},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 508.68399999999997,
+"dur": 5.985,
+"visual": "freighter",
+"p": {
+"dist": "far",
+"seed": 2,
+"leaving": true
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 514.669,
+"dur": 18.165,
+"visual": "freighter",
+"p": {
+"dist": "mid",
+"seed": 3
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 532.834,
+"dur": 11.847,
+"visual": "ocean",
+"p": {
+"time": "day",
+"seed": 9,
+"raft": true,
+"aerial": true
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 544.6809999999999,
+"dur": 13.65,
+"visual": "profile",
+"p": {
+"time": "raft",
+"outfit": "trek",
+"seed": 12,
+"beard": 0.3
+},
+"speaker": "NOAH",
+"scene": 5
+},
+{
+"start": 558.3309999999999,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 6,
+"title": "THE DEEP"
+},
+"speaker": "-",
+"scene": 6
+},
+{
+"start": 562.3309999999999,
+"dur": 5.561,
+"visual": "underwater",
+"p": {
+"time": "day"
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 567.8919999999999,
+"dur": 17.99,
+"visual": "underwater",
+"p": {
+"time": "day",
+"seed": 2,
+"dorado": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 585.882,
+"dur": 14.119,
+"visual": "raftInside",
+"p": {
+"time": "day",
+"seed": 3,
+"fish": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 600.001,
+"dur": 10.551,
+"visual": "flyingFish",
+"p": {},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 610.552,
+"dur": 17.508,
+"visual": "underwater",
+"p": {
+"time": "day",
+"seed": 5,
+"turtle": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 628.0600000000001,
+"dur": 3.168,
+"visual": "underwater",
+"p": {
+"time": "day",
+"seed": 3,
+"sharks": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 631.2280000000001,
+"dur": 14.7,
+"visual": "underwater",
+"p": {
+"time": "day",
+"seed": 4,
+"sharks": true,
+"close": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 645.9280000000001,
+"dur": 8.316,
+"visual": "liferaft",
+"p": {
+"time": "dusk",
+"seed": 5,
+"fins": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 654.2440000000001,
+"dur": 17.399,
+"visual": "biolum",
+"p": {},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 671.6430000000001,
+"dur": 9.279,
+"visual": "profile",
+"p": {
+"time": "biolum",
+"outfit": "trek",
+"seed": 5
+},
+"speaker": "NOAH",
+"scene": 6
+},
+{
+"start": 680.9220000000001,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 7,
+"title": "THE STORM"
+},
+"speaker": "-",
+"scene": 7
+},
+{
+"start": 684.9220000000001,
+"dur": 5.337,
+"visual": "ocean",
+"p": {
+"time": "storm",
+"seed": 10
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 690.2590000000001,
+"dur": 11.838,
+"visual": "stormSea",
+"p": {
+"phase": "swell"
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 702.0970000000001,
+"dur": 8.214,
+"visual": "raftInside",
+"p": {
+"time": "storm",
+"shake": 0.7
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 710.3110000000001,
+"dur": 7.414,
+"visual": "stormSea",
+"p": {
+"phase": "capsize"
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 717.7250000000001,
+"dur": 2.0,
+"visual": "black",
+"p": {
+"dur": 2.0
+},
+"speaker": "-",
+"scene": 7
+},
+{
+"start": 719.7250000000001,
+"dur": 9.738,
+"visual": "underwaterDark",
+"p": {},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 729.4630000000002,
+"dur": 14.279,
+"visual": "stormSea",
+"p": {
+"phase": "outside"
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 743.7420000000002,
+"dur": 11.844,
+"visual": "stormSea",
+"p": {
+"phase": "righting"
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 755.5860000000002,
+"dur": 12.852,
+"visual": "inventory",
+"p": {
+"lost": true
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 768.4380000000002,
+"dur": 8.317,
+"visual": "profile",
+"p": {
+"time": "raft",
+"outfit": "trek",
+"seed": 6,
+"beard": 0.5
+},
+"speaker": "NOAH",
+"scene": 7
+},
+{
+"start": 776.7550000000002,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 8,
+"title": "THE ALBATROSS"
+},
+"speaker": "-",
+"scene": 8
+},
+{
+"start": 780.7550000000002,
+"dur": 3.6930000000000005,
+"visual": "sky",
+"p": {
+"time": "day"
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 784.4480000000002,
+"dur": 10.883,
+"visual": "albatross",
+"p": {
+"phase": "glide"
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 795.3310000000002,
+"dur": 11.343,
+"visual": "albatross",
+"p": {
+"phase": "water"
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 806.6740000000002,
+"dur": 3.274,
+"visual": "profile",
+"p": {
+"time": "raft",
+"outfit": "trek",
+"seed": 7,
+"beard": 0.55,
+"smile": true
+},
+"speaker": "NOAH",
+"scene": 8
+},
+{
+"start": 809.9480000000002,
+"dur": 11.976,
+"visual": "albatross",
+"p": {
+"phase": "raft"
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 821.9240000000002,
+"dur": 8.646,
+"visual": "profile",
+"p": {
+"time": "raft",
+"outfit": "trek",
+"seed": 13,
+"beard": 0.55,
+"smile": true
+},
+"speaker": "NOAH",
+"scene": 8
+},
+{
+"start": 830.5700000000002,
+"dur": 9.13,
+"visual": "albatross",
+"p": {
+"phase": "band"
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 839.7000000000002,
+"dur": 10.289,
+"visual": "albatrossBand",
+"p": {},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 849.9890000000001,
+"dur": 7.683,
+"visual": "profile",
+"p": {
+"time": "raft",
+"outfit": "trek",
+"seed": 8,
+"beard": 0.6
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 857.6720000000001,
+"dur": 19.262,
+"visual": "leon",
+"p": {
+"mode": "night",
+"seed": 6
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 876.9340000000002,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 9,
+"title": "FOLLOWING THE BIRD"
+},
+"speaker": "-",
+"scene": 9
+},
+{
+"start": 880.9340000000002,
+"dur": 13.337,
+"visual": "albatross",
+"p": {
+"phase": "leave"
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 894.2710000000002,
+"dur": 5.535,
+"visual": "ocean",
+"p": {
+"time": "dusk",
+"seed": 11,
+"raft": true,
+"bird": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 899.8060000000002,
+"dur": 11.053,
+"visual": "raftInside",
+"p": {
+"time": "day",
+"seed": 4
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 910.8590000000002,
+"dur": 15.42,
+"visual": "sailRaft",
+"p": {},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 926.2790000000001,
+"dur": 11.632,
+"visual": "sailRaft",
+"p": {
+"time": "dusk",
+"seed": 2,
+"bird": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 937.9110000000001,
+"dur": 17.872,
+"visual": "ocean",
+"p": {
+"time": "night",
+"seed": 15,
+"raft": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 955.783,
+"dur": 10.372,
+"visual": "profile",
+"p": {
+"time": "raft",
+"outfit": "trek",
+"seed": 9,
+"beard": 0.75
+},
+"speaker": "NOAH",
+"scene": 9
+},
+{
+"start": 966.155,
+"dur": 17.064,
+"visual": "raftInside",
+"p": {
+"time": "dusk",
+"seed": 5
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 983.2189999999999,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 10,
+"title": "LAND"
+},
+"speaker": "-",
+"scene": 10
+},
+{
+"start": 987.2189999999999,
+"dur": 12.694,
+"visual": "ocean",
+"p": {
+"time": "day",
+"seed": 12,
+"cloudStack": true
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 999.9129999999999,
+"dur": 15.193,
+"visual": "ocean",
+"p": {
+"time": "day",
+"seed": 13,
+"cloudStack": true,
+"raft": true
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1015.1059999999999,
+"dur": 13.552,
+"visual": "lagoonWater",
+"p": {},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1028.658,
+"dur": 11.991,
+"visual": "atoll",
+"p": {
+"far": true
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1040.649,
+"dur": 3.2110000000000003,
+"visual": "profile",
+"p": {
+"time": "lagoon",
+"outfit": "trek",
+"seed": 10,
+"beard": 0.9,
+"smile": true
+},
+"speaker": "NOAH",
+"scene": 10
+},
+{
+"start": 1043.86,
+"dur": 10.939,
+"visual": "reef",
+"p": {},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1054.799,
+"dur": 14.142,
+"visual": "reef",
+"p": {
+"through": true
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1068.941,
+"dur": 8.111,
+"visual": "lagoonWater",
+"p": {
+"raft": true
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1077.0520000000001,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 11,
+"title": "THE ATOLL"
+},
+"speaker": "-",
+"scene": 11
+},
+{
+"start": 1081.0520000000001,
+"dur": 13.143,
+"visual": "atoll",
+"p": {
+"beach": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1094.1950000000002,
+"dur": 4.485,
+"visual": "hana",
+"p": {
+"mode": "beach",
+"worried": true
+},
+"speaker": "HANA",
+"scene": 11
+},
+{
+"start": 1098.68,
+"dur": 3.165,
+"visual": "profile",
+"p": {
+"time": "lagoon",
+"outfit": "trek",
+"seed": 11,
+"beard": 0.9
+},
+"speaker": "NOAH",
+"scene": 11
+},
+{
+"start": 1101.845,
+"dur": 16.423,
+"visual": "hana",
+"p": {
+"mode": "station",
+"seed": 2
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1118.268,
+"dur": 7.704,
+"visual": "hana",
+"p": {
+"mode": "station",
+"seed": 3,
+"smile": true
+},
+"speaker": "HANA",
+"scene": 11
+},
+{
+"start": 1125.972,
+"dur": 16.023,
+"visual": "hana",
+"p": {
+"mode": "station",
+"seed": 4
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1141.995,
+"dur": 12.871,
+"visual": "phoneCall",
+"p": {},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1154.866,
+"dur": 18.942,
+"visual": "leon",
+"p": {
+"mode": "dock",
+"seed": 7,
+"worried": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1173.808,
+"dur": 6.074,
+"visual": "leon",
+"p": {
+"mode": "phone",
+"seed": 8
+},
+"speaker": "LEON",
+"scene": 11
+},
+{
+"start": 1179.882,
+"dur": 15.144,
+"visual": "atoll",
+"p": {
+"ship": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1195.026,
+"dur": 12.409,
+"visual": "city",
+"p": {
+"time": "dusk",
+"seed": 23
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1207.4350000000002,
+"dur": 7.05,
+"visual": "phone",
+"p": {
+"screen": "email"
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1214.4850000000001,
+"dur": 10.06,
+"visual": "albatross",
+"p": {
+"phase": "glide",
+"seed": 2,
+"sunset": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1224.545,
+"dur": 5.0,
+"visual": "endCard",
+"p": {
+"dur": 5.0
+},
+"speaker": "-",
+"scene": 11
+},
+{
+"start": 1229.545,
+"dur": 12.752,
+"visual": "endCard",
+"p": {
+"question": true,
+"q": "Would <i>you</i> trust a bird<br />with your life?"
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1242.297,
+"dur": 9.151,
+"visual": "endCard",
+"p": {
+"question": true,
+"q": "Would <i>you</i> trust a bird<br />with your life?",
+"tail": 4.0
+},
+"speaker": "N",
+"scene": 11
+}
+],
+"moods": [
+3,
+6,
+5,
+7,
+2,
+8,
+9,
+5,
+9,
+6,
+10,
+11
+]
+}

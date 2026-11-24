@@ -8,6 +8,7 @@ import * as B from './bunker';
 import * as A from './arctic';
 import * as J from './jungle';
 import * as Q from './sequel';
+import * as O6 from './ocean';
 
 const wrap = (C: React.FC<any>): React.FC<SetProps> => ({dur, p}) => <C dur={dur} title={p?.title ?? 'WHAT IF YOU WERE THE LAST HUMAN ON EARTH?'} />;
 
@@ -34,5 +35,10 @@ export const SETS: Record<string, React.FC<SetProps>> = {
   fever: J.Fever, rosaCanoe: J.RosaCanoe, village: J.Village,
   countdown: Q.Countdown, keyboard: Q.Keyboard, earthCore: Q.EarthCore, earthOrbit: Q.EarthOrbit, solarStorm: Q.SolarStorm,
   crowd: Q.Crowd, door: Q.Door, sister: Q.Sister, hug: Q.Hug, carterRoom: Q.CarterRoom,
+  ocean: O6.Ocean, liferaft: O6.Raft, raftInside: O6.RaftInside, inventory: O6.Inventory, leon: O6.Leon, hana: O6.Hana,
+  yacht: O6.YachtSet, yachtCabin: O6.YachtCabin, container: O6.Container, sinking: O6.Sinking, sun: O6.Sun, solarStill: O6.SolarStill,
+  rainCatch: O6.RainCatch, freighter: O6.Freighter, flareSea: O6.FlareSea, mirror: O6.Mirror, underwater: O6.Underwater,
+  underwaterDark: O6.UnderwaterDark, flyingFish: O6.FlyingFish, biolum: O6.Biolum, stormSea: O6.StormSea, albatross: O6.AlbatrossSet,
+  albatrossBand: O6.AlbatrossBand, sky: O6.SkySet, sailRaft: O6.SailRaft, lagoonWater: O6.LagoonWater, atoll: O6.Atoll, reef: O6.Reef,
   clock: wrap(S.S02), hallway: wrap(S.S05), livingWalk: wrap(S.S07), trafficLight: wrap(S.S10), title: wrap(S.S13),
 };

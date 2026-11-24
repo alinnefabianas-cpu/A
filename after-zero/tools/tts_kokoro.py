@@ -30,6 +30,8 @@ VOICES = {
     "TOMAS": ("a", "am_liam", 0.95),     # Tomás, river guide (ep 4)
     "ROSA": ("a", "af_sarah", 0.9),      # Rosa, riverside fisherwoman (ep 4)
     "MIA": ("a", "af_heart", 0.95),      # Noah's sister, in person (ep 5)
+    "LEON": ("b", "bm_daniel", 0.92),    # Leon Marchand, yacht skipper (ep 6)
+    "HANA": ("a", "af_nova", 1.0),       # Hana, seabird researcher (ep 6)
 }
 
 
