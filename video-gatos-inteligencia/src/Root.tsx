@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Composition, continueRender, delayRender} from 'remotion';
 import {Video} from './Video';
+import {Thumb} from './Thumb';
 import {ALTURA, DURACAO_TOTAL, FPS, LARGURA} from './roteiro';
 
 const ComFontes: React.FC = () => {
@@ -13,5 +14,8 @@ const ComFontes: React.FC = () => {
 };
 
 export const Root: React.FC = () => (
+	<>
 	<Composition id="Video" component={ComFontes} durationInFrames={DURACAO_TOTAL} fps={FPS} width={LARGURA} height={ALTURA} />
+		<Composition id="Thumb" component={Thumb} durationInFrames={1} fps={FPS} width={LARGURA} height={ALTURA} defaultProps={{v: 1}} />
+	</>
 );
