@@ -317,7 +317,7 @@ export const VIS: Vis[] = [
 			{w: 'experiment', txt: 'watch -> experiment'},
 			{w: 'remember', txt: '-> remember what worked', marca: true},
 		],
-		extras: [{tipo: 'torneira', w: 'taps', x: 860, y: 560}, {tipo: 'texto', w: 'crows', x: 1100, y: 760, txt: 'like crows & monkeys!', tam: 56, cor: 'verde'}],
+		extras: [{tipo: 'torneira', w: 'taps', x: 880, y: 880, s: 0.9}, {tipo: 'texto', w: 'crows', x: 1100, y: 760, txt: 'like crows & monkeys!', tam: 56, cor: 'verde'}],
 	},
 	// 24 — CAP 4
 	{
