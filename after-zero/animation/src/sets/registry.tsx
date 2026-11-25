@@ -9,6 +9,7 @@ import * as A from './arctic';
 import * as J from './jungle';
 import * as Q from './sequel';
 import * as O6 from './ocean';
+import * as D from './desert';
 
 const wrap = (C: React.FC<any>): React.FC<SetProps> => ({dur, p}) => <C dur={dur} title={p?.title ?? 'WHAT IF YOU WERE THE LAST HUMAN ON EARTH?'} />;
 
@@ -40,5 +41,9 @@ export const SETS: Record<string, React.FC<SetProps>> = {
   rainCatch: O6.RainCatch, freighter: O6.Freighter, flareSea: O6.FlareSea, mirror: O6.Mirror, underwater: O6.Underwater,
   underwaterDark: O6.UnderwaterDark, flyingFish: O6.FlyingFish, biolum: O6.Biolum, stormSea: O6.StormSea, albatross: O6.AlbatrossSet,
   albatrossBand: O6.AlbatrossBand, sky: O6.SkySet, sailRaft: O6.SailRaft, lagoonWater: O6.LagoonWater, atoll: O6.Atoll, reef: O6.Reef,
+  dunes: D.Dunes, jeep: D.JeepSet, jeepInside: D.JeepInside, haboob: D.Haboob, yara: D.Yara, idris: D.Idris, satMap: D.SatMap,
+  desertInventory: D.DesertInventory, heatGauge: D.HeatGauge, mirrorDesert: D.MirrorDesert, planeHigh: D.PlaneHigh, starNav: D.StarNav,
+  critter: D.Critter, mirage: D.Mirage, well: D.Well, wellDown: D.WellDown, rockArt: D.RockArt, greenSahara: D.GreenSahara, dig: D.Dig,
+  signalFire: D.SignalFire, caravan: D.Caravan, tea: D.Tea,
   clock: wrap(S.S02), hallway: wrap(S.S05), livingWalk: wrap(S.S07), trafficLight: wrap(S.S10), title: wrap(S.S13),
 };

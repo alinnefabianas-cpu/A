@@ -5,7 +5,7 @@ import {NoahProfile, NoahStandBack} from '../noah';
 import {camFor, mouth, SetProps, SKY} from './common';
 
 /* ------------------------------------------------------------ profile */
-const PROFILE_BG: Record<string, {sky: [number, string][]; win: string; city: string; rim: string; glow: string; wall?: boolean}> = {
+const PROFILE_BG: Record<string, {sky: [number, string][]; win: string; city: string; rim: string; glow: string; wall?: boolean; dunes?: boolean}> = {
   dawn: {sky: [[0, '#121b21'], [0.5, '#25363c'], [1, '#3b4a4a']], win: '#d9a46a', city: '#8a6a4f', rim: C.amber, glow: C.gold},
   day: {sky: [[0, '#1c262b'], [1, '#34444a']], win: '#c9d3cc', city: '#7d8f8f', rim: '#e8e2d0', glow: '#f2f0e4'},
   dusk: {sky: [[0, '#14151c'], [1, '#2e2a33']], win: '#d98a55', city: '#6b4a40', rim: '#e2914f', glow: '#e2914f'},
@@ -34,6 +34,10 @@ const PROFILE_BG: Record<string, {sky: [number, string][]; win: string; city: st
   boatNight: {sky: [[0, '#01030a'], [1, '#06101e']], win: '#0a1828', city: '#06121e', rim: '#cfe0f0', glow: '#f2c27d'},
   biolum: {sky: [[0, '#01030a'], [1, '#02080c']], win: '#04201e', city: '#010608', rim: '#5af0e0', glow: '#5af0e0', wall: true},
   lagoon: {sky: [[0, '#2a6ab0'], [1, '#d0ecf8']], win: '#30c0c8', city: '#2a8a3a', rim: '#ffffff', glow: '#fff6e0'},
+  desert: {sky: [[0, '#e8b070'], [1, '#c88a50']], win: '#f4dcae', city: '#d8a868', rim: '#fff6e0', glow: '#fff6e0', dunes: true},
+  heat: {sky: [[0, '#f0d8a8'], [1, '#e0b474']], win: '#fff4dc', city: '#ecca92', rim: '#ffffff', glow: '#fff8e8', dunes: true},
+  desertNight: {sky: [[0, '#02040c'], [1, '#0a1424']], win: '#141e30', city: '#191e2a', rim: '#9fb4e0', glow: '#9fb4e0', dunes: true},
+  sandstorm: {sky: [[0, '#2a1a0e'], [1, '#4a3018']], win: '#7a5a3a', city: '#3a2614', rim: '#e0b080', glow: '#c08a52', wall: true},
   surface: {sky: [[0, '#6a8486'], [1, '#d2925a']], win: '#ffd59a', city: '#2c4a3a', rim: '#fff1d6', glow: '#ffd59a'},
 };
 
@@ -56,6 +60,7 @@ export const Profile: React.FC<SetProps> = ({dur, p, talk}) => {
             <defs><filter id="pfb"><feGaussianBlur stdDeviation="10" /></filter></defs>
             <rect x={1050} y={0} width={900} height={H} fill={bg.win} />
             {bg.wall ? <>{Array.from({length: 6}, (_, i) => <rect key={i} x={1050} y={i * 190} width={900} height={8} fill={bg.city} />)}</>
+              : bg.dunes ? <>{[0, 1, 2].map((k) => <path key={k} d={`M 1050 ${H} L 1050 ${520 + k * 150} ${Array.from({length: 12}, (_, i) => `Q ${1090 + i * 80} ${470 + k * 150 - (i % 2) * 70} ${1130 + i * 80} ${520 + k * 150}`).join(' ')} L 2000 ${H} Z`} fill={bg.city} opacity={0.6 + k * 0.2} />)}</>
               : <Skyline seed={88 + seed} baseY={1000} minH={200} maxH={700} color={bg.city} minW={60} maxW={140} x0={1050} x1={2000} />}
           </g>
           <Glow id="pfg" cx={1500} cy={400} r={900} color={bg.glow} opacity={0.35 * flick} />

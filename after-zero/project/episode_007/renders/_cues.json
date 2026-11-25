@@ -1,0 +1,1401 @@
+{
+"total": 1325.237,
+"shots": [
+{
+"start": 0.0,
+"dur": 4.0,
+"visual": "dunes",
+"p": {
+"time": "heat",
+"dur": 4.0,
+"walker": true,
+"far": true
+},
+"speaker": "-",
+"scene": 0
+},
+{
+"start": 4.0,
+"dur": 8.884,
+"visual": "dunes",
+"p": {
+"time": "day",
+"seed": 2,
+"aerial": true
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 12.884,
+"dur": 15.332,
+"visual": "jeep",
+"p": {
+"phase": "buried",
+"time": "heat"
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 28.216,
+"dur": 8.968,
+"visual": "dunes",
+"p": {
+"time": "dusk",
+"seed": 3,
+"walker": true
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 37.184,
+"dur": 11.719000000000001,
+"visual": "title",
+"p": {
+"title": "WHAT IF YOU WERE STRANDED IN THE SAHARA?",
+"tail": 4.5
+},
+"speaker": "N",
+"scene": 0
+},
+{
+"start": 48.903,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 1,
+"title": "THE EXPEDITION"
+},
+"speaker": "-",
+"scene": 1
+},
+{
+"start": 52.903,
+"dur": 12.774,
+"visual": "city",
+"p": {
+"time": "day",
+"seed": 31
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 65.67699999999999,
+"dur": 3.2700000000000005,
+"visual": "profile",
+"p": {
+"time": "day",
+"outfit": "out",
+"seed": 31,
+"smile": true
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 68.94699999999999,
+"dur": 13.739,
+"visual": "yara",
+"p": {
+"mode": "office"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 82.68599999999999,
+"dur": 12.444,
+"visual": "yara",
+"p": {
+"mode": "office",
+"smile": true,
+"seed": 2
+},
+"speaker": "YARA",
+"scene": 1
+},
+{
+"start": 95.13,
+"dur": 16.000999999999998,
+"visual": "satMap",
+"p": {
+"phase": "rivers"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 111.131,
+"dur": 15.39,
+"visual": "yara",
+"p": {
+"mode": "jeep",
+"seed": 3
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 126.521,
+"dur": 16.914,
+"visual": "jeep",
+"p": {
+"phase": "drive",
+"time": "day"
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 143.435,
+"dur": 16.398999999999997,
+"visual": "dunes",
+"p": {
+"time": "day",
+"seed": 4
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 159.834,
+"dur": 4.162,
+"visual": "profile",
+"p": {
+"time": "desert",
+"outfit": "trek",
+"seed": 2
+},
+"speaker": "NOAH",
+"scene": 1
+},
+{
+"start": 163.996,
+"dur": 10.088,
+"visual": "yara",
+"p": {
+"mode": "jeep",
+"seed": 4
+},
+"speaker": "YARA",
+"scene": 1
+},
+{
+"start": 174.084,
+"dur": 15.167,
+"visual": "dunes",
+"p": {
+"time": "night",
+"seed": 5,
+"camp": true
+},
+"speaker": "N",
+"scene": 1
+},
+{
+"start": 189.251,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 2,
+"title": "THE STORM"
+},
+"speaker": "-",
+"scene": 2
+},
+{
+"start": 193.251,
+"dur": 9.552,
+"visual": "dunes",
+"p": {
+"time": "day",
+"seed": 6,
+"haze": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 202.803,
+"dur": 3.096,
+"visual": "yara",
+"p": {
+"mode": "jeep",
+"worried": true,
+"seed": 5
+},
+"speaker": "YARA",
+"scene": 2
+},
+{
+"start": 205.899,
+"dur": 13.795,
+"visual": "haboob",
+"p": {
+"phase": "far"
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 219.694,
+"dur": 11.05,
+"visual": "haboob",
+"p": {
+"phase": "near"
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 230.744,
+"dur": 2.5,
+"visual": "haboob",
+"p": {
+"phase": "hit",
+"dur": 2.5
+},
+"speaker": "-",
+"scene": 2
+},
+{
+"start": 233.244,
+"dur": 11.796,
+"visual": "jeepInside",
+"p": {
+"storm": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 245.04,
+"dur": 12.849,
+"visual": "jeep",
+"p": {
+"phase": "roll",
+"time": "storm"
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 257.889,
+"dur": 8.188,
+"visual": "jeepInside",
+"p": {
+"storm": true,
+"tilt": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 266.077,
+"dur": 3.7650000000000006,
+"visual": "profile",
+"p": {
+"time": "sandstorm",
+"outfit": "trek",
+"seed": 3
+},
+"speaker": "NOAH",
+"scene": 2
+},
+{
+"start": 269.842,
+"dur": 4.003,
+"visual": "yara",
+"p": {
+"mode": "storm",
+"worried": true,
+"seed": 6
+},
+"speaker": "YARA",
+"scene": 2
+},
+{
+"start": 273.84499999999997,
+"dur": 12.636,
+"visual": "jeepInside",
+"p": {
+"storm": true,
+"tilt": true,
+"dark": true
+},
+"speaker": "N",
+"scene": 2
+},
+{
+"start": 286.481,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 3,
+"title": "STAY WITH THE CAR"
+},
+"speaker": "-",
+"scene": 3
+},
+{
+"start": 290.481,
+"dur": 9.487,
+"visual": "dunes",
+"p": {
+"time": "dawn",
+"seed": 7,
+"car": "buried"
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 299.968,
+"dur": 13.808,
+"visual": "jeep",
+"p": {
+"phase": "buried",
+"time": "dawn"
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 313.776,
+"dur": 10.074,
+"visual": "jeep",
+"p": {
+"phase": "buried",
+"time": "day",
+"noah": true
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 323.85,
+"dur": 9.401,
+"visual": "yara",
+"p": {
+"mode": "car",
+"worried": true,
+"seed": 7
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 333.25100000000003,
+"dur": 12.811,
+"visual": "yara",
+"p": {
+"mode": "car",
+"seed": 8
+},
+"speaker": "YARA",
+"scene": 3
+},
+{
+"start": 346.062,
+"dur": 5.1129999999999995,
+"visual": "desertInventory",
+"p": {},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 351.175,
+"dur": 20.143,
+"visual": "desertInventory",
+"p": {
+"lost": true
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 371.318,
+"dur": 13.575,
+"visual": "heatGauge",
+"p": {
+"temp": 48
+},
+"speaker": "N",
+"scene": 3
+},
+{
+"start": 384.893,
+"dur": 4.912999999999999,
+"visual": "profile",
+"p": {
+"time": "desert",
+"outfit": "trek",
+"seed": 4
+},
+"speaker": "NOAH",
+"scene": 3
+},
+{
+"start": 389.806,
+"dur": 11.935,
+"visual": "yara",
+"p": {
+"mode": "car",
+"worried": true,
+"seed": 9
+},
+"speaker": "YARA",
+"scene": 3
+},
+{
+"start": 401.741,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 4,
+"title": "THE HEAT"
+},
+"speaker": "-",
+"scene": 4
+},
+{
+"start": 405.741,
+"dur": 11.734,
+"visual": "heatGauge",
+"p": {
+"temp": 51
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 417.47499999999997,
+"dur": 12.021,
+"visual": "dunes",
+"p": {
+"time": "heat",
+"seed": 8
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 429.496,
+"dur": 16.975,
+"visual": "jeep",
+"p": {
+"phase": "camp",
+"time": "heat"
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 446.471,
+"dur": 14.739,
+"visual": "dunes",
+"p": {
+"time": "night",
+"seed": 9,
+"car": "camp",
+"sos": true
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 461.21,
+"dur": 10.956,
+"visual": "mirrorDesert",
+"p": {},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 472.166,
+"dur": 13.303,
+"visual": "dunes",
+"p": {
+"time": "day",
+"seed": 10,
+"plane": true,
+"walker": true
+},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 485.469,
+"dur": 12.266,
+"visual": "planeHigh",
+"p": {},
+"speaker": "N",
+"scene": 4
+},
+{
+"start": 497.735,
+"dur": 10.12,
+"visual": "profile",
+"p": {
+"time": "desertNight",
+"outfit": "trek",
+"seed": 5,
+"beard": 0.2
+},
+"speaker": "NOAH",
+"scene": 4
+},
+{
+"start": 507.855,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 5,
+"title": "THE DECISION"
+},
+"speaker": "-",
+"scene": 5
+},
+{
+"start": 511.855,
+"dur": 10.182,
+"visual": "jeep",
+"p": {
+"phase": "camp",
+"time": "night",
+"laptop": true
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 522.037,
+"dur": 8.179,
+"visual": "satMap",
+"p": {
+"phase": "here"
+},
+"speaker": "YARA",
+"scene": 5
+},
+{
+"start": 530.216,
+"dur": 16.673,
+"visual": "satMap",
+"p": {
+"phase": "well"
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 546.889,
+"dur": 8.963000000000001,
+"visual": "yara",
+"p": {
+"mode": "night",
+"seed": 10
+},
+"speaker": "YARA",
+"scene": 5
+},
+{
+"start": 555.852,
+"dur": 5.0089999999999995,
+"visual": "profile",
+"p": {
+"time": "desertNight",
+"outfit": "trek",
+"seed": 6,
+"beard": 0.25
+},
+"speaker": "NOAH",
+"scene": 5
+},
+{
+"start": 560.861,
+"dur": 9.093,
+"visual": "yara",
+"p": {
+"mode": "night",
+"worried": true,
+"seed": 11
+},
+"speaker": "YARA",
+"scene": 5
+},
+{
+"start": 569.954,
+"dur": 17.011,
+"visual": "dunes",
+"p": {
+"time": "night",
+"seed": 11,
+"car": "camp"
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 586.9649999999999,
+"dur": 13.417,
+"visual": "desertInventory",
+"p": {
+"split": true
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 600.382,
+"dur": 8.337,
+"visual": "yara",
+"p": {
+"mode": "night",
+"seed": 12,
+"smile": true
+},
+"speaker": "YARA",
+"scene": 5
+},
+{
+"start": 608.7189999999999,
+"dur": 9.258,
+"visual": "dunes",
+"p": {
+"time": "night",
+"seed": 12,
+"walker": true,
+"car": "camp"
+},
+"speaker": "N",
+"scene": 5
+},
+{
+"start": 617.977,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 6,
+"title": "THE NIGHT WALK"
+},
+"speaker": "-",
+"scene": 6
+},
+{
+"start": 621.977,
+"dur": 12.951,
+"visual": "dunes",
+"p": {
+"time": "night",
+"seed": 13,
+"walker": true,
+"milky": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 634.928,
+"dur": 15.877,
+"visual": "starNav",
+"p": {
+"phase": "sky"
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 650.805,
+"dur": 15.128,
+"visual": "starNav",
+"p": {
+"phase": "polaris"
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 665.933,
+"dur": 14.273,
+"visual": "dunes",
+"p": {
+"time": "night",
+"seed": 14,
+"walker": true,
+"tracks": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 680.206,
+"dur": 14.214,
+"visual": "critter",
+"p": {
+"kind": "fennec"
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 694.4200000000001,
+"dur": 12.222,
+"visual": "critter",
+"p": {
+"kind": "scorpion"
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 706.642,
+"dur": 10.356,
+"visual": "profile",
+"p": {
+"time": "desertNight",
+"outfit": "trek",
+"seed": 7,
+"beard": 0.3
+},
+"speaker": "NOAH",
+"scene": 6
+},
+{
+"start": 716.998,
+"dur": 13.781,
+"visual": "dunes",
+"p": {
+"time": "dawn",
+"seed": 15,
+"walker": true
+},
+"speaker": "N",
+"scene": 6
+},
+{
+"start": 730.779,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 7,
+"title": "THE MIRAGE"
+},
+"speaker": "-",
+"scene": 7
+},
+{
+"start": 734.779,
+"dur": 8.799000000000001,
+"visual": "dunes",
+"p": {
+"time": "night",
+"seed": 16,
+"walker": true
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 743.578,
+"dur": 15.889,
+"visual": "heatGauge",
+"p": {
+"temp": 53,
+"blur": true
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 759.467,
+"dur": 12.946,
+"visual": "mirage",
+"p": {},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 772.413,
+"dur": 15.056,
+"visual": "mirage",
+"p": {
+"seed": 2,
+"walker": true
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 787.469,
+"dur": 10.742,
+"visual": "dunes",
+"p": {
+"time": "heat",
+"seed": 17,
+"walker": true
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 798.211,
+"dur": 11.589,
+"visual": "profile",
+"p": {
+"time": "heat",
+"outfit": "trek",
+"seed": 8,
+"beard": 0.4
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 809.8000000000001,
+"dur": 7.14,
+"visual": "profile",
+"p": {
+"time": "desertNight",
+"outfit": "trek",
+"seed": 9,
+"beard": 0.45
+},
+"speaker": "NOAH",
+"scene": 7
+},
+{
+"start": 816.94,
+"dur": 16.807000000000002,
+"visual": "dunes",
+"p": {
+"time": "dawn",
+"seed": 18,
+"walker": true,
+"well": true
+},
+"speaker": "N",
+"scene": 7
+},
+{
+"start": 833.7470000000001,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 8,
+"title": "THE WELL"
+},
+"speaker": "-",
+"scene": 8
+},
+{
+"start": 837.7470000000001,
+"dur": 15.387,
+"visual": "well",
+"p": {
+"phase": "arrive"
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 853.134,
+"dur": 5.449,
+"visual": "well",
+"p": {
+"phase": "look"
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 858.583,
+"dur": 10.391,
+"visual": "wellDown",
+"p": {},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 868.9739999999999,
+"dur": 2.8890000000000002,
+"visual": "black",
+"p": {
+"text": "",
+"dur": 3.0
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 871.8629999999999,
+"dur": 12.775,
+"visual": "profile",
+"p": {
+"time": "desert",
+"outfit": "trek",
+"seed": 10,
+"beard": 0.5
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 884.6379999999999,
+"dur": 4.92,
+"visual": "profile",
+"p": {
+"time": "desert",
+"outfit": "trek",
+"seed": 11,
+"beard": 0.5
+},
+"speaker": "NOAH",
+"scene": 8
+},
+{
+"start": 889.5579999999999,
+"dur": 7.453,
+"visual": "well",
+"p": {
+"phase": "carvings"
+},
+"speaker": "N",
+"scene": 8
+},
+{
+"start": 897.0109999999999,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 9,
+"title": "THE GREEN SAHARA"
+},
+"speaker": "-",
+"scene": 9
+},
+{
+"start": 901.0109999999999,
+"dur": 13.514,
+"visual": "rockArt",
+"p": {},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 914.5249999999999,
+"dur": 3.785,
+"visual": "rockArt",
+"p": {
+"zoom": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 918.3099999999998,
+"dur": 15.164,
+"visual": "greenSahara",
+"p": {},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 933.4739999999998,
+"dur": 18.349,
+"visual": "greenSahara",
+"p": {
+"fade": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 951.8229999999999,
+"dur": 14.094,
+"visual": "dig",
+"p": {
+"depth": 0
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 965.9169999999999,
+"dur": 10.564,
+"visual": "dig",
+"p": {
+"depth": 1
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 976.4809999999999,
+"dur": 6.56,
+"visual": "dig",
+"p": {
+"depth": 2
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 983.0409999999998,
+"dur": 10.53,
+"visual": "dig",
+"p": {
+"depth": 3,
+"water": true
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 993.5709999999998,
+"dur": 3.667,
+"visual": "profile",
+"p": {
+"time": "desert",
+"outfit": "trek",
+"seed": 12,
+"beard": 0.55,
+"smile": true
+},
+"speaker": "NOAH",
+"scene": 9
+},
+{
+"start": 997.2379999999998,
+"dur": 20.409,
+"visual": "signalFire",
+"p": {
+"time": "day"
+},
+"speaker": "N",
+"scene": 9
+},
+{
+"start": 1017.6469999999998,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 10,
+"title": "THE CARAVAN"
+},
+"speaker": "-",
+"scene": 10
+},
+{
+"start": 1021.6469999999998,
+"dur": 10.126,
+"visual": "dunes",
+"p": {
+"time": "day",
+"seed": 19,
+"smoke": true
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1031.773,
+"dur": 16.666999999999998,
+"visual": "caravan",
+"p": {
+"time": "dusk"
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1048.4399999999998,
+"dur": 17.069000000000003,
+"visual": "idris",
+"p": {
+"mode": "dunes"
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1065.5089999999998,
+"dur": 8.374,
+"visual": "idris",
+"p": {
+"mode": "dunes",
+"seed": 2,
+"smile": true
+},
+"speaker": "IDRIS",
+"scene": 10
+},
+{
+"start": 1073.8829999999998,
+"dur": 13.379,
+"visual": "tea",
+"p": {},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1087.2619999999997,
+"dur": 10.309,
+"visual": "idris",
+"p": {
+"mode": "fire",
+"seed": 3
+},
+"speaker": "IDRIS",
+"scene": 10
+},
+{
+"start": 1097.5709999999997,
+"dur": 8.086,
+"visual": "profile",
+"p": {
+"time": "desertNight",
+"outfit": "trek",
+"seed": 13,
+"beard": 0.55
+},
+"speaker": "NOAH",
+"scene": 10
+},
+{
+"start": 1105.6569999999997,
+"dur": 13.452,
+"visual": "idris",
+"p": {
+"mode": "fire",
+"seed": 4
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1119.1089999999997,
+"dur": 11.251,
+"visual": "idris",
+"p": {
+"mode": "fire",
+"seed": 5
+},
+"speaker": "IDRIS",
+"scene": 10
+},
+{
+"start": 1130.3599999999997,
+"dur": 19.285,
+"visual": "caravan",
+"p": {
+"time": "night",
+"seed": 2
+},
+"speaker": "N",
+"scene": 10
+},
+{
+"start": 1149.6449999999998,
+"dur": 4.0,
+"visual": "chapter",
+"p": {
+"num": 11,
+"title": "THE RETURN"
+},
+"speaker": "-",
+"scene": 11
+},
+{
+"start": 1153.6449999999998,
+"dur": 12.353,
+"visual": "caravan",
+"p": {
+"time": "night",
+"seed": 3,
+"noah": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1165.9979999999998,
+"dur": 13.03,
+"visual": "dunes",
+"p": {
+"time": "dawn",
+"seed": 20,
+"car": "buried",
+"caravan": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1179.0279999999998,
+"dur": 12.082,
+"visual": "jeep",
+"p": {
+"phase": "camp",
+"time": "dawn",
+"noah": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1191.11,
+"dur": 2.4,
+"visual": "profile",
+"p": {
+"time": "desert",
+"outfit": "trek",
+"seed": 14,
+"beard": 0.6
+},
+"speaker": "NOAH",
+"scene": 11
+},
+{
+"start": 1193.51,
+"dur": 11.651,
+"visual": "yara",
+"p": {
+"mode": "car",
+"worried": true,
+"seed": 13
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1205.161,
+"dur": 5.264,
+"visual": "yara",
+"p": {
+"mode": "car",
+"seed": 14,
+"smile": true
+},
+"speaker": "YARA",
+"scene": 11
+},
+{
+"start": 1210.425,
+"dur": 11.432,
+"visual": "yara",
+"p": {
+"mode": "car",
+"seed": 15
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1221.857,
+"dur": 16.564999999999998,
+"visual": "jeep",
+"p": {
+"phase": "convoy",
+"time": "day"
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1238.422,
+"dur": 15.866,
+"visual": "yara",
+"p": {
+"mode": "office",
+"seed": 16,
+"smile": true
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1254.288,
+"dur": 15.806,
+"visual": "satMap",
+"p": {
+"phase": "named"
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1270.094,
+"dur": 12.567,
+"visual": "phone",
+"p": {
+"screen": "email",
+"from": "Yara \u00b7 Photo attached",
+"text": "Idris says hello. The third glass is waiting."
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1282.661,
+"dur": 14.282,
+"visual": "caravan",
+"p": {
+"time": "dusk",
+"seed": 4
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1296.943,
+"dur": 5.0,
+"visual": "endCard",
+"p": {
+"dur": 5.0
+},
+"speaker": "-",
+"scene": 11
+},
+{
+"start": 1301.943,
+"dur": 14.143,
+"visual": "endCard",
+"p": {
+"question": true,
+"q": "Would <i>you</i> stay<br />or walk?"
+},
+"speaker": "N",
+"scene": 11
+},
+{
+"start": 1316.086,
+"dur": 9.151,
+"visual": "endCard",
+"p": {
+"question": true,
+"q": "Would <i>you</i> stay<br />or walk?",
+"tail": 4.0
+},
+"speaker": "N",
+"scene": 11
+}
+],
+"moods": [
+3,
+6,
+5,
+7,
+2,
+8,
+9,
+7,
+5,
+10,
+11,
+11
+]
+}

@@ -32,6 +32,8 @@ VOICES = {
     "MIA": ("a", "af_heart", 0.95),      # Noah's sister, in person (ep 5)
     "LEON": ("b", "bm_daniel", 0.92),    # Leon Marchand, yacht skipper (ep 6)
     "HANA": ("a", "af_nova", 1.0),       # Hana, seabird researcher (ep 6)
+    "YARA": ("b", "bf_lily", 0.95),      # Dr. Yara Haddad, geologist (ep 7)
+    "IDRIS": ("b", "bm_fable", 0.86),    # Idris, caravan leader (ep 7)
 }
 
 

@@ -215,11 +215,11 @@ export const Phone: React.FC<SetProps> = ({dur, p}) => {
                 </g>}
                 {scr === 'email' && <>
                   <text x={0} y={-220} textAnchor="middle" fill="#e9eef1" fontFamily="Inter" fontWeight={600} fontSize={34}>Inbox</text>
-                  <rect x={-210} y={-170} width={420} height={150} rx={18} fill="#1c2a34" />
+                  <rect x={-210} y={-170} width={420} height={190} rx={18} fill="#1c2a34" />
                   <circle cx={-160} cy={-120} r={26} fill="#4a7a6a" />
-                  <text x={-120} y={-126} fill="#e8edf0" fontFamily="Inter" fontWeight={600} fontSize={24}>Hana · Tamaru Atoll</text>
+                  <text x={-120} y={-126} fill="#e8edf0" fontFamily="Inter" fontWeight={600} fontSize={24}>{p.from ?? 'Hana · Tamaru Atoll'}</text>
                   <text x={-120} y={-94} fill="#93a3ab" fontFamily="Inter" fontSize={20}>Subject: (no subject)</text>
-                  <text x={-180} y={-46} fill="#d5d2c7" fontFamily="Inter" fontSize={26}>471 is back.</text>
+                  {String(p.text ?? '471 is back.').split(/(?<=\.) /).map((ln: string, li: number) => <text key={li} x={-180} y={-46 + li * 32} fill="#d5d2c7" fontFamily="Inter" fontSize={24}>{ln}</text>)}
                 </>}
                 {scr === 'dateJump' && <>
                   <text x={0} y={-180} textAnchor="middle" fill="#e9eef1" fontFamily="Inter Display" fontWeight={300} fontSize={110}>8:17</text>

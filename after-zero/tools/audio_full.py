@@ -457,6 +457,56 @@ def build(ep):
             place(sfx, A.bird_chirps(d, count=int(d * 1.5)).astype(np.float32), t0)
         if v == "biolum":
             place(sfx, shimmer(d, 0.02), t0)
+        # ---- episode 007 (desert) sets
+        desert_vis = ("dunes", "jeep", "mirrorDesert", "starNav", "critter", "mirage", "well", "dig", "signalFire", "caravan", "desertInventory", "heatGauge", "greenSahara")
+        if v in desert_vis or v in ("yara", "idris") and p.get("mode") in ("car", "night", "dunes", "fire", "jeep"):
+            tt = p.get("time", "day")
+            storm = tt == "storm"
+            wind = A.fast_lowpass(noise(d), 700 if storm else 260) * (0.5 if storm else (0.07 if tt == "night" else 0.1))
+            t_ = np.arange(n) / SR
+            wind *= 0.6 + 0.4 * np.sin(2 * np.pi * 0.07 * t_ + t0)
+            place(sfx, fade(wind.astype(np.float32)), t0)
+            if storm:
+                place(sfx, fade(A.wind(d, 0.4).astype(np.float32)), t0)
+            if tt == "night" or v in ("starNav", "critter") or p.get("mode") in ("night", "fire"):
+                for k in np.arange(0.4, d, 0.9):   # crickets
+                    place(sfx, beep(4200 + rng.random() * 400, 0.04, 0.012), t0 + k)
+            if v == "greenSahara":
+                place(sfx, A.bird_chirps(d, count=int(d * 2)).astype(np.float32), t0)
+        if v == "jeep" and p.get("phase") == "drive":
+            t_ = np.arange(n) / SR
+            place(sfx, fade((np.sin(2 * np.pi * 55 * t_) * 0.07 + A.fast_lowpass(noise(d), 160) * 0.18).astype(np.float32)), t0)
+        if v == "jeep" and p.get("phase") == "roll":
+            place(sfx, A.impact(4.0).astype(np.float32), t0 + d * 0.38)
+            place(sfx, A.impact(3.0).astype(np.float32) * 0.7, t0 + d * 0.55)
+            place(sfx, (A.bandpass(noise(1.5), 300, 4000) * 0.4 * env(int(1.5 * SR), 0.01, 1.2)).astype(np.float32), t0 + d * 0.4)
+        if v == "jeep" and p.get("phase") == "convoy":
+            t_ = np.arange(n) / SR
+            place(sfx, fade((np.sin(2 * np.pi * 42 * t_) * 0.06 + A.fast_lowpass(noise(d), 120) * 0.15).astype(np.float32)), t0)
+        if v in ("haboob", "jeepInside") or (v == "yara" and p.get("mode") == "storm"):
+            lvl = 0.25 if p.get("phase") == "far" else 0.55
+            if v == "jeepInside" or v == "yara":
+                lvl = 0.3 if not p.get("dark") else 0.2
+            roar = A.fast_lowpass(noise(d), 1200) * lvl + A.bandpass(noise(d), 2000, 7000) * lvl * 0.25
+            place(sfx, fade(roar.astype(np.float32)), t0)
+            place(sfx, fade(A.wind(d, lvl).astype(np.float32)), t0)
+        if v == "haboob" and p.get("phase") == "hit":
+            place(sfx, A.impact(3.0).astype(np.float32) * 0.6, t0)
+        if v in ("dunes", "planeHigh") and (p.get("plane") or v == "planeHigh"):
+            t_ = np.arange(n) / SR
+            place(sfx, fade((A.fast_lowpass(noise(d), 300) * 0.12 * (0.5 + 0.5 * np.sin(np.pi * t_ / d))).astype(np.float32)), t0)
+        if v == "wellDown":
+            place(sfx, (A.fast_lowpass(noise(0.12), 900) * 0.5 * np.exp(-np.arange(int(0.12 * SR)) / SR * 30)).astype(np.float32), t0 + d * 0.55)
+        if v == "dig":
+            for k in np.arange(0.4, d * 0.85, 1.1):
+                place(sfx, (A.bandpass(noise(0.25), 400, 3000) * 0.18 * env(int(0.25 * SR), 0.02, 0.2)).astype(np.float32), t0 + k)
+        if v == "signalFire" or (v == "idris" and p.get("mode") == "fire") or v == "tea":
+            place(sfx, fade(crackle(d, 0.18)), t0)
+        if v == "tea":
+            place(sfx, fade((A.bandpass(noise(d * 0.6), 800, 5000) * 0.12).astype(np.float32)), t0 + d * 0.15)
+        if v == "caravan" or (v == "idris" and p.get("mode") == "dunes"):
+            for k in np.arange(0.3, d, 0.8):
+                place(sfx, (A.piano_note(88 + (int(k * 10) % 3), dur=0.6) * 0.12).astype(np.float32), t0 + k)   # camel bells
         if p.get("impact"):
             place(sfx, A.impact().astype(np.float32), t0 + d * p["impact"])
         if v == "skyRing":
