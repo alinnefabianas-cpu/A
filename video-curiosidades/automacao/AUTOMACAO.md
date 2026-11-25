@@ -133,3 +133,8 @@ Guarde o `plannerUrl` da resposta. Se o Metricool der erro, não tente outra for
 ## 9. Resumo final
 Termine com um resumo curto em português: os 3 títulos, horários agendados, links do Metricool,
 e qualquer tema pulado ou vídeo não publicado (com o motivo).
+
+## Regras de viralização (adotadas em 2026-11-25)
+1. Vídeo com a cara do canal (estilo próprio, fato conferido, elemento visual marcante como contador na tela).
+2. **O primeiro quadro é a capa**: título grande e arte visíveis no frame 0 (Placa com k={1}, sem pop/fade).
+3. **CTA de uma palavra no fim**: última fala "comment one word: X" + tela final com a palavra em destaque.

@@ -32,7 +32,8 @@
     "render:flamingo": "remotion render src/index.ts FlamingosPink exportados/flamingos-not-born-pink-EN.mp4",
     "render:dedos": "remotion render src/index.ts FingersWrinkle exportados/fingers-wrinkle-water-EN.mp4",
     "render:mel": "remotion render src/index.ts HoneySpoils exportados/honey-never-spoils-EN.mp4",
-    "render:violet": "remotion render src/index.ts VioletJessop exportados/miss-unsinkable-EN.mp4"
+    "render:violet": "remotion render src/index.ts VioletJessop exportados/miss-unsinkable-EN.mp4",
+    "render:raio": "remotion render src/index.ts RoySullivan exportados/struck-by-lightning-7-times-EN.mp4"
   },
   "dependencies": {
     "@fontsource/nunito": "^5.2.8",
