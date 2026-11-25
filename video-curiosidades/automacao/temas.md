@@ -40,3 +40,4 @@ Nunca repita um tema já marcado.
 - [x] 2026-11-15 · napoleon · Napoleon wasn't actually short (feito à mão)
 - [x] 2026-11-21 · violet-jessop · Violet Jessop, "Miss Unsinkable" (Olympic 1911, Titanic 1912, Britannic 1916) (feito à mão)
 - [x] 2026-11-25 · roy-sullivan · Roy Sullivan, struck by lightning 7 times (feito à mão; capa no 1º quadro + CTA de 1 palavra)
+- [x] 2026-11-25 · juliane-koepcke · Juliane Koepcke fell 2 miles and survived the Amazon (feito à mão; capa no 1º quadro + CTA de 1 palavra)
