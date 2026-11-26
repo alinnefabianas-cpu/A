@@ -27,6 +27,7 @@ import honeySpoils from './honey-spoils/Episodio';
 import violetJessop from './violet-jessop/Episodio';
 import roySullivan from './roy-sullivan/Episodio';
 import julianeKoepcke from './juliane-koepcke/Episodio';
+import poonLim from './poon-lim/Episodio';
 
 export const EPISODIOS: DefEpisodio[] = [
 	emuWar,
@@ -55,5 +56,6 @@ export const EPISODIOS: DefEpisodio[] = [
 	violetJessop,
 	roySullivan,
 	julianeKoepcke,
+	poonLim,
 	// AUTO-EPISODIOS (não apague esta linha)
 ];

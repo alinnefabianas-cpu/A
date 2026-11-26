@@ -34,7 +34,8 @@
     "render:mel": "remotion render src/index.ts HoneySpoils exportados/honey-never-spoils-EN.mp4",
     "render:violet": "remotion render src/index.ts VioletJessop exportados/miss-unsinkable-EN.mp4",
     "render:raio": "remotion render src/index.ts RoySullivan exportados/struck-by-lightning-7-times-EN.mp4",
-    "render:queda": "remotion render src/index.ts JulianeKoepcke exportados/fell-2-miles-survived-EN.mp4"
+    "render:queda": "remotion render src/index.ts JulianeKoepcke exportados/fell-2-miles-survived-EN.mp4",
+    "render:jangada": "remotion render src/index.ts PoonLim exportados/133-days-alone-at-sea-EN.mp4"
   },
   "dependencies": {
     "@fontsource/nunito": "^5.2.8",
