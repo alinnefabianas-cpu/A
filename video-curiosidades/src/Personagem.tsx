@@ -1,0 +1,544 @@
+import React from 'react';
+import {useCurrentFrame} from 'remotion';
+
+export const CONTORNO = '#241820';
+
+export type Roupa = 'comandante' | 'copiloto' | 'comissaria' | 'passageiro' | 'executivo' | 'bombeiro' | 'soldado' | 'oficial' | 'fazendeiro' | 'corredor' | 'carteiro' | 'treinador' | 'napoleao' | 'granadeiro' | 'viking' | 'campones' | 'camponesa' | 'medico';
+export type Expressao = 'feliz' | 'neutro' | 'confuso' | 'enjoado' | 'bravo' | 'dormindo' | 'assustado' | 'serio' | 'pidao';
+
+type Props = {
+	x: number;
+	y: number;
+	escala?: number;
+	roupa: Roupa;
+	expressao?: Expressao;
+	cor?: string; // cor da roupa do passageiro
+	cabelo?: string;
+	falando?: boolean;
+	// ângulos dos braços em graus (0 = pendurado, 90 = para o lado, 160 = para cima)
+	bracoE?: number;
+	bracoD?: number;
+	cotoveloE?: number;
+	cotoveloD?: number;
+	olhar?: number; // -1 esquerda, 1 direita
+	inclinar?: number; // graus
+	enjoo?: number; // 0..1 deixa o rosto verde
+	semPernas?: boolean;
+	espelhar?: boolean;
+	itemD?: React.ReactNode; // desenhado na mão direita (coord. locais da mão)
+	itemE?: React.ReactNode;
+	fase?: number; // dessincroniza respiração/piscar
+	numero?: string; // número de corrida (roupa corredor/carteiro)
+};
+
+const W = 10; // espessura do contorno
+
+const Braco: React.FC<{lado: 1 | -1; ang: number; cot: number; manga: string; item?: React.ReactNode}> = ({lado, ang, cot, manga, item}) => {
+	// ombro em (lado*62, -405); braço de duas partes
+	const a1 = (ang * Math.PI) / 180;
+	const s1 = 105, s2 = 100;
+	const ex = Math.sin(a1) * s1 * lado, ey = Math.cos(a1) * s1;
+	const a2 = a1 + (cot * Math.PI) / 180;
+	const hx = ex + Math.sin(a2) * s2 * lado, hy = ey + Math.cos(a2) * s2;
+	return (
+		<g transform={`translate(${lado * 62}, -405)`}>
+			<path d={`M0 0 L${ex} ${ey} L${hx} ${hy}`} stroke={CONTORNO} strokeWidth={W + 8} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+			<path d={`M0 0 L${ex * 0.55} ${ey * 0.55}`} stroke={manga} strokeWidth={10} fill="none" strokeLinecap="round" />
+			<g transform={`translate(${hx}, ${hy})`}>
+				{item}
+				<circle r={15} fill="#fff" stroke={CONTORNO} strokeWidth={W - 2} />
+			</g>
+		</g>
+	);
+};
+
+const Olhos: React.FC<{exp: Expressao; piscando: boolean; olhar: number}> = ({exp, piscando, olhar}) => {
+	const ox = olhar * 10;
+	const fechados = piscando || exp === 'dormindo' || exp === 'feliz';
+	const sobrancelha = (() => {
+		switch (exp) {
+			case 'bravo':
+			case 'serio':
+				return ['M-78 -612 L-22 -596', 'M78 -612 L22 -596'];
+			case 'confuso':
+				return ['M-78 -606 L-24 -612', 'M24 -626 L78 -606'];
+			case 'enjoado':
+			case 'pidao':
+				return ['M-74 -598 L-24 -616', 'M74 -598 L24 -616'];
+			case 'assustado':
+				return ['M-76 -628 Q-50 -644 -24 -630', 'M76 -628 Q50 -644 24 -630'];
+			default:
+				return ['M-74 -614 Q-50 -626 -26 -614', 'M74 -614 Q50 -626 26 -614'];
+		}
+	})();
+	return (
+		<g>
+			{sobrancelha.map((d, i) => (
+				<path key={i} d={d} stroke={CONTORNO} strokeWidth={9} fill="none" strokeLinecap="round" />
+			))}
+			{fechados ? (
+				exp === 'feliz' && !piscando ? (
+					<>
+						<path d="M-66 -572 Q-50 -590 -34 -572" stroke={CONTORNO} strokeWidth={8} fill="none" strokeLinecap="round" />
+						<path d="M34 -572 Q50 -590 66 -572" stroke={CONTORNO} strokeWidth={8} fill="none" strokeLinecap="round" />
+					</>
+				) : (
+					<>
+						<path d="M-66 -578 Q-50 -566 -34 -578" stroke={CONTORNO} strokeWidth={8} fill="none" strokeLinecap="round" />
+						<path d="M34 -578 Q50 -566 66 -578" stroke={CONTORNO} strokeWidth={8} fill="none" strokeLinecap="round" />
+					</>
+				)
+			) : exp === 'assustado' ? (
+				<>
+					<circle cx={-50} cy={-578} r={22} fill="#fff" stroke={CONTORNO} strokeWidth={6} />
+					<circle cx={50} cy={-578} r={22} fill="#fff" stroke={CONTORNO} strokeWidth={6} />
+					<circle cx={-50 + ox * 0.6} cy={-578} r={8} fill={CONTORNO} />
+					<circle cx={50 + ox * 0.6} cy={-578} r={8} fill={CONTORNO} />
+				</>
+			) : exp === 'enjoado' ? (
+				<>
+					<path d="M-64 -584 L-36 -572 L-64 -562" stroke={CONTORNO} strokeWidth={8} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+					<path d="M64 -584 L36 -572 L64 -562" stroke={CONTORNO} strokeWidth={8} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+				</>
+			) : (
+				<>
+					<ellipse cx={-50 + ox} cy={-576} rx={exp === 'pidao' ? 16 : 13} ry={exp === 'pidao' ? 19 : 16} fill={CONTORNO} />
+					<ellipse cx={50 + ox} cy={-576} rx={exp === 'pidao' ? 16 : 13} ry={exp === 'pidao' ? 19 : 16} fill={CONTORNO} />
+					<circle cx={-46 + ox} cy={-582} r={exp === 'pidao' ? 6 : 4} fill="#fff" />
+					<circle cx={54 + ox} cy={-582} r={exp === 'pidao' ? 6 : 4} fill="#fff" />
+				</>
+			)}
+		</g>
+	);
+};
+
+const Boca: React.FC<{exp: Expressao; abre: number}> = ({exp, abre}) => {
+	if (abre > 0.05 && exp !== 'dormindo') {
+		const h = 8 + abre * 34;
+		return (
+			<g>
+				<ellipse cx={0} cy={-512 + h / 2} rx={26} ry={h / 2 + 6} fill="#7a2331" stroke={CONTORNO} strokeWidth={7} />
+				<ellipse cx={0} cy={-505 + h} rx={14} ry={Math.min(8, h / 3)} fill="#e86f86" />
+			</g>
+		);
+	}
+	switch (exp) {
+		case 'feliz':
+			return (
+				<g>
+					<path d="M-40 -526 Q0 -466 40 -526 Z" fill="#7a2331" stroke={CONTORNO} strokeWidth={7} strokeLinejoin="round" />
+					<path d="M-20 -500 Q0 -484 20 -500" fill="#e86f86" />
+				</g>
+			);
+		case 'bravo':
+		case 'serio':
+			return <path d="M-26 -508 L26 -508" stroke={CONTORNO} strokeWidth={8} strokeLinecap="round" />;
+		case 'confuso':
+			return <path d="M-28 -506 Q-10 -518 6 -506 Q18 -496 30 -510" stroke={CONTORNO} strokeWidth={8} fill="none" strokeLinecap="round" />;
+		case 'enjoado':
+			return <path d="M-32 -500 Q-16 -516 0 -500 Q16 -484 32 -500" stroke={CONTORNO} strokeWidth={8} fill="none" strokeLinecap="round" />;
+		case 'dormindo':
+			return <ellipse cx={0} cy={-506} rx={9} ry={11} fill="#7a2331" stroke={CONTORNO} strokeWidth={6} />;
+		case 'assustado':
+			return <ellipse cx={0} cy={-500} rx={20} ry={26} fill="#7a2331" stroke={CONTORNO} strokeWidth={7} />;
+		case 'pidao':
+			return <path d="M-16 -506 Q0 -516 16 -506" stroke={CONTORNO} strokeWidth={8} fill="none" strokeLinecap="round" />;
+		default:
+			return <path d="M-24 -514 Q0 -496 24 -514" stroke={CONTORNO} strokeWidth={8} fill="none" strokeLinecap="round" />;
+	}
+};
+
+const ROUPAS: Record<Roupa, {tronco: string; detalhe: string}> = {
+	comandante: {tronco: '#1f2f57', detalhe: '#f2c14e'},
+	copiloto: {tronco: '#2b3d6b', detalhe: '#f2c14e'},
+	comissaria: {tronco: '#c8323f', detalhe: '#f6e7c8'},
+	passageiro: {tronco: '#5a8f6a', detalhe: '#fff'},
+	executivo: {tronco: '#3b3f4a', detalhe: '#d63b3b'},
+	bombeiro: {tronco: '#c9a227', detalhe: '#e8e8e8'},
+	soldado: {tronco: '#8a7f4a', detalhe: '#5e5530'},
+	oficial: {tronco: '#7d7444', detalhe: '#c9a227'},
+	fazendeiro: {tronco: '#3f6fb0', detalhe: '#e9e2d0'},
+	corredor: {tronco: '#f4f4f4', detalhe: '#1d2a66'},
+	carteiro: {tronco: '#f1ead8', detalhe: '#6b5a44'},
+	treinador: {tronco: '#6b4a36', detalhe: '#2a2a2a'},
+	napoleao: {tronco: '#22397a', detalhe: '#f2c14e'},
+	granadeiro: {tronco: '#22397a', detalhe: '#e9e9e9'},
+	viking: {tronco: '#9b2f2a', detalhe: '#c9a227'},
+	campones: {tronco: '#8a6a44', detalhe: '#5b3f2c'},
+	camponesa: {tronco: '#5a8f6a', detalhe: '#f1ead8'},
+	medico: {tronco: '#1f1f2a', detalhe: '#c8323f'},
+};
+
+export const Personagem: React.FC<Props> = (p) => {
+	const f = useCurrentFrame() + (p.fase ?? 0) * 37;
+	const exp = p.expressao ?? 'neutro';
+	const respira = Math.sin(f / 14) * 4;
+	const piscando = f % 97 < 4 && exp !== 'dormindo';
+	const abre = p.falando ? Math.max(0, Math.sin(f * 0.9) * 0.6 + Math.sin(f * 0.43) * 0.4) : 0;
+	const roupa = ROUPAS[p.roupa];
+	const tronco = (p.roupa === 'passageiro' || p.roupa === 'executivo' || p.roupa === 'corredor' || p.roupa === 'treinador' || p.roupa === 'campones' || p.roupa === 'camponesa') && p.cor ? p.cor : roupa.tronco;
+	const enjoo = p.enjoo ?? 0;
+	const pele = enjoo > 0 ? mix('#ffffff', '#bfe3a0', enjoo) : '#ffffff';
+	const cabelo = p.cabelo ?? '#4a3326';
+
+	return (
+		<g transform={`translate(${p.x}, ${p.y}) scale(${(p.escala ?? 1) * (p.espelhar ? -1 : 1)}, ${p.escala ?? 1}) rotate(${p.inclinar ?? 0})`}>
+			{/* sombra */}
+			{!p.semPernas && <ellipse cx={0} cy={6} rx={120} ry={20} fill="rgba(0,0,0,0.22)" />}
+			{/* pernas */}
+			{!p.semPernas && (
+				<g stroke={CONTORNO} strokeLinecap="round" fill="none">
+					<path d="M-30 -210 L-38 -6 L-74 0" strokeWidth={W + 6} strokeLinejoin="round" />
+					<path d="M30 -210 L38 -6 L74 0" strokeWidth={W + 6} strokeLinejoin="round" />
+				</g>
+			)}
+			<g transform={`translate(0, ${respira * 0.5})`}>
+				{/* braço de trás */}
+				<Braco lado={-1} ang={p.bracoE ?? 12} cot={p.cotoveloE ?? 10} manga={tronco} item={p.itemE} />
+				{/* tronco (feijão) */}
+				<path
+					d="M-78 -380 C-82 -440 -40 -452 0 -452 C40 -452 82 -440 78 -380 L74 -250 C72 -205 40 -196 0 -196 C-40 -196 -72 -205 -74 -250 Z"
+					fill={tronco}
+					stroke={CONTORNO}
+					strokeWidth={W}
+				/>
+				{/* luz lateral (dá volume) */}
+				<path d="M-58 -400 C-62 -330 -60 -280 -50 -232" stroke="rgba(255,255,255,0.18)" strokeWidth={14} fill="none" strokeLinecap="round" />
+				<DetalheRoupa roupa={p.roupa} cor={roupa.detalhe} numero={p.numero} tronco={tronco} />
+				{/* pescoço + cabeça */}
+				<g transform={`translate(0, ${respira * 0.3})`}>
+					{p.roupa === 'comissaria' && <circle cx={0} cy={-680} r={46} fill={cabelo} stroke={CONTORNO} strokeWidth={W} />}
+					<ellipse cx={0} cy={-560} rx={124} ry={118} fill={pele} stroke={CONTORNO} strokeWidth={W} />
+					<path d="M-96 -520 C-80 -470 -30 -452 20 -454" stroke="rgba(160,170,200,0.25)" strokeWidth={16} fill="none" strokeLinecap="round" />
+					<Cabelo roupa={p.roupa} cor={cabelo} />
+					<Olhos exp={exp} piscando={piscando} olhar={p.olhar ?? 0} />
+					{(exp === 'feliz' || exp === 'pidao') && (
+						<>
+							<ellipse cx={-80} cy={-530} rx={18} ry={10} fill="#f6a5b4" opacity={0.7} />
+							<ellipse cx={80} cy={-530} rx={18} ry={10} fill="#f6a5b4" opacity={0.7} />
+						</>
+					)}
+					{(p.roupa === 'comandante' || p.roupa === 'oficial' || p.roupa === 'treinador') && <path d="M-44 -532 Q-22 -548 0 -536 Q22 -548 44 -532 Q22 -524 0 -530 Q-22 -524 -44 -532Z" fill="#4a3326" stroke={CONTORNO} strokeWidth={4} />}
+					<Boca exp={exp} abre={abre} />
+					{exp === 'enjoado' && (
+						<path d="M96 -610 Q110 -580 100 -566 Q86 -574 96 -610Z" fill="#8fd3ff" stroke={CONTORNO} strokeWidth={4} />
+					)}
+					{p.roupa === 'viking' && (
+						<g>
+							<path d="M-124 -560 C-150 -600 -130 -660 -100 -640 L-100 -540Z M124 -560 C150 -600 130 -660 100 -640 L100 -540Z" fill="#c9762e" stroke={CONTORNO} strokeWidth={6} />
+							<path d={`M-110 -530 C-100 -440 -40 ${-380 + abre * 10} 0 ${-370 + abre * 10} C40 ${-380 + abre * 10} 100 -440 110 -530 C80 -490 40 -${520 - abre * 30} 0 -${520 - abre * 30} C-40 -${520 - abre * 30} -80 -490 -110 -530Z`} fill="#c9762e" stroke={CONTORNO} strokeWidth={6} />
+							<path d="M-40 -530 Q0 -548 40 -530 Q20 -520 0 -526 Q-20 -520 -40 -530Z" fill="#a85f22" stroke={CONTORNO} strokeWidth={4} />
+							<path d="M-20 -420 L-24 -380 M20 -420 L24 -380" stroke="#a85f22" strokeWidth={6} />
+						</g>
+					)}
+					<Chapeu roupa={p.roupa} cor={roupa.detalhe} tronco={tronco} />
+				</g>
+				{/* braço da frente */}
+				<Braco lado={1} ang={p.bracoD ?? 12} cot={p.cotoveloD ?? 10} manga={tronco} item={p.itemD} />
+			</g>
+		</g>
+	);
+};
+
+const DetalheRoupa: React.FC<{roupa: Roupa; cor: string; numero?: string; tronco?: string}> = ({roupa, cor, numero, tronco}) => {
+	if (roupa === 'comandante' || roupa === 'copiloto') {
+		const faixas = roupa === 'comandante' ? 4 : 3;
+		return (
+			<g>
+				{/* camisa e gravata */}
+				<path d="M-30 -448 L0 -380 L30 -448 Z" fill="#fff" stroke={CONTORNO} strokeWidth={5} />
+				<path d="M0 -430 L-10 -400 L0 -330 L10 -400 Z" fill="#11182e" />
+				{/* lapelas */}
+				<path d="M-30 -448 L-4 -330 M30 -448 L4 -330" stroke={CONTORNO} strokeWidth={5} />
+				{/* botões dourados */}
+				{[-300, -260].map((y) => (
+					<g key={y}>
+						<circle cx={-22} cy={y} r={7} fill={cor} stroke={CONTORNO} strokeWidth={3} />
+						<circle cx={22} cy={y} r={7} fill={cor} stroke={CONTORNO} strokeWidth={3} />
+					</g>
+				))}
+				{/* asas no peito */}
+				<path d="M34 -378 l14 -6 l14 6 l-14 4z M20 -380 h56" stroke={cor} strokeWidth={5} fill={cor} />
+				{/* galões no ombro */}
+				{Array.from({length: faixas}).map((_, i) => (
+					<g key={i}>
+						<line x1={-74} y1={-430 + i * 9} x2={-50} y2={-436 + i * 9} stroke={cor} strokeWidth={5} />
+						<line x1={74} y1={-430 + i * 9} x2={50} y2={-436 + i * 9} stroke={cor} strokeWidth={5} />
+					</g>
+				))}
+			</g>
+		);
+	}
+	if (roupa === 'comissaria') {
+		return (
+			<g>
+				<path d="M-34 -448 L0 -400 L34 -448" fill={cor} stroke={CONTORNO} strokeWidth={5} />
+				<path d="M-40 -438 Q0 -400 40 -438 L20 -420 L0 -428 L-20 -420Z" fill="#f2c14e" stroke={CONTORNO} strokeWidth={3} />
+				<rect x={-74} y={-280} width={148} height={12} fill={CONTORNO} />
+				<rect x={30} y={-390} width={34} height={14} rx={3} fill="#f6e7c8" stroke={CONTORNO} strokeWidth={3} />
+			</g>
+		);
+	}
+	if (roupa === 'executivo')
+		return (
+			<g>
+				<path d="M-32 -448 L0 -386 L32 -448 Z" fill="#fff" stroke={CONTORNO} strokeWidth={5} />
+				<path d="M0 -436 L-12 -404 L0 -300 L12 -404 Z" fill={cor} stroke={CONTORNO} strokeWidth={4} />
+				<path d="M-32 -448 L-6 -300 M32 -448 L6 -300" stroke={CONTORNO} strokeWidth={5} />
+				<circle cx={-24} cy={-270} r={6} fill={CONTORNO} />
+			</g>
+		);
+	if (roupa === 'corredor' || roupa === 'carteiro') {
+		const calcao = roupa === 'corredor'
+			? <path d="M-76 -250 L-70 -170 L-8 -170 L0 -200 L8 -170 L70 -170 L76 -250Z" fill={cor} stroke={CONTORNO} strokeWidth={6} strokeLinejoin="round" />
+			: <path d="M-76 -250 L-74 -150 l12 -14 l12 14 l12 -14 l12 14 l14 -14 L0 -150 L0 -190 L4 -150 l12 -14 l12 14 l12 -14 l12 14 l12 -14 L76 -150 L76 -250Z" fill="#4a4f5c" stroke={CONTORNO} strokeWidth={6} strokeLinejoin="round" />;
+		return (
+			<g>
+				{calcao}
+				{roupa === 'corredor' ? (
+					<path d="M-40 -450 Q0 -400 40 -450" stroke={CONTORNO} strokeWidth={6} fill="none" />
+				) : (
+					<g>
+						<path d="M-30 -448 L0 -400 L30 -448" fill="none" stroke={CONTORNO} strokeWidth={5} />
+						<path d="M60 -440 L-50 -290" stroke="#6b5a44" strokeWidth={14} />
+						<rect x={-96} y={-310} width={70} height={60} rx={8} fill="#8a6a44" stroke={CONTORNO} strokeWidth={5} />
+					</g>
+				)}
+				{numero && (
+					<g transform="translate(0, -350)">
+						<rect x={-44} y={-34} width={88} height={64} rx={6} fill="#fff" stroke={CONTORNO} strokeWidth={5} />
+						<text x={0} y={16} textAnchor="middle" fontFamily="Nunito" fontWeight={900} fontSize={44} fill={CONTORNO}>{numero}</text>
+					</g>
+				)}
+			</g>
+		);
+	}
+	if (roupa === 'campones')
+		return (
+			<g>
+				<path d="M-30 -448 L0 -410 L30 -448" fill="none" stroke={CONTORNO} strokeWidth={5} />
+				<path d="M-20 -440 L-10 -400 M20 -440 L10 -400" stroke="#d9c49a" strokeWidth={4} />
+				<path d="M-78 -270 Q0 -250 78 -270" stroke="#d9c49a" strokeWidth={10} fill="none" />
+				<path d="M-78 -250 L-82 -180 L82 -180 L78 -250Z" fill={cor} stroke={CONTORNO} strokeWidth={5} />
+			</g>
+		);
+	if (roupa === 'camponesa')
+		return (
+			<g>
+				<path d="M-76 -270 L-120 -110 Q0 -90 120 -110 L76 -270Z" fill={tronco ?? '#5a8f6a'} stroke={CONTORNO} strokeWidth={7} strokeLinejoin="round" />
+				<path d="M-40 -270 L-56 -130 Q0 -120 56 -130 L40 -270Z" fill={cor} stroke={CONTORNO} strokeWidth={5} />
+				<path d="M-60 -440 Q0 -400 60 -440 L50 -380 Q0 -360 -50 -380Z" fill={cor} stroke={CONTORNO} strokeWidth={5} />
+				<path d="M-74 -280 L74 -280" stroke="#8a5a2b" strokeWidth={10} />
+			</g>
+		);
+	if (roupa === 'medico')
+		return (
+			<g>
+				<path d="M-78 -300 L-110 -120 Q0 -100 110 -120 L78 -300Z" fill="#1f1f2a" stroke={CONTORNO} strokeWidth={7} strokeLinejoin="round" />
+				<path d="M-60 -452 Q0 -410 60 -452 Q50 -420 0 -404 Q-50 -420 -60 -452Z" fill="#fff" stroke={CONTORNO} strokeWidth={5} />
+				<path d="M0 -404 L0 -130" stroke="#3a3a4a" strokeWidth={6} />
+				<path d="M-74 -440 L-50 -446 M74 -440 L50 -446" stroke={cor} strokeWidth={10} />
+			</g>
+		);
+	if (roupa === 'viking')
+		return (
+			<g>
+				<path d="M-96 -440 Q-110 -330 -100 -200 L-78 -200 L-78 -420Z M96 -440 Q110 -330 100 -200 L78 -200 L78 -420Z" fill="#6b4a36" stroke={CONTORNO} strokeWidth={5} />
+				<path d="M-96 -450 Q0 -400 96 -450 Q80 -420 0 -404 Q-80 -420 -96 -450Z" fill="#d9cbb0" stroke={CONTORNO} strokeWidth={5} />
+				{[-80, -50, -20, 10, 40, 70].map((x) => <circle key={x} cx={x} cy={-438 + Math.abs(x) * 0.25} r={14} fill="#e9dcc0" stroke={CONTORNO} strokeWidth={3} />)}
+				<rect x={-76} y={-290} width={152} height={22} fill="#4a3326" stroke={CONTORNO} strokeWidth={4} />
+				<circle cx={0} cy={-279} r={16} fill={cor} stroke={CONTORNO} strokeWidth={4} />
+				<path d="M0 -400 L0 -300" stroke={cor} strokeWidth={6} />
+			</g>
+		);
+	if (roupa === 'napoleao' || roupa === 'granadeiro')
+		return (
+			<g>
+				<path d="M-40 -448 L0 -420 L40 -448 L34 -250 L-34 -250Z" fill="#f4f1e8" stroke={CONTORNO} strokeWidth={5} />
+				{[-400, -360, -320, -280].map((y) => <circle key={y} cx={0} cy={y} r={6} fill="#c9a227" stroke={CONTORNO} strokeWidth={2} />)}
+				<path d="M-40 -448 L-60 -250 M40 -448 L60 -250" stroke="#c8323f" strokeWidth={10} />
+				{[-1, 1].map((l) => (
+					<g key={l} transform={`translate(${l * 64}, -436)`}>
+						<ellipse cx={0} cy={0} rx={34} ry={14} fill={cor} stroke={CONTORNO} strokeWidth={4} />
+						{roupa === 'napoleao' && [-24, -12, 0, 12, 24].map((x) => <line key={x} x1={x} y1={8} x2={x * 1.1} y2={30} stroke={cor} strokeWidth={5} />)}
+					</g>
+				))}
+				{roupa === 'granadeiro' && <path d="M-74 -330 L74 -300 M-74 -300 L74 -330" stroke="#e9e9e9" strokeWidth={12} />}
+			</g>
+		);
+	if (roupa === 'treinador')
+		return (
+			<g>
+				<path d="M-30 -448 L0 -396 L30 -448 Z" fill="#fff" stroke={CONTORNO} strokeWidth={5} />
+				<path d="M-14 -430 L14 -430 L0 -410Z" fill="#8f2f2f" />
+				<path d="M-30 -448 L-6 -300 M30 -448 L6 -300" stroke={CONTORNO} strokeWidth={5} />
+				<path d="M20 -330 Q40 -320 30 -300" stroke="#c9a227" strokeWidth={4} fill="none" />
+			</g>
+		);
+	if (roupa === 'soldado' || roupa === 'oficial')
+		return (
+			<g>
+				<path d="M-30 -448 L0 -410 L30 -448" fill="none" stroke={CONTORNO} strokeWidth={5} />
+				<rect x={-58} y={-400} width={44} height={36} rx={6} fill="none" stroke={CONTORNO} strokeWidth={4} />
+				<rect x={14} y={-400} width={44} height={36} rx={6} fill="none" stroke={CONTORNO} strokeWidth={4} />
+				<rect x={-76} y={-290} width={152} height={20} fill={cor} stroke={CONTORNO} strokeWidth={4} />
+				<rect x={-14} y={-292} width={28} height={24} rx={4} fill="#c9a227" stroke={CONTORNO} strokeWidth={3} />
+				{roupa === 'oficial' && <path d="M-74 -440 L-48 -446 M74 -440 L48 -446" stroke={cor} strokeWidth={8} />}
+			</g>
+		);
+	if (roupa === 'fazendeiro')
+		return (
+			<g>
+				<path d="M-78 -380 C-82 -440 -40 -452 0 -452 C40 -452 82 -440 78 -380 L74 -330 H-74Z" fill="#c8323f" stroke={CONTORNO} strokeWidth={6} />
+				<path d="M-74 -380 H74 M-74 -350 H74 M-30 -452 V-330 M30 -452 V-330" stroke="rgba(0,0,0,0.25)" strokeWidth={6} />
+				<path d="M-44 -330 L-50 -450 M44 -330 L50 -450" stroke="#2c4f82" strokeWidth={14} />
+				<circle cx={-44} cy={-340} r={7} fill="#f2c14e" stroke={CONTORNO} strokeWidth={3} />
+				<circle cx={44} cy={-340} r={7} fill="#f2c14e" stroke={CONTORNO} strokeWidth={3} />
+				<rect x={-30} y={-310} width={60} height={40} rx={6} fill="none" stroke="#2c4f82" strokeWidth={5} />
+			</g>
+		);
+	if (roupa === 'bombeiro')
+		return (
+			<g>
+				<rect x={-76} y={-330} width={152} height={22} fill={cor} stroke={CONTORNO} strokeWidth={4} />
+				<rect x={-74} y={-262} width={148} height={22} fill={cor} stroke={CONTORNO} strokeWidth={4} />
+				<line x1={0} y1={-446} x2={0} y2={-200} stroke={CONTORNO} strokeWidth={6} />
+				{[-400, -370].map((y) => <rect key={y} x={-14} y={y} width={28} height={10} rx={3} fill="#555" />)}
+			</g>
+		);
+	return <path d="M-26 -446 Q0 -420 26 -446" stroke={CONTORNO} strokeWidth={6} fill="none" />;
+};
+
+const Cabelo: React.FC<{roupa: Roupa; cor: string}> = ({roupa, cor}) => {
+	if (roupa === 'comissaria')
+		return <path d="M-120 -590 C-110 -690 110 -690 120 -590 C80 -640 30 -650 -10 -626 C-50 -650 -100 -630 -120 -590Z" fill={cor} stroke={CONTORNO} strokeWidth={8} />;
+	if (roupa === 'copiloto')
+		return <path d="M-116 -600 C-100 -690 100 -690 116 -600 L96 -626 L70 -606 L40 -632 L10 -606 L-20 -634 L-50 -606 L-80 -630Z" fill={cor} stroke={CONTORNO} strokeWidth={8} strokeLinejoin="round" />;
+	if (roupa === 'passageiro' || roupa === 'executivo' || roupa === 'corredor' || roupa === 'campones' || roupa === 'medico')
+		return <path d="M-112 -610 C-96 -690 96 -690 112 -610 C70 -650 -40 -660 -112 -610Z" fill={cor} stroke={CONTORNO} strokeWidth={8} />;
+	return null;
+};
+
+const Chapeu: React.FC<{roupa: Roupa; cor: string; tronco: string}> = ({roupa, cor, tronco}) => {
+	if (roupa === 'comandante')
+		return (
+			<g>
+				<path d="M-150 -640 C-150 -720 150 -720 150 -640 Z" fill="#fdfdfd" stroke={CONTORNO} strokeWidth={W} />
+				<rect x={-118} y={-646} width={236} height={34} fill="#141b33" stroke={CONTORNO} strokeWidth={W - 2} />
+				<path d="M-118 -612 Q0 -568 118 -612 L104 -600 Q0 -566 -104 -600Z" fill="#0d1224" stroke={CONTORNO} strokeWidth={6} />
+				<path d="M-60 -640 Q0 -652 60 -640" stroke={cor} strokeWidth={6} fill="none" />
+				<circle cx={0} cy={-668} r={18} fill={cor} stroke={CONTORNO} strokeWidth={5} />
+				<path d="M-40 -668 h-20 M40 -668 h20" stroke={cor} strokeWidth={8} strokeLinecap="round" />
+			</g>
+		);
+	if (roupa === 'campones')
+		return (
+			<g>
+				<path d="M-150 -620 Q-140 -700 0 -720 Q140 -700 150 -620 Q120 -650 0 -652 Q-120 -650 -150 -620Z" fill="#6b4a36" stroke={CONTORNO} strokeWidth={W - 2} />
+				<path d="M60 -700 q 40 -60 90 -40" stroke="#c8323f" strokeWidth={10} fill="none" strokeLinecap="round" />
+			</g>
+		);
+	if (roupa === 'camponesa')
+		return <path d="M-130 -560 C-150 -700 150 -700 130 -560 C110 -620 60 -650 0 -650 C-60 -650 -110 -620 -130 -560Z" fill="#f1ead8" stroke={CONTORNO} strokeWidth={8} />;
+	if (roupa === 'medico')
+		return (
+			<g>
+				<path d="M-104 -630 C-110 -730 110 -730 104 -630 Z" fill="#c8323f" stroke={CONTORNO} strokeWidth={W} />
+				<rect x={-110} y={-648} width={220} height={26} rx={12} fill="#1f1f2a" stroke={CONTORNO} strokeWidth={6} />
+			</g>
+		);
+	if (roupa === 'viking')
+		return (
+			<g>
+				<path d="M-100 -640 L-110 -720 L-60 -680 L-30 -740 L0 -690 L30 -740 L60 -680 L110 -720 L100 -640Z" fill="#f2c14e" stroke={CONTORNO} strokeWidth={W - 2} strokeLinejoin="round" />
+				{[-60, 0, 60].map((x) => <circle key={x} cx={x} cy={-660} r={10} fill={x ? '#2f5bd3' : '#e8463f'} stroke={CONTORNO} strokeWidth={3} />)}
+			</g>
+		);
+	if (roupa === 'napoleao')
+		return (
+			<g>
+				<path d="M-210 -620 Q-150 -700 0 -720 Q150 -700 210 -620 Q120 -650 0 -648 Q-120 -650 -210 -620Z" fill="#1a1a1a" stroke={CONTORNO} strokeWidth={W} strokeLinejoin="round" />
+				<path d="M-170 -630 Q0 -600 170 -630" stroke="#c9a227" strokeWidth={6} fill="none" />
+				<circle cx={60} cy={-664} r={24} fill="#2f5bd3" stroke={CONTORNO} strokeWidth={4} />
+				<circle cx={60} cy={-664} r={15} fill="#fff" />
+				<circle cx={60} cy={-664} r={7} fill="#c8323f" />
+			</g>
+		);
+	if (roupa === 'granadeiro')
+		return (
+			<g>
+				<path d="M-120 -610 C-140 -760 -100 -880 0 -890 C100 -880 140 -760 120 -610 Z" fill="#1a1a1a" stroke={CONTORNO} strokeWidth={W} />
+				{Array.from({length: 8}).map((_, i) => <path key={i} d={`M${-90 + i * 26} -640 q 6 -120 -4 -220`} stroke="#333" strokeWidth={6} fill="none" />)}
+				<path d="M-120 -620 L120 -620" stroke="#c9a227" strokeWidth={10} />
+				<path d="M90 -800 q 40 -40 20 -90 q 30 40 10 100Z" fill="#c8323f" stroke={CONTORNO} strokeWidth={5} />
+			</g>
+		);
+	if (roupa === 'treinador')
+		return (
+			<g>
+				<ellipse cx={0} cy={-630} rx={150} ry={26} fill="#2a2a2a" stroke={CONTORNO} strokeWidth={W} />
+				<path d="M-96 -632 C-100 -730 100 -730 96 -632 Z" fill="#2a2a2a" stroke={CONTORNO} strokeWidth={W} />
+				<rect x={-96} y={-658} width={192} height={18} fill="#6b4a36" />
+			</g>
+		);
+	if (roupa === 'corredor')
+		return <path d="M-118 -600 Q0 -650 118 -600 L118 -580 Q0 -628 -118 -580Z" fill="#e8463f" stroke={CONTORNO} strokeWidth={6} />;
+	if (roupa === 'carteiro')
+		return (
+			<g>
+				<path d="M-112 -630 C-110 -720 110 -720 112 -630 Z" fill="#4a4f5c" stroke={CONTORNO} strokeWidth={W} />
+				<path d="M-60 -630 Q60 -600 170 -626 L160 -610 Q60 -584 -56 -612Z" fill="#2a2e38" stroke={CONTORNO} strokeWidth={6} />
+			</g>
+		);
+	if (roupa === 'soldado')
+		return (
+			<g>
+				<path d="M-112 -630 C-110 -730 110 -730 112 -630 Z" fill="#8a7f4a" stroke={CONTORNO} strokeWidth={W} />
+				<rect x={-112} y={-656} width={224} height={26} fill="#4f4828" stroke={CONTORNO} strokeWidth={5} />
+				<path d="M-112 -636 C-150 -700 -170 -720 -150 -740 C-130 -720 -120 -690 -100 -650Z" fill="#7a7040" stroke={CONTORNO} strokeWidth={7} strokeLinejoin="round" />
+				<path d="M-100 -630 Q20 -600 190 -628 L176 -612 Q20 -584 -96 -612Z" fill="#7a7040" stroke={CONTORNO} strokeWidth={7} />
+				<circle cx={-128} cy={-690} r={14} fill="#c9a227" stroke={CONTORNO} strokeWidth={4} />
+			</g>
+		);
+	if (roupa === 'oficial')
+		return (
+			<g>
+				<path d="M-130 -636 C-130 -716 130 -716 130 -636 Z" fill="#7d7444" stroke={CONTORNO} strokeWidth={W} />
+				<rect x={-112} y={-646} width={224} height={28} fill="#8f2f2f" stroke={CONTORNO} strokeWidth={6} />
+				<path d="M-112 -618 Q0 -580 112 -618 L100 -604 Q0 -572 -100 -604Z" fill="#2a2416" stroke={CONTORNO} strokeWidth={6} />
+				<circle cx={0} cy={-668} r={16} fill="#c9a227" stroke={CONTORNO} strokeWidth={5} />
+			</g>
+		);
+	if (roupa === 'fazendeiro')
+		return (
+			<g>
+				<ellipse cx={0} cy={-628} rx={200} ry={40} fill="#e8c46a" stroke={CONTORNO} strokeWidth={W} />
+				<path d="M-104 -630 C-104 -730 104 -730 104 -630 Z" fill="#e8c46a" stroke={CONTORNO} strokeWidth={W} />
+				<rect x={-104} y={-660} width={208} height={24} fill="#c8323f" stroke={CONTORNO} strokeWidth={5} />
+				<path d="M-160 -640 Q0 -600 160 -640" stroke="rgba(0,0,0,0.15)" strokeWidth={6} fill="none" />
+			</g>
+		);
+	if (roupa === 'bombeiro')
+		return (
+			<g>
+				<path d="M-140 -606 C-150 -760 150 -760 140 -606 Z" fill="#d6262f" stroke={CONTORNO} strokeWidth={W} />
+				<path d="M-190 -610 Q0 -560 190 -610 L180 -590 Q0 -540 -180 -590Z" fill="#b01e26" stroke={CONTORNO} strokeWidth={7} />
+				<path d="M0 -748 L0 -612" stroke="#8f1820" strokeWidth={14} />
+				<path d="M-40 -700 h80 v50 l-40 22 l-40 -22z" fill="#f2c14e" stroke={CONTORNO} strokeWidth={6} />
+			</g>
+		);
+	if (roupa === 'comissaria')
+		return (
+			<g transform="rotate(-12 40 -680)">
+				<rect x={0} y={-700} width={84} height={40} rx={10} fill={tronco} stroke={CONTORNO} strokeWidth={8} />
+				<rect x={0} y={-676} width={84} height={8} fill="#f2c14e" />
+			</g>
+		);
+	return null;
+};
+
+function mix(a: string, b: string, t: number) {
+	const pa = [1, 3, 5].map((i) => parseInt(a.slice(i, i + 2), 16));
+	const pb = [1, 3, 5].map((i) => parseInt(b.slice(i, i + 2), 16));
+	return `rgb(${pa.map((v, i) => Math.round(v + (pb[i] - v) * t)).join(',')})`;
+}
