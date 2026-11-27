@@ -5,7 +5,7 @@ import {Longo, LINHA, ThumbLongo, FPS as FPS_LONGO} from './longo/Longo';
 import {Longo2, LINHA as LINHA2} from './longo/Longo2';
 import {Longo3, LINHA as LINHA3} from './longo/Longo3';
 import {Longo4, LINHA as LINHA4} from './longo/Longo4';
-import {ThumbA, ThumbB, ThumbFake, ThumbMel} from './longo/Thumbs';
+import {ThumbA, ThumbB, ThumbFake, ThumbMel, ThumbSurvive} from './longo/Thumbs';
 import '@fontsource/nunito/900.css';
 import '@fontsource/nunito/800.css';
 import {Pilotos} from './Video';
@@ -34,6 +34,7 @@ export const Root: React.FC = () => (
 		<Still id="ThumbB" component={ThumbB} width={1280} height={720} />
 		<Still id="ThumbFake" component={ThumbFake} width={1280} height={720} />
 		<Still id="ThumbMel" component={ThumbMel} width={1280} height={720} />
+		<Still id="ThumbSurvive" component={ThumbSurvive} width={1280} height={720} />
 		<Still id="FotoPerfil" component={FotoPerfil} width={800} height={800} />
 		<Still id="Banner" component={Banner} width={2560} height={1440} />
 		<Still id="BannerGuia" component={BannerGuia} width={2560} height={1440} />

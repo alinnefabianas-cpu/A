@@ -6,6 +6,7 @@ import {Painel} from '../elevador/cenarios';
 import {MELACO, MELACO_CLARO} from '../episodios/molasses-flood/arte';
 import {Tubarao} from '../episodios/sharks-trees/Episodio';
 import {PoteMel} from '../episodios/honey-spoils/Episodio';
+import {Raio} from '../episodios/roy-sullivan/Episodio';
 
 const TW = 1280, TH = 720;
 
@@ -145,6 +146,29 @@ export const ThumbMel: React.FC = () => (
 		<g transform="translate(330, 660) rotate(-4)">
 			<rect x={-210} y={-50} width={420} height={100} rx={20} fill="#000" />
 			<text x={0} y={18} textAnchor="middle" fontFamily="Nunito" fontWeight={900} fontSize={48} fill="#ffd23f">1000s OF YEARS</text>
+		</g>
+	</svg>
+);
+
+// Vídeo longo 4 — "SHOULD BE DEAD?!": raio atingindo o guarda-florestal com cabelo pegando fogo
+export const ThumbSurvive: React.FC = () => (
+	<svg viewBox={`0 0 ${TW} ${TH}`} width={TW} height={TH}>
+		<Explosao c1="#6a7ad8" c2="#141a33" cx={380} cy={300} />
+		<g transform="translate(330, 520) scale(0.62)"><Raio /></g>
+		<Recorte>
+			<Personagem x={380} y={1180} escala={1.0} roupa="soldado" cor="#5a6b3a" cabelo="#3a2a1e" expressao="assustado" fase={1} bracoD={160} bracoE={160} cotoveloD={-10} cotoveloE={-10} />
+		</Recorte>
+		<g transform="translate(395, 560)">
+			<path d="M-80 0 Q-100 -120 -30 -160 Q-40 -90 0 -80 Q-10 -180 60 -220 Q50 -120 90 -90 Q110 -40 80 0Z" fill="#ff7a1a" stroke={CONTORNO} strokeWidth={6} />
+			<path d="M-40 0 Q-50 -70 0 -90 Q0 -40 30 -40 Q50 -20 40 0Z" fill="#ffd23f" />
+		</g>
+		<Titulo x={1250} y={140} t="SHOULD BE" tam={110} cor="#fff" rot={-3} ancora="end" />
+		<g transform="rotate(-3 1030 270)"><rect x={720} y={190} width={540} height={150} rx={18} fill="#ff1f1f" stroke="#000" strokeWidth={10} /></g>
+		<Titulo x={1236} y={312} t="DEAD?!" tam={130} cor="#ffe600" rot={-3} ancora="end" />
+		<g transform="translate(1000, 560) rotate(4)">
+			<rect x={-260} y={-110} width={520} height={220} rx={24} fill="#000" />
+			<text x={0} y={-20} textAnchor="middle" fontFamily="Nunito" fontWeight={900} fontSize={56} fill="#ffd23f">STRUCK 7 TIMES</text>
+			<text x={0} y={60} textAnchor="middle" fontFamily="Nunito" fontWeight={900} fontSize={56} fill="#5aff7a">+5 MORE</text>
 		</g>
 	</svg>
 );
