@@ -28,6 +28,8 @@ import violetJessop from './violet-jessop/Episodio';
 import roySullivan from './roy-sullivan/Episodio';
 import julianeKoepcke from './juliane-koepcke/Episodio';
 import poonLim from './poon-lim/Episodio';
+import mauroProsperi from './mauro-prosperi/Episodio';
+import annaBagenholm from './anna-bagenholm/Episodio';
 
 export const EPISODIOS: DefEpisodio[] = [
 	emuWar,
@@ -57,5 +59,7 @@ export const EPISODIOS: DefEpisodio[] = [
 	roySullivan,
 	julianeKoepcke,
 	poonLim,
+	mauroProsperi,
+	annaBagenholm,
 	// AUTO-EPISODIOS (não apague esta linha)
 ];

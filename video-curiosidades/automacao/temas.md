@@ -42,3 +42,5 @@ Nunca repita um tema já marcado.
 - [x] 2026-11-25 · roy-sullivan · Roy Sullivan, struck by lightning 7 times (feito à mão; capa no 1º quadro + CTA de 1 palavra)
 - [x] 2026-11-25 · juliane-koepcke · Juliane Koepcke fell 2 miles and survived the Amazon (feito à mão; capa no 1º quadro + CTA de 1 palavra)
 - [x] 2026-11-26 · poon-lim · Poon Lim, 133 days alone on a raft (feito à mão; capa no 1º quadro + CTA de 1 palavra)
+- [x] 2026-11-27 · mauro-prosperi · Mauro Prosperi, 9 days lost in the Sahara (feito à mão, vídeo longo 4)
+- [x] 2026-11-27 · anna-bagenholm · Anna Bågenholm survived 13.7°C body temperature (feito à mão, vídeo longo 4)

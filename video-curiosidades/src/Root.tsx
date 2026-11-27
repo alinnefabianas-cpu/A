@@ -4,6 +4,7 @@ import {Banner, BannerGuia, FotoPerfil} from './Marca';
 import {Longo, LINHA, ThumbLongo, FPS as FPS_LONGO} from './longo/Longo';
 import {Longo2, LINHA as LINHA2} from './longo/Longo2';
 import {Longo3, LINHA as LINHA3} from './longo/Longo3';
+import {Longo4, LINHA as LINHA4} from './longo/Longo4';
 import {ThumbA, ThumbB, ThumbFake, ThumbMel} from './longo/Thumbs';
 import '@fontsource/nunito/900.css';
 import '@fontsource/nunito/800.css';
@@ -28,6 +29,7 @@ export const Root: React.FC = () => (
 		<Still id="ThumbLongo" component={ThumbLongo} width={1280} height={720} />
 		<Composition id="Longo2" component={Longo2} durationInFrames={LINHA2.total} fps={FPS_LONGO} width={1920} height={1080} />
 		<Composition id="Longo3" component={Longo3} durationInFrames={LINHA3.total} fps={FPS_LONGO} width={1920} height={1080} />
+		<Composition id="Longo4" component={Longo4} durationInFrames={LINHA4.total} fps={FPS_LONGO} width={1920} height={1080} />
 		<Still id="ThumbA" component={ThumbA} width={1280} height={720} />
 		<Still id="ThumbB" component={ThumbB} width={1280} height={720} />
 		<Still id="ThumbFake" component={ThumbFake} width={1280} height={720} />
