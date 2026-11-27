@@ -11,6 +11,7 @@ import {Thumbnail4} from './Thumbnail4';
 import {Thumbnail5} from './Thumbnail5';
 import {Thumbnail6} from './Thumbnail6';
 import {Thumbnail7} from './Thumbnail7';
+import {Thumbnail8} from './Thumbnail8';
 import {Banner, ProfileA, ProfileB, ProfileC, ProfilePic} from './Branding';
 
 const TITLE = 'WHAT IF YOU WERE THE LAST HUMAN ON EARTH?';
@@ -47,6 +48,8 @@ export const Root: React.FC = () => (
     <Composition id="ProfileC" component={ProfileC} durationInFrames={1} fps={30} width={800} height={800} />
     <Composition id="Banner" component={Banner} durationInFrames={1} fps={30} width={2560} height={1440} />
     <Composition id="Ep7Thumb1" component={() => <Thumbnail7 variant={1} />} durationInFrames={1} fps={30} width={1920} height={1080} />
+    <Composition id="Ep8Thumb1" component={() => <Thumbnail8 variant={1} />} durationInFrames={1} fps={30} width={1920} height={1080} />
+    <Composition id="Ep8Thumb2" component={() => <Thumbnail8 variant={2} />} durationInFrames={1} fps={30} width={1920} height={1080} />
     <Composition id="Ep7Thumb2" component={() => <Thumbnail7 variant={2} />} durationInFrames={1} fps={30} width={1920} height={1080} />
     <Composition id="Ep6Thumb1" component={() => <Thumbnail6 variant={1} />} durationInFrames={1} fps={30} width={1920} height={1080} />
     <Composition id="Ep6Thumb2" component={() => <Thumbnail6 variant={2} />} durationInFrames={1} fps={30} width={1920} height={1080} />

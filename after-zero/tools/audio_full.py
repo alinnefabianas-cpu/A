@@ -507,6 +507,73 @@ def build(ep):
         if v == "caravan" or (v == "idris" and p.get("mode") == "dunes"):
             for k in np.arange(0.3, d, 0.8):
                 place(sfx, (A.piano_note(88 + (int(k * 10) % 3), dur=0.6) * 0.12).astype(np.float32), t0 + k)   # camel bells
+        # ---- episode 008 (space) sets
+        inside8 = v in ("module", "vera", "gauge", "scrubber", "hamRadio", "waterBlob") or (v == "profile" and p.get("time") in ("module", "dim", "capsule", "cupola")) or v == "cupola"
+        if inside8 and not (v == "vera" and p.get("mode") == "training"):
+            lv = 0.03 if (p.get("mode") == "dim" or v in ("gauge", "scrubber", "hamRadio") or p.get("time") == "dim") else 0.05
+            place(sfx, fade((hum(d, 120, lv * 0.5) + A.fast_lowpass(noise(d), 500) * lv).astype(np.float32)), t0)   # fans / life support
+        if (v in ("module", "vera") and p.get("mode") == "alarm") or (v == "control" and p.get("mode") == "alarm"):
+            for k in np.arange(0.2, d, 0.8):
+                place(sfx, beep(880, 0.18, 0.05), t0 + k)
+                place(sfx, beep(660, 0.18, 0.04), t0 + k + 0.25)
+        if v == "module" and p.get("hatch"):
+            place(sfx, fade((A.bandpass(noise(d * 0.55), 2500, 8000) * 0.12).astype(np.float32)), t0)   # air leak hiss
+            place(sfx, A.impact(2.0).astype(np.float32) * 0.6, t0 + d * 0.6)
+        if v == "module" and p.get("panel"):
+            place(sfx, beep(1200, 0.1, 0.06), t0 + d * 0.1)
+            place(sfx, beep(300, 0.6, 0.06), t0 + d * 0.5)
+        if v == "module" and p.get("rescue"):
+            place(sfx, fade((A.fast_lowpass(noise(d), 900) * 0.18 * env(n, 0.5, 2.0)).astype(np.float32)), t0)
+        if v == "meridian" and p.get("phase") == "debris":
+            for k in np.arange(d * 0.35, d, 0.13):
+                place(sfx, (A.bandpass(noise(0.05), 1500, 6000) * (0.1 + rng.random() * 0.15)).astype(np.float32), t0 + k)
+        if v == "meridian" and p.get("phase") == "hit":
+            place(sfx, A.impact(4.0).astype(np.float32), t0)
+            place(sfx, fade((A.bandpass(noise(d), 2500, 8000) * 0.1).astype(np.float32)), t0 + 0.4)
+        if v == "rocket":
+            ph = p.get("phase")
+            if ph == "pad":
+                place(sfx, fade((A.fast_lowpass(noise(d), 300) * 0.06).astype(np.float32)), t0)
+            if ph == "launch":
+                roar = A.fast_lowpass(noise(d), 500) * 0.8 * env(n, 0.3, 0.3)
+                place(sfx, roar.astype(np.float32), t0 + d * 0.08)
+                place(sfx, A.impact(4.0).astype(np.float32) * 0.6, t0 + d * 0.08)
+            if ph == "ascent":
+                place(sfx, fade((A.fast_lowpass(noise(d), 400) * 0.45 * np.linspace(1, 0.5, n)).astype(np.float32)), t0)
+        if v == "control" and p.get("mode") in ("launch", "plan", "silent", "cheer"):
+            place(sfx, fade(A.room_tone(d).astype(np.float32)), t0)
+            if p.get("mode") == "cheer":
+                place(sfx, fade((A.bandpass(noise(d), 400, 3000) * 0.08 * env(n, 0.4, 1.5)).astype(np.float32)), t0)
+        if v == "hamRadio":
+            if p.get("static"):
+                place(sfx, fade(static(d, 0.12)), t0)
+            place(sfx, beep(1000, 0.06, 0.05), t0 + 0.1)
+        if v == "spacewalk" and p.get("phase") != "pool":
+            t_ = np.arange(n) / SR
+            br = (A.fast_lowpass(noise(d), 600) * 0.07 * (0.5 + 0.5 * np.sin(2 * np.pi * (0.35 if p.get("phase") in ("drift", "grab") else 0.22) * t_))).astype(np.float32)
+            place(sfx, fade(br), t0)   # breathing in the helmet
+            if p.get("phase") == "drift":
+                for k in np.arange(d * 0.55, d, 0.5):
+                    place(sfx, beep(1400, 0.1, 0.06), t0 + k)
+        if v == "spacewalk" and p.get("phase") == "pool":
+            for k in np.arange(0.5, d, 1.7):
+                place(sfx, (A.fast_lowpass(noise(0.5), 500) * 0.15 * env(int(0.5 * SR), 0.05, 0.4)).astype(np.float32), t0 + k)
+        if v == "capsule":
+            ph = p.get("phase")
+            if ph == "reentry":
+                place(sfx, fade((A.fast_lowpass(noise(d), 900) * 0.5).astype(np.float32)), t0)
+            if ph == "chutes":
+                place(sfx, A.impact(2.0).astype(np.float32) * 0.5, t0 + 0.3)
+                place(sfx, fade(A.wind(d, 0.25).astype(np.float32)), t0)
+            if ph == "splash":
+                place(sfx, (A.fast_lowpass(noise(1.5), 1200) * 0.4 * env(int(1.5 * SR), 0.01, 1.3)).astype(np.float32), t0 + 0.2)
+                place(sfx, fade((A.fast_lowpass(noise(d), 400) * 0.1).astype(np.float32)), t0)
+            if ph == "dock":
+                place(sfx, A.impact(2.0).astype(np.float32) * 0.5, t0 + d * 0.8)
+        if v in ("atacama", "sofia") and p.get("time", p.get("mode")) in ("night", "roof"):
+            place(sfx, fade((A.fast_lowpass(noise(d), 200) * 0.05).astype(np.float32)), t0)
+            for k in np.arange(0.4, d, 1.1):
+                place(sfx, beep(4300 + rng.random() * 300, 0.04, 0.008), t0 + k)
         if p.get("impact"):
             place(sfx, A.impact().astype(np.float32), t0 + d * p["impact"])
         if v == "skyRing":

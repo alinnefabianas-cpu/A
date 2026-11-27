@@ -4,7 +4,7 @@ import {renderStill, selectComposition} from '@remotion/renderer';
 import fs from 'node:fs';
 import path from 'node:path';
 const compId = process.env.COMP || 'Ep001Full';
-const epFile = {Ep001Full: 'episode_001', Ep002Full: 'episode_002', Ep003Full: 'episode_003', Ep004Full: 'episode_004', Ep005Full: 'episode_005', Ep006Full: 'episode_006', Ep007Full: 'episode_007'}[compId];
+const epFile = {Ep001Full: 'episode_001', Ep002Full: 'episode_002', Ep003Full: 'episode_003', Ep004Full: 'episode_004', Ep005Full: 'episode_005', Ep006Full: 'episode_006', Ep007Full: 'episode_007', Ep008Full: 'episode_008'}[compId];
 const ep = JSON.parse(fs.readFileSync(`src/episodes/${epFile}.json`, 'utf8'));
 const idx = process.argv.slice(2).map(Number);
 const browserExecutable = process.env.CHROME;

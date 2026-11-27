@@ -34,6 +34,9 @@ VOICES = {
     "HANA": ("a", "af_nova", 1.0),       # Hana, seabird researcher (ep 6)
     "YARA": ("b", "bf_lily", 0.95),      # Dr. Yara Haddad, geologist (ep 7)
     "IDRIS": ("b", "bm_fable", 0.86),    # Idris, caravan leader (ep 7)
+    "VERA": ("b", "bf_alice", 0.92),     # Vera Lindqvist, station commander (ep 8)
+    "SOFIA": ("a", "af_sky", 1.0),       # Sofia, 15, radio girl in Chile (ep 8)
+    "CONTROL": ("a", "am_onyx", 1.0),    # mission control (radio)
 }
 
 

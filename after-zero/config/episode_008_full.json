@@ -1,0 +1,29 @@
+{
+ "episode": "episode_008",
+ "title": "WHAT IF YOU WERE STRANDED IN SPACE?",
+ "cut": "full",
+ "description": "Episode 8, code-animated (Remotion), Kokoro TTS voices, synthesized score.",
+ "output": {
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "file": "renders/after_zero_ep008_full.mp4"
+ },
+ "voiceover": {
+  "file": "voiceover/full_vo.wav",
+  "offset": 0,
+  "gain_db": 0
+ },
+ "music_file": "music/music_full.wav",
+ "sfx_file": "sound_effects/sfx_full.wav",
+ "srt_file": "subtitles/episode_008_full.en.srt",
+ "total_seconds": 1417.7470000000003,
+ "shots": [],
+ "subtitles": [],
+ "mix": {
+  "vo_db": 0,
+  "music_db": -15,
+  "sfx_db": -9,
+  "duck": true
+ }
+}
